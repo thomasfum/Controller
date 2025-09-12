@@ -3,19 +3,22 @@
   "WorkspaceRootPath": "E:\\Data\\dev\\Controller\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|e:\\data\\dev\\controller\\controller\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|solutionrelative:controller\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2AB86445-8619-4B47-AE62-68F796125A39}|UnitTestProject2\\UnitTestProject2.csproj|e:\\data\\dev\\controller\\unittestproject2\\logicgates\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2AB86445-8619-4B47-AE62-68F796125A39}|UnitTestProject2\\UnitTestProject2.csproj|solutionrelative:unittestproject2\\logicgates\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|e:\\data\\dev\\controller\\controller\\logicgates\\relay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|Controller||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|E:\\Data\\dev\\Controller\\controller\\logicgates\\relay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|solutionrelative:controller\\logicgates\\relay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|e:\\data\\dev\\controller\\controller\\logicgates\\or.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|E:\\Data\\dev\\Controller\\controller\\logicgates\\or.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|solutionrelative:controller\\logicgates\\or.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|e:\\data\\dev\\controller\\controller\\logicgates\\invert.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|E:\\Data\\dev\\Controller\\controller\\logicgates\\invert.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|solutionrelative:controller\\logicgates\\invert.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -26,11 +29,35 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UnitTest1.cs",
+              "DocumentMoniker": "E:\\Data\\dev\\Controller\\UnitTestProject2\\LogicGates\\UnitTest1.cs",
+              "RelativeDocumentMoniker": "UnitTestProject2\\LogicGates\\UnitTest1.cs",
+              "ToolTip": "E:\\Data\\dev\\Controller\\UnitTestProject2\\LogicGates\\UnitTest1.cs",
+              "RelativeToolTip": "UnitTestProject2\\LogicGates\\UnitTest1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-12T19:32:33.523Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Controller",
+              "DocumentMoniker": "E:\\Data\\dev\\Controller\\Controller\\Controller.csproj",
+              "RelativeDocumentMoniker": "Controller\\Controller.csproj",
+              "ToolTip": "E:\\Data\\dev\\Controller\\Controller\\Controller.csproj",
+              "RelativeToolTip": "Controller\\Controller.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-09-12T19:29:53.139Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Relay.cs",
               "DocumentMoniker": "E:\\Data\\dev\\Controller\\Controller\\LogicGates\\Relay.cs",
               "RelativeDocumentMoniker": "Controller\\LogicGates\\Relay.cs",
@@ -38,12 +65,11 @@
               "RelativeToolTip": "Controller\\LogicGates\\Relay.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-12T16:28:18.146Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-12T16:28:18.146Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "or.cs",
               "DocumentMoniker": "E:\\Data\\dev\\Controller\\Controller\\LogicGates\\or.cs",
               "RelativeDocumentMoniker": "Controller\\LogicGates\\or.cs",
@@ -51,12 +77,11 @@
               "RelativeToolTip": "Controller\\LogicGates\\or.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-12T16:28:09.353Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-12T16:28:09.353Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Invert.cs",
               "DocumentMoniker": "E:\\Data\\dev\\Controller\\Controller\\LogicGates\\Invert.cs",
               "RelativeDocumentMoniker": "Controller\\LogicGates\\Invert.cs",
@@ -64,21 +89,7 @@
               "RelativeToolTip": "Controller\\LogicGates\\Invert.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-12T16:28:00.442Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Form1.Designer.cs",
-              "DocumentMoniker": "E:\\Data\\dev\\Controller\\Controller\\Form1.Designer.cs",
-              "RelativeDocumentMoniker": "Controller\\Form1.Designer.cs",
-              "ToolTip": "E:\\Data\\dev\\Controller\\Controller\\Form1.Designer.cs",
-              "RelativeToolTip": "Controller\\Form1.Designer.cs",
-              "ViewState": "AgIAACYAAAAAAAAAAADgvzMAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-12T16:27:16.331Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-12T16:28:00.442Z"
             }
           ]
         }
