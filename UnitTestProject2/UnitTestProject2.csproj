@@ -49,7 +49,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LogicGates\UnitTest1.cs" />
+    <Compile Include="Arithmetics\UnitTest16BitsAdder.cs" />
+    <Compile Include="Arithmetics\UnitTest2BitsAdder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LogicGates\UnitTestAnd.cs" />
     <Compile Include="LogicGates\UnitTestInvert.cs" />

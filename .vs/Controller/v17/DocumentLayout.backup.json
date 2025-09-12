@@ -3,15 +3,20 @@
   "WorkspaceRootPath": "E:\\Data\\dev\\Controller\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2AB86445-8619-4B47-AE62-68F796125A39}|UnitTestProject2\\UnitTestProject2.csproj|e:\\data\\dev\\controller\\unittestproject2\\logicgates\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2AB86445-8619-4B47-AE62-68F796125A39}|UnitTestProject2\\UnitTestProject2.csproj|solutionrelative:unittestproject2\\logicgates\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2AB86445-8619-4B47-AE62-68F796125A39}|UnitTestProject2\\UnitTestProject2.csproj|e:\\data\\dev\\controller\\unittestproject2\\arithmetics\\unittest16bitsadder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2AB86445-8619-4B47-AE62-68F796125A39}|UnitTestProject2\\UnitTestProject2.csproj|solutionrelative:unittestproject2\\arithmetics\\unittest16bitsadder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|Controller||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+      "AbsoluteMoniker": "D:0:0:{2AB86445-8619-4B47-AE62-68F796125A39}|UnitTestProject2\\UnitTestProject2.csproj|e:\\data\\dev\\controller\\unittestproject2\\logicgates\\unittestand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2AB86445-8619-4B47-AE62-68F796125A39}|UnitTestProject2\\UnitTestProject2.csproj|solutionrelative:unittestproject2\\logicgates\\unittestand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|E:\\Data\\dev\\Controller\\controller\\logicgates\\relay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|solutionrelative:controller\\logicgates\\relay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|e:\\data\\dev\\controller\\controller\\arithmetics\\16bitsadder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|solutionrelative:controller\\arithmetics\\16bitsadder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2AB86445-8619-4B47-AE62-68F796125A39}|UnitTestProject2\\UnitTestProject2.csproj|e:\\data\\dev\\controller\\unittestproject2\\arithmetics\\unittest2bitsadder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2AB86445-8619-4B47-AE62-68F796125A39}|UnitTestProject2\\UnitTestProject2.csproj|solutionrelative:unittestproject2\\arithmetics\\unittest2bitsadder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|E:\\Data\\dev\\Controller\\controller\\logicgates\\or.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -29,59 +34,76 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UnitTest1.cs",
-              "DocumentMoniker": "E:\\Data\\dev\\Controller\\UnitTestProject2\\LogicGates\\UnitTest1.cs",
-              "RelativeDocumentMoniker": "UnitTestProject2\\LogicGates\\UnitTest1.cs",
-              "ToolTip": "E:\\Data\\dev\\Controller\\UnitTestProject2\\LogicGates\\UnitTest1.cs",
-              "RelativeToolTip": "UnitTestProject2\\LogicGates\\UnitTest1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "16bitsAdder.cs",
+              "DocumentMoniker": "E:\\Data\\dev\\Controller\\Controller\\Arithmetics\\16bitsAdder.cs",
+              "RelativeDocumentMoniker": "Controller\\Arithmetics\\16bitsAdder.cs",
+              "ToolTip": "E:\\Data\\dev\\Controller\\Controller\\Arithmetics\\16bitsAdder.cs",
+              "RelativeToolTip": "Controller\\Arithmetics\\16bitsAdder.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-12T19:32:33.523Z",
+              "WhenOpened": "2025-09-12T20:16:48.866Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UnitTest16BitsAdder.cs",
+              "DocumentMoniker": "E:\\Data\\dev\\Controller\\UnitTestProject2\\Arithmetics\\UnitTest16BitsAdder.cs",
+              "RelativeDocumentMoniker": "UnitTestProject2\\Arithmetics\\UnitTest16BitsAdder.cs",
+              "ToolTip": "E:\\Data\\dev\\Controller\\UnitTestProject2\\Arithmetics\\UnitTest16BitsAdder.cs",
+              "RelativeToolTip": "UnitTestProject2\\Arithmetics\\UnitTest16BitsAdder.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAADwvyMAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-12T20:18:02.884Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Controller",
-              "DocumentMoniker": "E:\\Data\\dev\\Controller\\Controller\\Controller.csproj",
-              "RelativeDocumentMoniker": "Controller\\Controller.csproj",
-              "ToolTip": "E:\\Data\\dev\\Controller\\Controller\\Controller.csproj",
-              "RelativeToolTip": "Controller\\Controller.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-09-12T19:29:53.139Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Relay.cs",
-              "DocumentMoniker": "E:\\Data\\dev\\Controller\\Controller\\LogicGates\\Relay.cs",
-              "RelativeDocumentMoniker": "Controller\\LogicGates\\Relay.cs",
-              "ToolTip": "E:\\Data\\dev\\Controller\\Controller\\LogicGates\\Relay.cs",
-              "RelativeToolTip": "Controller\\LogicGates\\Relay.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "UnitTestAnd.cs",
+              "DocumentMoniker": "E:\\Data\\dev\\Controller\\UnitTestProject2\\LogicGates\\UnitTestAnd.cs",
+              "RelativeDocumentMoniker": "UnitTestProject2\\LogicGates\\UnitTestAnd.cs",
+              "ToolTip": "E:\\Data\\dev\\Controller\\UnitTestProject2\\LogicGates\\UnitTestAnd.cs",
+              "RelativeToolTip": "UnitTestProject2\\LogicGates\\UnitTestAnd.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABUAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-12T16:28:18.146Z"
+              "WhenOpened": "2025-09-12T19:59:18.376Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "UnitTest2BitsAdder.cs",
+              "DocumentMoniker": "E:\\Data\\dev\\Controller\\UnitTestProject2\\Arithmetics\\UnitTest2BitsAdder.cs",
+              "RelativeDocumentMoniker": "UnitTestProject2\\Arithmetics\\UnitTest2BitsAdder.cs",
+              "ToolTip": "E:\\Data\\dev\\Controller\\UnitTestProject2\\Arithmetics\\UnitTest2BitsAdder.cs",
+              "RelativeToolTip": "UnitTestProject2\\Arithmetics\\UnitTest2BitsAdder.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-12T19:59:10.797Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "or.cs",
               "DocumentMoniker": "E:\\Data\\dev\\Controller\\Controller\\LogicGates\\or.cs",
               "RelativeDocumentMoniker": "Controller\\LogicGates\\or.cs",
               "ToolTip": "E:\\Data\\dev\\Controller\\Controller\\LogicGates\\or.cs",
               "RelativeToolTip": "Controller\\LogicGates\\or.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-12T16:28:09.353Z"
+              "WhenOpened": "2025-09-12T16:28:09.353Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Invert.cs",
               "DocumentMoniker": "E:\\Data\\dev\\Controller\\Controller\\LogicGates\\Invert.cs",
               "RelativeDocumentMoniker": "Controller\\LogicGates\\Invert.cs",

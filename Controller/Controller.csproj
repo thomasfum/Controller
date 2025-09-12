@@ -49,6 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Arithmetics\16bitsAdder.cs" />
+    <Compile Include="Arithmetics\2bitsAdder.cs" />
     <Compile Include="Arithmetics\FullAdder.cs" />
     <Compile Include="Arithmetics\HalfAdder.cs" />
     <Compile Include="LogicGates\And.cs" />
