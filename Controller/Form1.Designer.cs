@@ -28,18 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.hyperlinkLabelControl1 = new DevExpress.XtraEditors.HyperlinkLabelControl();
+           
             this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // hyperlinkLabelControl1
-            // 
-            this.hyperlinkLabelControl1.Location = new System.Drawing.Point(508, 33);
-            this.hyperlinkLabelControl1.Name = "hyperlinkLabelControl1";
-            this.hyperlinkLabelControl1.Size = new System.Drawing.Size(73, 13);
-            this.hyperlinkLabelControl1.TabIndex = 0;
-            this.hyperlinkLabelControl1.Text = "nandgame.com";
-            this.hyperlinkLabelControl1.Click += new System.EventHandler(this.hyperlinkLabelControl1_Click);
+           
             // 
             // button1
             // 
@@ -57,7 +49,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.hyperlinkLabelControl1);
+          
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -67,7 +59,6 @@
 
         #endregion
 
-        private DevExpress.XtraEditors.HyperlinkLabelControl hyperlinkLabelControl1;
         private System.Windows.Forms.Button button1;
     }
 }

@@ -33,3 +33,5 @@ C:\Thomas_perso\UnitTests\obj\Debug\UnitTests.csproj.CoreCompileInputs.cache
 C:\Thomas_perso\UnitTests\obj\Debug\UnitTests.csproj.CopyComplete
 C:\Thomas_perso\UnitTests\obj\Debug\UnitTests.dll
 C:\Thomas_perso\UnitTests\obj\Debug\UnitTests.pdb
+E:\Data\dev\Controller\UnitTests\obj\Debug\UnitTests.dll
+E:\Data\dev\Controller\UnitTests\obj\Debug\UnitTests.pdb
