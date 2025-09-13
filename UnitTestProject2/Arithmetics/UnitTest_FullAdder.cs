@@ -18,9 +18,11 @@ namespace UnitTestProject2.Arithmetics
             fullAdder.a = a;
             fullAdder.b = b;
             fullAdder.c = c;
-            fullAdder.proceed();
+            int val=fullAdder.proceed();
             Assert.AreEqual(expected_l, fullAdder.l);
             Assert.AreEqual(expected_h, fullAdder.h);
+            Assert.AreEqual(57, val);
+            
         }
         [TestMethod]
         public void TestMethod_0_0_0()

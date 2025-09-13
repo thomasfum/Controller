@@ -13,20 +13,21 @@ namespace Controller.Arithmetics
         public bool b;
         public bool h;
         public bool l;
-        public void proceed()
+        public int proceed()
         {
+            int val = 0;
             Xor xor = new Xor();
             xor.a = a;
             xor.b = b;
-            xor.proceed();
+            val+=xor.proceed();
             l = xor.output;
 
             And and = new And();
             and.a = a;
             and.b = b;
-            and.proceed();
+            val += and.proceed();
             h = and.output;
-
+            return val;
             
         }
     }

@@ -19,9 +19,10 @@ namespace UnitTestProject2.Arithmetics
             Substracter_16 Sub = new Substracter_16();
             Sub.a = Tools.int2BoolArray(5);
             Sub.b = Tools.int2BoolArray(2);
-            Sub.proceed();
+            int val=Sub.proceed();
             int integerVal = Tools.boolArray2Int(Sub.s);
             Assert.AreEqual(3, integerVal);
+            Assert.AreEqual(960, val);
         }
         [TestMethod]
         public void TestMethod_m5_2()
@@ -29,9 +30,10 @@ namespace UnitTestProject2.Arithmetics
             Substracter_16 Sub = new Substracter_16();
             Sub.a = Tools.int2BoolArray(-5);
             Sub.b = Tools.int2BoolArray(2);
-            Sub.proceed();
+            int val = Sub.proceed();
             int integerVal = Tools.boolArray2Int(Sub.s);
             Assert.AreEqual(-7, integerVal);
+            Assert.AreEqual(960, val);
         }
     }
 }

@@ -17,9 +17,10 @@ namespace UnitTestProject2.Arithmetics
             HalfAdder halfAdder = new HalfAdder();
             halfAdder.a = a;
             halfAdder.b = b;
-            halfAdder.proceed();
+            int val=halfAdder.proceed();
             Assert.AreEqual(expected_l, halfAdder.l);
             Assert.AreEqual(expected_h, halfAdder.h);
+            Assert.AreEqual(24, val);
         }
         [TestMethod]
         public void TestMethod_0_0()

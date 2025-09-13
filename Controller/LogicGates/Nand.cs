@@ -20,18 +20,20 @@ namespace Controller
             relay2 = new Relay(true);//default off
             relay3 = new Relay(false);//default off
         }
-        public void proceed()
+        public int proceed()
         {
+            int val = 0;
             relay1.input = true;
             relay1.c = b;
-            relay1.proceed();
+            val+=relay1.proceed();
             relay2.input = relay1.output;
             relay2.c = a;
-            relay2.proceed();
+            val += relay2.proceed();
             relay3.input = true;
             relay3.c = relay2.output;
-            relay3.proceed();
+            val += relay3.proceed();
             output = relay3.output;
+            return val;
         }
     }
 }

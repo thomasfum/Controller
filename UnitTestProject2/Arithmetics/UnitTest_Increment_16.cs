@@ -20,16 +20,18 @@ namespace UnitTestProject2.Arithmetics
         {
             Increment_16 inc = new Increment_16();
             inc.a= Tools.int2BoolArray(2);
-            inc.proceed();
+            int val=inc.proceed();
             Assert.AreEqual(3, Tools.boolArray2Int(inc.s));
+            Assert.AreEqual(912, val);
         }
         [TestMethod]
         public void TestMethod_m2()
         {
             Increment_16 inc = new Increment_16();
             inc.a = Tools.int2BoolArray(-2);
-            inc.proceed();
+            int val = inc.proceed();
             Assert.AreEqual(-1, Tools.boolArray2Int(inc.s));
+            Assert.AreEqual(912, val);
         }
     }
 }

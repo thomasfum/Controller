@@ -17,8 +17,9 @@ namespace UnitTestProject2.LogicGates
             Or or = new Or();
             or.a = a;
             or.b = b;
-            or.proceed();
+            int val=or.proceed();
             Assert.AreEqual(expected, or.output);
+            Assert.AreEqual(9, val);
         }
         [TestMethod]
         public void TestMethod_0_0()

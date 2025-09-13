@@ -17,8 +17,9 @@ namespace UnitTestProject2.LogicGates
             Nand nand1 = new Nand();
             nand1.a = a;
             nand1.b = b;
-            nand1.proceed();
+            int val = nand1.proceed();
             Assert.AreEqual(expected, nand1.output);
+            Assert.AreEqual(3, val);
         }
 
         [TestMethod]

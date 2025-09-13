@@ -15,8 +15,9 @@ namespace Controller
         public bool[] s = new bool[16];
         public bool c;
         public bool cOut;
-        public void proceed()
+        public int proceed()
         {
+            int val = 0;
             bool lastC = c;
             for (int i = 0; i < 16; i++) 
             {
@@ -24,11 +25,12 @@ namespace Controller
                 add.a = a[i];
                 add.b = b[i];
                 add.c = lastC;
-                add.proceed();
+                val+=add.proceed();
                 s[i] = add.l;
                 lastC = add.h;
             }
             cOut = lastC;
+            return val;
         }
     }
 }

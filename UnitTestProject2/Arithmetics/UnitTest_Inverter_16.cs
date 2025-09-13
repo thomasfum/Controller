@@ -20,8 +20,9 @@ namespace UnitTestProject2.Arithmetics
         {
             Inverter_16 inv = new Inverter_16();
             inv.a = Tools.int2BoolArray(2);
-            inv.proceed();
+            int val=inv.proceed();
             Assert.AreEqual(-3, Tools.boolArray2Int(inv.s));
+            Assert.AreEqual(48, val);
         }
     }
 }

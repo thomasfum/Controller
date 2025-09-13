@@ -49,6 +49,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Arithmetics\UnitTest_Less0_16.cs" />
+    <Compile Include="Arithmetics\UnitTest_Equal0_16.cs" />
     <Compile Include="Arithmetics\UnitTest_Adder_16.cs" />
     <Compile Include="Arithmetics\UnitTest_Equal0_2.cs" />
     <Compile Include="Arithmetics\UnitTest_Increment_16.cs" />
@@ -73,6 +75,9 @@
       <Project>{2c5e1c89-4da8-4a4b-9b59-81f0c29b9835}</Project>
       <Name>Controller</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Switching\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

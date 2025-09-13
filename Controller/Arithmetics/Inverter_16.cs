@@ -11,16 +11,17 @@ namespace Controller.Arithmetics
         public bool[] a = new bool[16];
         public bool[] s = new bool[16];
        
-        public void proceed()
+        public int proceed()
         {
+            int val = 0;
             for (int i = 0; i < 16; i++)
             {
                 Invert inv = new Invert();
                 inv.input = a[i];
-                inv.proceed();
+                val+=inv.proceed();
                 s[i] = inv.output;
             }
-            
+            return val;
         }
     }
 }

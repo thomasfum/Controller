@@ -18,8 +18,9 @@ namespace UnitTestProject2.Arithmetics
             Equal0_2 eq = new Equal0_2();
             eq.a0=false;
             eq.a1 = false;
-            eq.proceed();
+            int val=eq.proceed();
             Assert.AreEqual(true, eq.s);
+            Assert.AreEqual(12, val);
         }
         [TestMethod]
         public void TestMethod_1()
@@ -27,8 +28,9 @@ namespace UnitTestProject2.Arithmetics
             Equal0_2 eq = new Equal0_2();
             eq.a0 = true;
             eq.a1 = false;
-            eq.proceed();
+            int val = eq.proceed();
             Assert.AreEqual(false, eq.s);
+            Assert.AreEqual(12, val);
         }
         [TestMethod]
         public void TestMethod_2()
@@ -36,8 +38,9 @@ namespace UnitTestProject2.Arithmetics
             Equal0_2 eq = new Equal0_2();
             eq.a0 = false;
             eq.a1 = true;
-            eq.proceed();
+            int val = eq.proceed();
             Assert.AreEqual(false, eq.s);
+            Assert.AreEqual(12, val);
         }
         [TestMethod]
         public void TestMethod_3()
@@ -45,8 +48,9 @@ namespace UnitTestProject2.Arithmetics
             Equal0_2 eq = new Equal0_2();
             eq.a0 = true;
             eq.a1 = true;
-            eq.proceed();
+            int val = eq.proceed();
             Assert.AreEqual(false, eq.s);
+            Assert.AreEqual(12, val);
         }
     }
 }

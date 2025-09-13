@@ -13,15 +13,17 @@ namespace Controller
         public bool b;
         public bool output;
 
-        public void proceed()
+        public int proceed()
         {
+            int val = 0;
             Nand nand= new Nand();
             nand.a = a; nand.b=b;
-            nand.proceed();
+            val+=nand.proceed();
             Invert invert= new Invert();
             invert.input = nand.output;
-            invert.proceed();
+            val += invert.proceed();
             output =invert.output;
+            return val;
         }
     }
 }

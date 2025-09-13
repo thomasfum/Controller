@@ -13,8 +13,9 @@ namespace UnitTestProject2.LogicGates
             Relay relay1 = new Relay(_default);//default off
             relay1.input  = _input;
             relay1.c = cmd;
-            relay1.proceed();
+            int val=relay1.proceed();
             Assert.AreEqual(expected, relay1.output);
+            Assert.AreEqual(val,1);
         }
         //defaultOff
         [TestMethod]

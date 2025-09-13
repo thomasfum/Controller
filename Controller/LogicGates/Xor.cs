@@ -11,27 +11,30 @@ namespace Controller
         public bool a;
         public bool b;
         public bool output;
-        public void proceed()
+        public int proceed()
         {
+
+            int val = 0;
             Or or = new Or();
             or.a = a;
             or.b = b;
-            or.proceed();
+            val += or.proceed();
 
      
             Nand nand = new Nand();
             nand.a = a;
             nand.b = b;
-            nand.proceed();
+            val += nand.proceed();
 
 
             And and = new And();
             and.a = or.output;
             and.b = nand.output;
-            and.proceed();
+            val += and.proceed();
 
 
             output = and.output;
+            return val;
         }
 
     }

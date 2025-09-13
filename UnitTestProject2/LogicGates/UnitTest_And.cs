@@ -18,8 +18,9 @@ namespace UnitTestProject2.LogicGates
             And and= new And();
             and.a = a;
             and.b = b;
-            and.proceed();
+            int val=and.proceed();
             Assert.AreEqual(expected, and.output);
+            Assert.AreEqual(val, 6);
         }
         [TestMethod]
         public void TestMethod_0_0()

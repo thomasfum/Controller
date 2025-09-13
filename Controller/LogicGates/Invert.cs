@@ -11,14 +11,14 @@ namespace Controller
         public bool input = false;
         public bool output = false;
 
-        public void proceed()
+        public int proceed()
         {
             Nand nand= new Nand();
             nand.a = input;
             nand.b = input;
-            nand.proceed();
+            int val=nand.proceed();
             output = nand.output;
-
+            return val;
         }
     }
 }

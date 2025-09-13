@@ -21,10 +21,11 @@ namespace UnitTestProject2.Arithmetics
             twoBitsAdder.b0 = false;
             twoBitsAdder.b1 = true;//b=2
             twoBitsAdder.c = true;//c=1
-            twoBitsAdder.proceed();//=>5
+            int val=twoBitsAdder.proceed();//=>5
             Assert.AreEqual(true, twoBitsAdder.cOut);
             Assert.AreEqual(false, twoBitsAdder.s1);
             Assert.AreEqual(true, twoBitsAdder.s0);
+            Assert.AreEqual(114, val);
 
         }
         [TestMethod]
@@ -36,10 +37,11 @@ namespace UnitTestProject2.Arithmetics
             twoBitsAdder.b0 = true;
             twoBitsAdder.b1 = false;//b=1
             twoBitsAdder.c = false;//c=0
-            twoBitsAdder.proceed();//=>2
+            int val = twoBitsAdder.proceed();//=>2
             Assert.AreEqual(false, twoBitsAdder.cOut);
             Assert.AreEqual(true, twoBitsAdder.s1);
             Assert.AreEqual(false, twoBitsAdder.s0);
+            Assert.AreEqual(114, val);
 
         }
 

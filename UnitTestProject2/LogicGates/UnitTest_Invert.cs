@@ -16,16 +16,18 @@ namespace UnitTestProject2.LogicGates
         {
             Invert invert = new Invert();
             invert.input = true;
-            invert.proceed();
+            int val=invert.proceed();
             Assert.AreEqual(false, invert.output);
+            Assert.AreEqual(3, val);
         }
         [TestMethod]
         public void TestMethod_0()
         {
             Invert invert = new Invert();
             invert.input = false;
-            invert.proceed();
+            int val = invert.proceed();
             Assert.AreEqual(true, invert.output);
+            Assert.AreEqual(3, val);
         }
     }
 }

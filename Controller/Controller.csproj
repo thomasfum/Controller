@@ -50,12 +50,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Arithmetics\Adder_16.cs" />
+    <Compile Include="Arithmetics\Equal0_16.cs" />
     <Compile Include="Arithmetics\Equal0_2.cs" />
     <Compile Include="Arithmetics\Increment_16.cs" />
     <Compile Include="Arithmetics\Adder_2.cs" />
     <Compile Include="Arithmetics\FullAdder.cs" />
     <Compile Include="Arithmetics\HalfAdder.cs" />
     <Compile Include="Arithmetics\Inverter_16.cs" />
+    <Compile Include="Arithmetics\Less0_16.cs" />
     <Compile Include="Arithmetics\Substracter_16.cs" />
     <Compile Include="LogicGates\And.cs" />
     <Compile Include="Form1.cs">
@@ -97,6 +99,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Switching\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

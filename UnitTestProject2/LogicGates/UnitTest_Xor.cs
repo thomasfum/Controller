@@ -17,8 +17,9 @@ namespace UnitTestProject2.LogicGates
             Xor xor = new Xor();
             xor.a = a;
             xor.b = b;
-            xor.proceed();
+            int val = xor.proceed();
             Assert.AreEqual(expected, xor.output);
+            Assert.AreEqual(18, val);
         }
         [TestMethod]
         public void TestMethod_0_0()

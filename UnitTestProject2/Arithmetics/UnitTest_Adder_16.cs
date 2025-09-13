@@ -21,10 +21,11 @@ namespace UnitTestProject2.Arithmetics
             Adder.a = Tools.int2BoolArray(2);
             Adder.b = Tools.int2BoolArray(5);
             Adder.c = true;
-            Adder.proceed();
+            int val=Adder.proceed();
             int integerVal = Tools.boolArray2Int(Adder.s);
             Assert.AreEqual(8, integerVal);
             Assert.AreEqual(false, Adder.cOut);
+            Assert.AreEqual(912, val);
 
         }
     }

@@ -11,14 +11,15 @@ namespace Controller.Arithmetics
     {
         public bool[] a = new bool[16];
         public bool[] s = new bool[16];
-        public void proceed()
+        public int proceed()
         {
             Adder_16 adder = new Adder_16();
             adder.a = a;
             adder.b = new bool[16];//assuming false
             adder.c = true;
-            adder.proceed();
+            int val=adder.proceed();
             s=adder.s;
+            return val;
         }
     }
 }

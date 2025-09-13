@@ -17,7 +17,7 @@ namespace Controller
         {
             defaultOff = _defaultOff;
         }
-        public void proceed()
+        public int proceed()
         {
             if (defaultOff==true)
             {
@@ -33,6 +33,7 @@ namespace Controller
                 else
                     output = false;
             }
+            return 1;
         }
     }
 }

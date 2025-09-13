@@ -17,17 +17,16 @@ namespace Controller
             InitializeComponent();
         }
 
-        private void hyperlinkLabelControl1_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://nandgame.com");
-        }
+      
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Nand nand1 = new Nand();
-            nand1.a = false;
-            nand1.b = false;
-            nand1.proceed();
+          
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://nandgame.com");
         }
     }
 }

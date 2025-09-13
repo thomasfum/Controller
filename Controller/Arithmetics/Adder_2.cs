@@ -23,21 +23,23 @@ namespace Controller
         public bool cOut;
 
 
-        public void proceed()
+        public int proceed()
         {
+            int val = 0;
             FullAdder add1 = new FullAdder();
             add1.a = a0;
             add1.b = b0;
             add1.c = c;
-            add1.proceed();
+            val+=add1.proceed();
             s0 = add1.l;
             FullAdder add2 = new FullAdder();
             add2.a = a1;
             add2.b = b1;
             add2.c = add1.h;
-            add2.proceed();
+            val += add2.proceed();
             s1 = add2.l;
             cOut= add2.h;
+            return val;
         }
 
     }
