@@ -73,6 +73,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LogicGates\Relay.cs" />
     <Compile Include="LogicGates\Xor.cs" />
+    <Compile Include="Switching\Selector.cs" />
+    <Compile Include="Switching\Switch.cs" />
     <Compile Include="Tools.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -100,8 +102,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Switching\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
