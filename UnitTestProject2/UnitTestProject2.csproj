@@ -49,17 +49,21 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Arithmetics\UnitTest16BitsAdder.cs" />
-    <Compile Include="Arithmetics\UnitTest2BitsAdder.cs" />
+    <Compile Include="Arithmetics\UnitTest_Adder_16.cs" />
+    <Compile Include="Arithmetics\UnitTest_Equal0_2.cs" />
+    <Compile Include="Arithmetics\UnitTest_Increment_16.cs" />
+    <Compile Include="Arithmetics\UnitTest_Adder_2.cs" />
+    <Compile Include="Arithmetics\UnitTest_Inverter_16.cs" />
+    <Compile Include="Arithmetics\UnitTest_Substracter_16.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="LogicGates\UnitTestAnd.cs" />
-    <Compile Include="LogicGates\UnitTestInvert.cs" />
-    <Compile Include="LogicGates\UnitTestNand.cs" />
-    <Compile Include="LogicGates\UnitTestOr.cs" />
-    <Compile Include="LogicGates\UnitTestRelay.cs" />
-    <Compile Include="LogicGates\UnitTestXor.cs" />
-    <Compile Include="Arithmetics\UnitTestFullAdder.cs" />
-    <Compile Include="Arithmetics\UnitTestHalfAdder.cs" />
+    <Compile Include="LogicGates\UnitTest_And.cs" />
+    <Compile Include="LogicGates\UnitTest_Invert.cs" />
+    <Compile Include="LogicGates\UnitTest_Nand.cs" />
+    <Compile Include="LogicGates\UnitTest_Or.cs" />
+    <Compile Include="LogicGates\UnitTest_Relay.cs" />
+    <Compile Include="LogicGates\UnitTest_Xor.cs" />
+    <Compile Include="Arithmetics\UnitTest_FullAdder.cs" />
+    <Compile Include="Arithmetics\UnitTest_HalfAdder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

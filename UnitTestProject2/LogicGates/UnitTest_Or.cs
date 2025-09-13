@@ -6,25 +6,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UnitTests
+namespace UnitTestProject2.LogicGates
 {
     [TestClass]
-    public class UnitTestNand
+    public class UnitTest_Or
     {
 
-        void test( bool a, bool b, bool expected)
+        void test(bool a, bool b, bool expected)
         {
-            Nand nand1 = new Nand();
-            nand1.a = a;
-            nand1.b = b;
-            nand1.proceed();
-            Assert.AreEqual(expected, nand1.output);
+            Or or = new Or();
+            or.a = a;
+            or.b = b;
+            or.proceed();
+            Assert.AreEqual(expected, or.output);
         }
-
         [TestMethod]
         public void TestMethod_0_0()
         {
-            test(false, false, true);
+            test(false, false, false);
         }
         [TestMethod]
         public void TestMethod_0_1()
@@ -39,7 +38,7 @@ namespace UnitTests
         [TestMethod]
         public void TestMethod_1_1()
         {
-            test(true, true, false);
+            test(true, true, true);
         }
 
     }

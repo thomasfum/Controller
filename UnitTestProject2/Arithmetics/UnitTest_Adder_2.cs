@@ -6,16 +6,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UnitTests
+namespace UnitTestProject2.Arithmetics
 {
     [TestClass]
-    public class UnitTest2BitsAdder
+    public class UnitTest_Adder_2
     {
 
         [TestMethod]
         public void TestMethod_2_2_1()
         {
-            TwoBitsAdder twoBitsAdder = new TwoBitsAdder();
+            Adder_2 twoBitsAdder = new Adder_2();
             twoBitsAdder.a0 = false;
             twoBitsAdder.a1 = true;//a=2
             twoBitsAdder.b0 = false;
@@ -30,7 +30,7 @@ namespace UnitTests
         [TestMethod]
         public void TestMethod_1_1_0()
         {
-            TwoBitsAdder twoBitsAdder = new TwoBitsAdder();
+            Adder_2 twoBitsAdder = new Adder_2();
             twoBitsAdder.a0 = true;
             twoBitsAdder.a1 = false;//a=1
             twoBitsAdder.b0 = true;

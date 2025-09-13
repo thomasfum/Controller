@@ -6,10 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UnitTests
+namespace UnitTestProject2.LogicGates
 {
     [TestClass]
-    public class UnitTestInvert
+    public class UnitTest_Invert
     {
         [TestMethod]
         public void TestMethod_1()

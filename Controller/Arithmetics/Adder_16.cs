@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace Controller
 {
-    public class SixteenBitsAdder
+    // adder 16 bits
+    public class Adder_16
     {
         public bool[] a = new bool[16];
         public bool[] b = new bool[16];

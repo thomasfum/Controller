@@ -2,10 +2,10 @@
 using System;
 using Controller;
 
-namespace UnitTests
+namespace UnitTestProject2.LogicGates
 {
     [TestClass]
-    public class UnitTestRelay
+    public class UnitTest_Relay
     {
 
         void test(bool _default, bool cmd, bool _input,bool expected)

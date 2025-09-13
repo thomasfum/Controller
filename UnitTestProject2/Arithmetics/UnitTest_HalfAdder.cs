@@ -7,10 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UnitTests.Arithmetics
+namespace UnitTestProject2.Arithmetics
 {
     [TestClass]
-    public class UnitTestHalfAdder
+    public class UnitTest_HalfAdder
     {
         void test(bool a, bool b, bool expected_h, bool expected_l)
         {

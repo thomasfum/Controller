@@ -6,10 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UnitTests.Arithmetics
+namespace UnitTestProject2.Arithmetics
 {
     [TestClass]
-    public class UnitTestFullAdder
+    public class UnitTest_FullAdder
     {
 
         void test(bool a, bool b, bool c, bool expected_h, bool expected_l)

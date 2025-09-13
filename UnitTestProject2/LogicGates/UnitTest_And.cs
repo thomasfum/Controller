@@ -6,19 +6,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UnitTests
+namespace UnitTestProject2.LogicGates
 {
+
     [TestClass]
-    public class UnitTestXor
+    public class UnitTestAnd
     {
 
         void test(bool a, bool b, bool expected)
         {
-            Xor xor = new Xor();
-            xor.a = a;
-            xor.b = b;
-            xor.proceed();
-            Assert.AreEqual(expected, xor.output);
+            And and= new And();
+            and.a = a;
+            and.b = b;
+            and.proceed();
+            Assert.AreEqual(expected, and.output);
         }
         [TestMethod]
         public void TestMethod_0_0()
@@ -28,17 +29,18 @@ namespace UnitTests
         [TestMethod]
         public void TestMethod_0_1()
         {
-            test(false, true, true);
+            test(false, true, false);
         }
         [TestMethod]
         public void TestMethod_1_0()
         {
-            test(true, false, true);
+            test(true, false, false);
         }
         [TestMethod]
         public void TestMethod_1_1()
         {
-            test(true, true, false);
+            test(true, true, true);
         }
+
     }
 }

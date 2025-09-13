@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace Controller
 {
-    public class TwoBitsAdder
+    // adder 2 bits
+    public class Adder_2
     {
         public bool a0;
         public bool a1;
