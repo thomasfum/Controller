@@ -49,6 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ALU\ALU.cs" />
+    <Compile Include="ALU\ArithmeticUnit.cs" />
+    <Compile Include="ALU\LogicUnit.cs" />
     <Compile Include="Arithmetics\Adder_16.cs" />
     <Compile Include="Arithmetics\Equal0_16.cs" />
     <Compile Include="Arithmetics\Equal0_2.cs" />
@@ -56,7 +59,8 @@
     <Compile Include="Arithmetics\Adder_2.cs" />
     <Compile Include="Arithmetics\FullAdder.cs" />
     <Compile Include="Arithmetics\HalfAdder.cs" />
-    <Compile Include="Arithmetics\Inverter_16.cs" />
+    <Compile Include="LogicGates\And_16.cs" />
+    <Compile Include="LogicGates\Inverter_16.cs" />
     <Compile Include="Arithmetics\Less0_16.cs" />
     <Compile Include="Arithmetics\Substracter_16.cs" />
     <Compile Include="LogicGates\And.cs" />
@@ -68,12 +72,15 @@
     </Compile>
     <Compile Include="LogicGates\Invert.cs" />
     <Compile Include="LogicGates\Nand.cs" />
-    <Compile Include="LogicGates\or.cs" />
+    <Compile Include="LogicGates\Or.cs" />
+    <Compile Include="LogicGates\Or_16.cs" />
+    <Compile Include="LogicGates\Xor_16.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LogicGates\Relay.cs" />
     <Compile Include="LogicGates\Xor.cs" />
     <Compile Include="Switching\Selector.cs" />
+    <Compile Include="Switching\Selector_16.cs" />
     <Compile Include="Switching\Switch.cs" />
     <Compile Include="Tools.cs" />
     <EmbeddedResource Include="Form1.resx">

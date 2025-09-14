@@ -3,32 +3,68 @@
   "WorkspaceRootPath": "E:\\Data\\dev\\Controller\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{2AB86445-8619-4B47-AE62-68F796125A39}|UnitTestProject2\\UnitTestProject2.csproj|e:\\data\\dev\\controller\\unittestproject2\\alu\\unittest_alu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2AB86445-8619-4B47-AE62-68F796125A39}|UnitTestProject2\\UnitTestProject2.csproj|solutionrelative:unittestproject2\\alu\\unittest_alu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2AB86445-8619-4B47-AE62-68F796125A39}|UnitTestProject2\\UnitTestProject2.csproj|e:\\data\\dev\\controller\\unittestproject2\\alu\\unittest_logicunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2AB86445-8619-4B47-AE62-68F796125A39}|UnitTestProject2\\UnitTestProject2.csproj|solutionrelative:unittestproject2\\alu\\unittest_logicunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2AB86445-8619-4B47-AE62-68F796125A39}|UnitTestProject2\\UnitTestProject2.csproj|e:\\data\\dev\\controller\\unittestproject2\\alu\\unittest_arithmeticunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2AB86445-8619-4B47-AE62-68F796125A39}|UnitTestProject2\\UnitTestProject2.csproj|solutionrelative:unittestproject2\\alu\\unittest_arithmeticunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|e:\\data\\dev\\controller\\controller\\alu\\arithmeticunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|solutionrelative:controller\\alu\\arithmeticunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|e:\\data\\dev\\controller\\controller\\alu\\alu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|solutionrelative:controller\\alu\\alu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2AB86445-8619-4B47-AE62-68F796125A39}|UnitTestProject2\\UnitTestProject2.csproj|e:\\data\\dev\\controller\\unittestproject2\\logicgates\\unittest_inverter_16.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2AB86445-8619-4B47-AE62-68F796125A39}|UnitTestProject2\\UnitTestProject2.csproj|solutionrelative:unittestproject2\\logicgates\\unittest_inverter_16.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|e:\\data\\dev\\controller\\controller\\alu\\logicunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|solutionrelative:controller\\alu\\logicunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2AB86445-8619-4B47-AE62-68F796125A39}|UnitTestProject2\\UnitTestProject2.csproj|e:\\data\\dev\\controller\\unittestproject2\\switching\\unittest_selector_16.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2AB86445-8619-4B47-AE62-68F796125A39}|UnitTestProject2\\UnitTestProject2.csproj|solutionrelative:unittestproject2\\switching\\unittest_selector_16.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|e:\\data\\dev\\controller\\controller\\switching\\selector_16.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|solutionrelative:controller\\switching\\selector_16.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2AB86445-8619-4B47-AE62-68F796125A39}|UnitTestProject2\\UnitTestProject2.csproj|e:\\data\\dev\\controller\\unittestproject2\\logicgates\\unittest_xor_16.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2AB86445-8619-4B47-AE62-68F796125A39}|UnitTestProject2\\UnitTestProject2.csproj|solutionrelative:unittestproject2\\logicgates\\unittest_xor_16.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2AB86445-8619-4B47-AE62-68F796125A39}|UnitTestProject2\\UnitTestProject2.csproj|e:\\data\\dev\\controller\\unittestproject2\\switching\\unittest_selector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2AB86445-8619-4B47-AE62-68F796125A39}|UnitTestProject2\\UnitTestProject2.csproj|solutionrelative:unittestproject2\\switching\\unittest_selector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2AB86445-8619-4B47-AE62-68F796125A39}|UnitTestProject2\\UnitTestProject2.csproj|e:\\data\\dev\\controller\\unittestproject2\\logicgates\\unittest_relay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2AB86445-8619-4B47-AE62-68F796125A39}|UnitTestProject2\\UnitTestProject2.csproj|solutionrelative:unittestproject2\\logicgates\\unittest_relay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2AB86445-8619-4B47-AE62-68F796125A39}|UnitTestProject2\\UnitTestProject2.csproj|e:\\data\\dev\\controller\\unittestproject2\\logicgates\\unittest_and.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2AB86445-8619-4B47-AE62-68F796125A39}|UnitTestProject2\\UnitTestProject2.csproj|solutionrelative:unittestproject2\\logicgates\\unittest_and.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2AB86445-8619-4B47-AE62-68F796125A39}|UnitTestProject2\\UnitTestProject2.csproj|e:\\data\\dev\\controller\\unittestproject2\\switching\\unittest_switch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2AB86445-8619-4B47-AE62-68F796125A39}|UnitTestProject2\\UnitTestProject2.csproj|solutionrelative:unittestproject2\\switching\\unittest_switch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|e:\\data\\dev\\controller\\controller\\switching\\switch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|solutionrelative:controller\\switching\\switch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|e:\\data\\dev\\controller\\controller\\switching\\selector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|E:\\Data\\dev\\Controller\\controller\\switching\\selector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|solutionrelative:controller\\switching\\selector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|e:\\data\\dev\\controller\\controller\\logicgates\\and.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|solutionrelative:controller\\logicgates\\and.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|e:\\data\\dev\\controller\\controller\\logicgates\\and_16.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|solutionrelative:controller\\logicgates\\and_16.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|e:\\data\\dev\\controller\\controller\\logicgates\\xor_16.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|solutionrelative:controller\\logicgates\\xor_16.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|e:\\data\\dev\\controller\\controller\\logicgates\\or_16.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|solutionrelative:controller\\logicgates\\or_16.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2AB86445-8619-4B47-AE62-68F796125A39}|UnitTestProject2\\UnitTestProject2.csproj|e:\\data\\dev\\controller\\unittestproject2\\logicgates\\unittest_and_16.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2AB86445-8619-4B47-AE62-68F796125A39}|UnitTestProject2\\UnitTestProject2.csproj|solutionrelative:unittestproject2\\logicgates\\unittest_and_16.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,95 +74,212 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UnitTest_Relay.cs",
-              "DocumentMoniker": "E:\\Data\\dev\\Controller\\UnitTestProject2\\LogicGates\\UnitTest_Relay.cs",
-              "RelativeDocumentMoniker": "UnitTestProject2\\LogicGates\\UnitTest_Relay.cs",
-              "ToolTip": "E:\\Data\\dev\\Controller\\UnitTestProject2\\LogicGates\\UnitTest_Relay.cs",
-              "RelativeToolTip": "UnitTestProject2\\LogicGates\\UnitTest_Relay.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAIwBEAAAAiAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "UnitTest_ALU.cs",
+              "DocumentMoniker": "E:\\Data\\dev\\Controller\\UnitTestProject2\\ALU\\UnitTest_ALU.cs",
+              "RelativeDocumentMoniker": "UnitTestProject2\\ALU\\UnitTest_ALU.cs",
+              "ToolTip": "E:\\Data\\dev\\Controller\\UnitTestProject2\\ALU\\UnitTest_ALU.cs",
+              "RelativeToolTip": "UnitTestProject2\\ALU\\UnitTest_ALU.cs",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAIwEwAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T15:51:49.559Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "UnitTest_Switch.cs",
-              "DocumentMoniker": "E:\\Data\\dev\\Controller\\UnitTestProject2\\Switching\\UnitTest_Switch.cs",
-              "RelativeDocumentMoniker": "UnitTestProject2\\Switching\\UnitTest_Switch.cs",
-              "ToolTip": "E:\\Data\\dev\\Controller\\UnitTestProject2\\Switching\\UnitTest_Switch.cs",
-              "RelativeToolTip": "UnitTestProject2\\Switching\\UnitTest_Switch.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAIwBMAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T15:46:05.327Z",
+              "WhenOpened": "2025-09-14T16:48:22.075Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "Switch.cs",
-              "DocumentMoniker": "E:\\Data\\dev\\Controller\\Controller\\Switching\\Switch.cs",
-              "RelativeDocumentMoniker": "Controller\\Switching\\Switch.cs",
-              "ToolTip": "E:\\Data\\dev\\Controller\\Controller\\Switching\\Switch.cs",
-              "RelativeToolTip": "Controller\\Switching\\Switch.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAgwCEAAAAAAAAAAAAAAA==",
+              "Title": "ALU.cs",
+              "DocumentMoniker": "E:\\Data\\dev\\Controller\\Controller\\ALU\\ALU.cs",
+              "RelativeDocumentMoniker": "Controller\\ALU\\ALU.cs",
+              "ToolTip": "E:\\Data\\dev\\Controller\\Controller\\ALU\\ALU.cs",
+              "RelativeToolTip": "Controller\\ALU\\ALU.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAD8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T15:22:26.693Z",
+              "WhenOpened": "2025-09-14T16:37:14.935Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "UnitTest_And.cs",
-              "DocumentMoniker": "E:\\Data\\dev\\Controller\\UnitTestProject2\\LogicGates\\UnitTest_And.cs",
-              "RelativeDocumentMoniker": "UnitTestProject2\\LogicGates\\UnitTest_And.cs",
-              "ToolTip": "E:\\Data\\dev\\Controller\\UnitTestProject2\\LogicGates\\UnitTest_And.cs",
-              "RelativeToolTip": "UnitTestProject2\\LogicGates\\UnitTest_And.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAowBYAAAAhAAAAAAAAAA==",
+              "Title": "UnitTest_ArithmeticUnit.cs",
+              "DocumentMoniker": "E:\\Data\\dev\\Controller\\UnitTestProject2\\ALU\\UnitTest_ArithmeticUnit.cs",
+              "RelativeDocumentMoniker": "UnitTestProject2\\ALU\\UnitTest_ArithmeticUnit.cs",
+              "ToolTip": "E:\\Data\\dev\\Controller\\UnitTestProject2\\ALU\\UnitTest_ArithmeticUnit.cs",
+              "RelativeToolTip": "UnitTestProject2\\ALU\\UnitTest_ArithmeticUnit.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAowCsAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T15:14:45.982Z",
+              "WhenOpened": "2025-09-14T15:17:04.98Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UnitTest_Selector.cs",
-              "DocumentMoniker": "E:\\Data\\dev\\Controller\\UnitTestProject2\\Switching\\UnitTest_Selector.cs",
-              "RelativeDocumentMoniker": "UnitTestProject2\\Switching\\UnitTest_Selector.cs",
-              "ToolTip": "E:\\Data\\dev\\Controller\\UnitTestProject2\\Switching\\UnitTest_Selector.cs",
-              "RelativeToolTip": "UnitTestProject2\\Switching\\UnitTest_Selector.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAcAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "ArithmeticUnit.cs",
+              "DocumentMoniker": "E:\\Data\\dev\\Controller\\Controller\\ALU\\ArithmeticUnit.cs",
+              "RelativeDocumentMoniker": "Controller\\ALU\\ArithmeticUnit.cs",
+              "ToolTip": "E:\\Data\\dev\\Controller\\Controller\\ALU\\ArithmeticUnit.cs",
+              "RelativeToolTip": "Controller\\ALU\\ArithmeticUnit.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAwwAoAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T15:10:56.566Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "And.cs",
-              "DocumentMoniker": "E:\\Data\\dev\\Controller\\Controller\\LogicGates\\And.cs",
-              "RelativeDocumentMoniker": "Controller\\LogicGates\\And.cs",
-              "ToolTip": "E:\\Data\\dev\\Controller\\Controller\\LogicGates\\And.cs",
-              "RelativeToolTip": "Controller\\LogicGates\\And.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA8AAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T15:06:16.12Z",
+              "WhenOpened": "2025-09-14T14:18:34.513Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
+              "Title": "UnitTest_Inverter_16.cs",
+              "DocumentMoniker": "E:\\Data\\dev\\Controller\\UnitTestProject2\\LogicGates\\UnitTest_Inverter_16.cs",
+              "RelativeDocumentMoniker": "UnitTestProject2\\LogicGates\\UnitTest_Inverter_16.cs",
+              "ToolTip": "E:\\Data\\dev\\Controller\\UnitTestProject2\\LogicGates\\UnitTest_Inverter_16.cs",
+              "RelativeToolTip": "UnitTestProject2\\LogicGates\\UnitTest_Inverter_16.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABgAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-13T20:40:34.11Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UnitTest_LogicUnit.cs",
+              "DocumentMoniker": "E:\\Data\\dev\\Controller\\UnitTestProject2\\ALU\\UnitTest_LogicUnit.cs",
+              "RelativeDocumentMoniker": "UnitTestProject2\\ALU\\UnitTest_LogicUnit.cs",
+              "ToolTip": "E:\\Data\\dev\\Controller\\UnitTestProject2\\ALU\\UnitTest_LogicUnit.cs",
+              "RelativeToolTip": "UnitTestProject2\\ALU\\UnitTest_LogicUnit.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAgwBcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-13T20:34:12.142Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UnitTest_Selector_16.cs",
+              "DocumentMoniker": "E:\\Data\\dev\\Controller\\UnitTestProject2\\Switching\\UnitTest_Selector_16.cs",
+              "RelativeDocumentMoniker": "UnitTestProject2\\Switching\\UnitTest_Selector_16.cs",
+              "ToolTip": "E:\\Data\\dev\\Controller\\UnitTestProject2\\Switching\\UnitTest_Selector_16.cs",
+              "RelativeToolTip": "UnitTestProject2\\Switching\\UnitTest_Selector_16.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAcwCEAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-13T16:52:08.939Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "UnitTest_Selector.cs",
+              "DocumentMoniker": "E:\\Data\\dev\\Controller\\UnitTestProject2\\Switching\\UnitTest_Selector.cs",
+              "RelativeDocumentMoniker": "UnitTestProject2\\Switching\\UnitTest_Selector.cs",
+              "ToolTip": "E:\\Data\\dev\\Controller\\UnitTestProject2\\Switching\\UnitTest_Selector.cs",
+              "RelativeToolTip": "UnitTestProject2\\Switching\\UnitTest_Selector.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAowBEAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-13T16:50:49.23Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Selector_16.cs",
+              "DocumentMoniker": "E:\\Data\\dev\\Controller\\Controller\\Switching\\Selector_16.cs",
+              "RelativeDocumentMoniker": "Controller\\Switching\\Selector_16.cs",
+              "ToolTip": "E:\\Data\\dev\\Controller\\Controller\\Switching\\Selector_16.cs",
+              "RelativeToolTip": "Controller\\Switching\\Selector_16.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAwAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-13T16:46:27.598Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "UnitTest_Xor_16.cs",
+              "DocumentMoniker": "E:\\Data\\dev\\Controller\\UnitTestProject2\\LogicGates\\UnitTest_Xor_16.cs",
+              "RelativeDocumentMoniker": "UnitTestProject2\\LogicGates\\UnitTest_Xor_16.cs",
+              "ToolTip": "E:\\Data\\dev\\Controller\\UnitTestProject2\\LogicGates\\UnitTest_Xor_16.cs",
+              "RelativeToolTip": "UnitTestProject2\\LogicGates\\UnitTest_Xor_16.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABEAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-13T16:38:48.8Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Xor_16.cs",
+              "DocumentMoniker": "E:\\Data\\dev\\Controller\\Controller\\LogicGates\\Xor_16.cs",
+              "RelativeDocumentMoniker": "Controller\\LogicGates\\Xor_16.cs",
+              "ToolTip": "E:\\Data\\dev\\Controller\\Controller\\LogicGates\\Xor_16.cs",
+              "RelativeToolTip": "Controller\\LogicGates\\Xor_16.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABMAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-13T16:37:33.428Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Or_16.cs",
+              "DocumentMoniker": "E:\\Data\\dev\\Controller\\Controller\\LogicGates\\Or_16.cs",
+              "RelativeDocumentMoniker": "Controller\\LogicGates\\Or_16.cs",
+              "ToolTip": "E:\\Data\\dev\\Controller\\Controller\\LogicGates\\Or_16.cs",
+              "RelativeToolTip": "Controller\\LogicGates\\Or_16.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABoAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-13T16:33:35.893Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "UnitTest_And_16.cs",
+              "DocumentMoniker": "E:\\Data\\dev\\Controller\\UnitTestProject2\\LogicGates\\UnitTest_And_16.cs",
+              "RelativeDocumentMoniker": "UnitTestProject2\\LogicGates\\UnitTest_And_16.cs",
+              "ToolTip": "E:\\Data\\dev\\Controller\\UnitTestProject2\\LogicGates\\UnitTest_And_16.cs",
+              "RelativeToolTip": "UnitTestProject2\\LogicGates\\UnitTest_And_16.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAwwCIAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-13T16:26:44.268Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "And_16.cs",
+              "DocumentMoniker": "E:\\Data\\dev\\Controller\\Controller\\LogicGates\\And_16.cs",
+              "RelativeDocumentMoniker": "Controller\\LogicGates\\And_16.cs",
+              "ToolTip": "E:\\Data\\dev\\Controller\\Controller\\LogicGates\\And_16.cs",
+              "RelativeToolTip": "Controller\\LogicGates\\And_16.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAIwBsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-13T16:24:08.24Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "LogicUnit.cs",
+              "DocumentMoniker": "E:\\Data\\dev\\Controller\\Controller\\ALU\\LogicUnit.cs",
+              "RelativeDocumentMoniker": "Controller\\ALU\\LogicUnit.cs",
+              "ToolTip": "E:\\Data\\dev\\Controller\\Controller\\ALU\\LogicUnit.cs",
+              "RelativeToolTip": "Controller\\ALU\\LogicUnit.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAIAwwBsAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-13T16:19:29.981Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "Selector.cs",
               "DocumentMoniker": "E:\\Data\\dev\\Controller\\Controller\\Switching\\Selector.cs",
               "RelativeDocumentMoniker": "Controller\\Switching\\Selector.cs",
               "ToolTip": "E:\\Data\\dev\\Controller\\Controller\\Switching\\Selector.cs",
               "RelativeToolTip": "Controller\\Switching\\Selector.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAuwA8AAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAxwCAAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-13T15:05:35.118Z",
               "EditorCaption": ""

@@ -11,6 +11,7 @@ namespace Controller.Switching
         public bool s;
         public bool d0;
         public bool d1;
+        public bool c;
         public int proceed()
         {
             int val = 0;
@@ -33,7 +34,7 @@ namespace Controller.Switching
             or.b = and2.output;
             val += or.proceed();
 
-            s=or.output;
+            c=or.output;
 
 
             return val;
