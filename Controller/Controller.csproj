@@ -81,9 +81,11 @@
     <Compile Include="Memory\D_Latch.cs" />
     <Compile Include="Memory\Ram.cs" />
     <Compile Include="Memory\Register_16.cs" />
+    <Compile Include="Memory\Rom.cs" />
     <Compile Include="Memory\SR_Latch.cs" />
     <Compile Include="Processor\ALUInstruction.cs" />
     <Compile Include="Processor\CombinedMemory.cs" />
+    <Compile Include="Processor\Computer.cs" />
     <Compile Include="Processor\ControlSelector.cs" />
     <Compile Include="Processor\ControlUnit.cs" />
     <Compile Include="Program.cs" />

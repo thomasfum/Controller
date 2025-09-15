@@ -64,6 +64,7 @@
     <Compile Include="LogicGates\UnitTest_And_16.cs" />
     <Compile Include="LogicGates\UnitTest_Inverter_16.cs" />
     <Compile Include="Arithmetics\UnitTest_Substracter_16.cs" />
+    <Compile Include="Memory\UnitTest_Rom.cs" />
     <Compile Include="Memory\UnitTestRam.cs" />
     <Compile Include="Memory\UnitTest_Counter.cs" />
     <Compile Include="Memory\UnitTest_Register_16.cs" />
