@@ -22,7 +22,7 @@ namespace Controller.Switching
                 selector.d1 = D1[i];
                 selector.s = s;
                 val += selector.proceed();
-                output[i] = selector.c;
+                output[i] = selector.outout;
             }
             return val;
         }

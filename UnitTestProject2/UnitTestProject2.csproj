@@ -49,6 +49,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ALU\UnitTest_Conition.cs" />
     <Compile Include="ALU\UnitTest_ALU.cs" />
     <Compile Include="ALU\UnitTest_ArithmeticUnit.cs" />
     <Compile Include="ALU\UnitTest_LogicUnit.cs" />
@@ -63,6 +64,16 @@
     <Compile Include="LogicGates\UnitTest_And_16.cs" />
     <Compile Include="LogicGates\UnitTest_Inverter_16.cs" />
     <Compile Include="Arithmetics\UnitTest_Substracter_16.cs" />
+    <Compile Include="Memory\UnitTestRam.cs" />
+    <Compile Include="Memory\UnitTest_Counter.cs" />
+    <Compile Include="Memory\UnitTest_Register_16.cs" />
+    <Compile Include="Memory\UnitTest_DataFlipFlop.cs" />
+    <Compile Include="Memory\UnitTest_D_Latch.cs" />
+    <Compile Include="Memory\UnitTest_SR_Latch.cs" />
+    <Compile Include="Processor\UnitTest_ControlUnit.cs" />
+    <Compile Include="Processor\UnitTest_ControlSelector.cs" />
+    <Compile Include="Processor\UnitTest_ALUInstruction.cs" />
+    <Compile Include="Processor\UnitTest_CombinedMemory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LogicGates\UnitTest_And.cs" />
     <Compile Include="LogicGates\UnitTest_Invert.cs" />

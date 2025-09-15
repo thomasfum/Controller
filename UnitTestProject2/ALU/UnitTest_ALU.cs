@@ -38,6 +38,23 @@ namespace UnitTestProject2.ALU
             test(true, true, false, false, false, 8, 5, 3);
         }
         [TestMethod]
+        public void TestMethod_sub_8_5_sw()
+        {
+            test(true, true, false, false, true, 8, 5, -3);
+        }
+
+        [TestMethod]
+        public void TestMethod_sub_8_5_zx()
+        {
+            test(true, true, false, true, false, 8, 5, -5);
+        }
+        [TestMethod]
+        public void TestMethod_sub_8_5_sw_zx()
+        {
+            test(true, true, false, true, true, 8, 5, -8);
+        }
+
+        [TestMethod]
         public void TestMethod_5_inc()
         {
             test(true, false, true, false, false, 5, 0, 6);
@@ -72,6 +89,8 @@ namespace UnitTestProject2.ALU
             test(false, true, true, false, false, 2, 0, -3);
         }
 
+      
+
         //tester zx et sw
         /*
             zx	sw	Effective operation
@@ -81,6 +100,10 @@ namespace UnitTestProject2.ALU
             1	1	0 - X
          
          
+         */
+        /*
+         * 
+         * 
          */
     }
 }

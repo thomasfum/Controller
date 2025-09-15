@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="ALU\ALU.cs" />
     <Compile Include="ALU\ArithmeticUnit.cs" />
+    <Compile Include="ALU\Condition.cs" />
     <Compile Include="ALU\LogicUnit.cs" />
     <Compile Include="Arithmetics\Adder_16.cs" />
     <Compile Include="Arithmetics\Equal0_16.cs" />
@@ -75,6 +76,16 @@
     <Compile Include="LogicGates\Or.cs" />
     <Compile Include="LogicGates\Or_16.cs" />
     <Compile Include="LogicGates\Xor_16.cs" />
+    <Compile Include="Memory\Counter_16.cs" />
+    <Compile Include="Memory\DataFlipFlop.cs" />
+    <Compile Include="Memory\D_Latch.cs" />
+    <Compile Include="Memory\Ram.cs" />
+    <Compile Include="Memory\Register_16.cs" />
+    <Compile Include="Memory\SR_Latch.cs" />
+    <Compile Include="Processor\ALUInstruction.cs" />
+    <Compile Include="Processor\CombinedMemory.cs" />
+    <Compile Include="Processor\ControlSelector.cs" />
+    <Compile Include="Processor\ControlUnit.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LogicGates\Relay.cs" />

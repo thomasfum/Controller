@@ -10,7 +10,7 @@ namespace Controller.Arithmetics
     public class Increment_16
     {
         public bool[] a = new bool[16];
-        public bool[] s = new bool[16];
+        public bool[] output = new bool[16];
         public int proceed()
         {
             Adder_16 adder = new Adder_16();
@@ -18,7 +18,7 @@ namespace Controller.Arithmetics
             adder.b = new bool[16];//assuming false
             adder.c = true;
             int val=adder.proceed();
-            s=adder.s;
+            output=adder.s;
             return val;
         }
     }

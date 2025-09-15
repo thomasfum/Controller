@@ -25,6 +25,8 @@ namespace Controller
         }
         public static bool[] int2BoolArray(int val)
         {
+            //if (val < 0)
+            //    val += 65536;
             return new BitArray(new int[] { val }).Cast<bool>().ToArray();
         }
     }

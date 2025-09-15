@@ -21,7 +21,7 @@ namespace UnitTestProject2.Arithmetics
             Increment_16 inc = new Increment_16();
             inc.a= Tools.int2BoolArray(2);
             int val=inc.proceed();
-            Assert.AreEqual(3, Tools.boolArray2Int(inc.s));
+            Assert.AreEqual(3, Tools.boolArray2Int(inc.output));
             Assert.AreEqual(912, val);
         }
         [TestMethod]
@@ -30,7 +30,7 @@ namespace UnitTestProject2.Arithmetics
             Increment_16 inc = new Increment_16();
             inc.a = Tools.int2BoolArray(-2);
             int val = inc.proceed();
-            Assert.AreEqual(-1, Tools.boolArray2Int(inc.s));
+            Assert.AreEqual(-1, Tools.boolArray2Int(inc.output));
             Assert.AreEqual(912, val);
         }
     }
