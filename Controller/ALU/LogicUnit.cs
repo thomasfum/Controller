@@ -41,20 +41,20 @@ namespace Controller.ALU
             val += and16.proceed();
 
             selector16_1.s = op0;
-            selector16_1.a = xor16.s;
-            selector16_1.b= inv16.s;
+            selector16_1.D0 = xor16.s;
+            selector16_1.D1= inv16.s;
             val += selector16_1.proceed();
 
 
             selector16_2.s = op0;
-            selector16_2.a = and16.s;
-            selector16_2.b = or16.s;
+            selector16_2.D0 = and16.s;
+            selector16_2.D1 = or16.s;
             val += selector16_2.proceed();
 
 
             selector16_3.s = op1;
-            selector16_3.a = selector16_2.output;
-            selector16_3.b = selector16_1.output;
+            selector16_3.D0 = selector16_2.output;
+            selector16_3.D1 = selector16_1.output;
             val += selector16_3.proceed();
 
             output= selector16_3.output;

@@ -27,8 +27,8 @@ namespace Controller.ALU
 
 
             selector16_1.s = op0;
-            selector16_1.a = Y;
-            selector16_1.b[0] = true;
+            selector16_1.D0 = Y;
+            selector16_1.D1[0] = true;
             val+=selector16_1.proceed();
             add.a = X;
             add.b = selector16_1.output;
@@ -38,8 +38,8 @@ namespace Controller.ALU
             val += sub.proceed();
 
             selector16_2.s = op1;
-            selector16_2.a = add.s;
-            selector16_2.b = sub.s;
+            selector16_2.D0 = add.s;
+            selector16_2.D1 = sub.s;
             val += selector16_2.proceed();
             output= selector16_2.output;
             return val;

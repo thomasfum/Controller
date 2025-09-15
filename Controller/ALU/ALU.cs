@@ -30,17 +30,17 @@ namespace Controller.ALU
             LogicUnit LU = new LogicUnit();
 
             selector16_Swap_1.s = sw;
-            selector16_Swap_1.a = X;
-            selector16_Swap_1.b = Y;
+            selector16_Swap_1.D0 = X;
+            selector16_Swap_1.D1 = Y;
             val+=selector16_Swap_1.proceed();
 
             selector16_Swap_2.s = sw;
-            selector16_Swap_2.a = Y;
-            selector16_Swap_2.b = X;
+            selector16_Swap_2.D0 = Y;
+            selector16_Swap_2.D1 = X;
             val += selector16_Swap_2.proceed();
 
             selector16_zero.s = zx;
-            selector16_zero.a = selector16_Swap_1.output;
+            selector16_zero.D0 = selector16_Swap_1.output;
             val += selector16_zero.proceed();
 
             LU.X = selector16_zero.output;
@@ -57,8 +57,8 @@ namespace Controller.ALU
             val += AU.proceed();
 
             selector16_AL.s = u;
-            selector16_AL.a= LU.output;
-            selector16_AL.b = AU.output;
+            selector16_AL.D0= LU.output;
+            selector16_AL.D1 = AU.output;
             val += selector16_AL.proceed();
             output = selector16_AL.output;
 
