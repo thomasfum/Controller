@@ -20,7 +20,7 @@ namespace Controller.Processor
 
         Register_16 reg_a =new Register_16();
         Register_16 reg_d = new Register_16();
-        Ram ram;
+        public Ram ram;
         public CombinedMemory(int _nbRegister)
         {
             ram = new Ram(_nbRegister);

@@ -30,60 +30,479 @@
         {
             this.button1 = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label_A = new System.Windows.Forms.Label();
+            this.label_Instruction_b = new System.Windows.Forms.Label();
+            this.label_Instruction_t2 = new System.Windows.Forms.Label();
+            this.label_Instruction_t1 = new System.Windows.Forms.Label();
+            this.dataGridView_Rom = new System.Windows.Forms.DataGridView();
+            this.button2 = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.checkBox7 = new System.Windows.Forms.CheckBox();
+            this.checkBox8 = new System.Windows.Forms.CheckBox();
+            this.checkBox9 = new System.Windows.Forms.CheckBox();
+            this.checkBox10 = new System.Windows.Forms.CheckBox();
+            this.checkBox11 = new System.Windows.Forms.CheckBox();
+            this.checkBox12 = new System.Windows.Forms.CheckBox();
+            this.checkBox13 = new System.Windows.Forms.CheckBox();
+            this.checkBox14 = new System.Windows.Forms.CheckBox();
+            this.checkBox15 = new System.Windows.Forms.CheckBox();
+            this.checkBox16 = new System.Windows.Forms.CheckBox();
+            this.textBox_IGeneratedD = new System.Windows.Forms.TextBox();
+            this.label_IGeneratedX = new System.Windows.Forms.Label();
+            this.label_IGeneratedAsm = new System.Windows.Forms.Label();
+            this.labelInstructionBottom = new System.Windows.Forms.Label();
+            this.buttonReset = new System.Windows.Forms.Button();
+            this.label_D = new System.Windows.Forms.Label();
+            this.label_PC = new System.Windows.Forms.Label();
+            this.label_ALU = new System.Windows.Forms.Label();
+            this.label_I = new System.Windows.Forms.Label();
+            this.dataGridView_Ram = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Rom)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Ram)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(253, 53);
+            this.button1.Location = new System.Drawing.Point(407, 41);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(100, 28);
             this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
+            this.button1.Text = "Tick";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(448, 59);
+            this.linkLabel1.Location = new System.Drawing.Point(446, 21);
+            this.linkLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(121, 13);
+            this.linkLabel1.Size = new System.Drawing.Size(144, 16);
             this.linkLabel1.TabIndex = 2;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "https://nandgame.com/";
             // 
-            // textBox1
+            // label_A
             // 
-            this.textBox1.Location = new System.Drawing.Point(383, 208);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(254, 20);
-            this.textBox1.TabIndex = 3;
-            this.textBox1.Text = "nb transistors";
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.label_A.AutoSize = true;
+            this.label_A.Location = new System.Drawing.Point(398, 120);
+            this.label_A.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_A.Name = "label_A";
+            this.label_A.Size = new System.Drawing.Size(23, 16);
+            this.label_A.TabIndex = 4;
+            this.label_A.Text = "A=";
+            // 
+            // label_Instruction_b
+            // 
+            this.label_Instruction_b.AutoSize = true;
+            this.label_Instruction_b.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Instruction_b.Location = new System.Drawing.Point(52, 424);
+            this.label_Instruction_b.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_Instruction_b.Name = "label_Instruction_b";
+            this.label_Instruction_b.Size = new System.Drawing.Size(103, 16);
+            this.label_Instruction_b.TabIndex = 5;
+            this.label_Instruction_b.Text = "Instructions";
+            // 
+            // label_Instruction_t2
+            // 
+            this.label_Instruction_t2.AutoSize = true;
+            this.label_Instruction_t2.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Instruction_t2.Location = new System.Drawing.Point(52, 404);
+            this.label_Instruction_t2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_Instruction_t2.Name = "label_Instruction_t2";
+            this.label_Instruction_t2.Size = new System.Drawing.Size(103, 16);
+            this.label_Instruction_t2.TabIndex = 6;
+            this.label_Instruction_t2.Text = "Instructions";
+            // 
+            // label_Instruction_t1
+            // 
+            this.label_Instruction_t1.AutoSize = true;
+            this.label_Instruction_t1.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Instruction_t1.Location = new System.Drawing.Point(52, 384);
+            this.label_Instruction_t1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_Instruction_t1.Name = "label_Instruction_t1";
+            this.label_Instruction_t1.Size = new System.Drawing.Size(103, 16);
+            this.label_Instruction_t1.TabIndex = 7;
+            this.label_Instruction_t1.Text = "Instructions";
+            // 
+            // dataGridView_Rom
+            // 
+            this.dataGridView_Rom.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_Rom.Location = new System.Drawing.Point(37, 76);
+            this.dataGridView_Rom.Name = "dataGridView_Rom";
+            this.dataGridView_Rom.RowTemplate.Height = 24;
+            this.dataGridView_Rom.Size = new System.Drawing.Size(340, 253);
+            this.dataGridView_Rom.TabIndex = 8;
+            this.dataGridView_Rom.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(302, 345);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 9;
+            this.button2.Text = "Write";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(76, 448);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(15, 14);
+            this.checkBox1.TabIndex = 10;
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(107, 448);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(15, 14);
+            this.checkBox2.TabIndex = 11;
+            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(169, 448);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(15, 14);
+            this.checkBox3.TabIndex = 13;
+            this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Location = new System.Drawing.Point(138, 448);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(15, 14);
+            this.checkBox4.TabIndex = 12;
+            this.checkBox4.UseVisualStyleBackColor = true;
+            this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
+            // 
+            // checkBox5
+            // 
+            this.checkBox5.AutoSize = true;
+            this.checkBox5.Location = new System.Drawing.Point(266, 448);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(15, 14);
+            this.checkBox5.TabIndex = 15;
+            this.checkBox5.UseVisualStyleBackColor = true;
+            this.checkBox5.CheckedChanged += new System.EventHandler(this.checkBox5_CheckedChanged);
+            // 
+            // checkBox6
+            // 
+            this.checkBox6.AutoSize = true;
+            this.checkBox6.Location = new System.Drawing.Point(200, 448);
+            this.checkBox6.Name = "checkBox6";
+            this.checkBox6.Size = new System.Drawing.Size(15, 14);
+            this.checkBox6.TabIndex = 14;
+            this.checkBox6.UseVisualStyleBackColor = true;
+            this.checkBox6.CheckedChanged += new System.EventHandler(this.checkBox6_CheckedChanged);
+            // 
+            // checkBox7
+            // 
+            this.checkBox7.AutoSize = true;
+            this.checkBox7.Location = new System.Drawing.Point(330, 448);
+            this.checkBox7.Name = "checkBox7";
+            this.checkBox7.Size = new System.Drawing.Size(15, 14);
+            this.checkBox7.TabIndex = 17;
+            this.checkBox7.UseVisualStyleBackColor = true;
+            this.checkBox7.CheckedChanged += new System.EventHandler(this.checkBox7_CheckedChanged);
+            // 
+            // checkBox8
+            // 
+            this.checkBox8.AutoSize = true;
+            this.checkBox8.Location = new System.Drawing.Point(298, 448);
+            this.checkBox8.Name = "checkBox8";
+            this.checkBox8.Size = new System.Drawing.Size(15, 14);
+            this.checkBox8.TabIndex = 16;
+            this.checkBox8.UseVisualStyleBackColor = true;
+            this.checkBox8.CheckedChanged += new System.EventHandler(this.checkBox8_CheckedChanged);
+            // 
+            // checkBox9
+            // 
+            this.checkBox9.AutoSize = true;
+            this.checkBox9.Location = new System.Drawing.Point(394, 448);
+            this.checkBox9.Name = "checkBox9";
+            this.checkBox9.Size = new System.Drawing.Size(15, 14);
+            this.checkBox9.TabIndex = 19;
+            this.checkBox9.UseVisualStyleBackColor = true;
+            this.checkBox9.CheckedChanged += new System.EventHandler(this.checkBox9_CheckedChanged);
+            // 
+            // checkBox10
+            // 
+            this.checkBox10.AutoSize = true;
+            this.checkBox10.Location = new System.Drawing.Point(362, 448);
+            this.checkBox10.Name = "checkBox10";
+            this.checkBox10.Size = new System.Drawing.Size(15, 14);
+            this.checkBox10.TabIndex = 18;
+            this.checkBox10.UseVisualStyleBackColor = true;
+            this.checkBox10.CheckedChanged += new System.EventHandler(this.checkBox10_CheckedChanged);
+            // 
+            // checkBox11
+            // 
+            this.checkBox11.AutoSize = true;
+            this.checkBox11.Location = new System.Drawing.Point(492, 448);
+            this.checkBox11.Name = "checkBox11";
+            this.checkBox11.Size = new System.Drawing.Size(15, 14);
+            this.checkBox11.TabIndex = 21;
+            this.checkBox11.UseVisualStyleBackColor = true;
+            this.checkBox11.CheckedChanged += new System.EventHandler(this.checkBox11_CheckedChanged);
+            // 
+            // checkBox12
+            // 
+            this.checkBox12.AutoSize = true;
+            this.checkBox12.Location = new System.Drawing.Point(458, 448);
+            this.checkBox12.Name = "checkBox12";
+            this.checkBox12.Size = new System.Drawing.Size(15, 14);
+            this.checkBox12.TabIndex = 20;
+            this.checkBox12.UseVisualStyleBackColor = true;
+            this.checkBox12.CheckedChanged += new System.EventHandler(this.checkBox12_CheckedChanged);
+            // 
+            // checkBox13
+            // 
+            this.checkBox13.AutoSize = true;
+            this.checkBox13.Location = new System.Drawing.Point(588, 448);
+            this.checkBox13.Name = "checkBox13";
+            this.checkBox13.Size = new System.Drawing.Size(15, 14);
+            this.checkBox13.TabIndex = 23;
+            this.checkBox13.UseVisualStyleBackColor = true;
+            this.checkBox13.CheckedChanged += new System.EventHandler(this.checkBox13_CheckedChanged);
+            // 
+            // checkBox14
+            // 
+            this.checkBox14.AutoSize = true;
+            this.checkBox14.Location = new System.Drawing.Point(523, 448);
+            this.checkBox14.Name = "checkBox14";
+            this.checkBox14.Size = new System.Drawing.Size(15, 14);
+            this.checkBox14.TabIndex = 22;
+            this.checkBox14.UseVisualStyleBackColor = true;
+            this.checkBox14.CheckedChanged += new System.EventHandler(this.checkBox14_CheckedChanged);
+            // 
+            // checkBox15
+            // 
+            this.checkBox15.AutoSize = true;
+            this.checkBox15.Location = new System.Drawing.Point(648, 448);
+            this.checkBox15.Name = "checkBox15";
+            this.checkBox15.Size = new System.Drawing.Size(15, 14);
+            this.checkBox15.TabIndex = 25;
+            this.checkBox15.UseVisualStyleBackColor = true;
+            this.checkBox15.CheckedChanged += new System.EventHandler(this.checkBox15_CheckedChanged);
+            // 
+            // checkBox16
+            // 
+            this.checkBox16.AutoSize = true;
+            this.checkBox16.Location = new System.Drawing.Point(618, 448);
+            this.checkBox16.Name = "checkBox16";
+            this.checkBox16.Size = new System.Drawing.Size(15, 14);
+            this.checkBox16.TabIndex = 24;
+            this.checkBox16.UseVisualStyleBackColor = true;
+            this.checkBox16.CheckedChanged += new System.EventHandler(this.checkBox16_CheckedChanged);
+            // 
+            // textBox_IGeneratedD
+            // 
+            this.textBox_IGeneratedD.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_IGeneratedD.Location = new System.Drawing.Point(697, 443);
+            this.textBox_IGeneratedD.Name = "textBox_IGeneratedD";
+            this.textBox_IGeneratedD.Size = new System.Drawing.Size(87, 22);
+            this.textBox_IGeneratedD.TabIndex = 26;
+            this.textBox_IGeneratedD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label_IGeneratedX
+            // 
+            this.label_IGeneratedX.AutoSize = true;
+            this.label_IGeneratedX.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_IGeneratedX.Location = new System.Drawing.Point(798, 446);
+            this.label_IGeneratedX.Name = "label_IGeneratedX";
+            this.label_IGeneratedX.Size = new System.Drawing.Size(47, 16);
+            this.label_IGeneratedX.TabIndex = 27;
+            this.label_IGeneratedX.Text = "label";
+            // 
+            // label_IGeneratedAsm
+            // 
+            this.label_IGeneratedAsm.AutoSize = true;
+            this.label_IGeneratedAsm.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_IGeneratedAsm.Location = new System.Drawing.Point(874, 446);
+            this.label_IGeneratedAsm.Name = "label_IGeneratedAsm";
+            this.label_IGeneratedAsm.Size = new System.Drawing.Size(55, 16);
+            this.label_IGeneratedAsm.TabIndex = 28;
+            this.label_IGeneratedAsm.Text = "label2";
+            // 
+            // labelInstructionBottom
+            // 
+            this.labelInstructionBottom.AutoSize = true;
+            this.labelInstructionBottom.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelInstructionBottom.Location = new System.Drawing.Point(52, 446);
+            this.labelInstructionBottom.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelInstructionBottom.Name = "labelInstructionBottom";
+            this.labelInstructionBottom.Size = new System.Drawing.Size(103, 16);
+            this.labelInstructionBottom.TabIndex = 29;
+            this.labelInstructionBottom.Text = "Instructions";
+            // 
+            // buttonReset
+            // 
+            this.buttonReset.Location = new System.Drawing.Point(533, 41);
+            this.buttonReset.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonReset.Name = "buttonReset";
+            this.buttonReset.Size = new System.Drawing.Size(100, 28);
+            this.buttonReset.TabIndex = 30;
+            this.buttonReset.Text = "Reset";
+            this.buttonReset.UseVisualStyleBackColor = true;
+            this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
+            // 
+            // label_D
+            // 
+            this.label_D.AutoSize = true;
+            this.label_D.Location = new System.Drawing.Point(398, 150);
+            this.label_D.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_D.Name = "label_D";
+            this.label_D.Size = new System.Drawing.Size(24, 16);
+            this.label_D.TabIndex = 31;
+            this.label_D.Text = "D=";
+            // 
+            // label_PC
+            // 
+            this.label_PC.AutoSize = true;
+            this.label_PC.Location = new System.Drawing.Point(398, 180);
+            this.label_PC.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_PC.Name = "label_PC";
+            this.label_PC.Size = new System.Drawing.Size(32, 16);
+            this.label_PC.TabIndex = 32;
+            this.label_PC.Text = "PC=";
+            // 
+            // label_ALU
+            // 
+            this.label_ALU.AutoSize = true;
+            this.label_ALU.Location = new System.Drawing.Point(398, 210);
+            this.label_ALU.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_ALU.Name = "label_ALU";
+            this.label_ALU.Size = new System.Drawing.Size(40, 16);
+            this.label_ALU.TabIndex = 33;
+            this.label_ALU.Text = "ALU=";
+            // 
+            // label_I
+            // 
+            this.label_I.AutoSize = true;
+            this.label_I.Location = new System.Drawing.Point(398, 240);
+            this.label_I.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_I.Name = "label_I";
+            this.label_I.Size = new System.Drawing.Size(17, 16);
+            this.label_I.TabIndex = 34;
+            this.label_I.Text = "I=";
+            // 
+            // dataGridView_Ram
+            // 
+            this.dataGridView_Ram.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_Ram.Location = new System.Drawing.Point(648, 76);
+            this.dataGridView_Ram.Name = "dataGridView_Ram";
+            this.dataGridView_Ram.RowTemplate.Height = 24;
+            this.dataGridView_Ram.Size = new System.Drawing.Size(340, 253);
+            this.dataGridView_Ram.TabIndex = 35;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(490, 150);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(796, 37);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "label1";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.label1.Size = new System.Drawing.Size(65, 29);
+            this.label1.TabIndex = 36;
+            this.label1.Text = "RAM";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(164, 37);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(69, 29);
+            this.label2.TabIndex = 37;
+            this.label2.Text = "ROM";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(913, 345);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 38;
+            this.button3.Text = "Write";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(648, 345);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 39;
+            this.button4.Text = "Clear";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.dataGridView_Ram);
+            this.Controls.Add(this.label_I);
+            this.Controls.Add(this.label_ALU);
+            this.Controls.Add(this.label_PC);
+            this.Controls.Add(this.label_D);
+            this.Controls.Add(this.buttonReset);
+            this.Controls.Add(this.label_IGeneratedAsm);
+            this.Controls.Add(this.label_IGeneratedX);
+            this.Controls.Add(this.textBox_IGeneratedD);
+            this.Controls.Add(this.checkBox15);
+            this.Controls.Add(this.checkBox16);
+            this.Controls.Add(this.checkBox13);
+            this.Controls.Add(this.checkBox14);
+            this.Controls.Add(this.checkBox11);
+            this.Controls.Add(this.checkBox12);
+            this.Controls.Add(this.checkBox9);
+            this.Controls.Add(this.checkBox10);
+            this.Controls.Add(this.checkBox7);
+            this.Controls.Add(this.checkBox8);
+            this.Controls.Add(this.checkBox5);
+            this.Controls.Add(this.checkBox6);
+            this.Controls.Add(this.checkBox3);
+            this.Controls.Add(this.checkBox4);
+            this.Controls.Add(this.checkBox2);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.dataGridView_Rom);
+            this.Controls.Add(this.label_Instruction_t1);
+            this.Controls.Add(this.label_Instruction_t2);
+            this.Controls.Add(this.label_Instruction_b);
+            this.Controls.Add(this.label_A);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.labelInstructionBottom);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Controller";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Rom)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Ram)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -93,8 +512,42 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label_A;
+        private System.Windows.Forms.Label label_Instruction_b;
+        private System.Windows.Forms.Label label_Instruction_t2;
+        private System.Windows.Forms.Label label_Instruction_t1;
+        private System.Windows.Forms.DataGridView dataGridView_Rom;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.CheckBox checkBox5;
+        private System.Windows.Forms.CheckBox checkBox6;
+        private System.Windows.Forms.CheckBox checkBox7;
+        private System.Windows.Forms.CheckBox checkBox8;
+        private System.Windows.Forms.CheckBox checkBox9;
+        private System.Windows.Forms.CheckBox checkBox10;
+        private System.Windows.Forms.CheckBox checkBox11;
+        private System.Windows.Forms.CheckBox checkBox12;
+        private System.Windows.Forms.CheckBox checkBox13;
+        private System.Windows.Forms.CheckBox checkBox14;
+        private System.Windows.Forms.CheckBox checkBox15;
+        private System.Windows.Forms.CheckBox checkBox16;
+        private System.Windows.Forms.TextBox textBox_IGeneratedD;
+        private System.Windows.Forms.Label label_IGeneratedX;
+        private System.Windows.Forms.Label label_IGeneratedAsm;
+        private System.Windows.Forms.Label labelInstructionBottom;
+        private System.Windows.Forms.Button buttonReset;
+        private System.Windows.Forms.Label label_D;
+        private System.Windows.Forms.Label label_PC;
+        private System.Windows.Forms.Label label_ALU;
+        private System.Windows.Forms.Label label_I;
+        private System.Windows.Forms.DataGridView dataGridView_Ram;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }
 

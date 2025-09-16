@@ -10,7 +10,7 @@ namespace Controller.Processor
 
     public class Computer
     {
-        CombinedMemory memory ;
+        public CombinedMemory memory ;
         Rom rom;
         Counter_16 counter = new Counter_16();
         ControlUnit control = new ControlUnit();
@@ -45,6 +45,13 @@ namespace Controller.Processor
 
             return val;
         }
+        public void reset()
+        {
+            counter.cl = true;
+            counter.st = true;
+            counter.X = Tools.int2BoolArray(0);
+            counter.proceed();
+        }
         public int proceed()
         {
             int val = 0;
@@ -64,11 +71,31 @@ namespace Controller.Processor
         {
             return Tools.boolArray2Int(memory.D);
         }
+        public int getI()
+        {
+            return Tools.boolArray2Int(control.I);
+        }
+
+       
         public void setRom(int add, int val)
         {
             rom.InitRegister(Tools.int2BoolArray(add), Tools.int2BoolArray(val));
           
         }
+        public void setRam(int add, int val)
+        {
+            memory.ram.InitRegister(Tools.int2BoolArray(add), Tools.int2BoolArray(val));
+        }
+        
+        public int GetRom(int add)
+        {
+            return Tools.boolArray2Int(rom.GetRegister(Tools.int2BoolArray(add)));
 
+        }
+        public int GetRam(int add)
+        {
+            return Tools.boolArray2Int(memory.ram.GetRegister(Tools.int2BoolArray(add)));
+
+        }
     }
 }

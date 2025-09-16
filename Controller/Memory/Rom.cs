@@ -43,5 +43,16 @@ namespace Controller.Memory
             regsiters[add].cl = false;
             regsiters[add].proceed();
         }
+
+        public bool[] GetRegister(bool[] ad)
+        {
+            int add = Tools.boolArray2Int(ad);
+            regsiters[add].cl = true;
+            regsiters[add].st = false;
+            regsiters[add].proceed();
+            regsiters[add].cl = false;
+            regsiters[add].proceed();
+            return regsiters[add].output;
+        }
     }
 }

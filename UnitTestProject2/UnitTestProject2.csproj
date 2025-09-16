@@ -71,6 +71,7 @@
     <Compile Include="Memory\UnitTest_DataFlipFlop.cs" />
     <Compile Include="Memory\UnitTest_D_Latch.cs" />
     <Compile Include="Memory\UnitTest_SR_Latch.cs" />
+    <Compile Include="Processor\UnitTest_Computer.cs" />
     <Compile Include="Processor\UnitTest_ControlUnit.cs" />
     <Compile Include="Processor\UnitTest_ControlSelector.cs" />
     <Compile Include="Processor\UnitTest_ALUInstruction.cs" />

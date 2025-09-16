@@ -39,5 +39,25 @@ namespace Controller.Memory
             output = regsiters[Tools.boolArray2Int(ad)].output;//TODO decodage is missing
             return val;
         }
+        public bool[] GetRegister(bool[] ad)
+        {
+            int add = Tools.boolArray2Int(ad);
+            regsiters[add].cl = true;
+            regsiters[add].st = false;
+            regsiters[add].proceed();
+            regsiters[add].cl = false;
+            regsiters[add].proceed();
+            return regsiters[add].output;
+        }
+        public void InitRegister(bool[] ad, bool[] val)
+        {
+            int add = Tools.boolArray2Int(ad);
+            regsiters[add].X = val;
+            regsiters[add].cl = true;
+            regsiters[add].st = true;
+            regsiters[add].proceed();
+            regsiters[add].cl = false;
+            regsiters[add].proceed();
+        }
     }
 }
