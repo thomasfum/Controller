@@ -76,7 +76,9 @@ namespace Controller.Processor
             return Tools.boolArray2Int(control.I);
         }
 
-       
+
+      
+
         public void setRom(int add, int val)
         {
             rom.InitRegister(Tools.int2BoolArray(add), Tools.int2BoolArray(val));
@@ -96,6 +98,27 @@ namespace Controller.Processor
         {
             return Tools.boolArray2Int(memory.ram.GetRegister(Tools.int2BoolArray(add)));
 
+        }
+
+        public int GetInOut()
+        {
+            return memory.inout.GetInOut();
+            /*
+            memory.reg_inout.st = false;
+            memory.reg_inout.cl = false;
+            memory.reg_inout.proceed();
+            return Tools.boolArray2Int(memory.reg_inout.output);
+            */
+        }
+        public void SetInOut(int val)
+        {
+            memory.inout.SetInOut(val);
+            /*
+            memory.reg_inout.st = false;
+            memory.reg_inout.cl = false;
+            memory.reg_inout.proceed();
+            return Tools.boolArray2Int(memory.reg_inout.output);
+            */
         }
     }
 }

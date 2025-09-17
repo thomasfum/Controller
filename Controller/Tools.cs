@@ -82,10 +82,20 @@ namespace Controller
 
         }
         public static string[] DstString = { "", "*A=", "D=", "D,*A=", "A=", "A,*A=", "A,D=", "A,D,*A=" };
-        //                        0                 3                     7                            13           15                        20                    24                  28
+        //                                      0                 3                     7                            13           15                        20                    24                  28
         public static string[] CalString = { "D&A", "D&A", "0", "0", "D|A", "D|A", "A", "D", "D^A", "D^A", "A", "D", "~D", "~A", "-1", "-1", "D+A", "D+A", "A", "D", "D+1", "A+1", "1", "1", "D-A", "A-D", "-A", "-D", "D-1", "A-1", "-1", "-1" };
         public static string[] JmpString = { "", ";JGT", ";JEQ", ";JGE", ";JLT", ";JNE", ";JLE", ";JMP" };
 
+        public static string Decode(string val, out string Msg)
+        {
+            if(val=="")
+            { 
+                Msg = "Empty value";
+                return "";
+            }
+            Msg = "";
 
+            return "356";
+        }
     }
 }

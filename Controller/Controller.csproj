@@ -60,6 +60,9 @@
     <Compile Include="Arithmetics\Adder_2.cs" />
     <Compile Include="Arithmetics\FullAdder.cs" />
     <Compile Include="Arithmetics\HalfAdder.cs" />
+    <Compile Include="InOut\Display.cs" />
+    <Compile Include="InOut\InputOutput.cs" />
+    <Compile Include="InOut\Keyboard.cs" />
     <Compile Include="LogicGates\And_16.cs" />
     <Compile Include="LogicGates\Inverter_16.cs" />
     <Compile Include="Arithmetics\Less0_16.cs" />

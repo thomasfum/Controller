@@ -1,4 +1,5 @@
-﻿using Controller.Processor;
+﻿using Controller.Memory;
+using Controller.Processor;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -28,7 +29,8 @@ namespace Controller
             myComputer.setRom(0, 32912);
             myComputer.setRom(1, 2);
             myComputer.setRom(2, 34064);
-            myComputer.setRom(3, 32775);
+            myComputer.setRom(3, -27960);
+            myComputer.setRom(4, 32775);
 
 
             dt_Ram.Columns.Add("No");
@@ -85,6 +87,7 @@ namespace Controller
             dataGridView_Rom.Columns[2].Width = dataGridView_Rom.Width-35-50-20;
             updateI(0);
             UpdateIGenerated();
+            dataGridView_Rom.ClearSelection();
             dataGridView_Rom.Rows[0].Selected = true;
             //dataGridView1.SelectionMode= DataGridViewSelectionMode.FullRowSelect;
             label_Instruction_b.UseMnemonic = false;
@@ -102,6 +105,7 @@ namespace Controller
 
         private void buttonReset_Click(object sender, EventArgs e)
         {
+            dataGridView_Rom.ClearSelection();
             dataGridView_Rom.Rows[0].Selected = true;
             myComputer.reset();
         }
@@ -217,7 +221,12 @@ namespace Controller
             System.Diagnostics.Process.Start("https://nandgame.com");
         }
 
-   
+        //test
+        private void button5_Click(object sender, EventArgs e)
+        {
+            int a=myComputer.GetInOut();
+            myComputer.SetInOut(0xF0);
+        }
         //write ROM
         private void button2_Click(object sender, EventArgs e)
         {
@@ -277,6 +286,14 @@ namespace Controller
             {
                 int row = e.RowIndex;
                 dgv.Rows[row].Cells[0].Value = row;
+                string val = (string)dgv.Rows[row].Cells[2].Value;
+                string Msg = "";
+                string rep = Tools.Decode(val, out Msg);
+               
+                if (Msg != "")
+                    MessageBox.Show(Msg);
+                else
+                    dgv.Rows[row].Cells[1].Value = rep;
             }
         }
 
@@ -394,6 +411,6 @@ namespace Controller
             IGenerated[0] = ((CheckBox)sender).Checked;
             UpdateIGenerated();
         }
-
+     
     }
 }

@@ -3,19 +3,43 @@
   "WorkspaceRootPath": "E:\\Data\\dev\\Controller\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|e:\\data\\dev\\controller\\controller\\tools.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|solutionrelative:controller\\tools.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|E:\\Data\\dev\\Controller\\controller\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|solutionrelative:controller\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|E:\\Data\\dev\\Controller\\controller\\processor\\combinedmemory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|solutionrelative:controller\\processor\\combinedmemory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|e:\\data\\dev\\controller\\controller\\inout\\keyboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|solutionrelative:controller\\inout\\keyboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|e:\\data\\dev\\controller\\controller\\inout\\display.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|solutionrelative:controller\\inout\\display.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|e:\\data\\dev\\controller\\controller\\inout\\inputoutput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|solutionrelative:controller\\inout\\inputoutput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|e:\\data\\dev\\controller\\controller\\processor\\computer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|solutionrelative:controller\\processor\\computer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|e:\\data\\dev\\controller\\controller\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|solutionrelative:controller\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|E:\\Data\\dev\\Controller\\controller\\memory\\ram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|solutionrelative:controller\\memory\\ram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|e:\\data\\dev\\controller\\controller\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|E:\\Data\\dev\\Controller\\controller\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|solutionrelative:controller\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2AB86445-8619-4B47-AE62-68F796125A39}|UnitTestProject2\\UnitTestProject2.csproj|e:\\data\\dev\\controller\\unittestproject2\\memory\\unittest_rom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2AB86445-8619-4B47-AE62-68F796125A39}|UnitTestProject2\\UnitTestProject2.csproj|E:\\Data\\dev\\Controller\\unittestproject2\\memory\\unittest_rom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2AB86445-8619-4B47-AE62-68F796125A39}|UnitTestProject2\\UnitTestProject2.csproj|solutionrelative:unittestproject2\\memory\\unittest_rom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -26,11 +50,88 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Tools.cs",
+              "DocumentMoniker": "E:\\Data\\dev\\Controller\\Controller\\Tools.cs",
+              "RelativeDocumentMoniker": "Controller\\Tools.cs",
+              "ToolTip": "E:\\Data\\dev\\Controller\\Controller\\Tools.cs",
+              "RelativeToolTip": "Controller\\Tools.cs",
+              "ViewState": "AgIAAE4AAAAAAAAAAIAwwFQAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-17T06:09:05.673Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "Keyboard.cs",
+              "DocumentMoniker": "E:\\Data\\dev\\Controller\\Controller\\InOut\\Keyboard.cs",
+              "RelativeDocumentMoniker": "Controller\\InOut\\Keyboard.cs",
+              "ToolTip": "E:\\Data\\dev\\Controller\\Controller\\InOut\\Keyboard.cs",
+              "RelativeToolTip": "Controller\\InOut\\Keyboard.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-17T06:03:51.368Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Display.cs",
+              "DocumentMoniker": "E:\\Data\\dev\\Controller\\Controller\\InOut\\Display.cs",
+              "RelativeDocumentMoniker": "Controller\\InOut\\Display.cs",
+              "ToolTip": "E:\\Data\\dev\\Controller\\Controller\\InOut\\Display.cs",
+              "RelativeToolTip": "Controller\\InOut\\Display.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABIAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-17T06:03:24.163Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "InputOutput.cs",
+              "DocumentMoniker": "E:\\Data\\dev\\Controller\\Controller\\InOut\\InputOutput.cs",
+              "RelativeDocumentMoniker": "Controller\\InOut\\InputOutput.cs",
+              "ToolTip": "E:\\Data\\dev\\Controller\\Controller\\InOut\\InputOutput.cs",
+              "RelativeToolTip": "Controller\\InOut\\InputOutput.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAwwBQAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-17T05:29:26.508Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Ram.cs",
+              "DocumentMoniker": "E:\\Data\\dev\\Controller\\Controller\\Memory\\Ram.cs",
+              "RelativeDocumentMoniker": "Controller\\Memory\\Ram.cs",
+              "ToolTip": "E:\\Data\\dev\\Controller\\Controller\\Memory\\Ram.cs",
+              "RelativeToolTip": "Controller\\Memory\\Ram.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAApwCUAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-16T16:27:01.789Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CombinedMemory.cs",
+              "DocumentMoniker": "E:\\Data\\dev\\Controller\\Controller\\Processor\\CombinedMemory.cs",
+              "RelativeDocumentMoniker": "Controller\\Processor\\CombinedMemory.cs",
+              "ToolTip": "E:\\Data\\dev\\Controller\\Controller\\Processor\\CombinedMemory.cs",
+              "RelativeToolTip": "Controller\\Processor\\CombinedMemory.cs",
+              "ViewState": "AgIAAGMAAAAAAAAAAAApwHEAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-16T15:21:40.595Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "UnitTest_Rom.cs",
               "DocumentMoniker": "E:\\Data\\dev\\Controller\\UnitTestProject2\\Memory\\UnitTest_Rom.cs",
               "RelativeDocumentMoniker": "UnitTestProject2\\Memory\\UnitTest_Rom.cs",
@@ -38,8 +139,7 @@
               "RelativeToolTip": "UnitTestProject2\\Memory\\UnitTest_Rom.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAA4AAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-15T20:13:35.494Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-15T20:13:35.494Z"
             },
             {
               "$type": "Document",
@@ -49,14 +149,14 @@
               "RelativeDocumentMoniker": "Controller\\Form1.cs",
               "ToolTip": "E:\\Data\\dev\\Controller\\Controller\\Form1.cs",
               "RelativeToolTip": "Controller\\Form1.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAMwB8AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABcBAAAAAAAAAAAowCIBAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-15T20:11:28.253Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 8,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "E:\\Data\\dev\\Controller\\Controller\\Form1.cs",
               "RelativeDocumentMoniker": "Controller\\Form1.cs",
@@ -68,13 +168,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 6,
               "Title": "Computer.cs",
               "DocumentMoniker": "E:\\Data\\dev\\Controller\\Controller\\Processor\\Computer.cs",
               "RelativeDocumentMoniker": "Controller\\Processor\\Computer.cs",
               "ToolTip": "E:\\Data\\dev\\Controller\\Controller\\Processor\\Computer.cs",
               "RelativeToolTip": "Controller\\Processor\\Computer.cs",
-              "ViewState": "AgIAADIAAAAAAAAAAAApwDQAAAATAAAAAAAAAA==",
+              "ViewState": "AgIAAGQAAAAAAAAAAAASwHIAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-15T19:36:32.393Z",
               "EditorCaption": ""
