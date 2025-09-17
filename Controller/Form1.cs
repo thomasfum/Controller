@@ -1,4 +1,5 @@
-﻿using Controller.Memory;
+﻿using Controller.InOut;
+using Controller.Memory;
 using Controller.Processor;
 using System;
 using System.Collections;
@@ -12,6 +13,7 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace Controller
@@ -22,6 +24,8 @@ namespace Controller
         DataTable dt_Rom = new DataTable();
         DataTable dt_Ram = new DataTable();
         public bool[] IGenerated = new bool[16];
+        public bool[] InOut = new bool[16];
+        Display display = new Display();
         public Form1()
         {
             InitializeComponent();
@@ -29,7 +33,8 @@ namespace Controller
             myComputer.setRom(0, 32912);
             myComputer.setRom(1, 2);
             myComputer.setRom(2, 34064);
-            myComputer.setRom(3, -27960);
+            //myComputer.setRom(3, -27960);
+            myComputer.setRom(3, 37576);
             myComputer.setRom(4, 32775);
 
 
@@ -65,7 +70,7 @@ namespace Controller
                 row[1] = I;
                 string Inst = "";
                 if (Tools.get15(I) == true)
-                    Inst = Tools.DstString[Tools.getTarget(I)] + Tools.CalString[Tools.getALU(I)] + Tools.JmpString[Tools.getJmp(I)];
+                    Inst = Tools.GetInstruction(I);
                 else
                     Inst = "A=" + I;
                 row[2] = Inst;
@@ -92,6 +97,14 @@ namespace Controller
             //dataGridView1.SelectionMode= DataGridViewSelectionMode.FullRowSelect;
             label_Instruction_b.UseMnemonic = false;
             label_IGeneratedAsm.UseMnemonic = false;
+            display.setImage(pictureBox1.Image as Bitmap);
+            Display();
+        }
+
+        void Display()
+        {
+            display.SetPixel(10, 10, true);
+            display.SetPixel(10, 10, false);
         }
         void refreshRam()
         {
@@ -126,6 +139,7 @@ namespace Controller
             dataGridView_Rom.Rows[PC].Selected = true;
             updateI(I);
             refreshRam();
+            refreshMappedIO();
         }
         void updateI(int I)
         { 
@@ -206,7 +220,7 @@ namespace Controller
           
             string Inst = "";
             if (Tools.get15(I) == true)
-                Inst = Tools.DstString[Tools.getTarget(I)] + Tools.CalString[Tools.getALU(I)] + Tools.JmpString[Tools.getJmp(I)];
+                Inst = Tools.GetInstruction(I);
             else
                 Inst = "A=" + I;
             label_Instruction_t1.Text += "  Assembler  |";
@@ -225,7 +239,7 @@ namespace Controller
         private void button5_Click(object sender, EventArgs e)
         {
             int a=myComputer.GetInOut();
-            myComputer.SetInOut(0xF0);
+            myComputer.SetInOut(Tools.int2BoolArray(0xFF));
         }
         //write ROM
         private void button2_Click(object sender, EventArgs e)
@@ -273,10 +287,13 @@ namespace Controller
 
                 int row = e.RowIndex;
                 string cell = (string)dgv?.Rows?[row]?.Cells?[e.ColumnIndex]?.Value;
-                int I=int.Parse(cell);
+                string cell2=cell.Replace(" ", "");
+                char a= Convert.ToChar(160);
+                cell2 = cell.Replace(""+a, "");
+                int I=int.Parse(cell2);
                 string Inst = "";
                 if (Tools.get15(I) == true)
-                    Inst = Tools.DstString[Tools.getTarget(I)] + Tools.CalString[Tools.getALU(I)] + Tools.JmpString[Tools.getJmp(I)];
+                    Inst = Tools.GetInstruction(I);
                 else
                     Inst = "A=" + I;
                 dgv.Rows[row].Cells[2].Value = Inst;
@@ -284,9 +301,11 @@ namespace Controller
             }
             if (e.ColumnIndex == 2)
             {
+             
                 int row = e.RowIndex;
                 dgv.Rows[row].Cells[0].Value = row;
                 string val = (string)dgv.Rows[row].Cells[2].Value;
+                val = val.Replace(" ", "");
                 string Msg = "";
                 string rep = Tools.Decode(val, out Msg);
                
@@ -310,7 +329,7 @@ namespace Controller
                 label_IGeneratedX.Text = " " + txt.PadLeft(4, '0');
             string Inst = "";
             if (Tools.get15(I) == true)
-                Inst = Tools.DstString[Tools.getTarget(I)] + Tools.CalString[Tools.getALU(I)] + Tools.JmpString[Tools.getJmp(I)];
+                Inst = Tools.GetInstruction(I);
             else
                 Inst = "A=" + I;
             label_IGeneratedAsm.Text= Inst;
@@ -411,6 +430,143 @@ namespace Controller
             IGenerated[0] = ((CheckBox)sender).Checked;
             UpdateIGenerated();
         }
-     
+
+        private void textBox_IGeneratedD_TextChanged(object sender, EventArgs e)
+        {
+          
+        }
+
+        private void textBox_IGeneratedD_Validated(object sender, EventArgs e)
+        {
+            UpdateCheckBoxed(sender);
+        }
+        void UpdateCheckBoxed(object sender)
+        {
+            TextBox txt = (TextBox)sender;
+            string a = txt.Text;
+            int val = int.Parse(a);
+            bool[] arr = new bool[16];
+            arr = Tools.int2BoolArray(val);
+            checkBox15.Checked = arr[0];
+            checkBox16.Checked = arr[1];
+            checkBox14.Checked = arr[3];
+            checkBox13.Checked = arr[2];
+            checkBox12.Checked = arr[5];
+            checkBox11.Checked = arr[4];
+            checkBox10.Checked = arr[7];
+            checkBox9.Checked = arr[6];
+            checkBox8.Checked = arr[9];
+            checkBox7.Checked = arr[8];
+            checkBox6.Checked = arr[11];
+            checkBox5.Checked = arr[10];
+            checkBox4.Checked = arr[13];
+            checkBox3.Checked = arr[12];
+            checkBox2.Checked = arr[14];
+            checkBox1.Checked = arr[15];
+        }
+
+        private void textBox_IGeneratedD_KeyUp(object sender, KeyEventArgs e)
+        {
+           
+        }
+
+        private void textBox_IGeneratedD_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                UpdateCheckBoxed(sender);
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+       
+
+        private void checkBox32_CheckedChanged(object sender, EventArgs e)
+        {
+            InOut[7]= ((CheckBox)sender).Checked;
+            myComputer.SetInOut(InOut);
+        }
+
+        private void checkBox31_CheckedChanged(object sender, EventArgs e)
+        {
+            InOut[6] = ((CheckBox)sender).Checked;
+            myComputer.SetInOut(InOut);
+        }
+
+        private void checkBox30_CheckedChanged(object sender, EventArgs e)
+        {
+            InOut[5] = ((CheckBox)sender).Checked;
+            myComputer.SetInOut(InOut);
+        }
+
+        private void checkBox29_CheckedChanged(object sender, EventArgs e)
+        {
+            InOut[4] = ((CheckBox)sender).Checked;
+            myComputer.SetInOut(InOut);
+        }
+
+        private void checkBox28_CheckedChanged(object sender, EventArgs e)
+        {
+            InOut[3] = ((CheckBox)sender).Checked;
+            myComputer.SetInOut(InOut);
+        }
+
+        private void checkBox27_CheckedChanged(object sender, EventArgs e)
+        {
+            InOut[2] = ((CheckBox)sender).Checked;
+            myComputer.SetInOut(InOut);
+        }
+
+        private void checkBox26_CheckedChanged(object sender, EventArgs e)
+        {
+            InOut[1] = ((CheckBox)sender).Checked;
+            myComputer.SetInOut(InOut);
+        }
+
+        private void checkBox25_CheckedChanged(object sender, EventArgs e)
+        {
+            InOut[0] = ((CheckBox)sender).Checked;
+            myComputer.SetInOut(InOut);
+        }
+
+        void refreshMappedIO()
+        {
+            int val= myComputer.GetInOut();
+            bool[] inout = Tools.int2BoolArray(val);
+            checkBox17.Checked = inout[0];
+            checkBox18.Checked = inout[1];
+            checkBox19.Checked = inout[2];
+            checkBox20.Checked = inout[3];
+            checkBox21.Checked = inout[4];
+            checkBox22.Checked = inout[5];
+            checkBox23.Checked = inout[6];
+            checkBox24.Checked = inout[7];
+
+        }
+
+        //clear IN/out
+        private void button6_Click(object sender, EventArgs e)
+        {
+            checkBox17.Checked = false;
+            checkBox18.Checked = false;
+            checkBox19.Checked = false;
+            checkBox20.Checked = false;
+            checkBox21.Checked = false;
+            checkBox22.Checked = false;
+            checkBox23.Checked = false;
+            checkBox24.Checked = false;
+            myComputer.ResetInOut();
+        }
     }
 }

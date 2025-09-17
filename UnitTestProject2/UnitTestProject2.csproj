@@ -88,6 +88,7 @@
     <Compile Include="Switching\UnitTest_Selector_16.cs" />
     <Compile Include="Switching\UnitTest_Switch.cs" />
     <Compile Include="Switching\UnitTest_Selector.cs" />
+    <Compile Include="UnitTest_Tools.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

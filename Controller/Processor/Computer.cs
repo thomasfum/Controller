@@ -103,22 +103,15 @@ namespace Controller.Processor
         public int GetInOut()
         {
             return memory.inout.GetInOut();
-            /*
-            memory.reg_inout.st = false;
-            memory.reg_inout.cl = false;
-            memory.reg_inout.proceed();
-            return Tools.boolArray2Int(memory.reg_inout.output);
-            */
         }
-        public void SetInOut(int val)
+        public void SetInOut(bool[] val)
         {
             memory.inout.SetInOut(val);
-            /*
-            memory.reg_inout.st = false;
-            memory.reg_inout.cl = false;
-            memory.reg_inout.proceed();
-            return Tools.boolArray2Int(memory.reg_inout.output);
-            */
         }
+        public void ResetInOut()
+        {
+            memory.inout.ResetInOut();
+        }
+        
     }
 }

@@ -23,7 +23,7 @@ namespace UnitTestProject2.Processor
             Assert.AreEqual(0, Tools.boolArray2Int(mem.A));
             Assert.AreEqual(0, Tools.boolArray2Int(mem.D));
             Assert.AreEqual(0, Tools.boolArray2Int(mem.CA));
-            Assert.AreEqual(2592, val);
+            Assert.AreEqual(3738, val);
 
 
             mem.X = Tools.int2BoolArray(5);

@@ -71,7 +71,7 @@ namespace Controller.Processor
 
             And stInOut_And = new And();
             stInOut_And.a = eq_0x7FFF.s;
-            stInOut_And.b = cl;
+            stInOut_And.b = ca;
             val += stInOut_And.proceed();
 
             inout.X = X;
