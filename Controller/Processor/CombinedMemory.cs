@@ -22,10 +22,13 @@ namespace Controller.Processor
         public bool d;
         public bool ca;
         bool debug_RamRange = false;
+        bool debug_InOutRange = false;
+        bool debug_DisplayRange = false;
 
         Register_16 reg_a =new Register_16();
         Register_16 reg_d = new Register_16();
         public InputOutput inout = new InputOutput();
+        public Display display = new Display();
         public Ram ram;
         public CombinedMemory(int _nbRegister)
         {
@@ -47,33 +50,58 @@ namespace Controller.Processor
             val += reg_d.proceed();
             D = reg_d.output;
 
-            //0x4000 -> 5FFF                //0100 0000 0000 0000
+
+
+            //--------------------------------------------------
+            //0x4000 -> 5FFF                //0100 0000 0000 0000  /16 384
+            bool[] _displayAdd = new bool[16];
+            _displayAdd[14] = true;
+            And_16 andInDisplay = new And_16();
+            andInDisplay.a = _displayAdd;
+            andInDisplay.b = reg_a.output;
+            val += andInDisplay.proceed();//0100 0000 0000 0000
+            Equal0_16 neq_0x4000 = new Equal0_16();
+            neq_0x4000.a = andInDisplay.s;
+            val += neq_0x4000.proceed();
+            Invert eq_0x4000 = new Invert();
+            eq_0x4000.input= neq_0x4000.s;
+            val += eq_0x4000.proceed();
+
+
+            And stDisplay_And = new And();
+            stDisplay_And.a = eq_0x4000.output;
+            stDisplay_And.b = ca;
+            val += stDisplay_And.proceed();
+
+            debug_DisplayRange = eq_0x4000.output;
+            display.X= X;
+            display.A = A;
+            display.st = stDisplay_And.output;
+            display.cl = cl;//clInOut_And.output;
+            val += display.proceed();
+
+
+            //--------------------------------------------------
             //0x6000 => network or keyboard //0110 0000 0000 0000
-           
-            
+
+
             //--------------------------------------------------
             //0x7FF => in/out              //0111 1111 1111 1111
-            bool[] _inoutadd = new bool[16];
-            _inoutadd[15]=true;
+
             Inverter_16 inv16= new Inverter_16();
             inv16.a = reg_a.output;//100000000000000
-            inv16.proceed();
+            val += inv16.proceed();
             inv16.s[15] = false;
             Equal0_16 eq_0x7FFF = new Equal0_16();
             eq_0x7FFF.a = inv16.s;
-            eq_0x7FFF.proceed();
-            /*
-            And clInOut_And = new And();
-            clInOut_And.a = eq_0x7FFF.s;
-            clInOut_And.b = cl;
-            val += clInOut_And.proceed();
-            */
+            val += eq_0x7FFF.proceed();
+            debug_InOutRange = eq_0x7FFF.s;
 
             And stInOut_And = new And();
             stInOut_And.a = eq_0x7FFF.s;
             stInOut_And.b = ca;
             val += stInOut_And.proceed();
-
+                        
             inout.X = X;
             inout.st = stInOut_And.output;
             inout.cl = cl;//clInOut_And.output;

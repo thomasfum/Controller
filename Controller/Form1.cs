@@ -25,17 +25,21 @@ namespace Controller
         DataTable dt_Ram = new DataTable();
         public bool[] IGenerated = new bool[16];
         public bool[] InOut = new bool[16];
-        Display display = new Display();
+       
         public Form1()
         {
             InitializeComponent();
             myComputer = new Computer(256,256);
-            myComputer.setRom(0, 32912);
-            myComputer.setRom(1, 2);
-            myComputer.setRom(2, 34064);
+            //myComputer.setRom(0, 32912);//D=0
+            int pc = 0;
+            myComputer.setRom(pc++, 48);//A=48
+            myComputer.setRom(pc++, 33168);
+            myComputer.setRom(pc++, 2);
+            myComputer.setRom(pc++, 34064);
             //myComputer.setRom(3, -27960);
-            myComputer.setRom(3, 37576);
-            myComputer.setRom(4, 32775);
+            myComputer.setRom(pc++, 37576);
+            myComputer.setRom(pc++, 1);
+            myComputer.setRom(pc++, 32775);
 
 
             dt_Ram.Columns.Add("No");
@@ -50,11 +54,6 @@ namespace Controller
                 row[1] = I;
                 dt_Ram.Rows.Add(row);
             }
-
-
-
-
-
             dt_Rom.Columns.Add("No");
             dt_Rom.Columns.Add("Instruction");
             dt_Rom.Columns.Add("Assembly");
@@ -97,32 +96,20 @@ namespace Controller
             //dataGridView1.SelectionMode= DataGridViewSelectionMode.FullRowSelect;
             label_Instruction_b.UseMnemonic = false;
             label_IGeneratedAsm.UseMnemonic = false;
-            display.setImage(pictureBox1.Image as Bitmap);
-            Display();
+            myComputer.SetDisplayImage(pictureBox1.Image as Bitmap);
+           
         }
 
-        void Display()
-        {
-            display.SetPixel(10, 10, true);
-            display.SetPixel(10, 10, false);
-        }
-        void refreshRam()
-        {
-            for (int i = 0; i < 10; i++)
-            {
-                // Set values for columns with row[i] = xy
-                int I = myComputer.GetRam(i);
-                dataGridView_Ram.Rows[i].Cells[1].Value=I.ToString();
-            }
-        }
 
-        private void buttonReset_Click(object sender, EventArgs e)
+        //----------------------------
+        //PC
+        private void Reset_Click(object sender, EventArgs e)
         {
             dataGridView_Rom.ClearSelection();
             dataGridView_Rom.Rows[0].Selected = true;
             myComputer.reset();
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void Tick_Click(object sender, EventArgs e)
         {
             myComputer.proceed();
             int A = myComputer.getA();
@@ -140,9 +127,104 @@ namespace Controller
             updateI(I);
             refreshRam();
             refreshMappedIO();
+            pictureBox1.Refresh();
         }
+     
+
+        private void NandGame_TextChanged(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://nandgame.com");
+        }
+
+
+
+        //----------------------------
+        //RAM
+        void refreshRam()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                // Set values for columns with row[i] = xy
+                int I = myComputer.GetRam(i);
+                dataGridView_Ram.Rows[i].Cells[1].Value = I.ToString();
+            }
+        }
+        private void RAM_Clear_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < dataGridView_Ram.RowCount; i++)
+            {
+                myComputer.setRam(i, 0);
+            }
+            refreshRam();
+        }
+        private void RAM_Write_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < dataGridView_Ram.RowCount; i++)
+            {
+                if ((string)dataGridView_Ram.Rows[i].Cells[0].Value != "")
+                {
+                    string s = (string)dataGridView_Ram.Rows[i].Cells[1].Value;
+                    if (s != null)
+                        myComputer.setRam(i, int.Parse(s));
+                }
+            }
+        }
+        //----------------------------
+        //ROM
+        private void ROM_GridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridView dgv = (DataGridView)sender;
+           
+            if (e.ColumnIndex == 1)
+            {
+
+                int row = e.RowIndex;
+                string cell = (string)dgv?.Rows?[row]?.Cells?[e.ColumnIndex]?.Value;
+                string cell2=cell.Replace(" ", "");
+                char a= Convert.ToChar(160);
+                cell2 = cell.Replace(""+a, "");
+                int I=int.Parse(cell2);
+                string Inst = "";
+                if (Tools.get15(I) == true)
+                    Inst = Tools.GetInstruction(I);
+                else
+                    Inst = "A=" + I;
+                dgv.Rows[row].Cells[2].Value = Inst;
+                dgv.Rows[row].Cells[0].Value = row;
+            }
+            if (e.ColumnIndex == 2)
+            {
+             
+                int row = e.RowIndex;
+                dgv.Rows[row].Cells[0].Value = row;
+                string val = (string)dgv.Rows[row].Cells[2].Value;
+                val = val.Replace(" ", "");
+                string Msg = "";
+                string rep = Tools.Decode(val, out Msg);
+               
+                if (Msg != "")
+                    MessageBox.Show(Msg);
+                else
+                    dgv.Rows[row].Cells[1].Value = rep;
+            }
+        }
+        private void ROM_Write_Click(object sender, EventArgs e)
+        {
+
+            for (int i = 0; i < dataGridView_Rom.RowCount; i++)
+            {
+                if ((string)dataGridView_Rom.Rows[i].Cells[0].Value != "")
+                {
+                    string s = (string)dataGridView_Rom.Rows[i].Cells[1].Value;
+                    if (s != null)
+                        myComputer.setRom(i, int.Parse(s));
+                }
+            }
+        }
+        //----------------------------
+        //Instruction Registry 
         void updateI(int I)
-        { 
+        {
             // top
             label_Instruction_t1.Text = "|   " + " . " + " . " + "   " + " . ";
             label_Instruction_b.Text = "|";
@@ -203,21 +285,21 @@ namespace Controller
             label_Instruction_t2.Text += "gt ";
             label_Instruction_b.Text += " " + (JMPb[0] ? '1' : '0') + " ";
 
-            
+
 
             label_Instruction_t1.Text += " | decimal |";
             label_Instruction_t2.Text += " |         |";
-            label_Instruction_b.Text += " | "+I.ToString("D").PadLeft(7)+ " |";
+            label_Instruction_b.Text += " | " + I.ToString("D").PadLeft(7) + " |";
 
             label_Instruction_t1.Text += "  HEX |";
             label_Instruction_t2.Text += "      |";
             string txt = I.ToString("X");
-            if(txt.Length >4 )
-                label_Instruction_b.Text  += " "+I.ToString("X").Substring(4)+" |";
+            if (txt.Length > 4)
+                label_Instruction_b.Text += " " + I.ToString("X").Substring(4) + " |";
             else
-                label_Instruction_b.Text += " " + txt.PadLeft(4,'0') + " |";
+                label_Instruction_b.Text += " " + txt.PadLeft(4, '0') + " |";
 
-          
+
             string Inst = "";
             if (Tools.get15(I) == true)
                 Inst = Tools.GetInstruction(I);
@@ -226,98 +308,9 @@ namespace Controller
             label_Instruction_t1.Text += "  Assembler  |";
             label_Instruction_t2.Text += "             |";
             label_Instruction_b.Text += Inst.PadRight(12) + " |";
-            
+
             labelInstructionBottom.Text = "|                |                 |           |           |         |      |             |";
         }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://nandgame.com");
-        }
-
-        //test
-        private void button5_Click(object sender, EventArgs e)
-        {
-            int a=myComputer.GetInOut();
-            myComputer.SetInOut(Tools.int2BoolArray(0xFF));
-        }
-        //write ROM
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-            for (int i = 0; i < dataGridView_Rom.RowCount; i++)
-            {
-                if((string)dataGridView_Rom.Rows[i].Cells[0].Value!="")
-                { 
-                    string s = (string)dataGridView_Rom.Rows[i].Cells[1].Value;
-                    if(s!=null)
-                        myComputer.setRom(i, int.Parse(s));
-                }
-            }
-        }
-        //clear ram
-        private void button4_Click(object sender, EventArgs e)
-        {
-            for (int i = 0; i < dataGridView_Ram.RowCount; i++)
-            {
-                myComputer.setRam(i, 0);
-            }
-            refreshRam();
-        }
-        //write RAM
-        private void button3_Click(object sender, EventArgs e)
-        {
-            for (int i = 0; i < dataGridView_Ram.RowCount; i++)
-            {
-                if ((string)dataGridView_Ram.Rows[i].Cells[0].Value != "")
-                {
-                    string s = (string)dataGridView_Ram.Rows[i].Cells[1].Value;
-                    if (s != null)
-                        myComputer.setRam(i, int.Parse(s));
-                }
-            }
-        }
-
-        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            DataGridView dgv = (DataGridView)sender;
-           
-            if (e.ColumnIndex == 1)
-            {
-
-                int row = e.RowIndex;
-                string cell = (string)dgv?.Rows?[row]?.Cells?[e.ColumnIndex]?.Value;
-                string cell2=cell.Replace(" ", "");
-                char a= Convert.ToChar(160);
-                cell2 = cell.Replace(""+a, "");
-                int I=int.Parse(cell2);
-                string Inst = "";
-                if (Tools.get15(I) == true)
-                    Inst = Tools.GetInstruction(I);
-                else
-                    Inst = "A=" + I;
-                dgv.Rows[row].Cells[2].Value = Inst;
-                dgv.Rows[row].Cells[0].Value = row;
-            }
-            if (e.ColumnIndex == 2)
-            {
-             
-                int row = e.RowIndex;
-                dgv.Rows[row].Cells[0].Value = row;
-                string val = (string)dgv.Rows[row].Cells[2].Value;
-                val = val.Replace(" ", "");
-                string Msg = "";
-                string rep = Tools.Decode(val, out Msg);
-               
-                if (Msg != "")
-                    MessageBox.Show(Msg);
-                else
-                    dgv.Rows[row].Cells[1].Value = rep;
-            }
-        }
-
-     
-
         void UpdateIGenerated()
         {
             int I= Tools.boolArray2Int(IGenerated);
@@ -334,6 +327,87 @@ namespace Controller
                 Inst = "A=" + I;
             label_IGeneratedAsm.Text= Inst;
         }
+
+        private void textBox_IGeneratedD_Validated(object sender, EventArgs e)
+        {
+            UpdateCheckBoxed(sender);
+        }
+        void UpdateCheckBoxed(object sender)
+        {
+            TextBox txt = (TextBox)sender;
+            string a = txt.Text;
+            int val = int.Parse(a);
+            bool[] arr = new bool[16];
+            arr = Tools.int2BoolArray(val);
+            checkBox15.Checked = arr[0];
+            checkBox16.Checked = arr[1];
+            checkBox14.Checked = arr[3];
+            checkBox13.Checked = arr[2];
+            checkBox12.Checked = arr[5];
+            checkBox11.Checked = arr[4];
+            checkBox10.Checked = arr[7];
+            checkBox9.Checked = arr[6];
+            checkBox8.Checked = arr[9];
+            checkBox7.Checked = arr[8];
+            checkBox6.Checked = arr[11];
+            checkBox5.Checked = arr[10];
+            checkBox4.Checked = arr[13];
+            checkBox3.Checked = arr[12];
+            checkBox2.Checked = arr[14];
+            checkBox1.Checked = arr[15];
+        }
+
+
+        private void textBox_IGeneratedD_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                UpdateCheckBoxed(sender);
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        //----------------------------
+        //Display
+        private void Display_Clear_Click(object sender, EventArgs e)
+        {
+            myComputer.ClearDisplay();
+            pictureBox1.Refresh();
+        }
+
+        //----------------------------
+        //inout
+        void refreshMappedIO()
+        {
+            int val = myComputer.GetInOut();
+            bool[] inout = Tools.int2BoolArray(val);
+            checkBox17.Checked = inout[0];
+            checkBox18.Checked = inout[1];
+            checkBox19.Checked = inout[2];
+            checkBox20.Checked = inout[3];
+            checkBox21.Checked = inout[4];
+            checkBox22.Checked = inout[5];
+            checkBox23.Checked = inout[6];
+            checkBox24.Checked = inout[7];
+
+        }
+
+        private void InOut_Clear_Click(object sender, EventArgs e)
+        {
+            checkBox17.Checked = false;
+            checkBox18.Checked = false;
+            checkBox19.Checked = false;
+            checkBox20.Checked = false;
+            checkBox21.Checked = false;
+            checkBox22.Checked = false;
+            checkBox23.Checked = false;
+            checkBox24.Checked = false;
+            myComputer.ResetInOut();
+        }
+
+        //----------------------------
+        //check boxes
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
@@ -431,67 +505,9 @@ namespace Controller
             UpdateIGenerated();
         }
 
-        private void textBox_IGeneratedD_TextChanged(object sender, EventArgs e)
-        {
-          
-        }
+      
 
-        private void textBox_IGeneratedD_Validated(object sender, EventArgs e)
-        {
-            UpdateCheckBoxed(sender);
-        }
-        void UpdateCheckBoxed(object sender)
-        {
-            TextBox txt = (TextBox)sender;
-            string a = txt.Text;
-            int val = int.Parse(a);
-            bool[] arr = new bool[16];
-            arr = Tools.int2BoolArray(val);
-            checkBox15.Checked = arr[0];
-            checkBox16.Checked = arr[1];
-            checkBox14.Checked = arr[3];
-            checkBox13.Checked = arr[2];
-            checkBox12.Checked = arr[5];
-            checkBox11.Checked = arr[4];
-            checkBox10.Checked = arr[7];
-            checkBox9.Checked = arr[6];
-            checkBox8.Checked = arr[9];
-            checkBox7.Checked = arr[8];
-            checkBox6.Checked = arr[11];
-            checkBox5.Checked = arr[10];
-            checkBox4.Checked = arr[13];
-            checkBox3.Checked = arr[12];
-            checkBox2.Checked = arr[14];
-            checkBox1.Checked = arr[15];
-        }
-
-        private void textBox_IGeneratedD_KeyUp(object sender, KeyEventArgs e)
-        {
-           
-        }
-
-        private void textBox_IGeneratedD_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Return)
-            {
-                UpdateCheckBoxed(sender);
-                e.Handled = true;
-                e.SuppressKeyPress = true;
-            }
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-       
-
+    
         private void checkBox32_CheckedChanged(object sender, EventArgs e)
         {
             InOut[7]= ((CheckBox)sender).Checked;
@@ -540,33 +556,6 @@ namespace Controller
             myComputer.SetInOut(InOut);
         }
 
-        void refreshMappedIO()
-        {
-            int val= myComputer.GetInOut();
-            bool[] inout = Tools.int2BoolArray(val);
-            checkBox17.Checked = inout[0];
-            checkBox18.Checked = inout[1];
-            checkBox19.Checked = inout[2];
-            checkBox20.Checked = inout[3];
-            checkBox21.Checked = inout[4];
-            checkBox22.Checked = inout[5];
-            checkBox23.Checked = inout[6];
-            checkBox24.Checked = inout[7];
-
-        }
-
-        //clear IN/out
-        private void button6_Click(object sender, EventArgs e)
-        {
-            checkBox17.Checked = false;
-            checkBox18.Checked = false;
-            checkBox19.Checked = false;
-            checkBox20.Checked = false;
-            checkBox21.Checked = false;
-            checkBox22.Checked = false;
-            checkBox23.Checked = false;
-            checkBox24.Checked = false;
-            myComputer.ResetInOut();
-        }
+    
     }
 }

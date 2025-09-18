@@ -1,6 +1,7 @@
 ﻿using Controller.Memory;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace Controller.Processor
 
     public class Computer
     {
-        public CombinedMemory memory ;
+        CombinedMemory memory ;
         Rom rom;
         Counter_16 counter = new Counter_16();
         ControlUnit control = new ControlUnit();
@@ -58,6 +59,14 @@ namespace Controller.Processor
             val = pulse(false);
             pulse(true);
             return val;
+        }
+        public void SetDisplayImage(Bitmap img)
+        {
+            memory.display.setImage(img);
+        }
+        public void ClearDisplay()
+        {
+            memory.display.Clear();
         }
         public int getPC()
         {
