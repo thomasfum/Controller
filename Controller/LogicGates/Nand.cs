@@ -33,7 +33,7 @@ namespace Controller
             relay3.c = relay2.output;
             val += relay3.proceed();
             output = relay3.output;
-            return val;
+            return 1;//we are counting Nand not Relay
         }
     }
 }

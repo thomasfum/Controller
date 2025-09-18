@@ -28,7 +28,7 @@ namespace Controller.Memory
             {
                 regsiters[i].cl = cl;
                 regsiters[i].st = add[i];
-                regsiters[i].proceed();
+                val+=regsiters[i].proceed();
             }
             output = regsiters[Tools.boolArray2Int(ad)].output;//TODO decodage is missing
             return val;
@@ -53,6 +53,13 @@ namespace Controller.Memory
             regsiters[add].cl = false;
             regsiters[add].proceed();
             return regsiters[add].output;
+        }
+        public void Clear()
+        {
+            for(int i=0;i< regsiters.Count(); i++)
+            {
+                InitRegister(Tools.int2BoolArray(i), Tools.int2BoolArray(0));
+            }
         }
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,36 +16,40 @@ namespace Controller.Processor
         Rom rom;
         Counter_16 counter = new Counter_16();
         ControlUnit control = new ControlUnit();
+        int NbNand_Rom = 0;
+        int NbNand_Memory = 0;
+        int NbNand_ControlUnit = 0;
+        int NbNand_PC = 0;
+
         public Computer(int romsize, int ramsize)
         {
-            memory = new CombinedMemory(256);
-            rom = new Rom(256);
+            memory = new CombinedMemory(ramsize);
+            rom = new Rom(romsize);
         }
         int pulse(bool cl)
         {
-            int val = 0;
             counter.cl= cl;
             counter.X = memory.A;
             counter.st = control.j;
-            val+=counter.proceed();
+            NbNand_PC = counter.proceed();
 
             rom.ad = counter.output;
-            val += rom.proceed();
+            NbNand_Rom = rom.proceed();
 
             control.I= rom.output;
             control.A=memory.A;
             control.D = memory.D;
             control.CA = memory.CA;
-            val += control.proceed();
+            NbNand_ControlUnit = control.proceed();
             
             memory.cl= cl;
             memory.X= control.R;
             memory.a = control.a;
             memory.d = control.d;
             memory.ca = control.ca;
-            val += memory.proceed();
+            NbNand_Memory = memory.proceed();
 
-            return val;
+            return NbNand_PC+NbNand_Rom + NbNand_ControlUnit+ NbNand_Memory;
         }
         public void reset()
         {
@@ -60,14 +65,9 @@ namespace Controller.Processor
             pulse(true);
             return val;
         }
-        public void SetDisplayImage(Bitmap img)
-        {
-            memory.display.setImage(img);
-        }
-        public void ClearDisplay()
-        {
-            memory.display.Clear();
-        }
+       
+        //-----------------------------------------------------
+        //Registries
         public int getPC()
         {
             return Tools.boolArray2Int(counter.output);
@@ -84,31 +84,39 @@ namespace Controller.Processor
         {
             return Tools.boolArray2Int(control.I);
         }
-
-
-      
-
+        public string GetNandCount()
+        {
+            var nfi = (NumberFormatInfo)CultureInfo.InvariantCulture.NumberFormat.Clone();
+            nfi.NumberGroupSeparator = " ";
+            int total = NbNand_PC + NbNand_Rom + NbNand_ControlUnit + NbNand_Memory;
+            return "Total=" + total.ToString("#,0", nfi) + "; PC=" + NbNand_PC.ToString("#,0", nfi) + "; Ctrl=" + NbNand_ControlUnit.ToString("#,0", nfi) + "; Mem=" + NbNand_Memory.ToString("#,0", nfi) + "; Rom=" + NbNand_Rom.ToString("#,0", nfi);
+        }
+        //-----------------------------------------------------
+        //ROM
         public void setRom(int add, int val)
         {
             rom.InitRegister(Tools.int2BoolArray(add), Tools.int2BoolArray(val));
-          
         }
+        public int GetRom(int add)
+        {
+            return Tools.boolArray2Int(rom.GetRegister(Tools.int2BoolArray(add)));
+        }
+        public void ClearRom()
+        {
+            rom.Clear();
+        }
+        //-----------------------------------------------------
+        //RAM
         public void setRam(int add, int val)
         {
             memory.ram.InitRegister(Tools.int2BoolArray(add), Tools.int2BoolArray(val));
         }
-        
-        public int GetRom(int add)
-        {
-            return Tools.boolArray2Int(rom.GetRegister(Tools.int2BoolArray(add)));
-
-        }
         public int GetRam(int add)
         {
             return Tools.boolArray2Int(memory.ram.GetRegister(Tools.int2BoolArray(add)));
-
         }
-
+        //-----------------------------------------------------
+        //Inout
         public int GetInOut()
         {
             return memory.inout.GetInOut();
@@ -121,6 +129,15 @@ namespace Controller.Processor
         {
             memory.inout.ResetInOut();
         }
-        
+        //-----------------------------------------------------
+        //Display
+        public void SetDisplayImage(Bitmap img)
+        {
+            memory.display.setImage(img);
+        }
+        public void ClearDisplay()
+        {
+            memory.display.Clear();
+        }
     }
 }

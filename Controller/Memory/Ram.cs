@@ -34,7 +34,7 @@ namespace Controller.Memory
                 regsiters[i].X = X;
                 regsiters[i].cl = cl;
                 regsiters[i].st = and.output;
-                regsiters[i].proceed();
+                val+=regsiters[i].proceed();
                 if(i== Tools.boolArray2Int(ad))
                     output = regsiters[Tools.boolArray2Int(ad)].output;//TODO decodage is missing
             }

@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
@@ -16,6 +17,13 @@ using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
+// gerer le stcroll sur le tick
+// synch des editbox vertically
+// gerer les erreur de parse (metre en rouge la ligne)
+// stack debug
+// constants
+
+
 namespace Controller
 {
     public partial class Form1 : Form
@@ -25,7 +33,12 @@ namespace Controller
         DataTable dt_Ram = new DataTable();
         public bool[] IGenerated = new bool[16];
         public bool[] InOut = new bool[16];
-       
+        List<int> PC = new List<int>();
+        List<string> ASM = new List<string>();
+        List<int> ASMCode = new List<int>();
+        Dictionary<string, List<string>> MacroList = new Dictionary<string, List<string>>();
+        int RomSize = 20;
+
         public Form1()
         {
             InitializeComponent();
@@ -58,23 +71,8 @@ namespace Controller
             dt_Rom.Columns.Add("Instruction");
             dt_Rom.Columns.Add("Assembly");
 
-
-            // and then add your rows
-            for (int i = 0; i < 10; i++)
-            {
-                var row = dt_Rom.NewRow();
-                // Set values for columns with row[i] = xy
-                int I=myComputer.GetRom(i);
-                row[0] = i;
-                row[1] = I;
-                string Inst = "";
-                if (Tools.get15(I) == true)
-                    Inst = Tools.GetInstruction(I);
-                else
-                    Inst = "A=" + I;
-                row[2] = Inst;
-                dt_Rom.Rows.Add(row);
-            }
+         
+            UpdateFromRom();
 
             dataGridView_Ram.DataSource = dt_Ram;
             dataGridView_Ram.Columns[0].Width = 35;
@@ -97,7 +95,9 @@ namespace Controller
             label_Instruction_b.UseMnemonic = false;
             label_IGeneratedAsm.UseMnemonic = false;
             myComputer.SetDisplayImage(pictureBox1.Image as Bitmap);
-           
+
+
+            MacroList.Add("INIT.STACK", new List<string>() { "A=256", "D=A","A=0","*A=D" });
         }
 
 
@@ -107,6 +107,8 @@ namespace Controller
         {
             dataGridView_Rom.ClearSelection();
             dataGridView_Rom.Rows[0].Selected = true;
+            richTextBoxCode_PC.SelectAll();
+            richTextBoxCode_PC.SelectionBackColor = Color.Black;
             myComputer.reset();
         }
         private void Tick_Click(object sender, EventArgs e)
@@ -127,7 +129,9 @@ namespace Controller
             updateI(I);
             refreshRam();
             refreshMappedIO();
+            label_Nand_count.Text= "Nand count: "+myComputer.GetNandCount();
             pictureBox1.Refresh();
+            UpdatePC(PC);
         }
      
 
@@ -219,6 +223,25 @@ namespace Controller
                     if (s != null)
                         myComputer.setRom(i, int.Parse(s));
                 }
+            }
+        }
+        private void UpdateFromRom()
+        {
+            dt_Rom.Clear();
+            for (int i = 0; i < RomSize; i++)
+            {
+                var row = dt_Rom.NewRow();
+                // Set values for columns with row[i] = xy
+                int I = myComputer.GetRom(i);
+                row[0] = i;
+                row[1] = I;
+                string Inst = "";
+                if (Tools.get15(I) == true)
+                    Inst = Tools.GetInstruction(I);
+                else
+                    Inst = "A=" + I;
+                row[2] = Inst;
+                dt_Rom.Rows.Add(row);
             }
         }
         //----------------------------
@@ -556,6 +579,206 @@ namespace Controller
             myComputer.SetInOut(InOut);
         }
 
-    
+
+        void ColorRegister(string txt, int startpos)
+        {
+            for (int i=0;i<txt.Length;i++)
+            {
+                if ((txt[i]=='A')| (txt[i] == 'D')||(txt[i] == '*'))
+                {
+                    richTextBoxCode.Select(startpos+i,1);
+                    richTextBoxCode.SelectionColor = Color.LightGreen;
+                }
+
+            }
+        }
+        string[] reservedWords = { "JMP", "init.stack" };
+        void AnalyseLines(string txt)
+        {
+            int pos = 0;
+            int nextpos = 0;
+            bool shoudStop = false;
+            do
+            {
+                pos = txt.IndexOf("\n", nextpos);
+                if (pos < 0)
+                {
+                    shoudStop = true;
+                    pos= txt.Length;
+                }
+                string line = txt.Substring(nextpos, pos - nextpos);
+                if (line.StartsWith("#"))//comment
+                {
+                    richTextBoxCode.Select(nextpos, pos- nextpos);
+                    richTextBoxCode.SelectionColor = Color.DarkGreen;
+                }
+                else 
+                {
+                    if (reservedWords.Contains(line))//reserved word
+                    {
+                        richTextBoxCode.Select(nextpos, pos - nextpos);
+                        richTextBoxCode.SelectionColor = Color.Cyan;
+                    }
+                    else//analize the line
+                    {
+                        int eqPos=line.IndexOf('=');
+                        if (eqPos > 0)//we have a =
+                        {
+                            string sub1 = line.Substring(0, eqPos);
+                            ColorRegister(sub1, nextpos);
+                        }
+                        int scPos = line.IndexOf(';');
+                        if (scPos > 0)//we have a ;
+                        {
+                            richTextBoxCode.Select(nextpos+ scPos, pos - nextpos- scPos);
+                            richTextBoxCode.SelectionColor = Color.Yellow;
+                        }
+                       
+                        if (scPos < 0)
+                            scPos = pos - nextpos;
+                        string sub=line.Substring(eqPos +1, scPos-eqPos-1);
+                        ColorRegister(sub, nextpos +eqPos + 1);
+                    }
+                }
+                nextpos = pos + 1;
+            } while (shoudStop ==false);
+          
+        }
+        private void richTextBoxCode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                int SelectionStart = richTextBoxCode.SelectionStart;
+                int SelectionLength = richTextBoxCode.SelectionLength;
+                string txt = richTextBoxCode.Text;
+                //ColorComments(txt);
+                AnalyseLines(txt);
+
+                richTextBoxCode.Select(SelectionStart, SelectionLength);
+                richTextBoxCode.SelectionColor = Color.White;
+                //e.Handled = true;
+                //e.SuppressKeyPress = true;
+            }
+        }
+        
+        private void Generate_Click(object sender, EventArgs e)
+        {
+            string txt = richTextBoxCode.Text;
+            string txt1= txt.Replace(" ", "").ToUpper();
+            string[] ListCode=txt1.Split('\n');
+            PC= new List<int>();
+            ASM = new List<string>();
+            ASMCode = new List<int>();
+            
+            for (int i=0;i<ListCode.Length;i++)
+            {
+                if (ListCode[i]=="")
+                {
+                    PC.Add(-1);
+                }else if (ListCode[i].StartsWith("#"))
+                {
+                    PC.Add(-1);
+                }
+                else
+                {
+                    PC.Add(ASM.Count);
+                    if (MacroList.ContainsKey(ListCode[i]))
+                    {
+                        ASM.AddRange(MacroList[ListCode[i]]);
+                    }
+                    else
+                    {
+                        ASM.Add(ListCode[i]);
+                    }
+                }
+            }
+            myComputer.ClearRom();
+            for (int i = 0; i < ASM.Count; i++)
+            {
+                string Msg = "";
+                string codeS=Tools.Decode(ASM[i], out Msg);
+                int code=int.Parse(codeS);
+                ASMCode.Add(code);
+                myComputer.setRom(i, code);//A=48
+            }
+
+            UpdateFromRom();
+            string PcTxt = "";
+            for (int i = 0; i < PC.Count; i++)
+            {
+                if (PC[i] == -1)
+                    PcTxt += "\n";
+                else
+                    PcTxt += PC[i]+"\n";
+            }
+            richTextBoxCode_PC.Text = PcTxt;
+            richTextBoxCode_PC.SelectAll();
+            richTextBoxCode_PC.SelectionAlignment = HorizontalAlignment.Right;
+        }
+        void UpdatePC(int _PC)
+        {
+            richTextBoxCode_PC.SelectAll();
+            richTextBoxCode_PC.SelectionBackColor = Color.Black;
+            int lastPCneq = 0;
+            int max=PC.Max();
+            if (_PC == 0)
+            {
+                for (int i = 0; i < PC.Count; i++)
+                {
+                    if (PC[i] >= 0)
+                    {
+                        lastPCneq = i;
+                        string s = PC[i] + "\n";
+                        int pos = richTextBoxCode_PC.Text.IndexOf(s);
+                        richTextBoxCode_PC.Select(pos, s.Length - 1);
+                        richTextBoxCode_PC.SelectionBackColor = Color.LightGreen;
+                        break;
+                    }
+                }
+            }
+            else if (_PC>=max)
+            {
+                for (int i = 0; i < PC.Count; i++)
+                {
+                    if (PC[i] == max)
+                    {
+                        lastPCneq = i;
+                        string s = "\n"+ PC[i] + "\n";
+                        int pos = richTextBoxCode_PC.Text.IndexOf(s);
+                        richTextBoxCode_PC.Select(pos, s.Length - 1);
+                        richTextBoxCode_PC.SelectionBackColor = Color.LightGreen;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < PC.Count; i++)
+                {
+
+
+                    if (PC[i] > _PC)
+                    {
+                        string s = "\n" + PC[lastPCneq] + "\n";
+                        if (i == 0)
+                            s = PC[lastPCneq] + "\n";
+                        int pos = richTextBoxCode_PC.Text.IndexOf(s);
+                        if (pos >= 0)
+                        {
+                            if (i == 0)
+                                richTextBoxCode_PC.Select(pos, s.Length - 1);
+                            else
+                                richTextBoxCode_PC.Select(pos + 1, s.Length - 2);
+                            richTextBoxCode_PC.SelectionBackColor = Color.LightGreen;
+                        }
+
+                        break;
+                    }
+                    if (PC[i] >= 0)
+                        lastPCneq = i;
+                }
+            }
+        }
+
     }
 }
