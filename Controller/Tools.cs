@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Controller.ALU;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -113,6 +116,9 @@ namespace Controller
         static string[] CalString = { "D&A", "D&A", "0", "0", "D|A", "D|A", "A", "D", "D^A", "D^A", "A", "D", "~D", "~A", "-1", "-1", "D+A", "D+A", "A", "D", "D+1", "A+1", "1", "1", "D-A", "A-D", "-A", "-D", "D-1", "A-1", "-1", "-1" };
         static string[] JmpString = { "", ";JGT", ";JEQ", ";JGE", ";JLT", ";JNE", ";JLE", ";JMP" };
 
+
+        static readonly Regex binary = new Regex("^[01]{1,32}$", RegexOptions.Compiled);
+
         public static string Decode(string val, out string Msg)
         {
             if(val=="")
@@ -124,10 +130,41 @@ namespace Controller
             if (val.StartsWith("A="))
             {
                 int n;
-                bool isNumeric = int.TryParse(val.Substring(2), out n);
+                string number = val.Substring(2);
+                bool isNumeric = int.TryParse(number, out n);
                 if (!isNumeric)
-                    Msg = "value for A is not a number";
-                return n.ToString();
+                {
+                    if (number.StartsWith("0X"))
+                    {
+                        char[] _trim_hex = new char[] { '0', 'X' };
+                        int temp;
+                        if (int.TryParse(number.TrimStart(_trim_hex), NumberStyles.HexNumber, null, out temp))
+                        {
+                            return temp.ToString();
+                        }
+                        else
+                        {
+                            Msg = "value for A is not an hexa number";
+                            return "";
+                        }
+                    }
+                    else if (number.StartsWith("0B"))
+                    {
+                        if (binary.IsMatch(number.Substring(2)))
+                        {
+                            return Convert.ToInt32(number.Substring(2), 2).ToString(); ;
+                        }
+                        else
+                        {
+                            Msg = "value for A is not a binary number";
+                            return "";
+                        }
+                    }
+                    else
+                        Msg = "value for A is not a number";
+                }
+                else 
+                    return n.ToString();
             }
 
 
@@ -171,27 +208,42 @@ namespace Controller
                         JMP = val;
                 }
             }
-            
-            
+
+
             //Jmp
-            for (int i = 1; i < JmpString.Count(); i++)
+            bool JmpOk = false;
+            for (int i = 0; i < JmpString.Count(); i++)
             {
                 string st = JmpString[i].Replace(";","");
                 if (JMP == st)
                 {
                     jmp = i;
+                    JmpOk = true;
                     break;
                 }
-
             }
+            if (JmpOk != true)
+            {
+                Msg = "Wrong JMP";
+                return "";
+            }
+
+            //Destination
+            bool DstOk = false;
             for (int i = 1; i < DstString.Count(); i++)
             {
                 string st = DstString[i];
                 if (DST == st)
                 {
                     target = i;
+                    DstOk = true;
                     break;
                 }
+            }
+            if (DstOk != true)
+            {
+                Msg = "Wrong Destination";
+                return "";
             }
             /*
             //Dst
@@ -224,6 +276,7 @@ namespace Controller
             }
             */
             //Calc
+            bool CalcOk = false;
             if (OP.Contains("*"))
             {
                 needstar = true;
@@ -235,8 +288,14 @@ namespace Controller
                 if (OP == st)
                 {
                     operation = i;
+                    CalcOk = true;
                     break;
                 }
+            }
+            if (CalcOk != true)
+            {
+                Msg = "Wrong Calculation";
+                return "";
             }
             /*
                 for (int i = 1; i < CalString.Count(); i++)

@@ -94,6 +94,10 @@
             this.richTextBoxCode = new System.Windows.Forms.RichTextBox();
             this.button5 = new System.Windows.Forms.Button();
             this.richTextBoxCode_PC = new System.Windows.Forms.RichTextBox();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
+            this.label_Error = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Rom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Ram)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -162,7 +166,7 @@
             // 
             this.dataGridView_Rom.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_Rom.Location = new System.Drawing.Point(23, 372);
-            this.dataGridView_Rom.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView_Rom.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView_Rom.Name = "dataGridView_Rom";
             this.dataGridView_Rom.RowTemplate.Height = 24;
             this.dataGridView_Rom.Size = new System.Drawing.Size(255, 206);
@@ -172,7 +176,7 @@
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(223, 582);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(56, 27);
             this.button2.TabIndex = 9;
@@ -184,7 +188,7 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(52, 674);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(15, 14);
             this.checkBox1.TabIndex = 10;
@@ -195,7 +199,7 @@
             // 
             this.checkBox2.AutoSize = true;
             this.checkBox2.Location = new System.Drawing.Point(76, 674);
-            this.checkBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox2.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(15, 14);
             this.checkBox2.TabIndex = 11;
@@ -206,7 +210,7 @@
             // 
             this.checkBox3.AutoSize = true;
             this.checkBox3.Location = new System.Drawing.Point(122, 674);
-            this.checkBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox3.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(15, 14);
             this.checkBox3.TabIndex = 13;
@@ -217,7 +221,7 @@
             // 
             this.checkBox4.AutoSize = true;
             this.checkBox4.Location = new System.Drawing.Point(100, 674);
-            this.checkBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox4.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(15, 14);
             this.checkBox4.TabIndex = 12;
@@ -228,7 +232,7 @@
             // 
             this.checkBox5.AutoSize = true;
             this.checkBox5.Location = new System.Drawing.Point(196, 674);
-            this.checkBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox5.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox5.Name = "checkBox5";
             this.checkBox5.Size = new System.Drawing.Size(15, 14);
             this.checkBox5.TabIndex = 15;
@@ -239,7 +243,7 @@
             // 
             this.checkBox6.AutoSize = true;
             this.checkBox6.Location = new System.Drawing.Point(146, 674);
-            this.checkBox6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox6.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox6.Name = "checkBox6";
             this.checkBox6.Size = new System.Drawing.Size(15, 14);
             this.checkBox6.TabIndex = 14;
@@ -250,7 +254,7 @@
             // 
             this.checkBox7.AutoSize = true;
             this.checkBox7.Location = new System.Drawing.Point(244, 674);
-            this.checkBox7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox7.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox7.Name = "checkBox7";
             this.checkBox7.Size = new System.Drawing.Size(15, 14);
             this.checkBox7.TabIndex = 17;
@@ -261,7 +265,7 @@
             // 
             this.checkBox8.AutoSize = true;
             this.checkBox8.Location = new System.Drawing.Point(220, 674);
-            this.checkBox8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox8.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox8.Name = "checkBox8";
             this.checkBox8.Size = new System.Drawing.Size(15, 14);
             this.checkBox8.TabIndex = 16;
@@ -272,7 +276,7 @@
             // 
             this.checkBox9.AutoSize = true;
             this.checkBox9.Location = new System.Drawing.Point(292, 674);
-            this.checkBox9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox9.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox9.Name = "checkBox9";
             this.checkBox9.Size = new System.Drawing.Size(15, 14);
             this.checkBox9.TabIndex = 19;
@@ -283,7 +287,7 @@
             // 
             this.checkBox10.AutoSize = true;
             this.checkBox10.Location = new System.Drawing.Point(268, 674);
-            this.checkBox10.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox10.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox10.Name = "checkBox10";
             this.checkBox10.Size = new System.Drawing.Size(15, 14);
             this.checkBox10.TabIndex = 18;
@@ -294,7 +298,7 @@
             // 
             this.checkBox11.AutoSize = true;
             this.checkBox11.Location = new System.Drawing.Point(364, 674);
-            this.checkBox11.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox11.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox11.Name = "checkBox11";
             this.checkBox11.Size = new System.Drawing.Size(15, 14);
             this.checkBox11.TabIndex = 21;
@@ -305,7 +309,7 @@
             // 
             this.checkBox12.AutoSize = true;
             this.checkBox12.Location = new System.Drawing.Point(340, 674);
-            this.checkBox12.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox12.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox12.Name = "checkBox12";
             this.checkBox12.Size = new System.Drawing.Size(15, 14);
             this.checkBox12.TabIndex = 20;
@@ -316,7 +320,7 @@
             // 
             this.checkBox13.AutoSize = true;
             this.checkBox13.Location = new System.Drawing.Point(436, 674);
-            this.checkBox13.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox13.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox13.Name = "checkBox13";
             this.checkBox13.Size = new System.Drawing.Size(15, 14);
             this.checkBox13.TabIndex = 23;
@@ -327,7 +331,7 @@
             // 
             this.checkBox14.AutoSize = true;
             this.checkBox14.Location = new System.Drawing.Point(388, 674);
-            this.checkBox14.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox14.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox14.Name = "checkBox14";
             this.checkBox14.Size = new System.Drawing.Size(15, 14);
             this.checkBox14.TabIndex = 22;
@@ -338,7 +342,7 @@
             // 
             this.checkBox15.AutoSize = true;
             this.checkBox15.Location = new System.Drawing.Point(482, 674);
-            this.checkBox15.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox15.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox15.Name = "checkBox15";
             this.checkBox15.Size = new System.Drawing.Size(15, 14);
             this.checkBox15.TabIndex = 25;
@@ -349,7 +353,7 @@
             // 
             this.checkBox16.AutoSize = true;
             this.checkBox16.Location = new System.Drawing.Point(460, 674);
-            this.checkBox16.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox16.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox16.Name = "checkBox16";
             this.checkBox16.Size = new System.Drawing.Size(15, 14);
             this.checkBox16.TabIndex = 24;
@@ -360,7 +364,7 @@
             // 
             this.textBox_IGeneratedD.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_IGeneratedD.Location = new System.Drawing.Point(518, 670);
-            this.textBox_IGeneratedD.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_IGeneratedD.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_IGeneratedD.Name = "textBox_IGeneratedD";
             this.textBox_IGeneratedD.Size = new System.Drawing.Size(66, 22);
             this.textBox_IGeneratedD.TabIndex = 26;
@@ -450,7 +454,7 @@
             // 
             this.dataGridView_Ram.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_Ram.Location = new System.Drawing.Point(482, 372);
-            this.dataGridView_Ram.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView_Ram.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView_Ram.Name = "dataGridView_Ram";
             this.dataGridView_Ram.RowTemplate.Height = 24;
             this.dataGridView_Ram.Size = new System.Drawing.Size(255, 206);
@@ -481,7 +485,7 @@
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(680, 583);
-            this.button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(56, 27);
             this.button3.TabIndex = 38;
@@ -492,7 +496,7 @@
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(482, 583);
-            this.button4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button4.Margin = new System.Windows.Forms.Padding(2);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(56, 27);
             this.button4.TabIndex = 39;
@@ -505,7 +509,7 @@
             this.checkBox17.AutoSize = true;
             this.checkBox17.Enabled = false;
             this.checkBox17.Location = new System.Drawing.Point(1010, 388);
-            this.checkBox17.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox17.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox17.Name = "checkBox17";
             this.checkBox17.Size = new System.Drawing.Size(15, 14);
             this.checkBox17.TabIndex = 56;
@@ -516,7 +520,7 @@
             this.checkBox18.AutoSize = true;
             this.checkBox18.Enabled = false;
             this.checkBox18.Location = new System.Drawing.Point(988, 388);
-            this.checkBox18.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox18.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox18.Name = "checkBox18";
             this.checkBox18.Size = new System.Drawing.Size(15, 14);
             this.checkBox18.TabIndex = 55;
@@ -527,7 +531,7 @@
             this.checkBox19.AutoSize = true;
             this.checkBox19.Enabled = false;
             this.checkBox19.Location = new System.Drawing.Point(964, 388);
-            this.checkBox19.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox19.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox19.Name = "checkBox19";
             this.checkBox19.Size = new System.Drawing.Size(15, 14);
             this.checkBox19.TabIndex = 54;
@@ -538,7 +542,7 @@
             this.checkBox20.AutoSize = true;
             this.checkBox20.Enabled = false;
             this.checkBox20.Location = new System.Drawing.Point(941, 388);
-            this.checkBox20.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox20.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox20.Name = "checkBox20";
             this.checkBox20.Size = new System.Drawing.Size(15, 14);
             this.checkBox20.TabIndex = 53;
@@ -549,7 +553,7 @@
             this.checkBox21.AutoSize = true;
             this.checkBox21.Enabled = false;
             this.checkBox21.Location = new System.Drawing.Point(919, 388);
-            this.checkBox21.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox21.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox21.Name = "checkBox21";
             this.checkBox21.Size = new System.Drawing.Size(15, 14);
             this.checkBox21.TabIndex = 52;
@@ -560,7 +564,7 @@
             this.checkBox22.AutoSize = true;
             this.checkBox22.Enabled = false;
             this.checkBox22.Location = new System.Drawing.Point(896, 388);
-            this.checkBox22.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox22.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox22.Name = "checkBox22";
             this.checkBox22.Size = new System.Drawing.Size(15, 14);
             this.checkBox22.TabIndex = 51;
@@ -571,7 +575,7 @@
             this.checkBox23.AutoSize = true;
             this.checkBox23.Enabled = false;
             this.checkBox23.Location = new System.Drawing.Point(872, 388);
-            this.checkBox23.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox23.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox23.Name = "checkBox23";
             this.checkBox23.Size = new System.Drawing.Size(15, 14);
             this.checkBox23.TabIndex = 50;
@@ -582,7 +586,7 @@
             this.checkBox24.AutoSize = true;
             this.checkBox24.Enabled = false;
             this.checkBox24.Location = new System.Drawing.Point(850, 388);
-            this.checkBox24.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox24.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox24.Name = "checkBox24";
             this.checkBox24.Size = new System.Drawing.Size(15, 14);
             this.checkBox24.TabIndex = 49;
@@ -592,7 +596,7 @@
             // 
             this.checkBox25.AutoSize = true;
             this.checkBox25.Location = new System.Drawing.Point(1010, 418);
-            this.checkBox25.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox25.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox25.Name = "checkBox25";
             this.checkBox25.Size = new System.Drawing.Size(15, 14);
             this.checkBox25.TabIndex = 48;
@@ -603,7 +607,7 @@
             // 
             this.checkBox26.AutoSize = true;
             this.checkBox26.Location = new System.Drawing.Point(988, 418);
-            this.checkBox26.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox26.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox26.Name = "checkBox26";
             this.checkBox26.Size = new System.Drawing.Size(15, 14);
             this.checkBox26.TabIndex = 47;
@@ -614,7 +618,7 @@
             // 
             this.checkBox27.AutoSize = true;
             this.checkBox27.Location = new System.Drawing.Point(964, 418);
-            this.checkBox27.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox27.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox27.Name = "checkBox27";
             this.checkBox27.Size = new System.Drawing.Size(15, 14);
             this.checkBox27.TabIndex = 46;
@@ -625,7 +629,7 @@
             // 
             this.checkBox28.AutoSize = true;
             this.checkBox28.Location = new System.Drawing.Point(941, 418);
-            this.checkBox28.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox28.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox28.Name = "checkBox28";
             this.checkBox28.Size = new System.Drawing.Size(15, 14);
             this.checkBox28.TabIndex = 45;
@@ -636,7 +640,7 @@
             // 
             this.checkBox29.AutoSize = true;
             this.checkBox29.Location = new System.Drawing.Point(919, 418);
-            this.checkBox29.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox29.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox29.Name = "checkBox29";
             this.checkBox29.Size = new System.Drawing.Size(15, 14);
             this.checkBox29.TabIndex = 44;
@@ -647,7 +651,7 @@
             // 
             this.checkBox30.AutoSize = true;
             this.checkBox30.Location = new System.Drawing.Point(896, 418);
-            this.checkBox30.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox30.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox30.Name = "checkBox30";
             this.checkBox30.Size = new System.Drawing.Size(15, 14);
             this.checkBox30.TabIndex = 43;
@@ -658,7 +662,7 @@
             // 
             this.checkBox31.AutoSize = true;
             this.checkBox31.Location = new System.Drawing.Point(872, 418);
-            this.checkBox31.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox31.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox31.Name = "checkBox31";
             this.checkBox31.Size = new System.Drawing.Size(15, 14);
             this.checkBox31.TabIndex = 42;
@@ -669,7 +673,7 @@
             // 
             this.checkBox32.AutoSize = true;
             this.checkBox32.Location = new System.Drawing.Point(850, 418);
-            this.checkBox32.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox32.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox32.Name = "checkBox32";
             this.checkBox32.Size = new System.Drawing.Size(15, 14);
             this.checkBox32.TabIndex = 41;
@@ -690,7 +694,7 @@
             // button6
             // 
             this.button6.Location = new System.Drawing.Point(1058, 379);
-            this.button6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button6.Margin = new System.Windows.Forms.Padding(2);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(56, 31);
             this.button6.TabIndex = 58;
@@ -739,7 +743,7 @@
             // button7
             // 
             this.button7.Location = new System.Drawing.Point(920, 448);
-            this.button7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button7.Margin = new System.Windows.Forms.Padding(2);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(56, 25);
             this.button7.TabIndex = 63;
@@ -761,18 +765,20 @@
             this.richTextBoxCode.BackColor = System.Drawing.Color.Black;
             this.richTextBoxCode.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBoxCode.ForeColor = System.Drawing.Color.White;
-            this.richTextBoxCode.Location = new System.Drawing.Point(52, 84);
-            this.richTextBoxCode.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBoxCode.Location = new System.Drawing.Point(71, 84);
+            this.richTextBoxCode.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBoxCode.Name = "richTextBoxCode";
-            this.richTextBoxCode.Size = new System.Drawing.Size(228, 245);
+            this.richTextBoxCode.Size = new System.Drawing.Size(212, 245);
             this.richTextBoxCode.TabIndex = 66;
             this.richTextBoxCode.Text = "";
+            this.richTextBoxCode.VScroll += new System.EventHandler(this.richTextBoxCode_VScroll);
             this.richTextBoxCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.richTextBoxCode_KeyDown);
+            this.richTextBoxCode.Leave += new System.EventHandler(this.richTextBoxCode_Leave);
             // 
             // button5
             // 
             this.button5.Location = new System.Drawing.Point(23, 333);
-            this.button5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button5.Margin = new System.Windows.Forms.Padding(2);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(64, 27);
             this.button5.TabIndex = 67;
@@ -786,20 +792,66 @@
             this.richTextBoxCode_PC.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBoxCode_PC.ForeColor = System.Drawing.Color.White;
             this.richTextBoxCode_PC.Location = new System.Drawing.Point(23, 84);
-            this.richTextBoxCode_PC.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBoxCode_PC.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBoxCode_PC.Name = "richTextBoxCode_PC";
             this.richTextBoxCode_PC.ReadOnly = true;
-            this.richTextBoxCode_PC.RightMargin = 20;
+            this.richTextBoxCode_PC.RightMargin = 40;
             this.richTextBoxCode_PC.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.richTextBoxCode_PC.Size = new System.Drawing.Size(32, 245);
+            this.richTextBoxCode_PC.Size = new System.Drawing.Size(49, 245);
             this.richTextBoxCode_PC.TabIndex = 68;
             this.richTextBoxCode_PC.Text = "";
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(23, 53);
+            this.button8.Margin = new System.Windows.Forms.Padding(2);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(64, 27);
+            this.button8.TabIndex = 69;
+            this.button8.Text = "Load";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(123, 53);
+            this.button9.Margin = new System.Windows.Forms.Padding(2);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(64, 27);
+            this.button9.TabIndex = 70;
+            this.button9.Text = "Save";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(216, 53);
+            this.button10.Margin = new System.Windows.Forms.Padding(2);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(64, 27);
+            this.button10.TabIndex = 71;
+            this.button10.Text = "Save As";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // label_Error
+            // 
+            this.label_Error.AutoSize = true;
+            this.label_Error.Location = new System.Drawing.Point(292, 88);
+            this.label_Error.Name = "label_Error";
+            this.label_Error.Size = new System.Drawing.Size(32, 13);
+            this.label_Error.TabIndex = 72;
+            this.label_Error.Text = "Error:";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1281, 775);
+            this.Controls.Add(this.label_Error);
+            this.Controls.Add(this.button10);
+            this.Controls.Add(this.button9);
+            this.Controls.Add(this.button8);
             this.Controls.Add(this.richTextBoxCode_PC);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.richTextBoxCode);
@@ -942,6 +994,10 @@
         private System.Windows.Forms.RichTextBox richTextBoxCode;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.RichTextBox richTextBoxCode_PC;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Label label_Error;
     }
 }
 
