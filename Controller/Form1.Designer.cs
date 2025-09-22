@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.button1 = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label_A = new System.Windows.Forms.Label();
             this.label_Instruction_b = new System.Windows.Forms.Label();
@@ -57,7 +56,6 @@
             this.label_IGeneratedX = new System.Windows.Forms.Label();
             this.label_IGeneratedAsm = new System.Windows.Forms.Label();
             this.labelInstructionBottom = new System.Windows.Forms.Label();
-            this.buttonReset = new System.Windows.Forms.Button();
             this.label_D = new System.Windows.Forms.Label();
             this.label_PC = new System.Windows.Forms.Label();
             this.label_ALU = new System.Windows.Forms.Label();
@@ -92,35 +90,34 @@
             this.button7 = new System.Windows.Forms.Button();
             this.label_Nand_count = new System.Windows.Forms.Label();
             this.richTextBoxCode = new System.Windows.Forms.RichTextBox();
-            this.button5 = new System.Windows.Forms.Button();
             this.richTextBoxCode_PC = new System.Windows.Forms.RichTextBox();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
             this.label_Error = new System.Windows.Forms.Label();
             this.dataGridView_Constant = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
             this.label_SP = new System.Windows.Forms.Label();
+            this.dataGridView_Stack = new System.Windows.Forms.DataGridView();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButtonLoad = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonSave = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonSaveAs = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonGenerate = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonTick = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonRun = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonReset = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Rom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Ram)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Constant)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Stack)).BeginInit();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(302, 37);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 29);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Tick";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Tick_Click);
             // 
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(330, 20);
+            this.linkLabel1.Location = new System.Drawing.Point(976, 80);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(121, 13);
             this.linkLabel1.TabIndex = 2;
@@ -408,16 +405,6 @@
             this.labelInstructionBottom.TabIndex = 29;
             this.labelInstructionBottom.Text = "Instructions";
             // 
-            // buttonReset
-            // 
-            this.buttonReset.Location = new System.Drawing.Point(396, 37);
-            this.buttonReset.Name = "buttonReset";
-            this.buttonReset.Size = new System.Drawing.Size(75, 29);
-            this.buttonReset.TabIndex = 30;
-            this.buttonReset.Text = "Reset";
-            this.buttonReset.UseVisualStyleBackColor = true;
-            this.buttonReset.Click += new System.EventHandler(this.Reset_Click);
-            // 
             // label_D
             // 
             this.label_D.AutoSize = true;
@@ -439,7 +426,7 @@
             // label_ALU
             // 
             this.label_ALU.AutoSize = true;
-            this.label_ALU.Location = new System.Drawing.Point(292, 451);
+            this.label_ALU.Location = new System.Drawing.Point(417, 379);
             this.label_ALU.Name = "label_ALU";
             this.label_ALU.Size = new System.Drawing.Size(34, 13);
             this.label_ALU.TabIndex = 33;
@@ -448,7 +435,7 @@
             // label_I
             // 
             this.label_I.AutoSize = true;
-            this.label_I.Location = new System.Drawing.Point(292, 475);
+            this.label_I.Location = new System.Drawing.Point(417, 402);
             this.label_I.Name = "label_I";
             this.label_I.Size = new System.Drawing.Size(16, 13);
             this.label_I.TabIndex = 34;
@@ -769,10 +756,10 @@
             this.richTextBoxCode.BackColor = System.Drawing.Color.Black;
             this.richTextBoxCode.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBoxCode.ForeColor = System.Drawing.Color.White;
-            this.richTextBoxCode.Location = new System.Drawing.Point(71, 84);
+            this.richTextBoxCode.Location = new System.Drawing.Point(295, 75);
             this.richTextBoxCode.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBoxCode.Name = "richTextBoxCode";
-            this.richTextBoxCode.Size = new System.Drawing.Size(212, 245);
+            this.richTextBoxCode.Size = new System.Drawing.Size(404, 245);
             this.richTextBoxCode.TabIndex = 66;
             this.richTextBoxCode.Text = "";
             this.richTextBoxCode.VScroll += new System.EventHandler(this.richTextBoxCode_VScroll);
@@ -780,23 +767,12 @@
             this.richTextBoxCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.richTextBoxCode_KeyDown);
             this.richTextBoxCode.Leave += new System.EventHandler(this.richTextBoxCode_Leave);
             // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(23, 333);
-            this.button5.Margin = new System.Windows.Forms.Padding(2);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(64, 27);
-            this.button5.TabIndex = 67;
-            this.button5.Text = "Generate";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.Generate_Click);
-            // 
             // richTextBoxCode_PC
             // 
             this.richTextBoxCode_PC.BackColor = System.Drawing.Color.Black;
             this.richTextBoxCode_PC.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBoxCode_PC.ForeColor = System.Drawing.Color.White;
-            this.richTextBoxCode_PC.Location = new System.Drawing.Point(23, 84);
+            this.richTextBoxCode_PC.Location = new System.Drawing.Point(247, 75);
             this.richTextBoxCode_PC.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBoxCode_PC.Name = "richTextBoxCode_PC";
             this.richTextBoxCode_PC.ReadOnly = true;
@@ -806,43 +782,10 @@
             this.richTextBoxCode_PC.TabIndex = 68;
             this.richTextBoxCode_PC.Text = "";
             // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(23, 53);
-            this.button8.Margin = new System.Windows.Forms.Padding(2);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(64, 27);
-            this.button8.TabIndex = 69;
-            this.button8.Text = "Load";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
-            // 
-            // button9
-            // 
-            this.button9.Location = new System.Drawing.Point(123, 53);
-            this.button9.Margin = new System.Windows.Forms.Padding(2);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(64, 27);
-            this.button9.TabIndex = 70;
-            this.button9.Text = "Save";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
-            // 
-            // button10
-            // 
-            this.button10.Location = new System.Drawing.Point(216, 53);
-            this.button10.Margin = new System.Windows.Forms.Padding(2);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(64, 27);
-            this.button10.TabIndex = 71;
-            this.button10.Text = "Save As";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
-            // 
             // label_Error
             // 
             this.label_Error.AutoSize = true;
-            this.label_Error.Location = new System.Drawing.Point(292, 88);
+            this.label_Error.Location = new System.Drawing.Point(721, 75);
             this.label_Error.Name = "label_Error";
             this.label_Error.Size = new System.Drawing.Size(32, 13);
             this.label_Error.TabIndex = 72;
@@ -851,18 +794,18 @@
             // dataGridView_Constant
             // 
             this.dataGridView_Constant.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_Constant.Location = new System.Drawing.Point(482, 107);
+            this.dataGridView_Constant.Location = new System.Drawing.Point(21, 75);
             this.dataGridView_Constant.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView_Constant.Name = "dataGridView_Constant";
             this.dataGridView_Constant.RowTemplate.Height = 24;
-            this.dataGridView_Constant.Size = new System.Drawing.Size(255, 206);
+            this.dataGridView_Constant.Size = new System.Drawing.Size(214, 245);
             this.dataGridView_Constant.TabIndex = 73;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(555, 76);
+            this.label7.Location = new System.Drawing.Point(70, 44);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(119, 29);
@@ -872,26 +815,129 @@
             // label_SP
             // 
             this.label_SP.AutoSize = true;
-            this.label_SP.Location = new System.Drawing.Point(292, 501);
+            this.label_SP.Location = new System.Drawing.Point(414, 427);
             this.label_SP.Name = "label_SP";
             this.label_SP.Size = new System.Drawing.Size(27, 13);
             this.label_SP.TabIndex = 75;
             this.label_SP.Text = "SP=";
+            // 
+            // dataGridView_Stack
+            // 
+            this.dataGridView_Stack.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_Stack.Location = new System.Drawing.Point(292, 465);
+            this.dataGridView_Stack.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView_Stack.Name = "dataGridView_Stack";
+            this.dataGridView_Stack.RowTemplate.Height = 24;
+            this.dataGridView_Stack.Size = new System.Drawing.Size(171, 114);
+            this.dataGridView_Stack.TabIndex = 76;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButtonLoad,
+            this.toolStripButtonSave,
+            this.toolStripButtonSaveAs,
+            this.toolStripSeparator1,
+            this.toolStripButtonGenerate,
+            this.toolStripSeparator2,
+            this.toolStripButtonTick,
+            this.toolStripButtonRun,
+            this.toolStripButtonReset});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(1281, 39);
+            this.toolStrip1.TabIndex = 78;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripButtonLoad
+            // 
+            this.toolStripButtonLoad.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonLoad.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonLoad.Image")));
+            this.toolStripButtonLoad.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonLoad.Name = "toolStripButtonLoad";
+            this.toolStripButtonLoad.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonLoad.Text = "Open";
+            this.toolStripButtonLoad.Click += new System.EventHandler(this.toolStripButtonLoad_Click);
+            // 
+            // toolStripButtonSave
+            // 
+            this.toolStripButtonSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonSave.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSave.Image")));
+            this.toolStripButtonSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonSave.Name = "toolStripButtonSave";
+            this.toolStripButtonSave.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonSave.Text = "Save";
+            this.toolStripButtonSave.Click += new System.EventHandler(this.toolStripButtonSave_Click);
+            // 
+            // toolStripButtonSaveAs
+            // 
+            this.toolStripButtonSaveAs.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonSaveAs.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSaveAs.Image")));
+            this.toolStripButtonSaveAs.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonSaveAs.Name = "toolStripButtonSaveAs";
+            this.toolStripButtonSaveAs.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonSaveAs.Text = "Save As";
+            this.toolStripButtonSaveAs.Click += new System.EventHandler(this.toolStripButtonSaveAs_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripButtonGenerate
+            // 
+            this.toolStripButtonGenerate.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonGenerate.Image")));
+            this.toolStripButtonGenerate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonGenerate.Name = "toolStripButtonGenerate";
+            this.toolStripButtonGenerate.Size = new System.Drawing.Size(90, 36);
+            this.toolStripButtonGenerate.Text = "Generate";
+            this.toolStripButtonGenerate.Click += new System.EventHandler(this.toolStripButtonGenerate_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripButtonTick
+            // 
+            this.toolStripButtonTick.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonTick.Image")));
+            this.toolStripButtonTick.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonTick.Name = "toolStripButtonTick";
+            this.toolStripButtonTick.Size = new System.Drawing.Size(64, 36);
+            this.toolStripButtonTick.Text = "Tick";
+            this.toolStripButtonTick.Click += new System.EventHandler(this.toolStripButtonTick_Click);
+            // 
+            // toolStripButtonRun
+            // 
+            this.toolStripButtonRun.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonRun.Image")));
+            this.toolStripButtonRun.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonRun.Name = "toolStripButtonRun";
+            this.toolStripButtonRun.Size = new System.Drawing.Size(64, 36);
+            this.toolStripButtonRun.Text = "Run";
+            this.toolStripButtonRun.Click += new System.EventHandler(this.toolStripButtonRun_Click);
+            // 
+            // toolStripButtonReset
+            // 
+            this.toolStripButtonReset.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonReset.Image")));
+            this.toolStripButtonReset.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonReset.Name = "toolStripButtonReset";
+            this.toolStripButtonReset.Size = new System.Drawing.Size(71, 36);
+            this.toolStripButtonReset.Text = "Reset";
+            this.toolStripButtonReset.Click += new System.EventHandler(this.toolStripButtonReset_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1281, 775);
+            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.dataGridView_Stack);
             this.Controls.Add(this.label_SP);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.dataGridView_Constant);
             this.Controls.Add(this.label_Error);
-            this.Controls.Add(this.button10);
-            this.Controls.Add(this.button9);
-            this.Controls.Add(this.button8);
             this.Controls.Add(this.richTextBoxCode_PC);
-            this.Controls.Add(this.button5);
             this.Controls.Add(this.richTextBoxCode);
             this.Controls.Add(this.label_Nand_count);
             this.Controls.Add(this.button7);
@@ -926,7 +972,6 @@
             this.Controls.Add(this.label_ALU);
             this.Controls.Add(this.label_PC);
             this.Controls.Add(this.label_D);
-            this.Controls.Add(this.buttonReset);
             this.Controls.Add(this.label_IGeneratedAsm);
             this.Controls.Add(this.label_IGeneratedX);
             this.Controls.Add(this.textBox_IGeneratedD);
@@ -953,7 +998,6 @@
             this.Controls.Add(this.label_Instruction_b);
             this.Controls.Add(this.label_A);
             this.Controls.Add(this.linkLabel1);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.labelInstructionBottom);
             this.Name = "Form1";
             this.Text = "Controller";
@@ -961,14 +1005,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Ram)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Constant)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Stack)).EndInit();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label label_A;
         private System.Windows.Forms.Label label_Instruction_b;
@@ -996,7 +1041,6 @@
         private System.Windows.Forms.Label label_IGeneratedX;
         private System.Windows.Forms.Label label_IGeneratedAsm;
         private System.Windows.Forms.Label labelInstructionBottom;
-        private System.Windows.Forms.Button buttonReset;
         private System.Windows.Forms.Label label_D;
         private System.Windows.Forms.Label label_PC;
         private System.Windows.Forms.Label label_ALU;
@@ -1031,15 +1075,22 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Label label_Nand_count;
         private System.Windows.Forms.RichTextBox richTextBoxCode;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.RichTextBox richTextBoxCode_PC;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Label label_Error;
         private System.Windows.Forms.DataGridView dataGridView_Constant;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label_SP;
+        private System.Windows.Forms.DataGridView dataGridView_Stack;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton toolStripButtonLoad;
+        private System.Windows.Forms.ToolStripButton toolStripButtonSave;
+        private System.Windows.Forms.ToolStripButton toolStripButtonSaveAs;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton toolStripButtonGenerate;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton toolStripButtonTick;
+        private System.Windows.Forms.ToolStripButton toolStripButtonRun;
+        private System.Windows.Forms.ToolStripButton toolStripButtonReset;
     }
 }
 

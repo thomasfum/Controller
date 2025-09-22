@@ -4,6 +4,7 @@ titi=0xfe
 ##CODE##
 D=A
 A=2
+#initStack
 init.stack
 A=2
 A=toto

@@ -1,0 +1,9 @@
+##CONSTANTS##
+##CODE##
+init.stack
+D=1
+push.d
+A=0x48
+D=A
+pop.D
+# inspect D. Should be 1.

@@ -10,12 +10,12 @@ using System.IO;
 using System.Linq;
 
 using System.Runtime.InteropServices;
-
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
 
 //TODO
-// stack debug
 // keyboard
 // macros predifined
 // macro perso
@@ -35,23 +35,29 @@ namespace Controller
         Computer myComputer;
         DataTable dt_Rom = new DataTable();
         DataTable dt_Ram = new DataTable();
+        DataTable dt_Stack = new DataTable();
         DataTable dt_Constants = new DataTable();
+
         public bool[] IGenerated = new bool[16];
         public bool[] InOut = new bool[16];
         List<int> PC = new List<int>();
         List<string> ASM = new List<string>();
         List<int> ASMCode = new List<int>();
         Dictionary<string, List<string>> MacroList = new Dictionary<string, List<string>>();
-        int RomSize = 50;
+        int RomSize = 256;
+        int RamSize = 1024;
         string currentFileName = "";
         bool ScrollPC = true;
         int Last_PC=0;
+        int counter = 0;
+        
         public Form1()
         {
             InitializeComponent();
-            myComputer = new Computer(256,256);
+            myComputer = new Computer(RomSize, RamSize);
             //myComputer.setRom(0, 32912);//D=0
             int pc = 0;
+            /*
             myComputer.setRom(pc++, 48);//A=48
             myComputer.setRom(pc++, 33168);
             myComputer.setRom(pc++, 2);
@@ -60,12 +66,16 @@ namespace Controller
             myComputer.setRom(pc++, 37576);
             myComputer.setRom(pc++, 1);
             myComputer.setRom(pc++, 32775);
-
+            */
 
             dt_Ram.Columns.Add("No");
             dt_Ram.Columns.Add("Data");
+
+            dt_Stack.Columns.Add("No");
+            dt_Stack.Columns.Add("Data");
+
             // and then add your rows
-            for (int i = 0; i < 30; i++)
+            for (int i = 0; i < RamSize; i++)
             {
                 var row = dt_Ram.NewRow();
                 // Set values for columns with row[i] = xy
@@ -86,6 +96,15 @@ namespace Controller
             dataGridView_Ram.RowHeadersVisible = false;
             dataGridView_Ram.Columns[0].ReadOnly = true;
             dataGridView_Ram.Columns[1].Width = dataGridView_Ram.Width - 35 - 20;
+            dataGridView_Ram.AllowUserToAddRows = false;
+
+            dataGridView_Stack.DataSource = dt_Stack;
+            dataGridView_Stack.Columns[0].Width = 35;
+            dataGridView_Stack.RowHeadersVisible = false;
+            dataGridView_Stack.Columns[0].ReadOnly = true;
+            dataGridView_Stack.Columns[1].Width = dataGridView_Stack.Width - 35 - 20;
+            dataGridView_Stack.AllowUserToAddRows = false;
+
 
             dataGridView_Rom.DataSource = dt_Rom;
             dataGridView_Rom.Columns[0].Width = 35;
@@ -103,7 +122,7 @@ namespace Controller
             label_IGeneratedAsm.UseMnemonic = false;
             myComputer.SetDisplayImage(pictureBox1.Image as Bitmap);
 
-            button9.Enabled = false;
+            toolStripButtonSave.Enabled = false;
             
             //richTextBoxCode.SetInnerMargins(dist, dist, dist, 0);
             richTextBoxCode.SelectAll();
@@ -172,16 +191,11 @@ namespace Controller
 
         //----------------------------
         //PC
-        private void Reset_Click(object sender, EventArgs e)
+      
+        bool Tick()
         {
-            dataGridView_Rom.ClearSelection();
-            dataGridView_Rom.Rows[0].Selected = true;
-            richTextBoxCode_PC.SelectAll();
-            richTextBoxCode_PC.SelectionBackColor = Color.Black;
-            myComputer.reset();
-        }
-        private void Tick_Click(object sender, EventArgs e)
-        {
+            if (Last_PC == 0)
+                return false;
             myComputer.proceed();
             int A = myComputer.getA();
             int D = myComputer.getD();
@@ -193,8 +207,7 @@ namespace Controller
             label_PC.Text = "PC=" + PC;
             label_I.Text = "I=" + I;
             label_ALU.Text = "ALU=" + ALU;
-            int ram0=myComputer.GetRam(0);
-            label_SP.Text = "SP=" + ram0;
+       
             dataGridView_Rom.ClearSelection();
             dataGridView_Rom.Rows[PC].Selected = true;
 
@@ -205,6 +218,13 @@ namespace Controller
             label_Nand_count.Text= "Nand count: "+myComputer.GetNandCount();
             pictureBox1.Refresh();
             UpdatePC(PC,false);
+            UpdateStack();
+            if (PC >= Last_PC-1)
+            {
+                toolStripButtonTick.Enabled = false;
+                return false;
+            }
+            return true;
             
         }
      
@@ -220,7 +240,7 @@ namespace Controller
         //RAM
         void refreshRam()
         {
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < RamSize; i++)
             {
                 // Set values for columns with row[i] = xy
                 int I = myComputer.GetRam(i);
@@ -229,11 +249,12 @@ namespace Controller
         }
         private void RAM_Clear_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < dataGridView_Ram.RowCount; i++)
+            for (int i = 0; i < dataGridView_Ram.RowCount-1; i++)
             {
                 myComputer.setRam(i, 0);
             }
             refreshRam();
+            UpdateStack();
         }
         private void RAM_Write_Click(object sender, EventArgs e)
         {
@@ -836,8 +857,9 @@ namespace Controller
             return Cst;
         }
 
-        void ManageLine(string line, List<string>  paramList)
+        void ManageLine(string line,bool isMacro, List<string>  paramList)
         {
+            line = line.ToUpper();
             if (line == "")
             {
                 PC.Add(-1);
@@ -855,7 +877,8 @@ namespace Controller
             }
             else
             {
-                PC.Add(ASM.Count);
+                if (isMacro == false)
+                    PC.Add(counter);
                 bool macroFound = false;
                 foreach (KeyValuePair<string, List<string>> m in MacroList)
                 {
@@ -868,25 +891,20 @@ namespace Controller
                 }
                 if (macroFound == false)
                 {
+                   
                     if (paramList.Count > 0)
                     {
                         if (line.Contains("VALUE"))
                         {
                             line = line.Replace("VALUE", paramList[0]);
                         }
-                        if (line.Contains("value"))
-                        {
-                            line = line.Replace("value", paramList[0]);
-                        }
                         if (line.Contains("ADDRESS"))
                         {
                             line = line.Replace("ADDRESS", paramList[0]);
                         }
-                        if (line.Contains("address"))
-                        {
-                            line = line.Replace("address", paramList[0]);
-                        }
+                      
                     }
+                    counter++;
                     ASM.Add(line);
                 }
              
@@ -904,16 +922,17 @@ namespace Controller
                 List<string> p=param.ToList();
                 p.RemoveAt(0);
                 //ASM.Add(macroValue[i]);
-                ManageLine(macroValue[i], p);
+                ManageLine(macroValue[i],true, p);
             }
         }
-        private void Generate_Click(object sender, EventArgs e)
+        private void Generate()
         {
+            counter = 0;
             label_Error.Text = "";
             string txt = richTextBoxCode.Text;
             //string txt1= txt.Replace(" ", "").ToUpper();
-            string txt1= txt.ToUpper();
-            string[] ListCode=txt1.Split('\n');
+            //string txt1= txt.ToUpper();
+            string[] ListCode=txt.Split('\n');
             PC= new List<int>();
             ASM = new List<string>();
             ASMCode = new List<int>();
@@ -926,42 +945,7 @@ namespace Controller
             }
             for (int i=0;i<ListCode.Length;i++)
             {
-                ManageLine(ListCode[i], new List<string>());
-                /*
-                if (ListCode[i]=="")
-                {
-                    PC.Add(-1);
-                    ASM.Add("");
-                }
-                else if (ListCode[i].StartsWith("#"))
-                {
-                    PC.Add(-1);
-                    ASM.Add("");
-                }
-                else if (ListCode[i]=="")
-                {
-                    PC.Add(-1);
-                    ASM.Add("");
-                }
-                else
-                {
-                    PC.Add(ASM.Count);
-                    bool macroFound = false;
-                    foreach(KeyValuePair<string,List<string>> m in MacroList)
-                    {
-                        if (ListCode[i].StartsWith(m.Key))
-                        {
-                            macroFound = true;
-                            AddMacro(ListCode[i], m.Key, m.Value);
-                           
-                        }
-
-                    }
-                    if(macroFound==false)
-                        ASM.Add(ListCode[i]);
-                  
-                }
-                */
+                ManageLine(ListCode[i],false, new List<string>());
             }
             bool error = false;
             myComputer.ClearRom();
@@ -1017,6 +1001,17 @@ namespace Controller
             UpdateFromRom();
           
            
+        }
+
+        void UpdateStack()
+        {
+            int ram0 = myComputer.GetRam(0);
+            label_SP.Text = "SP=" + ram0;
+            dt_Stack.Clear();
+            for (int i = ram0; i >= 256; i--)
+            {
+                dt_Stack.Rows.Add(i, myComputer.GetRam(i));
+            }
         }
         int UpdatePC(int _PC,bool error)
         {
@@ -1088,15 +1083,15 @@ namespace Controller
             {
                 for (int i = 0; i < PC.Count; i++)
                 {
-                    if (PC[i] > _PC)
+                    if (_PC<=PC[i]  )
                     {
                         string s = "\n" + PC[lastPCneq] + "\n";
-                        if (i == 0)
+                        if (lastPCneq == 0)
                             s = PC[lastPCneq] + "\n";
                         pos = richTextBoxCode_PC.Text.IndexOf(s);
                         if (pos >= 0)
                         {
-                            if (i == 0)
+                            if (lastPCneq == 0)
                                 richTextBoxCode_PC.Select(pos, s.Length - 1);
                             else
                                 richTextBoxCode_PC.Select(pos + 1, s.Length - 2);
@@ -1154,65 +1149,7 @@ namespace Controller
         }
 
       
-        //load
-        private void button8_Click(object sender, EventArgs e)
-        {
-            var dlg = new OpenFileDialog();
-            dlg.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
-            dlg.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory+"../../";
-            dlg.RestoreDirectory = false;
-            if (dlg.ShowDialog() != DialogResult.OK)
-                return;
-            currentFileName= dlg.FileNames[0];
-            button9.Enabled = true;
-            string readText = File.ReadAllText(currentFileName);
-
-
-            int CstPos = readText.IndexOf("##CONSTANTS##");
-            int CodePos = readText.IndexOf("##CODE##");
-            if (CstPos != -1)
-            {
-                dt_Constants.Rows.Clear();
-                string Csts = readText.Substring(CstPos+14, CodePos - CstPos-14);
-                string[] CstsList = Csts.Split('\n');
-                for (int i = 0; i < CstsList.Length; i++)
-                {
-                    if (CstsList[i] != "")
-                    {
-                        string[] cst = CstsList[i].Split('=');
-                        dt_Constants.Rows.Add(cst);
-                    }
-
-                }
-            }
-            if (CodePos != -1)
-            {
-                richTextBoxCode.Text = readText.Substring(CodePos + 9);
-                SyntaxColorUpdate();
-                richTextBoxCode_PC.Text = "";
-            }
-
-        }
-        //save
-        private void button9_Click(object sender, EventArgs e)
-        {
-            Save();
-        }
-        //saveas
-        private void button10_Click(object sender, EventArgs e)
-        {
-            var dlg = new SaveFileDialog();
-            dlg.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
-            dlg.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory + "../../";
-            dlg.RestoreDirectory = false;
-            if (dlg.ShowDialog() != DialogResult.OK)
-                return;
-            currentFileName = dlg.FileNames[0];
-            button9.Enabled = true;
-            Save();
-
-
-        }
+      
         private void Save()
         {
             string createText = "##CONSTANTS##\n";
@@ -1240,6 +1177,98 @@ namespace Controller
         private void richTextBoxCode_Click(object sender, EventArgs e)
         {
             SyntaxColorUpdate();
+        }
+     
+        private void toolStripButtonLoad_Click(object sender, EventArgs e)
+        {
+            var dlg = new OpenFileDialog();
+            dlg.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
+            dlg.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory + "../../";
+            dlg.RestoreDirectory = false;
+            if (dlg.ShowDialog() != DialogResult.OK)
+                return;
+            currentFileName = dlg.FileNames[0];
+            toolStripButtonSave.Enabled = true;
+            string readText = File.ReadAllText(currentFileName);
+            this.Text = "Controller - "+Path.GetFileNameWithoutExtension(currentFileName);
+
+            int CstPos = readText.IndexOf("##CONSTANTS##");
+            int CodePos = readText.IndexOf("##CODE##");
+            if (CstPos != -1)
+            {
+                dt_Constants.Rows.Clear();
+                string Csts = readText.Substring(CstPos + 14, CodePos - CstPos - 14);
+                string[] CstsList = Csts.Split('\n');
+                for (int i = 0; i < CstsList.Length; i++)
+                {
+                    if (CstsList[i] != "")
+                    {
+                        string[] cst = CstsList[i].Split('=');
+                        dt_Constants.Rows.Add(cst);
+                    }
+
+                }
+            }
+            if (CodePos != -1)
+            {
+                richTextBoxCode.Text = readText.Substring(CodePos + 9);
+                SyntaxColorUpdate();
+                richTextBoxCode_PC.Text = "";
+            }
+        }
+
+        private void toolStripButtonSave_Click(object sender, EventArgs e)
+        {
+            Save();
+        }
+
+        private void toolStripButtonSaveAs_Click(object sender, EventArgs e)
+        {
+            var dlg = new SaveFileDialog();
+            dlg.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
+            dlg.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory + "../../";
+            dlg.RestoreDirectory = false;
+            if (dlg.ShowDialog() != DialogResult.OK)
+                return;
+            currentFileName = dlg.FileNames[0];
+            toolStripButtonSave.Enabled = true;
+            this.Text = "Controller - " + Path.GetFileNameWithoutExtension(currentFileName);
+            Save();
+        }
+
+        private void toolStripButtonGenerate_Click(object sender, EventArgs e)
+        {
+            Generate();
+        }
+
+        private void toolStripButtonTick_Click(object sender, EventArgs e)
+        {
+            Tick();
+        }
+
+        private void toolStripButtonReset_Click(object sender, EventArgs e)
+        {
+            toolStripButtonTick.Enabled = true;
+            toolStripButtonRun.Enabled = true;
+            dataGridView_Rom.ClearSelection();
+            dataGridView_Rom.Rows[0].Selected = true;
+            richTextBoxCode_PC.SelectAll();
+            richTextBoxCode_PC.SelectionBackColor = Color.Black;
+            myComputer.reset();
+        }
+
+        private async void toolStripButtonRun_Click(object sender, EventArgs e)
+        {
+            toolStripButtonRun.Enabled = false;
+            toolStripButtonTick.Enabled = false;
+            toolStripButtonReset.Enabled = false;
+            bool go = false;
+            do
+            {
+                await Task.Delay(50);
+                go = Tick();
+            } while (go);
+            toolStripButtonReset.Enabled = true;
         }
     }
 }

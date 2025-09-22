@@ -36,12 +36,14 @@ namespace Controller.Processor
             rom.ad = counter.output;
             NbNand_Rom = rom.proceed();
 
+            int debug_instucion=Tools.boolArray2Int(rom.output);
             control.I= rom.output;
             control.A=memory.A;
             control.D = memory.D;
             control.CA = memory.CA;
             NbNand_ControlUnit = control.proceed();
-            
+
+            int debug_memory_X = Tools.boolArray2Int(control.R);
             memory.cl= cl;
             memory.X= control.R;
             memory.a = control.a;

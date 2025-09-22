@@ -163,9 +163,10 @@ namespace Controller
                 return n;
         
         }
-        public static int Decode(string val, Dictionary<string, int> Csts, out string Msg)
+        public static int Decode(string _val, Dictionary<string, int> Csts, out string Msg)
         {
-            if(val=="")
+            string val=_val.ToUpper().Replace(" ","");
+            if (val=="")
             { 
                 Msg = "Empty value";
                 return 0;
@@ -184,8 +185,10 @@ namespace Controller
                     int val1=ParseNumber(number, out Msg);
                     if (Msg != "")
                     {
-                        Msg = "Value for A " + Msg;
-                        return 0;
+
+                        // Msg = "Value for A " + Msg;
+                        //  return 0;
+                        Msg = "";//can be *A, D
                     }
                     else
                         return val1;

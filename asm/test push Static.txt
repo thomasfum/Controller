@@ -1,0 +1,10 @@
+##CONSTANTS##
+##CODE##
+init.stack
+# store 42 at address 16
+A=42
+D=A
+A=16
+*A=D
+push.static 16
+# top of stack should be 42
