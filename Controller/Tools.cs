@@ -119,52 +119,77 @@ namespace Controller
 
         static readonly Regex binary = new Regex("^[01]{1,32}$", RegexOptions.Compiled);
 
-        public static string Decode(string val, out string Msg)
+
+        public static int ParseNumber(string number, out string Msg)
+        {
+            int n;
+            Msg = "";
+            bool isNumeric = int.TryParse(number, out n);
+            if (!isNumeric)
+            {
+                if (number.StartsWith("0X"))
+                {
+                    char[] _trim_hex = new char[] { '0', 'X' };
+                    int temp;
+                    if (int.TryParse(number.TrimStart(_trim_hex), NumberStyles.HexNumber, null, out temp))
+                    {
+                        return temp;
+                    }
+                    else
+                    {
+                        Msg = "is not an hexa number";
+                        return 0;
+                    }
+                }
+                else if (number.StartsWith("0B"))
+                {
+                    if (binary.IsMatch(number.Substring(2)))
+                    {
+                        return Convert.ToInt32(number.Substring(2), 2) ;
+                    }
+                    else
+                    {
+                        Msg = "is not a binary number";
+                        return 0;
+                    }
+                }
+                else
+                {
+                    Msg = "is not a number";
+                    return 0;
+                }
+            }
+            else
+                return n;
+        
+        }
+        public static int Decode(string val, Dictionary<string, int> Csts, out string Msg)
         {
             if(val=="")
             { 
                 Msg = "Empty value";
-                return "";
+                return 0;
             }
             Msg = "";
             if (val.StartsWith("A="))
             {
-                int n;
+
                 string number = val.Substring(2);
-                bool isNumeric = int.TryParse(number, out n);
-                if (!isNumeric)
+                if (Csts.ContainsKey(number))
                 {
-                    if (number.StartsWith("0X"))
+                    return Csts[number];
+                }
+                else
+                {
+                    int val1=ParseNumber(number, out Msg);
+                    if (Msg != "")
                     {
-                        char[] _trim_hex = new char[] { '0', 'X' };
-                        int temp;
-                        if (int.TryParse(number.TrimStart(_trim_hex), NumberStyles.HexNumber, null, out temp))
-                        {
-                            return temp.ToString();
-                        }
-                        else
-                        {
-                            Msg = "value for A is not an hexa number";
-                            return "";
-                        }
-                    }
-                    else if (number.StartsWith("0B"))
-                    {
-                        if (binary.IsMatch(number.Substring(2)))
-                        {
-                            return Convert.ToInt32(number.Substring(2), 2).ToString(); ;
-                        }
-                        else
-                        {
-                            Msg = "value for A is not a binary number";
-                            return "";
-                        }
+                        Msg = "Value for A " + Msg;
+                        return 0;
                     }
                     else
-                        Msg = "value for A is not a number";
+                        return val1;
                 }
-                else 
-                    return n.ToString();
             }
 
 
@@ -225,7 +250,7 @@ namespace Controller
             if (JmpOk != true)
             {
                 Msg = "Wrong JMP";
-                return "";
+                return 0;
             }
 
             //Destination
@@ -243,7 +268,7 @@ namespace Controller
             if (DstOk != true)
             {
                 Msg = "Wrong Destination";
-                return "";
+                return 0;
             }
             /*
             //Dst
@@ -295,7 +320,7 @@ namespace Controller
             if (CalcOk != true)
             {
                 Msg = "Wrong Calculation";
-                return "";
+                return 0;
             }
             /*
                 for (int i = 1; i < CalString.Count(); i++)
@@ -335,7 +360,7 @@ namespace Controller
             int dword = jmp + (target * 8) + (operation * 64) + (top *2048);
             if (dword < 0)
                 dword = 65535 - dword+1;
-            return dword.ToString();//-31472
+            return dword;//-31472
         }
     }
 }

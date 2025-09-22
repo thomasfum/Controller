@@ -98,9 +98,13 @@
             this.button9 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.label_Error = new System.Windows.Forms.Label();
+            this.dataGridView_Constant = new System.Windows.Forms.DataGridView();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label_SP = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Rom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Ram)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Constant)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -126,7 +130,7 @@
             // label_A
             // 
             this.label_A.AutoSize = true;
-            this.label_A.Location = new System.Drawing.Point(293, 409);
+            this.label_A.Location = new System.Drawing.Point(292, 379);
             this.label_A.Name = "label_A";
             this.label_A.Size = new System.Drawing.Size(20, 13);
             this.label_A.TabIndex = 4;
@@ -417,7 +421,7 @@
             // label_D
             // 
             this.label_D.AutoSize = true;
-            this.label_D.Location = new System.Drawing.Point(293, 432);
+            this.label_D.Location = new System.Drawing.Point(292, 402);
             this.label_D.Name = "label_D";
             this.label_D.Size = new System.Drawing.Size(21, 13);
             this.label_D.TabIndex = 31;
@@ -426,7 +430,7 @@
             // label_PC
             // 
             this.label_PC.AutoSize = true;
-            this.label_PC.Location = new System.Drawing.Point(293, 457);
+            this.label_PC.Location = new System.Drawing.Point(292, 427);
             this.label_PC.Name = "label_PC";
             this.label_PC.Size = new System.Drawing.Size(27, 13);
             this.label_PC.TabIndex = 32;
@@ -435,7 +439,7 @@
             // label_ALU
             // 
             this.label_ALU.AutoSize = true;
-            this.label_ALU.Location = new System.Drawing.Point(293, 481);
+            this.label_ALU.Location = new System.Drawing.Point(292, 451);
             this.label_ALU.Name = "label_ALU";
             this.label_ALU.Size = new System.Drawing.Size(34, 13);
             this.label_ALU.TabIndex = 33;
@@ -444,7 +448,7 @@
             // label_I
             // 
             this.label_I.AutoSize = true;
-            this.label_I.Location = new System.Drawing.Point(293, 505);
+            this.label_I.Location = new System.Drawing.Point(292, 475);
             this.label_I.Name = "label_I";
             this.label_I.Size = new System.Drawing.Size(16, 13);
             this.label_I.TabIndex = 34;
@@ -772,6 +776,7 @@
             this.richTextBoxCode.TabIndex = 66;
             this.richTextBoxCode.Text = "";
             this.richTextBoxCode.VScroll += new System.EventHandler(this.richTextBoxCode_VScroll);
+            this.richTextBoxCode.Click += new System.EventHandler(this.richTextBoxCode_Click);
             this.richTextBoxCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.richTextBoxCode_KeyDown);
             this.richTextBoxCode.Leave += new System.EventHandler(this.richTextBoxCode_Leave);
             // 
@@ -843,11 +848,44 @@
             this.label_Error.TabIndex = 72;
             this.label_Error.Text = "Error:";
             // 
+            // dataGridView_Constant
+            // 
+            this.dataGridView_Constant.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_Constant.Location = new System.Drawing.Point(482, 107);
+            this.dataGridView_Constant.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView_Constant.Name = "dataGridView_Constant";
+            this.dataGridView_Constant.RowTemplate.Height = 24;
+            this.dataGridView_Constant.Size = new System.Drawing.Size(255, 206);
+            this.dataGridView_Constant.TabIndex = 73;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(555, 76);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(119, 29);
+            this.label7.TabIndex = 74;
+            this.label7.Text = "Constants";
+            // 
+            // label_SP
+            // 
+            this.label_SP.AutoSize = true;
+            this.label_SP.Location = new System.Drawing.Point(292, 501);
+            this.label_SP.Name = "label_SP";
+            this.label_SP.Size = new System.Drawing.Size(27, 13);
+            this.label_SP.TabIndex = 75;
+            this.label_SP.Text = "SP=";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1281, 775);
+            this.Controls.Add(this.label_SP);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.dataGridView_Constant);
             this.Controls.Add(this.label_Error);
             this.Controls.Add(this.button10);
             this.Controls.Add(this.button9);
@@ -922,6 +960,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Rom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Ram)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Constant)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -998,6 +1037,9 @@
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Label label_Error;
+        private System.Windows.Forms.DataGridView dataGridView_Constant;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label_SP;
     }
 }
 

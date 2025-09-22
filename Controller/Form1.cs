@@ -16,8 +16,16 @@ using static System.Net.Mime.MediaTypeNames;
 
 //TODO
 // stack debug
-// constants
+// keyboard
+// macros predifined
+// macro perso
 // TODO in code
+// bouton F5 F10 F11
+
+//idee program:
+//  - calculatrice
+//  - labyrinthe
+
 
 
 namespace Controller
@@ -27,6 +35,7 @@ namespace Controller
         Computer myComputer;
         DataTable dt_Rom = new DataTable();
         DataTable dt_Ram = new DataTable();
+        DataTable dt_Constants = new DataTable();
         public bool[] IGenerated = new bool[16];
         public bool[] InOut = new bool[16];
         List<int> PC = new List<int>();
@@ -36,6 +45,7 @@ namespace Controller
         int RomSize = 50;
         string currentFileName = "";
         bool ScrollPC = true;
+        int Last_PC=0;
         public Form1()
         {
             InitializeComponent();
@@ -143,8 +153,20 @@ namespace Controller
             labelInstructionBottom.Text = "|                |                 |           |           |         |      |             |";
 
 
+            dt_Constants.Columns.Add("Name");
+            dt_Constants.Columns.Add("Value");
 
+            dataGridView_Constant.DataSource = dt_Constants;
             MacroList.Add("INIT.STACK", new List<string>() { "A=256", "D=A","A=0","*A=D" });
+            MacroList.Add("PUSH.D", new List<string>() { "A=0", "A=*A", "*A=D","A=0","D=*A","D=D+1","*A=D" });
+            MacroList.Add("POP.D", new List<string>() { "A=0", "A=*A-1", "D=*A", "A=0", "*A=*A-1" });
+            MacroList.Add("POP.A", new List<string>() { "A=0", "*A=*A-1", "A=*A", "A=*A" });
+            MacroList.Add("PUSH.VALUE", new List<string>() { "A=value", "D=A", "A=0", "A=*A", "*A=D", "A=0", "D=*A", "D=D+1", "*A=D" });
+            MacroList.Add("PUSH.STATIC", new List<string>() { "A=address", "D=*A", "A=0", "A=*A", "*A=D", "A=0", "D=*A", "D=D+1", "*A=D" });
+            MacroList.Add("POP.STATIC", new List<string>() { "A=0", "A=*A-1", "D=*A", "A=address","*A=D","A=0", "*A=*A-1" });
+            MacroList.Add("POP.MEMORY", new List<string>() { "pop.D", "pop.A", "*A=D" });
+            MacroList.Add("PUSH.MEMORY", new List<string>() { "pop.A", "D=*A", "push.D" });
+
         }
 
 
@@ -171,6 +193,8 @@ namespace Controller
             label_PC.Text = "PC=" + PC;
             label_I.Text = "I=" + I;
             label_ALU.Text = "ALU=" + ALU;
+            int ram0=myComputer.GetRam(0);
+            label_SP.Text = "SP=" + ram0;
             dataGridView_Rom.ClearSelection();
             dataGridView_Rom.Rows[PC].Selected = true;
 
@@ -254,12 +278,18 @@ namespace Controller
                 string val = (string)dgv.Rows[row].Cells[2].Value;
                 val = val.Replace(" ", "");
                 string Msg = "";
-                string rep = Tools.Decode(val, out Msg);
-               
+                Dictionary<string, int> Csts = GetConstants(out Msg);
                 if (Msg != "")
                     MessageBox.Show(Msg);
                 else
-                    dgv.Rows[row].Cells[1].Value = rep;
+                {
+                    string rep = Tools.Decode(val, Csts, out Msg).ToString();
+
+                    if (Msg != "")
+                        MessageBox.Show(Msg);
+                    else
+                        dgv.Rows[row].Cells[1].Value = rep;
+                }
             }
         }
         private void ROM_Write_Click(object sender, EventArgs e)
@@ -621,18 +651,22 @@ namespace Controller
 
             }
         }
-        string[] reservedWords = { "JMP", "init.stack" };
+        List<string> reservedWords = new List<string>();//= { "JMP", "init.stack" };
+        void UpdateReserveredWords()
+        {
+            reservedWords=MacroList.Keys.ToList<string>();
+            reservedWords.Add("JMP");
+            reservedWords = reservedWords.ConvertAll(d => d.ToUpper());
+        }
 
-     
 
         void AnalyseLines(string txt, List<int> ListErrors)
         {
-
-            
             int pos = 0;
             int nextpos = 0;
             bool shoudStop = false;
             int lineCpt = 0;
+            UpdateReserveredWords();
             do
             {
                 pos = txt.IndexOf("\n", nextpos);
@@ -652,14 +686,33 @@ namespace Controller
                 }
                 else 
                 {
-                    if (reservedWords.Contains(line))//reserved word
+                    int ReserverdWordIndex = -1;
+                    for (int z = 0; z < reservedWords.Count; z++)
+                        if (line.ToUpper().StartsWith(reservedWords[z]))
+                            ReserverdWordIndex = z;
+                    if(ReserverdWordIndex>=0)
                     {
-                        richTextBoxCode.Select(nextpos, pos - nextpos);
+                        richTextBoxCode.Select(nextpos, reservedWords[ReserverdWordIndex].Length);
                         richTextBoxCode.SelectionColor = Color.Cyan;
                         richTextBoxCode.SelectionBackColor = Color.Black;
                     }
                     else//analize the line
                     {
+                        for (int i = 0; i < dataGridView_Constant.Rows.Count; i++)
+                        {
+                            string cst=(string)dataGridView_Constant.Rows[i].Cells[0].Value;
+                            if ((cst != null) && (cst != ""))
+                            {
+                                int posCst = line.ToUpper().IndexOf(cst.ToUpper());
+                                if (posCst >= 0)
+                                {
+                                    richTextBoxCode.Select(nextpos + posCst, cst.Length);
+                                    richTextBoxCode.SelectionColor = Color.Cyan;
+                                    richTextBoxCode.SelectionBackColor = Color.Black;
+                                }
+                            }
+
+                        }
                         int eqPos=line.IndexOf('=');
                         if (eqPos > 0)//we have a =
                         {
@@ -705,56 +758,7 @@ namespace Controller
         }
       
 
-        // Begin borrowed code from:
-        // http://geekswithblogs.net/pvidler/archive/2003/10/15/182.aspx
-        // All credits go to the above blog author :-) 
-
-        [DllImport("user32", EntryPoint = "SendMessage")]
-        private static extern POINT SendMessageB(IntPtr hWnd, uint msg, int wParam, ref POINT lp);
-
-
-        int updating = 0;
-        POINT OldEventMask;// = IntPtr.Zero;
-        const uint EM_GETSCROLLPOS = 0x0400 + 221;
-        const uint EM_SETSCROLLPOS = 0x0400 + 222;
-        const int EM_SETEVENTMASK = 1093;
         const int WM_SETREDRAW = 11;
-        struct POINT
-        {
-            public long X;
-            public long Y;
-        }
-        POINT ScrollPosition = new POINT();
-        POINT ScrollPosition333 = new POINT();
-        public void BeginUpdate()
-        {
-            
-            /*++updating;
-            if (updating & gt; 1)
-            {
-                return;
-            }
-            */
-            SendMessageB(richTextBoxCode.Handle, EM_GETSCROLLPOS, 0, ref ScrollPosition);
-            OldEventMask = SendMessageB(richTextBoxCode.Handle, EM_SETEVENTMASK, 0, ref ScrollPosition333);
-            SendMessageB(richTextBoxCode.Handle, WM_SETREDRAW, 0, ref ScrollPosition333);
-        }
-        public void EndUpdate()
-        {
-            /*
-            --updating;
-            if (updating & gt; 0)
-            {
-                return;
-            }
-            */
-            SendMessageB(richTextBoxCode.Handle, EM_SETSCROLLPOS, 0, ref ScrollPosition);
-            SendMessageB(richTextBoxCode.Handle, WM_SETREDRAW, 1, ref ScrollPosition333);
-            SendMessageB(richTextBoxCode.Handle, EM_SETEVENTMASK, 0, ref OldEventMask);
-        }
-
-
-
         void SyntaxColorUpdate(List<int> ListErrors=null)
         {
 
@@ -778,16 +782,11 @@ namespace Controller
            
             
             SendMessage(richTextBoxCode.Handle, WM_SETREDRAW, new IntPtr(1), ref toto);
-           
                        
             richTextBoxCode.Refresh();
             richTextBoxCode.Invalidate();
             richTextBoxCode.Update();
             ScrollPC = true;
-
-
-
-
         }
         private void richTextBoxCode_KeyDown(object sender, KeyEventArgs e)
         {
@@ -802,22 +801,133 @@ namespace Controller
             
         }
 
-        void ParseError(int i, string Msg)
+     
+        Dictionary<string,int> GetConstants(out string Msg)
         {
-            label_Error.Text += "Line " + i + ": " + Msg+"\n";
+            Msg = "";
+            Dictionary<string, int> Cst = new Dictionary<string, int>();
+            for (int i = 0; i < dataGridView_Constant.Rows.Count; i++)
+            {
+                string CstName=(string)dataGridView_Constant.Rows[i].Cells[0].Value;
+                string CstVal = (string)dataGridView_Constant.Rows[i].Cells[1].Value;
+                if ((CstName != "") && (CstName != null))
+                {
+                    int val = Tools.ParseNumber(CstVal.ToUpper(), out Msg);
+                    if (Msg == "")
+                    {
+                        if (Cst.ContainsKey(CstName))
+                        {
+                            Msg = "Conatant " + CstName + " exists more than 1 time";
+                            return new Dictionary<string, int>();
+                        }
+                        else
+                        {
+                            Cst.Add(CstName.ToUpper(), val);
+                        }
+                    }
+                    else
+                    {
+                        Msg = "Conatant " + CstName + "Value " + Msg;
+                        return new Dictionary<string, int>(); 
+                    }
+                }
+
+            }
+            return Cst;
+        }
+
+        void ManageLine(string line, List<string>  paramList)
+        {
+            if (line == "")
+            {
+                PC.Add(-1);
+                ASM.Add("");
+            }
+            else if (line.StartsWith("#"))
+            {
+                PC.Add(-1);
+                ASM.Add("");
+            }
+            else if (line == "")
+            {
+                PC.Add(-1);
+                ASM.Add("");
+            }
+            else
+            {
+                PC.Add(ASM.Count);
+                bool macroFound = false;
+                foreach (KeyValuePair<string, List<string>> m in MacroList)
+                {
+                    if (line.StartsWith(m.Key))
+                    {
+                        macroFound = true;
+                        AddMacro(line, m.Key, m.Value);
+                    }
+
+                }
+                if (macroFound == false)
+                {
+                    if (paramList.Count > 0)
+                    {
+                        if (line.Contains("VALUE"))
+                        {
+                            line = line.Replace("VALUE", paramList[0]);
+                        }
+                        if (line.Contains("value"))
+                        {
+                            line = line.Replace("value", paramList[0]);
+                        }
+                        if (line.Contains("ADDRESS"))
+                        {
+                            line = line.Replace("ADDRESS", paramList[0]);
+                        }
+                        if (line.Contains("address"))
+                        {
+                            line = line.Replace("address", paramList[0]);
+                        }
+                    }
+                    ASM.Add(line);
+                }
+             
+            }
+        }
+
+
+
+        void AddMacro(string ListCode, string MacroName, List<string> macroValue)
+        {
+            //ici rechercher les parametres de la macro et les passer a ManageLine
+            string [] param=ListCode.Split(' ');
+            for (int i = 0; i < macroValue.Count; i++)
+            {
+                List<string> p=param.ToList();
+                p.RemoveAt(0);
+                //ASM.Add(macroValue[i]);
+                ManageLine(macroValue[i], p);
+            }
         }
         private void Generate_Click(object sender, EventArgs e)
         {
             label_Error.Text = "";
             string txt = richTextBoxCode.Text;
-            string txt1= txt.Replace(" ", "").ToUpper();
+            //string txt1= txt.Replace(" ", "").ToUpper();
+            string txt1= txt.ToUpper();
             string[] ListCode=txt1.Split('\n');
             PC= new List<int>();
             ASM = new List<string>();
             ASMCode = new List<int>();
-            
+            string Msg2 = "";
+            Dictionary<string, int>  Csts =GetConstants(out Msg2);
+            if (Msg2 != "")
+            {
+                label_Error.Text += "Constant Error:" + Msg2;
+                return;
+            }
             for (int i=0;i<ListCode.Length;i++)
             {
+                ManageLine(ListCode[i], new List<string>());
+                /*
                 if (ListCode[i]=="")
                 {
                     PC.Add(-1);
@@ -836,15 +946,22 @@ namespace Controller
                 else
                 {
                     PC.Add(ASM.Count);
-                    if (MacroList.ContainsKey(ListCode[i]))
+                    bool macroFound = false;
+                    foreach(KeyValuePair<string,List<string>> m in MacroList)
                     {
-                        ASM.AddRange(MacroList[ListCode[i]]);
+                        if (ListCode[i].StartsWith(m.Key))
+                        {
+                            macroFound = true;
+                            AddMacro(ListCode[i], m.Key, m.Value);
+                           
+                        }
+
                     }
-                    else
-                    {
+                    if(macroFound==false)
                         ASM.Add(ListCode[i]);
-                    }
+                  
                 }
+                */
             }
             bool error = false;
             myComputer.ClearRom();
@@ -854,11 +971,11 @@ namespace Controller
                 string Msg = "";
                 if (ASM[i] != "")
                 {
-                    string codeS = Tools.Decode(ASM[i], out Msg);
+                    string codeS = Tools.Decode(ASM[i], Csts, out Msg).ToString();
                     if (Msg != "")
                     {
                         error = true;
-                        ParseError(i, Msg);
+                        label_Error.Text += "Line " + i + ": " + Msg + "\n";
                         listError.Add(i);
                         ASMCode.Add(0);
                     }
@@ -896,6 +1013,7 @@ namespace Controller
             {
                 myComputer.setRom(i, ASMCode[i]);//A=48
             }
+            Last_PC = ASMCode.Count;
             UpdateFromRom();
           
            
@@ -1048,10 +1166,31 @@ namespace Controller
             currentFileName= dlg.FileNames[0];
             button9.Enabled = true;
             string readText = File.ReadAllText(currentFileName);
-            int CodePos=readText.IndexOf("##CODE##\n")+9;
-            richTextBoxCode.Text = readText.Substring(CodePos);
-            SyntaxColorUpdate();
-            richTextBoxCode_PC.Text = "";
+
+
+            int CstPos = readText.IndexOf("##CONSTANTS##");
+            int CodePos = readText.IndexOf("##CODE##");
+            if (CstPos != -1)
+            {
+                dt_Constants.Rows.Clear();
+                string Csts = readText.Substring(CstPos+14, CodePos - CstPos-14);
+                string[] CstsList = Csts.Split('\n');
+                for (int i = 0; i < CstsList.Length; i++)
+                {
+                    if (CstsList[i] != "")
+                    {
+                        string[] cst = CstsList[i].Split('=');
+                        dt_Constants.Rows.Add(cst);
+                    }
+
+                }
+            }
+            if (CodePos != -1)
+            {
+                richTextBoxCode.Text = readText.Substring(CodePos + 9);
+                SyntaxColorUpdate();
+                richTextBoxCode_PC.Text = "";
+            }
 
         }
         //save
@@ -1062,19 +1201,43 @@ namespace Controller
         //saveas
         private void button10_Click(object sender, EventArgs e)
         {
+            var dlg = new SaveFileDialog();
+            dlg.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
+            dlg.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory + "../../";
+            dlg.RestoreDirectory = false;
+            if (dlg.ShowDialog() != DialogResult.OK)
+                return;
+            currentFileName = dlg.FileNames[0];
+            button9.Enabled = true;
+            Save();
+
 
         }
         private void Save()
         {
             string createText = "##CONSTANTS##\n";
-            createText += "\n";
-            createText += "\n";
+            for (int i = 0; i < dataGridView_Constant.Rows.Count; i++)
+            {
+                string cst = (string)dataGridView_Constant.Rows[i].Cells[0].Value;
+                if ((cst != null) && (cst != ""))
+                {
+                    createText += cst;
+                    createText += "=";
+                    createText += (string)dataGridView_Constant.Rows[i].Cells[1].Value;
+                    createText += "\n";
+                }
+            }
             createText += "##CODE##\n";
             createText += richTextBoxCode.Text;
             File.WriteAllText(currentFileName, createText);
         }
 
         private void richTextBoxCode_Leave(object sender, EventArgs e)
+        {
+            SyntaxColorUpdate();
+        }
+
+        private void richTextBoxCode_Click(object sender, EventArgs e)
         {
             SyntaxColorUpdate();
         }
