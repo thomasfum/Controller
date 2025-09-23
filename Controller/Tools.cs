@@ -258,7 +258,8 @@ namespace Controller
 
             //Destination
             bool DstOk = false;
-            for (int i = 1; i < DstString.Count(); i++)
+            //for (int i = 1; i < DstString.Count(); i++)
+            for (int i = 0; i < DstString.Count(); i++)
             {
                 string st = DstString[i];
                 if (DST == st)
@@ -273,88 +274,34 @@ namespace Controller
                 Msg = "Wrong Destination";
                 return 0;
             }
-            /*
-            //Dst
-            for (int i = 1; i < DstString.Count(); i++)
-            {
-                string st = DstString[i];
-                if (split.Length == 3)
-                    if (val.Contains(st))
-                        target = i;
-            }
-            if (target == 0)
-            {
-                for (int i = 1; i < DstString.Count(); i++)
-                {
-                    string st = DstString[i];
-                    if (st.Length == 2)
-                        if (val.Contains(st))
-                            target = i;
-                }
-            }
-            if (target == 0)
-            {
-                for (int i = 1; i < DstString.Count(); i++)
-                {
-                    string st = DstString[i];
-                    if (st.Length == 1)
-                        if (val.Contains(st))
-                            target = i;
-                }
-            }
-            */
             //Calc
-            bool CalcOk = false;
-            if (OP.Contains("*"))
+            if (OP != "")
             {
-                needstar = true;
-                OP=OP.Replace("*","");
-            }
-            for (int i = 1; i < CalString.Count(); i++)
-            {
-                string st = CalString[i];
-                if (OP == st)
+                bool CalcOk = false;
+                if (OP.Contains("*"))
                 {
-                    operation = i;
-                    CalcOk = true;
-                    break;
+                    needstar = true;
+                    OP=OP.Replace("*","");
                 }
-            }
-            if (CalcOk != true)
-            {
-                Msg = "Wrong Calculation";
-                return 0;
-            }
-            /*
-                for (int i = 1; i < CalString.Count(); i++)
+           
+                //for (int i = 1; i < CalString.Count(); i++)
+                for (int i = 0; i < CalString.Count(); i++)
                 {
                     string st = CalString[i];
-                    if (st.Length == 3)
-                        if (val.Contains(st))
-                            operation = i;
-                }
-                if (operation == 0)
-                {
-                    for (int i = 1; i < CalString.Count(); i++)
+                    if (OP == st)
                     {
-                        string st = CalString[i];
-                        if (st.Length == 2)
-                            if (val.Contains(st))
-                                operation = i;
+                        operation = i;
+                        CalcOk = true;
+                        break;
                     }
                 }
-            
-            if (operation == 0)
-            {
-                for (int i = 1; i < CalString.Count(); i++)
+                if (CalcOk != true)
                 {
-                    string st = CalString[i];
-                    if (st.Length == 1)
-                        if (val.Contains(st))
-                            operation = i;
+                    Msg = "Wrong Calculation";
+                    return 0;
                 }
             }
-            */
+           
             //top
             top = 16;
             if(needstar == true)

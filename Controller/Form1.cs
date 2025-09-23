@@ -16,11 +16,11 @@ using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
 
 //TODO
+// issue with JMP
 // keyboard
 // macros predifined
 // macro perso
 // TODO in code
-// bouton F5 F10 F11
 
 //idee program:
 //  - calculatrice
@@ -49,6 +49,7 @@ namespace Controller
         string currentFileName = "";
         bool ScrollPC = true;
         int Last_PC=0;
+        int Current_PC = -1;
         int counter = 0;
         
         public Form1()
@@ -95,14 +96,16 @@ namespace Controller
             dataGridView_Ram.Columns[0].Width = 35;
             dataGridView_Ram.RowHeadersVisible = false;
             dataGridView_Ram.Columns[0].ReadOnly = true;
-            dataGridView_Ram.Columns[1].Width = dataGridView_Ram.Width - 35 - 20;
+            //dataGridView_Ram.Columns[1].Width = dataGridView_Ram.Width - 35 - 20;
+            dataGridView_Ram.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView_Ram.AllowUserToAddRows = false;
 
             dataGridView_Stack.DataSource = dt_Stack;
             dataGridView_Stack.Columns[0].Width = 35;
             dataGridView_Stack.RowHeadersVisible = false;
             dataGridView_Stack.Columns[0].ReadOnly = true;
-            dataGridView_Stack.Columns[1].Width = dataGridView_Stack.Width - 35 - 20;
+            //dataGridView_Stack.Columns[1].Width = dataGridView_Stack.Width - 35 - 20;
+            dataGridView_Stack.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView_Stack.AllowUserToAddRows = false;
 
 
@@ -112,14 +115,16 @@ namespace Controller
             dataGridView_Rom.Columns[0].ReadOnly = true;
 
             dataGridView_Rom.Columns[1].Width = 50;
-            dataGridView_Rom.Columns[2].Width = dataGridView_Rom.Width-35-50-20;
+            //dataGridView_Rom.Columns[2].Width = dataGridView_Rom.Width-35-50-20;
+            dataGridView_Rom.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             updateI(0);
             UpdateIGenerated();
             dataGridView_Rom.ClearSelection();
             dataGridView_Rom.Rows[0].Selected = true;
             //dataGridView1.SelectionMode= DataGridViewSelectionMode.FullRowSelect;
-            label_Instruction_b.UseMnemonic = false;
-            label_IGeneratedAsm.UseMnemonic = false;
+
+            label_Data7.UseMnemonic = false;//prevent issue with char &
+            label_IGeneratedAsm.UseMnemonic = false;//prevent issue with char &
             myComputer.SetDisplayImage(pictureBox1.Image as Bitmap);
 
             toolStripButtonSave.Enabled = false;
@@ -133,52 +138,51 @@ namespace Controller
             richTextBoxCode_PC.SelectAll();
             richTextBoxCode_PC.SelectionAlignment = HorizontalAlignment.Right;
 
+            label_Title1.Text = "";
+            label_Title2.Text = "Operation";
+            label_Title3.Text = "Target";
+            label_Title4.Text = "Jump";
+            label_Title5.Text = "Decimal";
+            label_Title6.Text = "HEX";
+            label_Title7.Text = "Assembler";
 
-            label_Instruction_t1.Text = "|   " + " . " + " . " + "   " + " . ";
-            label_Instruction_t1.Text += " | ";
-            label_Instruction_t1.Text += "   operation   ";
-            label_Instruction_t1.Text += " | ";
-            label_Instruction_t1.Text += " target  ";
-            label_Instruction_t1.Text += " | ";
-            label_Instruction_t1.Text += "  jump   ";
-            label_Instruction_t1.Text += " | decimal |";
-            label_Instruction_t1.Text += "  HEX |";
-            label_Instruction_t1.Text += "  Assembler  |";
 
-            label_Instruction_t2.Text = "|ci ";
-            label_Instruction_t2.Text += " . ";
-            label_Instruction_t2.Text += " . ";
-            label_Instruction_t2.Text += " * ";
-            label_Instruction_t2.Text += " . ";
-            label_Instruction_t2.Text += " | ";
-            label_Instruction_t2.Text += " u ";
-            label_Instruction_t2.Text += "op1";
-            label_Instruction_t2.Text += "op0";
-            label_Instruction_t2.Text += "zx ";
-            label_Instruction_t2.Text += "sw ";
-            label_Instruction_t2.Text += " | ";
 
-            label_Instruction_t2.Text += " a ";
-            label_Instruction_t2.Text += " d ";
-            label_Instruction_t2.Text += "a* ";
-            label_Instruction_t2.Text += " | ";
-            label_Instruction_t2.Text += "lt ";
-            label_Instruction_t2.Text += "eq ";
-            label_Instruction_t2.Text += "gt ";
-            label_Instruction_t2.Text += " |         |";
-            label_Instruction_t2.Text += "      |";
-            label_Instruction_t2.Text += "             |";
+            label_SubTitle1.Text = "ci ";
+            label_SubTitle1.Text += " . ";
+            label_SubTitle1.Text += " . ";
+            label_SubTitle1.Text += " * ";
+            label_SubTitle1.Text += " . ";
 
-            labelInstructionBottom.Text = "|                |                 |           |           |         |      |             |";
+            
+            label_SubTitle2.Text = " u ";
+            label_SubTitle2.Text += "op1";
+            label_SubTitle2.Text += "op0 ";
+            label_SubTitle2.Text += "zx ";
+            label_SubTitle2.Text += "sw ";
+
+            label_SubTitle3.Text = " a ";
+            label_SubTitle3.Text += " d ";
+            label_SubTitle3.Text += " a* ";
+            
+            label_SubTitle4.Text = "lt ";
+            label_SubTitle4.Text += "eq ";
+            label_SubTitle4.Text += "gt ";
+
+
 
 
             dt_Constants.Columns.Add("Name");
             dt_Constants.Columns.Add("Value");
+            
 
             dataGridView_Constant.DataSource = dt_Constants;
+            dataGridView_Constant.RowHeadersVisible = false;
+            dataGridView_Constant.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
             MacroList.Add("INIT.STACK", new List<string>() { "A=256", "D=A","A=0","*A=D" });
             MacroList.Add("PUSH.D", new List<string>() { "A=0", "A=*A", "*A=D","A=0","D=*A","D=D+1","*A=D" });
-            MacroList.Add("POP.D", new List<string>() { "A=0", "A=*A-1", "D=*A", "A=0", "*A=*A-1" });
+            MacroList.Add("POP.D", new List<string>() { "A=0", "D=*A", "D=D-1","*A=D","A=D","D=*A" });
             MacroList.Add("POP.A", new List<string>() { "A=0", "*A=*A-1", "A=*A", "A=*A" });
             MacroList.Add("PUSH.VALUE", new List<string>() { "A=value", "D=A", "A=0", "A=*A", "*A=D", "A=0", "D=*A", "D=D+1", "*A=D" });
             MacroList.Add("PUSH.STATIC", new List<string>() { "A=address", "D=*A", "A=0", "A=*A", "*A=D", "A=0", "D=*A", "D=D+1", "*A=D" });
@@ -201,15 +205,15 @@ namespace Controller
             int D = myComputer.getD();
             int I = myComputer.getI();
             int ALU = Tools.getALU(I);
-            int PC = myComputer.getPC();
+            Current_PC = myComputer.getPC();
             label_A.Text = "A=" + A;
             label_D.Text = "D=" + D;
-            label_PC.Text = "PC=" + PC;
+            label_PC.Text = "PC=" + Current_PC;
             label_I.Text = "I=" + I;
             label_ALU.Text = "ALU=" + ALU;
        
             dataGridView_Rom.ClearSelection();
-            dataGridView_Rom.Rows[PC].Selected = true;
+            dataGridView_Rom.Rows[Current_PC].Selected = true;
 
             
             updateI(I);
@@ -217,9 +221,9 @@ namespace Controller
             refreshMappedIO();
             label_Nand_count.Text= "Nand count: "+myComputer.GetNandCount();
             pictureBox1.Refresh();
-            UpdatePC(PC,false);
+            UpdatePC(Current_PC, false);
             UpdateStack();
-            if (PC >= Last_PC-1)
+            if (Current_PC >= Last_PC)
             {
                 toolStripButtonTick.Enabled = false;
                 return false;
@@ -350,7 +354,57 @@ namespace Controller
         void updateI(int I)
         {
             // top
-           
+            if (Tools.get15(I) == true)
+                label_Data1.Text = " 1 ";
+            else
+                label_Data1.Text = " 0 ";
+            label_Data1.Text += " 0  0 ";
+            if (Tools.get12(I) == true)
+                label_Data1.Text += " 1 ";
+            else
+                label_Data1.Text += " 0 ";
+            label_Data1.Text += " 0 ";
+
+            //alu
+            bool[] Alub = Tools.int2BoolArray(Tools.getALU(I));
+            label_Data2.Text = " " + (Alub[4] ? '1' : '0') + " ";
+            label_Data2.Text += " " + (Alub[3] ? '1' : '0') + " ";
+            label_Data2.Text += " " + (Alub[2] ? '1' : '0') + " ";
+            label_Data2.Text += " " + (Alub[1] ? '1' : '0') + " ";
+            label_Data2.Text += " " + (Alub[0] ? '1' : '0') + " ";
+            
+            bool[] targetb = Tools.int2BoolArray(Tools.getTarget(I));
+            label_Data3.Text = " " + (targetb[2] ? '1' : '0') + " ";
+            label_Data3.Text += " " + (targetb[1] ? '1' : '0') + " ";
+            label_Data3.Text += " " + (targetb[0] ? '1' : '0') + " ";
+            
+            bool[] JMPb = Tools.int2BoolArray(Tools.getJmp(I));
+            label_Data4.Text = " " + (JMPb[2] ? '1' : '0') + " ";
+            label_Data4.Text += " " + (JMPb[1] ? '1' : '0') + " ";
+            label_Data4.Text += " " + (JMPb[0] ? '1' : '0') + " ";
+
+            label_Data5.Text =  I.ToString("D");
+
+
+
+            string txt = I.ToString("X");
+            if (txt.Length > 4)
+                label_Data6.Text =  I.ToString("X").Substring(4);
+            else
+                label_Data6.Text = txt.PadLeft(4, '0');
+
+
+            string Inst = "";
+            if (Tools.get15(I) == true)
+                Inst = Tools.GetInstruction(I);
+            else
+                Inst = "A=" + I;
+            label_Data7.Text = Inst;
+
+
+
+            /*
+            //--------------------
             label_Instruction_b.Text = "|";
           
             if (Tools.get15(I) == true)
@@ -411,7 +465,7 @@ namespace Controller
                 Inst = "A=" + I;
             
             label_Instruction_b.Text += Inst.PadRight(12) + " |";
-
+            */
            
         }
         void UpdateIGenerated()
@@ -420,9 +474,9 @@ namespace Controller
             textBox_IGeneratedD.Text = I.ToString();
             string txt = I.ToString("X");
             if (txt.Length > 4)
-                label_IGeneratedX.Text = " " + I.ToString("X").Substring(4);
+                label_IGeneratedX.Text =  I.ToString("X").Substring(4);
             else
-                label_IGeneratedX.Text = " " + txt.PadLeft(4, '0');
+                label_IGeneratedX.Text =  txt.PadLeft(4, '0');
             string Inst = "";
             if (Tools.get15(I) == true)
                 Inst = Tools.GetInstruction(I);
@@ -1008,7 +1062,7 @@ namespace Controller
             int ram0 = myComputer.GetRam(0);
             label_SP.Text = "SP=" + ram0;
             dt_Stack.Clear();
-            for (int i = ram0; i >= 256; i--)
+            for (int i = ram0-1; i >= 256; i--)
             {
                 dt_Stack.Rows.Add(i, myComputer.GetRam(i));
             }
@@ -1085,9 +1139,15 @@ namespace Controller
                 {
                     if (_PC<=PC[i]  )
                     {
-                        string s = "\n" + PC[lastPCneq] + "\n";
-                        if (lastPCneq == 0)
-                            s = PC[lastPCneq] + "\n";
+                        string s = "";
+                        if (_PC== PC[i])
+                             s = "\n" + PC[i] + "\n";
+                        else
+                            s = "\n" + PC[lastPCneq] + "\n";
+                        //string s = "\n" + PC[lastPCneq] + "\n";
+                        //string s = "\n" + PC[i] + "\n";
+                        //if (lastPCneq == 0)
+                        //    s = PC[lastPCneq] + "\n";
                         pos = richTextBoxCode_PC.Text.IndexOf(s);
                         if (pos >= 0)
                         {
@@ -1178,9 +1238,13 @@ namespace Controller
         {
             SyntaxColorUpdate();
         }
-     
+
         private void toolStripButtonLoad_Click(object sender, EventArgs e)
         {
+            open();
+        }
+        void open()
+        { 
             var dlg = new OpenFileDialog();
             dlg.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
             dlg.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory + "../../";
@@ -1224,7 +1288,11 @@ namespace Controller
 
         private void toolStripButtonSaveAs_Click(object sender, EventArgs e)
         {
-            var dlg = new SaveFileDialog();
+            SaveAs();
+        }
+        void SaveAs()
+        { 
+        var dlg = new SaveFileDialog();
             dlg.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
             dlg.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory + "../../";
             dlg.RestoreDirectory = false;
@@ -1254,11 +1322,17 @@ namespace Controller
             dataGridView_Rom.Rows[0].Selected = true;
             richTextBoxCode_PC.SelectAll();
             richTextBoxCode_PC.SelectionBackColor = Color.Black;
+            richTextBoxCode.SelectionColor = Color.White;
             myComputer.reset();
+            Current_PC = 0;
         }
 
         private async void toolStripButtonRun_Click(object sender, EventArgs e)
         {
+            run(Last_PC);
+        }
+        async void run(int toPC)
+        { 
             toolStripButtonRun.Enabled = false;
             toolStripButtonTick.Enabled = false;
             toolStripButtonReset.Enabled = false;
@@ -1267,8 +1341,112 @@ namespace Controller
             {
                 await Task.Delay(50);
                 go = Tick();
+                if (Current_PC >= toPC)
+                    break;
             } while (go);
-            toolStripButtonReset.Enabled = true;
+            if (toPC == Last_PC)
+                toolStripButtonReset.Enabled = true;
+            else 
+            {
+                toolStripButtonRun.Enabled = true;
+                toolStripButtonTick.Enabled = true;
+                toolStripButtonReset.Enabled = true;
+            }
+        }
+
+        private void toolStripButtonStepOver_Click(object sender, EventArgs e)
+        {
+            stepOver();
+        }
+
+        private void toolStripButtonStepOut_Click(object sender, EventArgs e)
+        {
+            stepOver();
+        }
+
+
+        void stepIn()
+        {
+            if (Last_PC == 0)
+                return;
+            if (Current_PC >= Last_PC - 1)
+                return;
+            Tick();
+        }
+      
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == (Keys.Control | Keys.O))
+            {
+                open();
+                return true;
+            }
+            if (keyData == (Keys.Control | Keys.S))
+            {
+                Save();
+                return true;
+            }
+            if (keyData == (Keys.Control | Keys.B))
+            {
+                Generate();
+                return true;
+            }
+            if (keyData == (Keys.F5))
+            {
+                run(Last_PC);
+                return true;
+            }
+            if (keyData == (Keys.F10))
+            {
+                stepOver();
+                return true;
+            }
+            if (keyData == (Keys.F11))
+            {
+                stepIn();
+                return true;
+            }
+            if (keyData == (Keys.Shift | Keys.F11))
+            {
+                stepOver();
+                return true;
+            }
+            if (keyData == (Keys.Control | Keys.Shift | Keys.S))
+            {
+                SaveAs();
+                return true;
+            }
+           
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+     
+        void stepOver()
+        {
+            int next = -1;
+            for (int i = 0; i < PC.Count; i++)
+            {
+                if  (PC[i]> Current_PC)
+                {
+                    next = PC[i];
+                    break;
+                }
+            }
+            if (next >= 0)
+                run(next);
+            else
+                run(Last_PC);
+
+        }
+
+        private void richTextBoxCode_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            SyntaxColorUpdate();
+        }
+
+        private void toolStripButtonStop_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

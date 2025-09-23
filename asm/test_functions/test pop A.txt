@@ -7,4 +7,4 @@ A=0x48
 D=A
 pop.A
 # inspect A. Should be 1.
-# inspect D - should be 0x42
+# inspect D - should be 0x48

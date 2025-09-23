@@ -31,9 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label_A = new System.Windows.Forms.Label();
-            this.label_Instruction_b = new System.Windows.Forms.Label();
-            this.label_Instruction_t2 = new System.Windows.Forms.Label();
-            this.label_Instruction_t1 = new System.Windows.Forms.Label();
             this.dataGridView_Rom = new System.Windows.Forms.DataGridView();
             this.button2 = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -55,7 +52,6 @@
             this.textBox_IGeneratedD = new System.Windows.Forms.TextBox();
             this.label_IGeneratedX = new System.Windows.Forms.Label();
             this.label_IGeneratedAsm = new System.Windows.Forms.Label();
-            this.labelInstructionBottom = new System.Windows.Forms.Label();
             this.label_D = new System.Windows.Forms.Label();
             this.label_PC = new System.Windows.Forms.Label();
             this.label_ALU = new System.Windows.Forms.Label();
@@ -106,12 +102,42 @@
             this.toolStripButtonTick = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonRun = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonReset = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonStepOver = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonStepOut = new System.Windows.Forms.ToolStripButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label_Title1 = new System.Windows.Forms.Label();
+            this.label_Title2 = new System.Windows.Forms.Label();
+            this.label_Title3 = new System.Windows.Forms.Label();
+            this.label_Title4 = new System.Windows.Forms.Label();
+            this.label_Title5 = new System.Windows.Forms.Label();
+            this.label_Title6 = new System.Windows.Forms.Label();
+            this.label_Title7 = new System.Windows.Forms.Label();
+            this.label_SubTitle1 = new System.Windows.Forms.Label();
+            this.label_SubTitle2 = new System.Windows.Forms.Label();
+            this.label_SubTitle3 = new System.Windows.Forms.Label();
+            this.label_SubTitle4 = new System.Windows.Forms.Label();
+            this.label_Data1 = new System.Windows.Forms.Label();
+            this.label_Data2 = new System.Windows.Forms.Label();
+            this.label_Data3 = new System.Windows.Forms.Label();
+            this.label_Data4 = new System.Windows.Forms.Label();
+            this.label_Data5 = new System.Windows.Forms.Label();
+            this.label_Data7 = new System.Windows.Forms.Label();
+            this.label_Data6 = new System.Windows.Forms.Label();
+            this.toolStripButtonStop = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonNew = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Rom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Ram)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Constant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Stack)).BeginInit();
             this.toolStrip1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // linkLabel1
@@ -133,36 +159,6 @@
             this.label_A.TabIndex = 4;
             this.label_A.Text = "A=";
             // 
-            // label_Instruction_b
-            // 
-            this.label_Instruction_b.AutoSize = true;
-            this.label_Instruction_b.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Instruction_b.Location = new System.Drawing.Point(34, 654);
-            this.label_Instruction_b.Name = "label_Instruction_b";
-            this.label_Instruction_b.Size = new System.Drawing.Size(103, 16);
-            this.label_Instruction_b.TabIndex = 5;
-            this.label_Instruction_b.Text = "Instructions";
-            // 
-            // label_Instruction_t2
-            // 
-            this.label_Instruction_t2.AutoSize = true;
-            this.label_Instruction_t2.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Instruction_t2.Location = new System.Drawing.Point(34, 639);
-            this.label_Instruction_t2.Name = "label_Instruction_t2";
-            this.label_Instruction_t2.Size = new System.Drawing.Size(103, 16);
-            this.label_Instruction_t2.TabIndex = 6;
-            this.label_Instruction_t2.Text = "Instructions";
-            // 
-            // label_Instruction_t1
-            // 
-            this.label_Instruction_t1.AutoSize = true;
-            this.label_Instruction_t1.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Instruction_t1.Location = new System.Drawing.Point(34, 622);
-            this.label_Instruction_t1.Name = "label_Instruction_t1";
-            this.label_Instruction_t1.Size = new System.Drawing.Size(103, 16);
-            this.label_Instruction_t1.TabIndex = 7;
-            this.label_Instruction_t1.Text = "Instructions";
-            // 
             // dataGridView_Rom
             // 
             this.dataGridView_Rom.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -176,19 +172,21 @@
             // 
             // button2
             // 
+            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
             this.button2.Location = new System.Drawing.Point(223, 582);
             this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(56, 27);
             this.button2.TabIndex = 9;
             this.button2.Text = "Write";
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.ROM_Write_Click);
             // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(52, 674);
+            this.checkBox1.Location = new System.Drawing.Point(52, 678);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(15, 14);
@@ -199,7 +197,7 @@
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(76, 674);
+            this.checkBox2.Location = new System.Drawing.Point(76, 678);
             this.checkBox2.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(15, 14);
@@ -210,7 +208,7 @@
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(122, 674);
+            this.checkBox3.Location = new System.Drawing.Point(122, 678);
             this.checkBox3.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(15, 14);
@@ -221,7 +219,7 @@
             // checkBox4
             // 
             this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(100, 674);
+            this.checkBox4.Location = new System.Drawing.Point(100, 678);
             this.checkBox4.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(15, 14);
@@ -232,7 +230,7 @@
             // checkBox5
             // 
             this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(196, 674);
+            this.checkBox5.Location = new System.Drawing.Point(196, 678);
             this.checkBox5.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox5.Name = "checkBox5";
             this.checkBox5.Size = new System.Drawing.Size(15, 14);
@@ -243,7 +241,7 @@
             // checkBox6
             // 
             this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(146, 674);
+            this.checkBox6.Location = new System.Drawing.Point(146, 678);
             this.checkBox6.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox6.Name = "checkBox6";
             this.checkBox6.Size = new System.Drawing.Size(15, 14);
@@ -254,7 +252,7 @@
             // checkBox7
             // 
             this.checkBox7.AutoSize = true;
-            this.checkBox7.Location = new System.Drawing.Point(244, 674);
+            this.checkBox7.Location = new System.Drawing.Point(244, 678);
             this.checkBox7.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox7.Name = "checkBox7";
             this.checkBox7.Size = new System.Drawing.Size(15, 14);
@@ -265,7 +263,7 @@
             // checkBox8
             // 
             this.checkBox8.AutoSize = true;
-            this.checkBox8.Location = new System.Drawing.Point(220, 674);
+            this.checkBox8.Location = new System.Drawing.Point(220, 678);
             this.checkBox8.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox8.Name = "checkBox8";
             this.checkBox8.Size = new System.Drawing.Size(15, 14);
@@ -276,7 +274,7 @@
             // checkBox9
             // 
             this.checkBox9.AutoSize = true;
-            this.checkBox9.Location = new System.Drawing.Point(292, 674);
+            this.checkBox9.Location = new System.Drawing.Point(292, 678);
             this.checkBox9.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox9.Name = "checkBox9";
             this.checkBox9.Size = new System.Drawing.Size(15, 14);
@@ -287,7 +285,7 @@
             // checkBox10
             // 
             this.checkBox10.AutoSize = true;
-            this.checkBox10.Location = new System.Drawing.Point(268, 674);
+            this.checkBox10.Location = new System.Drawing.Point(268, 678);
             this.checkBox10.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox10.Name = "checkBox10";
             this.checkBox10.Size = new System.Drawing.Size(15, 14);
@@ -298,7 +296,7 @@
             // checkBox11
             // 
             this.checkBox11.AutoSize = true;
-            this.checkBox11.Location = new System.Drawing.Point(364, 674);
+            this.checkBox11.Location = new System.Drawing.Point(364, 678);
             this.checkBox11.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox11.Name = "checkBox11";
             this.checkBox11.Size = new System.Drawing.Size(15, 14);
@@ -309,7 +307,7 @@
             // checkBox12
             // 
             this.checkBox12.AutoSize = true;
-            this.checkBox12.Location = new System.Drawing.Point(340, 674);
+            this.checkBox12.Location = new System.Drawing.Point(340, 678);
             this.checkBox12.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox12.Name = "checkBox12";
             this.checkBox12.Size = new System.Drawing.Size(15, 14);
@@ -320,7 +318,7 @@
             // checkBox13
             // 
             this.checkBox13.AutoSize = true;
-            this.checkBox13.Location = new System.Drawing.Point(436, 674);
+            this.checkBox13.Location = new System.Drawing.Point(436, 678);
             this.checkBox13.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox13.Name = "checkBox13";
             this.checkBox13.Size = new System.Drawing.Size(15, 14);
@@ -331,7 +329,7 @@
             // checkBox14
             // 
             this.checkBox14.AutoSize = true;
-            this.checkBox14.Location = new System.Drawing.Point(388, 674);
+            this.checkBox14.Location = new System.Drawing.Point(388, 678);
             this.checkBox14.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox14.Name = "checkBox14";
             this.checkBox14.Size = new System.Drawing.Size(15, 14);
@@ -342,7 +340,7 @@
             // checkBox15
             // 
             this.checkBox15.AutoSize = true;
-            this.checkBox15.Location = new System.Drawing.Point(482, 674);
+            this.checkBox15.Location = new System.Drawing.Point(482, 678);
             this.checkBox15.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox15.Name = "checkBox15";
             this.checkBox15.Size = new System.Drawing.Size(15, 14);
@@ -353,7 +351,7 @@
             // checkBox16
             // 
             this.checkBox16.AutoSize = true;
-            this.checkBox16.Location = new System.Drawing.Point(460, 674);
+            this.checkBox16.Location = new System.Drawing.Point(460, 678);
             this.checkBox16.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox16.Name = "checkBox16";
             this.checkBox16.Size = new System.Drawing.Size(15, 14);
@@ -364,7 +362,7 @@
             // textBox_IGeneratedD
             // 
             this.textBox_IGeneratedD.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_IGeneratedD.Location = new System.Drawing.Point(518, 670);
+            this.textBox_IGeneratedD.Location = new System.Drawing.Point(518, 674);
             this.textBox_IGeneratedD.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_IGeneratedD.Name = "textBox_IGeneratedD";
             this.textBox_IGeneratedD.Size = new System.Drawing.Size(66, 22);
@@ -377,33 +375,23 @@
             // 
             this.label_IGeneratedX.AutoSize = true;
             this.label_IGeneratedX.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_IGeneratedX.Location = new System.Drawing.Point(593, 673);
+            this.label_IGeneratedX.Location = new System.Drawing.Point(599, 677);
             this.label_IGeneratedX.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label_IGeneratedX.Name = "label_IGeneratedX";
-            this.label_IGeneratedX.Size = new System.Drawing.Size(47, 16);
+            this.label_IGeneratedX.Size = new System.Drawing.Size(15, 16);
             this.label_IGeneratedX.TabIndex = 27;
-            this.label_IGeneratedX.Text = "label";
+            this.label_IGeneratedX.Text = "X";
             // 
             // label_IGeneratedAsm
             // 
             this.label_IGeneratedAsm.AutoSize = true;
             this.label_IGeneratedAsm.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_IGeneratedAsm.Location = new System.Drawing.Point(652, 673);
+            this.label_IGeneratedAsm.Location = new System.Drawing.Point(652, 677);
             this.label_IGeneratedAsm.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label_IGeneratedAsm.Name = "label_IGeneratedAsm";
             this.label_IGeneratedAsm.Size = new System.Drawing.Size(55, 16);
             this.label_IGeneratedAsm.TabIndex = 28;
             this.label_IGeneratedAsm.Text = "label2";
-            // 
-            // labelInstructionBottom
-            // 
-            this.labelInstructionBottom.AutoSize = true;
-            this.labelInstructionBottom.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelInstructionBottom.Location = new System.Drawing.Point(34, 673);
-            this.labelInstructionBottom.Name = "labelInstructionBottom";
-            this.labelInstructionBottom.Size = new System.Drawing.Size(103, 16);
-            this.labelInstructionBottom.TabIndex = 29;
-            this.labelInstructionBottom.Text = "Instructions";
             // 
             // label_D
             // 
@@ -475,23 +463,27 @@
             // 
             // button3
             // 
+            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
             this.button3.Location = new System.Drawing.Point(680, 583);
             this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(56, 27);
             this.button3.TabIndex = 38;
             this.button3.Text = "Write";
+            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.RAM_Write_Click);
             // 
             // button4
             // 
+            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
             this.button4.Location = new System.Drawing.Point(482, 583);
             this.button4.Margin = new System.Windows.Forms.Padding(2);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(56, 27);
+            this.button4.Size = new System.Drawing.Size(56, 25);
             this.button4.TabIndex = 39;
             this.button4.Text = "Clear";
+            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.RAM_Clear_Click);
             // 
@@ -684,12 +676,15 @@
             // 
             // button6
             // 
+            this.button6.Image = ((System.Drawing.Image)(resources.GetObject("button6.Image")));
+            this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button6.Location = new System.Drawing.Point(1058, 379);
             this.button6.Margin = new System.Windows.Forms.Padding(2);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(56, 31);
+            this.button6.Size = new System.Drawing.Size(56, 25);
             this.button6.TabIndex = 58;
             this.button6.Text = "Clear";
+            this.button6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.InOut_Clear_Click);
             // 
@@ -733,12 +728,15 @@
             // 
             // button7
             // 
+            this.button7.Image = ((System.Drawing.Image)(resources.GetObject("button7.Image")));
+            this.button7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button7.Location = new System.Drawing.Point(920, 448);
             this.button7.Margin = new System.Windows.Forms.Padding(2);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(56, 25);
             this.button7.TabIndex = 63;
             this.button7.Text = "Clear";
+            this.button7.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.Display_Clear_Click);
             // 
@@ -766,6 +764,7 @@
             this.richTextBoxCode.Click += new System.EventHandler(this.richTextBoxCode_Click);
             this.richTextBoxCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.richTextBoxCode_KeyDown);
             this.richTextBoxCode.Leave += new System.EventHandler(this.richTextBoxCode_Leave);
+            this.richTextBoxCode.Validating += new System.ComponentModel.CancelEventHandler(this.richTextBoxCode_Validating);
             // 
             // richTextBoxCode_PC
             // 
@@ -833,20 +832,23 @@
             // 
             // toolStrip1
             // 
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButtonNew,
             this.toolStripButtonLoad,
             this.toolStripButtonSave,
             this.toolStripButtonSaveAs,
             this.toolStripSeparator1,
             this.toolStripButtonGenerate,
             this.toolStripSeparator2,
-            this.toolStripButtonTick,
             this.toolStripButtonRun,
+            this.toolStripButtonStop,
+            this.toolStripButtonStepOver,
+            this.toolStripButtonTick,
+            this.toolStripButtonStepOut,
             this.toolStripButtonReset});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1281, 39);
+            this.toolStrip1.Size = new System.Drawing.Size(1281, 25);
             this.toolStrip1.TabIndex = 78;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -890,7 +892,7 @@
             this.toolStripButtonGenerate.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonGenerate.Image")));
             this.toolStripButtonGenerate.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonGenerate.Name = "toolStripButtonGenerate";
-            this.toolStripButtonGenerate.Size = new System.Drawing.Size(90, 36);
+            this.toolStripButtonGenerate.Size = new System.Drawing.Size(74, 22);
             this.toolStripButtonGenerate.Text = "Generate";
             this.toolStripButtonGenerate.Click += new System.EventHandler(this.toolStripButtonGenerate_Click);
             // 
@@ -904,7 +906,7 @@
             this.toolStripButtonTick.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonTick.Image")));
             this.toolStripButtonTick.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonTick.Name = "toolStripButtonTick";
-            this.toolStripButtonTick.Size = new System.Drawing.Size(64, 36);
+            this.toolStripButtonTick.Size = new System.Drawing.Size(48, 22);
             this.toolStripButtonTick.Text = "Tick";
             this.toolStripButtonTick.Click += new System.EventHandler(this.toolStripButtonTick_Click);
             // 
@@ -913,7 +915,7 @@
             this.toolStripButtonRun.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonRun.Image")));
             this.toolStripButtonRun.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonRun.Name = "toolStripButtonRun";
-            this.toolStripButtonRun.Size = new System.Drawing.Size(64, 36);
+            this.toolStripButtonRun.Size = new System.Drawing.Size(48, 22);
             this.toolStripButtonRun.Text = "Run";
             this.toolStripButtonRun.Click += new System.EventHandler(this.toolStripButtonRun_Click);
             // 
@@ -922,9 +924,345 @@
             this.toolStripButtonReset.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonReset.Image")));
             this.toolStripButtonReset.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonReset.Name = "toolStripButtonReset";
-            this.toolStripButtonReset.Size = new System.Drawing.Size(71, 36);
+            this.toolStripButtonReset.Size = new System.Drawing.Size(55, 22);
             this.toolStripButtonReset.Text = "Reset";
             this.toolStripButtonReset.Click += new System.EventHandler(this.toolStripButtonReset_Click);
+            // 
+            // toolStripButtonStepOver
+            // 
+            this.toolStripButtonStepOver.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonStepOver.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonStepOver.Image")));
+            this.toolStripButtonStepOver.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonStepOver.Name = "toolStripButtonStepOver";
+            this.toolStripButtonStepOver.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonStepOver.Text = "Step Over";
+            this.toolStripButtonStepOver.Click += new System.EventHandler(this.toolStripButtonStepOver_Click);
+            // 
+            // toolStripButtonStepOut
+            // 
+            this.toolStripButtonStepOut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonStepOut.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonStepOut.Image")));
+            this.toolStripButtonStepOut.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonStepOut.Name = "toolStripButtonStepOut";
+            this.toolStripButtonStepOut.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonStepOut.Text = "Step Out";
+            this.toolStripButtonStepOut.Click += new System.EventHandler(this.toolStripButtonStepOut_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label_Data7);
+            this.groupBox1.Controls.Add(this.label_Data5);
+            this.groupBox1.Controls.Add(this.label_Data3);
+            this.groupBox1.Controls.Add(this.label_Data1);
+            this.groupBox1.Controls.Add(this.label_SubTitle3);
+            this.groupBox1.Controls.Add(this.label_SubTitle1);
+            this.groupBox1.Controls.Add(this.label_Title7);
+            this.groupBox1.Controls.Add(this.label_Title5);
+            this.groupBox1.Controls.Add(this.label_Title3);
+            this.groupBox1.Controls.Add(this.label_Title1);
+            this.groupBox1.Controls.Add(this.groupBox4);
+            this.groupBox1.Location = new System.Drawing.Point(37, 607);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(725, 95);
+            this.groupBox1.TabIndex = 79;
+            this.groupBox1.TabStop = false;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label_Data2);
+            this.groupBox2.Controls.Add(this.label_SubTitle2);
+            this.groupBox2.Controls.Add(this.label_Title2);
+            this.groupBox2.Location = new System.Drawing.Point(177, 607);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(142, 95);
+            this.groupBox2.TabIndex = 80;
+            this.groupBox2.TabStop = false;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label_Data4);
+            this.groupBox3.Controls.Add(this.label_SubTitle4);
+            this.groupBox3.Controls.Add(this.label_Title4);
+            this.groupBox3.Location = new System.Drawing.Point(420, 607);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(93, 95);
+            this.groupBox3.TabIndex = 81;
+            this.groupBox3.TabStop = false;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.label_Data6);
+            this.groupBox4.Controls.Add(this.label_Title6);
+            this.groupBox4.Location = new System.Drawing.Point(552, 0);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(58, 95);
+            this.groupBox4.TabIndex = 82;
+            this.groupBox4.TabStop = false;
+            // 
+            // label_Title1
+            // 
+            this.label_Title1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_Title1.AutoSize = true;
+            this.label_Title1.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Title1.Location = new System.Drawing.Point(60, 12);
+            this.label_Title1.Name = "label_Title1";
+            this.label_Title1.Size = new System.Drawing.Size(15, 16);
+            this.label_Title1.TabIndex = 82;
+            this.label_Title1.Text = "A";
+            this.label_Title1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_Title2
+            // 
+            this.label_Title2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_Title2.AutoSize = true;
+            this.label_Title2.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Title2.Location = new System.Drawing.Point(43, 12);
+            this.label_Title2.Name = "label_Title2";
+            this.label_Title2.Size = new System.Drawing.Size(15, 16);
+            this.label_Title2.TabIndex = 83;
+            this.label_Title2.Text = "A";
+            this.label_Title2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_Title3
+            // 
+            this.label_Title3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_Title3.AutoSize = true;
+            this.label_Title3.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Title3.Location = new System.Drawing.Point(303, 12);
+            this.label_Title3.Name = "label_Title3";
+            this.label_Title3.Size = new System.Drawing.Size(15, 16);
+            this.label_Title3.TabIndex = 84;
+            this.label_Title3.Text = "A";
+            this.label_Title3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_Title4
+            // 
+            this.label_Title4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_Title4.AutoSize = true;
+            this.label_Title4.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Title4.Location = new System.Drawing.Point(28, 12);
+            this.label_Title4.Name = "label_Title4";
+            this.label_Title4.Size = new System.Drawing.Size(15, 16);
+            this.label_Title4.TabIndex = 85;
+            this.label_Title4.Text = "A";
+            this.label_Title4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_Title5
+            // 
+            this.label_Title5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_Title5.AutoSize = true;
+            this.label_Title5.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Title5.Location = new System.Drawing.Point(486, 12);
+            this.label_Title5.Name = "label_Title5";
+            this.label_Title5.Size = new System.Drawing.Size(15, 16);
+            this.label_Title5.TabIndex = 86;
+            this.label_Title5.Text = "A";
+            this.label_Title5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_Title6
+            // 
+            this.label_Title6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_Title6.AutoSize = true;
+            this.label_Title6.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Title6.Location = new System.Drawing.Point(16, 12);
+            this.label_Title6.Name = "label_Title6";
+            this.label_Title6.Size = new System.Drawing.Size(15, 16);
+            this.label_Title6.TabIndex = 87;
+            this.label_Title6.Text = "A";
+            this.label_Title6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_Title7
+            // 
+            this.label_Title7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_Title7.AutoSize = true;
+            this.label_Title7.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Title7.Location = new System.Drawing.Point(630, 12);
+            this.label_Title7.Name = "label_Title7";
+            this.label_Title7.Size = new System.Drawing.Size(15, 16);
+            this.label_Title7.TabIndex = 88;
+            this.label_Title7.Text = "A";
+            this.label_Title7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_SubTitle1
+            // 
+            this.label_SubTitle1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_SubTitle1.AutoSize = true;
+            this.label_SubTitle1.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_SubTitle1.Location = new System.Drawing.Point(6, 31);
+            this.label_SubTitle1.Name = "label_SubTitle1";
+            this.label_SubTitle1.Size = new System.Drawing.Size(15, 16);
+            this.label_SubTitle1.TabIndex = 89;
+            this.label_SubTitle1.Text = "A";
+            this.label_SubTitle1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_SubTitle2
+            // 
+            this.label_SubTitle2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_SubTitle2.AutoSize = true;
+            this.label_SubTitle2.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_SubTitle2.Location = new System.Drawing.Point(6, 31);
+            this.label_SubTitle2.Name = "label_SubTitle2";
+            this.label_SubTitle2.Size = new System.Drawing.Size(15, 16);
+            this.label_SubTitle2.TabIndex = 90;
+            this.label_SubTitle2.Text = "A";
+            this.label_SubTitle2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_SubTitle3
+            // 
+            this.label_SubTitle3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_SubTitle3.AutoSize = true;
+            this.label_SubTitle3.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_SubTitle3.Location = new System.Drawing.Point(294, 31);
+            this.label_SubTitle3.Name = "label_SubTitle3";
+            this.label_SubTitle3.Size = new System.Drawing.Size(15, 16);
+            this.label_SubTitle3.TabIndex = 91;
+            this.label_SubTitle3.Text = "A";
+            this.label_SubTitle3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_SubTitle4
+            // 
+            this.label_SubTitle4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_SubTitle4.AutoSize = true;
+            this.label_SubTitle4.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_SubTitle4.Location = new System.Drawing.Point(13, 31);
+            this.label_SubTitle4.Name = "label_SubTitle4";
+            this.label_SubTitle4.Size = new System.Drawing.Size(15, 16);
+            this.label_SubTitle4.TabIndex = 92;
+            this.label_SubTitle4.Text = "A";
+            this.label_SubTitle4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_Data1
+            // 
+            this.label_Data1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_Data1.AutoSize = true;
+            this.label_Data1.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Data1.Location = new System.Drawing.Point(6, 53);
+            this.label_Data1.Name = "label_Data1";
+            this.label_Data1.Size = new System.Drawing.Size(15, 16);
+            this.label_Data1.TabIndex = 92;
+            this.label_Data1.Text = "A";
+            this.label_Data1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_Data2
+            // 
+            this.label_Data2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_Data2.AutoSize = true;
+            this.label_Data2.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Data2.Location = new System.Drawing.Point(9, 53);
+            this.label_Data2.Name = "label_Data2";
+            this.label_Data2.Size = new System.Drawing.Size(15, 16);
+            this.label_Data2.TabIndex = 91;
+            this.label_Data2.Text = "A";
+            this.label_Data2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_Data3
+            // 
+            this.label_Data3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_Data3.AutoSize = true;
+            this.label_Data3.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Data3.Location = new System.Drawing.Point(294, 53);
+            this.label_Data3.Name = "label_Data3";
+            this.label_Data3.Size = new System.Drawing.Size(15, 16);
+            this.label_Data3.TabIndex = 93;
+            this.label_Data3.Text = "A";
+            this.label_Data3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_Data4
+            // 
+            this.label_Data4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_Data4.AutoSize = true;
+            this.label_Data4.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Data4.Location = new System.Drawing.Point(8, 53);
+            this.label_Data4.Name = "label_Data4";
+            this.label_Data4.Size = new System.Drawing.Size(15, 16);
+            this.label_Data4.TabIndex = 93;
+            this.label_Data4.Text = "A";
+            this.label_Data4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_Data5
+            // 
+            this.label_Data5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_Data5.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Data5.Location = new System.Drawing.Point(483, 54);
+            this.label_Data5.Name = "label_Data5";
+            this.label_Data5.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label_Data5.Size = new System.Drawing.Size(65, 16);
+            this.label_Data5.TabIndex = 94;
+            this.label_Data5.Text = "A";
+            this.label_Data5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label_Data7
+            // 
+            this.label_Data7.AutoSize = true;
+            this.label_Data7.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Data7.Location = new System.Drawing.Point(615, 53);
+            this.label_Data7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label_Data7.Name = "label_Data7";
+            this.label_Data7.Size = new System.Drawing.Size(55, 16);
+            this.label_Data7.TabIndex = 82;
+            this.label_Data7.Text = "label2";
+            // 
+            // label_Data6
+            // 
+            this.label_Data6.AutoSize = true;
+            this.label_Data6.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Data6.Location = new System.Drawing.Point(10, 53);
+            this.label_Data6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label_Data6.Name = "label_Data6";
+            this.label_Data6.Size = new System.Drawing.Size(15, 16);
+            this.label_Data6.TabIndex = 82;
+            this.label_Data6.Text = "X";
+            // 
+            // toolStripButtonStop
+            // 
+            this.toolStripButtonStop.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonStop.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonStop.Image")));
+            this.toolStripButtonStop.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonStop.Name = "toolStripButtonStop";
+            this.toolStripButtonStop.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonStop.Text = "Stop";
+            this.toolStripButtonStop.Click += new System.EventHandler(this.toolStripButtonStop_Click);
+            // 
+            // toolStripButtonNew
+            // 
+            this.toolStripButtonNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonNew.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonNew.Image")));
+            this.toolStripButtonNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonNew.Name = "toolStripButtonNew";
+            this.toolStripButtonNew.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonNew.Text = "New";
             // 
             // Form1
             // 
@@ -993,12 +1331,12 @@
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.dataGridView_Rom);
-            this.Controls.Add(this.label_Instruction_t1);
-            this.Controls.Add(this.label_Instruction_t2);
-            this.Controls.Add(this.label_Instruction_b);
             this.Controls.Add(this.label_A);
             this.Controls.Add(this.linkLabel1);
-            this.Controls.Add(this.labelInstructionBottom);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Controller";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Rom)).EndInit();
@@ -1008,6 +1346,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Stack)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1016,9 +1362,6 @@
         #endregion
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label label_A;
-        private System.Windows.Forms.Label label_Instruction_b;
-        private System.Windows.Forms.Label label_Instruction_t2;
-        private System.Windows.Forms.Label label_Instruction_t1;
         private System.Windows.Forms.DataGridView dataGridView_Rom;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.CheckBox checkBox1;
@@ -1040,7 +1383,6 @@
         private System.Windows.Forms.TextBox textBox_IGeneratedD;
         private System.Windows.Forms.Label label_IGeneratedX;
         private System.Windows.Forms.Label label_IGeneratedAsm;
-        private System.Windows.Forms.Label labelInstructionBottom;
         private System.Windows.Forms.Label label_D;
         private System.Windows.Forms.Label label_PC;
         private System.Windows.Forms.Label label_ALU;
@@ -1091,6 +1433,32 @@
         private System.Windows.Forms.ToolStripButton toolStripButtonTick;
         private System.Windows.Forms.ToolStripButton toolStripButtonRun;
         private System.Windows.Forms.ToolStripButton toolStripButtonReset;
+        private System.Windows.Forms.ToolStripButton toolStripButtonStepOver;
+        private System.Windows.Forms.ToolStripButton toolStripButtonStepOut;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label label_Title1;
+        private System.Windows.Forms.Label label_Title7;
+        private System.Windows.Forms.Label label_Title5;
+        private System.Windows.Forms.Label label_Title3;
+        private System.Windows.Forms.Label label_Title6;
+        private System.Windows.Forms.Label label_Title2;
+        private System.Windows.Forms.Label label_Title4;
+        private System.Windows.Forms.Label label_SubTitle3;
+        private System.Windows.Forms.Label label_SubTitle1;
+        private System.Windows.Forms.Label label_SubTitle2;
+        private System.Windows.Forms.Label label_SubTitle4;
+        private System.Windows.Forms.Label label_Data5;
+        private System.Windows.Forms.Label label_Data3;
+        private System.Windows.Forms.Label label_Data1;
+        private System.Windows.Forms.Label label_Data2;
+        private System.Windows.Forms.Label label_Data4;
+        private System.Windows.Forms.Label label_Data7;
+        private System.Windows.Forms.Label label_Data6;
+        private System.Windows.Forms.ToolStripButton toolStripButtonStop;
+        private System.Windows.Forms.ToolStripButton toolStripButtonNew;
     }
 }
 
