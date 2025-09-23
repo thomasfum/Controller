@@ -90,7 +90,7 @@ namespace Controller.Processor
             _keyboardAdd[14] = true;
             _keyboardAdd[13] = true;
             And_16 andInKeyboard = new And_16();
-            andInKeyboard.a = _displayAdd;
+            andInKeyboard.a = _keyboardAdd;
             andInKeyboard.b = reg_a.output;
             val += andInKeyboard.proceed();//0100 0000 0000 0000
             Equal0_16 neq_0x6000 = new Equal0_16();
@@ -100,17 +100,17 @@ namespace Controller.Processor
             eq_0x6000.input= neq_0x6000.s;
             val += eq_0x6000.proceed();
             
-
+            /*
             And stKeyboard_And = new And();
             stKeyboard_And.a = eq_0x6000.output;
             stKeyboard_And.b = ca;
             val += stKeyboard_And.proceed();
-            
-            debug_KeyboardRange = eq_0x4000.output;
+            */
+            debug_KeyboardRange = eq_0x6000.output;
 
             //keyboard.X= X;
             //display.A = A;
-            keyboard.st = stDisplay_And.output;
+            keyboard.st = eq_0x6000.output;//stKeyboard_And.output;
             keyboard.cl = cl;//clInOut_And.output;
             val += keyboard.proceed();
             

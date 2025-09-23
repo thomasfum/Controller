@@ -17,8 +17,12 @@ namespace Controller.InOut
         public int proceed()
         {
             int val = 0;
-            int key=keyboardCallback();
-            output=Tools.int2BoolArray(key);
+            if (st == true)
+            {
+                int key = keyboardCallback();
+                output = Tools.int2BoolArray(key);
+                Console.WriteLine("keboard" + key);
+            }
             return val;
         }
 

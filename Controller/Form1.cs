@@ -131,7 +131,7 @@ namespace Controller
             label_Data7.UseMnemonic = false;//prevent issue with char &
             label_IGeneratedAsm.UseMnemonic = false;//prevent issue with char &
             myComputer.SetDisplayImage(pictureBox1.Image as Bitmap);
-            myComputer.setKeyboardCallBack(() => { return 33;});
+            myComputer.setKeyboardCallBack(() => { return currentKeypressed; });
 
 
             toolStripButtonSave.Enabled = false;
@@ -1266,7 +1266,7 @@ namespace Controller
                 return;
             currentFileName = dlg.FileNames[0];
             toolStripButtonSave.Enabled = true;
-            string readText = File.ReadAllText(currentFileName);
+            string readText = File.ReadAllText(currentFileName).Replace("\r","");
             this.Text = "Controller - "+Path.GetFileNameWithoutExtension(currentFileName);
 
             int CstPos = readText.IndexOf("##CONSTANTS##");
