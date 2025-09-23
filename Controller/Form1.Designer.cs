@@ -93,41 +93,44 @@
             this.label_SP = new System.Windows.Forms.Label();
             this.dataGridView_Stack = new System.Windows.Forms.DataGridView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButtonNew = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonLoad = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonSave = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonSaveAs = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonGenerate = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonTick = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonRun = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonReset = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonStepOver = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonStepOut = new System.Windows.Forms.ToolStripButton();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label_Title1 = new System.Windows.Forms.Label();
-            this.label_Title2 = new System.Windows.Forms.Label();
-            this.label_Title3 = new System.Windows.Forms.Label();
-            this.label_Title4 = new System.Windows.Forms.Label();
-            this.label_Title5 = new System.Windows.Forms.Label();
-            this.label_Title6 = new System.Windows.Forms.Label();
-            this.label_Title7 = new System.Windows.Forms.Label();
-            this.label_SubTitle1 = new System.Windows.Forms.Label();
-            this.label_SubTitle2 = new System.Windows.Forms.Label();
-            this.label_SubTitle3 = new System.Windows.Forms.Label();
-            this.label_SubTitle4 = new System.Windows.Forms.Label();
-            this.label_Data1 = new System.Windows.Forms.Label();
-            this.label_Data2 = new System.Windows.Forms.Label();
-            this.label_Data3 = new System.Windows.Forms.Label();
-            this.label_Data4 = new System.Windows.Forms.Label();
-            this.label_Data5 = new System.Windows.Forms.Label();
-            this.label_Data7 = new System.Windows.Forms.Label();
-            this.label_Data6 = new System.Windows.Forms.Label();
             this.toolStripButtonStop = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonNew = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonStepOver = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonTick = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonStepOut = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonReset = new System.Windows.Forms.ToolStripButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label_Data7 = new System.Windows.Forms.Label();
+            this.label_Data5 = new System.Windows.Forms.Label();
+            this.label_Data3 = new System.Windows.Forms.Label();
+            this.label_Data1 = new System.Windows.Forms.Label();
+            this.label_SubTitle3 = new System.Windows.Forms.Label();
+            this.label_SubTitle1 = new System.Windows.Forms.Label();
+            this.label_Title7 = new System.Windows.Forms.Label();
+            this.label_Title5 = new System.Windows.Forms.Label();
+            this.label_Title3 = new System.Windows.Forms.Label();
+            this.label_Title1 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label_Data6 = new System.Windows.Forms.Label();
+            this.label_Title6 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label_Data2 = new System.Windows.Forms.Label();
+            this.label_SubTitle2 = new System.Windows.Forms.Label();
+            this.label_Title2 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label_Data4 = new System.Windows.Forms.Label();
+            this.label_SubTitle4 = new System.Windows.Forms.Label();
+            this.label_Title4 = new System.Windows.Forms.Label();
+            this.labelKeyboard = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Rom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Ram)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -135,9 +138,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Stack)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // linkLabel1
@@ -491,7 +494,7 @@
             // 
             this.checkBox17.AutoSize = true;
             this.checkBox17.Enabled = false;
-            this.checkBox17.Location = new System.Drawing.Point(1010, 388);
+            this.checkBox17.Location = new System.Drawing.Point(1004, 372);
             this.checkBox17.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox17.Name = "checkBox17";
             this.checkBox17.Size = new System.Drawing.Size(15, 14);
@@ -502,7 +505,7 @@
             // 
             this.checkBox18.AutoSize = true;
             this.checkBox18.Enabled = false;
-            this.checkBox18.Location = new System.Drawing.Point(988, 388);
+            this.checkBox18.Location = new System.Drawing.Point(982, 372);
             this.checkBox18.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox18.Name = "checkBox18";
             this.checkBox18.Size = new System.Drawing.Size(15, 14);
@@ -513,7 +516,7 @@
             // 
             this.checkBox19.AutoSize = true;
             this.checkBox19.Enabled = false;
-            this.checkBox19.Location = new System.Drawing.Point(964, 388);
+            this.checkBox19.Location = new System.Drawing.Point(958, 372);
             this.checkBox19.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox19.Name = "checkBox19";
             this.checkBox19.Size = new System.Drawing.Size(15, 14);
@@ -524,7 +527,7 @@
             // 
             this.checkBox20.AutoSize = true;
             this.checkBox20.Enabled = false;
-            this.checkBox20.Location = new System.Drawing.Point(941, 388);
+            this.checkBox20.Location = new System.Drawing.Point(935, 372);
             this.checkBox20.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox20.Name = "checkBox20";
             this.checkBox20.Size = new System.Drawing.Size(15, 14);
@@ -535,7 +538,7 @@
             // 
             this.checkBox21.AutoSize = true;
             this.checkBox21.Enabled = false;
-            this.checkBox21.Location = new System.Drawing.Point(919, 388);
+            this.checkBox21.Location = new System.Drawing.Point(913, 372);
             this.checkBox21.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox21.Name = "checkBox21";
             this.checkBox21.Size = new System.Drawing.Size(15, 14);
@@ -546,7 +549,7 @@
             // 
             this.checkBox22.AutoSize = true;
             this.checkBox22.Enabled = false;
-            this.checkBox22.Location = new System.Drawing.Point(896, 388);
+            this.checkBox22.Location = new System.Drawing.Point(890, 372);
             this.checkBox22.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox22.Name = "checkBox22";
             this.checkBox22.Size = new System.Drawing.Size(15, 14);
@@ -557,7 +560,7 @@
             // 
             this.checkBox23.AutoSize = true;
             this.checkBox23.Enabled = false;
-            this.checkBox23.Location = new System.Drawing.Point(872, 388);
+            this.checkBox23.Location = new System.Drawing.Point(866, 372);
             this.checkBox23.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox23.Name = "checkBox23";
             this.checkBox23.Size = new System.Drawing.Size(15, 14);
@@ -568,7 +571,7 @@
             // 
             this.checkBox24.AutoSize = true;
             this.checkBox24.Enabled = false;
-            this.checkBox24.Location = new System.Drawing.Point(850, 388);
+            this.checkBox24.Location = new System.Drawing.Point(844, 372);
             this.checkBox24.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox24.Name = "checkBox24";
             this.checkBox24.Size = new System.Drawing.Size(15, 14);
@@ -578,7 +581,7 @@
             // checkBox25
             // 
             this.checkBox25.AutoSize = true;
-            this.checkBox25.Location = new System.Drawing.Point(1010, 418);
+            this.checkBox25.Location = new System.Drawing.Point(1004, 402);
             this.checkBox25.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox25.Name = "checkBox25";
             this.checkBox25.Size = new System.Drawing.Size(15, 14);
@@ -589,7 +592,7 @@
             // checkBox26
             // 
             this.checkBox26.AutoSize = true;
-            this.checkBox26.Location = new System.Drawing.Point(988, 418);
+            this.checkBox26.Location = new System.Drawing.Point(982, 402);
             this.checkBox26.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox26.Name = "checkBox26";
             this.checkBox26.Size = new System.Drawing.Size(15, 14);
@@ -600,7 +603,7 @@
             // checkBox27
             // 
             this.checkBox27.AutoSize = true;
-            this.checkBox27.Location = new System.Drawing.Point(964, 418);
+            this.checkBox27.Location = new System.Drawing.Point(958, 402);
             this.checkBox27.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox27.Name = "checkBox27";
             this.checkBox27.Size = new System.Drawing.Size(15, 14);
@@ -611,7 +614,7 @@
             // checkBox28
             // 
             this.checkBox28.AutoSize = true;
-            this.checkBox28.Location = new System.Drawing.Point(941, 418);
+            this.checkBox28.Location = new System.Drawing.Point(935, 402);
             this.checkBox28.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox28.Name = "checkBox28";
             this.checkBox28.Size = new System.Drawing.Size(15, 14);
@@ -622,7 +625,7 @@
             // checkBox29
             // 
             this.checkBox29.AutoSize = true;
-            this.checkBox29.Location = new System.Drawing.Point(919, 418);
+            this.checkBox29.Location = new System.Drawing.Point(913, 402);
             this.checkBox29.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox29.Name = "checkBox29";
             this.checkBox29.Size = new System.Drawing.Size(15, 14);
@@ -633,7 +636,7 @@
             // checkBox30
             // 
             this.checkBox30.AutoSize = true;
-            this.checkBox30.Location = new System.Drawing.Point(896, 418);
+            this.checkBox30.Location = new System.Drawing.Point(890, 402);
             this.checkBox30.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox30.Name = "checkBox30";
             this.checkBox30.Size = new System.Drawing.Size(15, 14);
@@ -644,7 +647,7 @@
             // checkBox31
             // 
             this.checkBox31.AutoSize = true;
-            this.checkBox31.Location = new System.Drawing.Point(872, 418);
+            this.checkBox31.Location = new System.Drawing.Point(866, 402);
             this.checkBox31.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox31.Name = "checkBox31";
             this.checkBox31.Size = new System.Drawing.Size(15, 14);
@@ -655,7 +658,7 @@
             // checkBox32
             // 
             this.checkBox32.AutoSize = true;
-            this.checkBox32.Location = new System.Drawing.Point(850, 418);
+            this.checkBox32.Location = new System.Drawing.Point(844, 402);
             this.checkBox32.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox32.Name = "checkBox32";
             this.checkBox32.Size = new System.Drawing.Size(15, 14);
@@ -667,7 +670,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(824, 344);
+            this.label3.Location = new System.Drawing.Point(818, 328);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(226, 29);
@@ -678,7 +681,7 @@
             // 
             this.button6.Image = ((System.Drawing.Image)(resources.GetObject("button6.Image")));
             this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.Location = new System.Drawing.Point(1058, 379);
+            this.button6.Location = new System.Drawing.Point(1052, 363);
             this.button6.Margin = new System.Windows.Forms.Padding(2);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(56, 25);
@@ -691,7 +694,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(829, 481);
+            this.pictureBox1.Location = new System.Drawing.Point(823, 465);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(435, 249);
             this.pictureBox1.TabIndex = 59;
@@ -701,7 +704,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(824, 444);
+            this.label4.Location = new System.Drawing.Point(818, 428);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(92, 29);
@@ -711,7 +714,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(1177, 360);
+            this.label5.Location = new System.Drawing.Point(1171, 344);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(81, 13);
             this.label5.TabIndex = 61;
@@ -720,7 +723,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(1107, 461);
+            this.label6.Location = new System.Drawing.Point(1101, 445);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(161, 13);
             this.label6.TabIndex = 62;
@@ -730,7 +733,7 @@
             // 
             this.button7.Image = ((System.Drawing.Image)(resources.GetObject("button7.Image")));
             this.button7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button7.Location = new System.Drawing.Point(920, 448);
+            this.button7.Location = new System.Drawing.Point(914, 432);
             this.button7.Margin = new System.Windows.Forms.Padding(2);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(56, 25);
@@ -852,6 +855,16 @@
             this.toolStrip1.TabIndex = 78;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // toolStripButtonNew
+            // 
+            this.toolStripButtonNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonNew.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonNew.Image")));
+            this.toolStripButtonNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonNew.Name = "toolStripButtonNew";
+            this.toolStripButtonNew.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonNew.Text = "New";
+            this.toolStripButtonNew.Click += new System.EventHandler(this.toolStripButtonNew_Click);
+            // 
             // toolStripButtonLoad
             // 
             this.toolStripButtonLoad.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -901,15 +914,6 @@
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
-            // toolStripButtonTick
-            // 
-            this.toolStripButtonTick.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonTick.Image")));
-            this.toolStripButtonTick.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonTick.Name = "toolStripButtonTick";
-            this.toolStripButtonTick.Size = new System.Drawing.Size(48, 22);
-            this.toolStripButtonTick.Text = "Tick";
-            this.toolStripButtonTick.Click += new System.EventHandler(this.toolStripButtonTick_Click);
-            // 
             // toolStripButtonRun
             // 
             this.toolStripButtonRun.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonRun.Image")));
@@ -919,14 +923,15 @@
             this.toolStripButtonRun.Text = "Run";
             this.toolStripButtonRun.Click += new System.EventHandler(this.toolStripButtonRun_Click);
             // 
-            // toolStripButtonReset
+            // toolStripButtonStop
             // 
-            this.toolStripButtonReset.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonReset.Image")));
-            this.toolStripButtonReset.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonReset.Name = "toolStripButtonReset";
-            this.toolStripButtonReset.Size = new System.Drawing.Size(55, 22);
-            this.toolStripButtonReset.Text = "Reset";
-            this.toolStripButtonReset.Click += new System.EventHandler(this.toolStripButtonReset_Click);
+            this.toolStripButtonStop.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonStop.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonStop.Image")));
+            this.toolStripButtonStop.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonStop.Name = "toolStripButtonStop";
+            this.toolStripButtonStop.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonStop.Text = "Stop";
+            this.toolStripButtonStop.Click += new System.EventHandler(this.toolStripButtonStop_Click);
             // 
             // toolStripButtonStepOver
             // 
@@ -938,6 +943,15 @@
             this.toolStripButtonStepOver.Text = "Step Over";
             this.toolStripButtonStepOver.Click += new System.EventHandler(this.toolStripButtonStepOver_Click);
             // 
+            // toolStripButtonTick
+            // 
+            this.toolStripButtonTick.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonTick.Image")));
+            this.toolStripButtonTick.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonTick.Name = "toolStripButtonTick";
+            this.toolStripButtonTick.Size = new System.Drawing.Size(48, 22);
+            this.toolStripButtonTick.Text = "Tick";
+            this.toolStripButtonTick.Click += new System.EventHandler(this.toolStripButtonTick_Click);
+            // 
             // toolStripButtonStepOut
             // 
             this.toolStripButtonStepOut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -947,6 +961,15 @@
             this.toolStripButtonStepOut.Size = new System.Drawing.Size(23, 22);
             this.toolStripButtonStepOut.Text = "Step Out";
             this.toolStripButtonStepOut.Click += new System.EventHandler(this.toolStripButtonStepOut_Click);
+            // 
+            // toolStripButtonReset
+            // 
+            this.toolStripButtonReset.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonReset.Image")));
+            this.toolStripButtonReset.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonReset.Name = "toolStripButtonReset";
+            this.toolStripButtonReset.Size = new System.Drawing.Size(55, 22);
+            this.toolStripButtonReset.Text = "Reset";
+            this.toolStripButtonReset.Click += new System.EventHandler(this.toolStripButtonReset_Click);
             // 
             // groupBox1
             // 
@@ -967,247 +990,16 @@
             this.groupBox1.TabIndex = 79;
             this.groupBox1.TabStop = false;
             // 
-            // groupBox2
+            // label_Data7
             // 
-            this.groupBox2.Controls.Add(this.label_Data2);
-            this.groupBox2.Controls.Add(this.label_SubTitle2);
-            this.groupBox2.Controls.Add(this.label_Title2);
-            this.groupBox2.Location = new System.Drawing.Point(177, 607);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(142, 95);
-            this.groupBox2.TabIndex = 80;
-            this.groupBox2.TabStop = false;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.label_Data4);
-            this.groupBox3.Controls.Add(this.label_SubTitle4);
-            this.groupBox3.Controls.Add(this.label_Title4);
-            this.groupBox3.Location = new System.Drawing.Point(420, 607);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(93, 95);
-            this.groupBox3.TabIndex = 81;
-            this.groupBox3.TabStop = false;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.label_Data6);
-            this.groupBox4.Controls.Add(this.label_Title6);
-            this.groupBox4.Location = new System.Drawing.Point(552, 0);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(58, 95);
-            this.groupBox4.TabIndex = 82;
-            this.groupBox4.TabStop = false;
-            // 
-            // label_Title1
-            // 
-            this.label_Title1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label_Title1.AutoSize = true;
-            this.label_Title1.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Title1.Location = new System.Drawing.Point(60, 12);
-            this.label_Title1.Name = "label_Title1";
-            this.label_Title1.Size = new System.Drawing.Size(15, 16);
-            this.label_Title1.TabIndex = 82;
-            this.label_Title1.Text = "A";
-            this.label_Title1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label_Title2
-            // 
-            this.label_Title2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label_Title2.AutoSize = true;
-            this.label_Title2.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Title2.Location = new System.Drawing.Point(43, 12);
-            this.label_Title2.Name = "label_Title2";
-            this.label_Title2.Size = new System.Drawing.Size(15, 16);
-            this.label_Title2.TabIndex = 83;
-            this.label_Title2.Text = "A";
-            this.label_Title2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label_Title3
-            // 
-            this.label_Title3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label_Title3.AutoSize = true;
-            this.label_Title3.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Title3.Location = new System.Drawing.Point(303, 12);
-            this.label_Title3.Name = "label_Title3";
-            this.label_Title3.Size = new System.Drawing.Size(15, 16);
-            this.label_Title3.TabIndex = 84;
-            this.label_Title3.Text = "A";
-            this.label_Title3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label_Title4
-            // 
-            this.label_Title4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label_Title4.AutoSize = true;
-            this.label_Title4.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Title4.Location = new System.Drawing.Point(28, 12);
-            this.label_Title4.Name = "label_Title4";
-            this.label_Title4.Size = new System.Drawing.Size(15, 16);
-            this.label_Title4.TabIndex = 85;
-            this.label_Title4.Text = "A";
-            this.label_Title4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label_Title5
-            // 
-            this.label_Title5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label_Title5.AutoSize = true;
-            this.label_Title5.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Title5.Location = new System.Drawing.Point(486, 12);
-            this.label_Title5.Name = "label_Title5";
-            this.label_Title5.Size = new System.Drawing.Size(15, 16);
-            this.label_Title5.TabIndex = 86;
-            this.label_Title5.Text = "A";
-            this.label_Title5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label_Title6
-            // 
-            this.label_Title6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label_Title6.AutoSize = true;
-            this.label_Title6.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Title6.Location = new System.Drawing.Point(16, 12);
-            this.label_Title6.Name = "label_Title6";
-            this.label_Title6.Size = new System.Drawing.Size(15, 16);
-            this.label_Title6.TabIndex = 87;
-            this.label_Title6.Text = "A";
-            this.label_Title6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label_Title7
-            // 
-            this.label_Title7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label_Title7.AutoSize = true;
-            this.label_Title7.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Title7.Location = new System.Drawing.Point(630, 12);
-            this.label_Title7.Name = "label_Title7";
-            this.label_Title7.Size = new System.Drawing.Size(15, 16);
-            this.label_Title7.TabIndex = 88;
-            this.label_Title7.Text = "A";
-            this.label_Title7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label_SubTitle1
-            // 
-            this.label_SubTitle1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label_SubTitle1.AutoSize = true;
-            this.label_SubTitle1.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_SubTitle1.Location = new System.Drawing.Point(6, 31);
-            this.label_SubTitle1.Name = "label_SubTitle1";
-            this.label_SubTitle1.Size = new System.Drawing.Size(15, 16);
-            this.label_SubTitle1.TabIndex = 89;
-            this.label_SubTitle1.Text = "A";
-            this.label_SubTitle1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label_SubTitle2
-            // 
-            this.label_SubTitle2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label_SubTitle2.AutoSize = true;
-            this.label_SubTitle2.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_SubTitle2.Location = new System.Drawing.Point(6, 31);
-            this.label_SubTitle2.Name = "label_SubTitle2";
-            this.label_SubTitle2.Size = new System.Drawing.Size(15, 16);
-            this.label_SubTitle2.TabIndex = 90;
-            this.label_SubTitle2.Text = "A";
-            this.label_SubTitle2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label_SubTitle3
-            // 
-            this.label_SubTitle3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label_SubTitle3.AutoSize = true;
-            this.label_SubTitle3.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_SubTitle3.Location = new System.Drawing.Point(294, 31);
-            this.label_SubTitle3.Name = "label_SubTitle3";
-            this.label_SubTitle3.Size = new System.Drawing.Size(15, 16);
-            this.label_SubTitle3.TabIndex = 91;
-            this.label_SubTitle3.Text = "A";
-            this.label_SubTitle3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label_SubTitle4
-            // 
-            this.label_SubTitle4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label_SubTitle4.AutoSize = true;
-            this.label_SubTitle4.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_SubTitle4.Location = new System.Drawing.Point(13, 31);
-            this.label_SubTitle4.Name = "label_SubTitle4";
-            this.label_SubTitle4.Size = new System.Drawing.Size(15, 16);
-            this.label_SubTitle4.TabIndex = 92;
-            this.label_SubTitle4.Text = "A";
-            this.label_SubTitle4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label_Data1
-            // 
-            this.label_Data1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label_Data1.AutoSize = true;
-            this.label_Data1.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Data1.Location = new System.Drawing.Point(6, 53);
-            this.label_Data1.Name = "label_Data1";
-            this.label_Data1.Size = new System.Drawing.Size(15, 16);
-            this.label_Data1.TabIndex = 92;
-            this.label_Data1.Text = "A";
-            this.label_Data1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label_Data2
-            // 
-            this.label_Data2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label_Data2.AutoSize = true;
-            this.label_Data2.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Data2.Location = new System.Drawing.Point(9, 53);
-            this.label_Data2.Name = "label_Data2";
-            this.label_Data2.Size = new System.Drawing.Size(15, 16);
-            this.label_Data2.TabIndex = 91;
-            this.label_Data2.Text = "A";
-            this.label_Data2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label_Data3
-            // 
-            this.label_Data3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label_Data3.AutoSize = true;
-            this.label_Data3.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Data3.Location = new System.Drawing.Point(294, 53);
-            this.label_Data3.Name = "label_Data3";
-            this.label_Data3.Size = new System.Drawing.Size(15, 16);
-            this.label_Data3.TabIndex = 93;
-            this.label_Data3.Text = "A";
-            this.label_Data3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label_Data4
-            // 
-            this.label_Data4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label_Data4.AutoSize = true;
-            this.label_Data4.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Data4.Location = new System.Drawing.Point(8, 53);
-            this.label_Data4.Name = "label_Data4";
-            this.label_Data4.Size = new System.Drawing.Size(15, 16);
-            this.label_Data4.TabIndex = 93;
-            this.label_Data4.Text = "A";
-            this.label_Data4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_Data7.AutoSize = true;
+            this.label_Data7.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Data7.Location = new System.Drawing.Point(615, 53);
+            this.label_Data7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label_Data7.Name = "label_Data7";
+            this.label_Data7.Size = new System.Drawing.Size(55, 16);
+            this.label_Data7.TabIndex = 82;
+            this.label_Data7.Text = "label2";
             // 
             // label_Data5
             // 
@@ -1223,16 +1015,127 @@
             this.label_Data5.Text = "A";
             this.label_Data5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label_Data7
+            // label_Data3
             // 
-            this.label_Data7.AutoSize = true;
-            this.label_Data7.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Data7.Location = new System.Drawing.Point(615, 53);
-            this.label_Data7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label_Data7.Name = "label_Data7";
-            this.label_Data7.Size = new System.Drawing.Size(55, 16);
-            this.label_Data7.TabIndex = 82;
-            this.label_Data7.Text = "label2";
+            this.label_Data3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_Data3.AutoSize = true;
+            this.label_Data3.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Data3.Location = new System.Drawing.Point(294, 53);
+            this.label_Data3.Name = "label_Data3";
+            this.label_Data3.Size = new System.Drawing.Size(15, 16);
+            this.label_Data3.TabIndex = 93;
+            this.label_Data3.Text = "A";
+            this.label_Data3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_Data1
+            // 
+            this.label_Data1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_Data1.AutoSize = true;
+            this.label_Data1.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Data1.Location = new System.Drawing.Point(6, 53);
+            this.label_Data1.Name = "label_Data1";
+            this.label_Data1.Size = new System.Drawing.Size(15, 16);
+            this.label_Data1.TabIndex = 92;
+            this.label_Data1.Text = "A";
+            this.label_Data1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_SubTitle3
+            // 
+            this.label_SubTitle3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_SubTitle3.AutoSize = true;
+            this.label_SubTitle3.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_SubTitle3.Location = new System.Drawing.Point(294, 31);
+            this.label_SubTitle3.Name = "label_SubTitle3";
+            this.label_SubTitle3.Size = new System.Drawing.Size(15, 16);
+            this.label_SubTitle3.TabIndex = 91;
+            this.label_SubTitle3.Text = "A";
+            this.label_SubTitle3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_SubTitle1
+            // 
+            this.label_SubTitle1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_SubTitle1.AutoSize = true;
+            this.label_SubTitle1.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_SubTitle1.Location = new System.Drawing.Point(6, 31);
+            this.label_SubTitle1.Name = "label_SubTitle1";
+            this.label_SubTitle1.Size = new System.Drawing.Size(15, 16);
+            this.label_SubTitle1.TabIndex = 89;
+            this.label_SubTitle1.Text = "A";
+            this.label_SubTitle1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_Title7
+            // 
+            this.label_Title7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_Title7.AutoSize = true;
+            this.label_Title7.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Title7.Location = new System.Drawing.Point(630, 12);
+            this.label_Title7.Name = "label_Title7";
+            this.label_Title7.Size = new System.Drawing.Size(15, 16);
+            this.label_Title7.TabIndex = 88;
+            this.label_Title7.Text = "A";
+            this.label_Title7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_Title5
+            // 
+            this.label_Title5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_Title5.AutoSize = true;
+            this.label_Title5.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Title5.Location = new System.Drawing.Point(486, 12);
+            this.label_Title5.Name = "label_Title5";
+            this.label_Title5.Size = new System.Drawing.Size(15, 16);
+            this.label_Title5.TabIndex = 86;
+            this.label_Title5.Text = "A";
+            this.label_Title5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_Title3
+            // 
+            this.label_Title3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_Title3.AutoSize = true;
+            this.label_Title3.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Title3.Location = new System.Drawing.Point(303, 12);
+            this.label_Title3.Name = "label_Title3";
+            this.label_Title3.Size = new System.Drawing.Size(15, 16);
+            this.label_Title3.TabIndex = 84;
+            this.label_Title3.Text = "A";
+            this.label_Title3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_Title1
+            // 
+            this.label_Title1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_Title1.AutoSize = true;
+            this.label_Title1.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Title1.Location = new System.Drawing.Point(60, 12);
+            this.label_Title1.Name = "label_Title1";
+            this.label_Title1.Size = new System.Drawing.Size(15, 16);
+            this.label_Title1.TabIndex = 82;
+            this.label_Title1.Text = "A";
+            this.label_Title1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.label_Data6);
+            this.groupBox4.Controls.Add(this.label_Title6);
+            this.groupBox4.Location = new System.Drawing.Point(552, 0);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(58, 95);
+            this.groupBox4.TabIndex = 82;
+            this.groupBox4.TabStop = false;
             // 
             // label_Data6
             // 
@@ -1245,30 +1148,163 @@
             this.label_Data6.TabIndex = 82;
             this.label_Data6.Text = "X";
             // 
-            // toolStripButtonStop
+            // label_Title6
             // 
-            this.toolStripButtonStop.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonStop.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonStop.Image")));
-            this.toolStripButtonStop.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonStop.Name = "toolStripButtonStop";
-            this.toolStripButtonStop.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButtonStop.Text = "Stop";
-            this.toolStripButtonStop.Click += new System.EventHandler(this.toolStripButtonStop_Click);
+            this.label_Title6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_Title6.AutoSize = true;
+            this.label_Title6.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Title6.Location = new System.Drawing.Point(16, 12);
+            this.label_Title6.Name = "label_Title6";
+            this.label_Title6.Size = new System.Drawing.Size(15, 16);
+            this.label_Title6.TabIndex = 87;
+            this.label_Title6.Text = "A";
+            this.label_Title6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // toolStripButtonNew
+            // groupBox2
             // 
-            this.toolStripButtonNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonNew.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonNew.Image")));
-            this.toolStripButtonNew.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonNew.Name = "toolStripButtonNew";
-            this.toolStripButtonNew.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButtonNew.Text = "New";
+            this.groupBox2.Controls.Add(this.label_Data2);
+            this.groupBox2.Controls.Add(this.label_SubTitle2);
+            this.groupBox2.Controls.Add(this.label_Title2);
+            this.groupBox2.Location = new System.Drawing.Point(177, 607);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(142, 95);
+            this.groupBox2.TabIndex = 80;
+            this.groupBox2.TabStop = false;
+            // 
+            // label_Data2
+            // 
+            this.label_Data2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_Data2.AutoSize = true;
+            this.label_Data2.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Data2.Location = new System.Drawing.Point(9, 53);
+            this.label_Data2.Name = "label_Data2";
+            this.label_Data2.Size = new System.Drawing.Size(15, 16);
+            this.label_Data2.TabIndex = 91;
+            this.label_Data2.Text = "A";
+            this.label_Data2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_SubTitle2
+            // 
+            this.label_SubTitle2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_SubTitle2.AutoSize = true;
+            this.label_SubTitle2.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_SubTitle2.Location = new System.Drawing.Point(6, 31);
+            this.label_SubTitle2.Name = "label_SubTitle2";
+            this.label_SubTitle2.Size = new System.Drawing.Size(15, 16);
+            this.label_SubTitle2.TabIndex = 90;
+            this.label_SubTitle2.Text = "A";
+            this.label_SubTitle2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_Title2
+            // 
+            this.label_Title2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_Title2.AutoSize = true;
+            this.label_Title2.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Title2.Location = new System.Drawing.Point(43, 12);
+            this.label_Title2.Name = "label_Title2";
+            this.label_Title2.Size = new System.Drawing.Size(15, 16);
+            this.label_Title2.TabIndex = 83;
+            this.label_Title2.Text = "A";
+            this.label_Title2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label_Data4);
+            this.groupBox3.Controls.Add(this.label_SubTitle4);
+            this.groupBox3.Controls.Add(this.label_Title4);
+            this.groupBox3.Location = new System.Drawing.Point(420, 607);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(93, 95);
+            this.groupBox3.TabIndex = 81;
+            this.groupBox3.TabStop = false;
+            // 
+            // label_Data4
+            // 
+            this.label_Data4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_Data4.AutoSize = true;
+            this.label_Data4.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Data4.Location = new System.Drawing.Point(8, 53);
+            this.label_Data4.Name = "label_Data4";
+            this.label_Data4.Size = new System.Drawing.Size(15, 16);
+            this.label_Data4.TabIndex = 93;
+            this.label_Data4.Text = "A";
+            this.label_Data4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_SubTitle4
+            // 
+            this.label_SubTitle4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_SubTitle4.AutoSize = true;
+            this.label_SubTitle4.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_SubTitle4.Location = new System.Drawing.Point(13, 31);
+            this.label_SubTitle4.Name = "label_SubTitle4";
+            this.label_SubTitle4.Size = new System.Drawing.Size(15, 16);
+            this.label_SubTitle4.TabIndex = 92;
+            this.label_SubTitle4.Text = "A";
+            this.label_SubTitle4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label_Title4
+            // 
+            this.label_Title4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_Title4.AutoSize = true;
+            this.label_Title4.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Title4.Location = new System.Drawing.Point(28, 12);
+            this.label_Title4.Name = "label_Title4";
+            this.label_Title4.Size = new System.Drawing.Size(15, 16);
+            this.label_Title4.TabIndex = 85;
+            this.label_Title4.Text = "A";
+            this.label_Title4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labelKeyboard
+            // 
+            this.labelKeyboard.AutoSize = true;
+            this.labelKeyboard.Location = new System.Drawing.Point(820, 753);
+            this.labelKeyboard.Name = "labelKeyboard";
+            this.labelKeyboard.Size = new System.Drawing.Size(75, 13);
+            this.labelKeyboard.TabIndex = 82;
+            this.labelKeyboard.Text = "Keyboard key:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(1171, 733);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(81, 13);
+            this.label8.TabIndex = 84;
+            this.label8.Text = "0x6000 (24576)";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(818, 717);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(117, 29);
+            this.label9.TabIndex = 83;
+            this.label9.Text = "Keyboard";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1281, 775);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.labelKeyboard);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.dataGridView_Stack);
             this.Controls.Add(this.label_SP);
@@ -1337,8 +1373,12 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Name = "Form1";
             this.Text = "Controller";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Rom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Ram)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -1348,12 +1388,12 @@
             this.toolStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1459,6 +1499,9 @@
         private System.Windows.Forms.Label label_Data6;
         private System.Windows.Forms.ToolStripButton toolStripButtonStop;
         private System.Windows.Forms.ToolStripButton toolStripButtonNew;
+        private System.Windows.Forms.Label labelKeyboard;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
     }
 }
 

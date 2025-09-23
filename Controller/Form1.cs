@@ -10,13 +10,14 @@ using System.IO;
 using System.Linq;
 
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Input;
 using static System.Net.Mime.MediaTypeNames;
 
 //TODO
-// issue with JMP
 // keyboard
 // macros predifined
 // macro perso
@@ -51,14 +52,17 @@ namespace Controller
         int Last_PC=0;
         int Current_PC = -1;
         int counter = 0;
+        bool StopRunningLoop = false;
+        int currentKeypressed = 0;
         
         public Form1()
         {
             InitializeComponent();
             myComputer = new Computer(RomSize, RamSize);
             //myComputer.setRom(0, 32912);//D=0
-            int pc = 0;
+
             /*
+            int pc = 0;
             myComputer.setRom(pc++, 48);//A=48
             myComputer.setRom(pc++, 33168);
             myComputer.setRom(pc++, 2);
@@ -123,9 +127,12 @@ namespace Controller
             dataGridView_Rom.Rows[0].Selected = true;
             //dataGridView1.SelectionMode= DataGridViewSelectionMode.FullRowSelect;
 
+            labelKeyboard.UseMnemonic = false;//prevent issue with char &
             label_Data7.UseMnemonic = false;//prevent issue with char &
             label_IGeneratedAsm.UseMnemonic = false;//prevent issue with char &
             myComputer.SetDisplayImage(pictureBox1.Image as Bitmap);
+            myComputer.setKeyboardCallBack(() => { return 33;});
+
 
             toolStripButtonSave.Enabled = false;
             
@@ -515,7 +522,7 @@ namespace Controller
         }
 
 
-        private void textBox_IGeneratedD_KeyDown(object sender, KeyEventArgs e)
+        private void textBox_IGeneratedD_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Return)
             {
@@ -730,7 +737,7 @@ namespace Controller
         void UpdateReserveredWords()
         {
             reservedWords=MacroList.Keys.ToList<string>();
-            reservedWords.Add("JMP");
+            reservedWords.Insert(0,"JMP");
             reservedWords = reservedWords.ConvertAll(d => d.ToUpper());
         }
 
@@ -765,7 +772,13 @@ namespace Controller
                     for (int z = 0; z < reservedWords.Count; z++)
                         if (line.ToUpper().StartsWith(reservedWords[z]))
                             ReserverdWordIndex = z;
-                    if(ReserverdWordIndex>=0)
+                    if (ReserverdWordIndex == 0)//JMP
+                    {
+                        richTextBoxCode.Select(nextpos, reservedWords[ReserverdWordIndex].Length);
+                        richTextBoxCode.SelectionColor = Color.Yellow;
+                        richTextBoxCode.SelectionBackColor = Color.Black;
+                    }
+                    if (ReserverdWordIndex>0)
                     {
                         richTextBoxCode.Select(nextpos, reservedWords[ReserverdWordIndex].Length);
                         richTextBoxCode.SelectionColor = Color.Cyan;
@@ -863,7 +876,7 @@ namespace Controller
             richTextBoxCode.Update();
             ScrollPC = true;
         }
-        private void richTextBoxCode_KeyDown(object sender, KeyEventArgs e)
+        private void richTextBoxCode_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Return)
             {
@@ -1327,12 +1340,13 @@ namespace Controller
             Current_PC = 0;
         }
 
-        private async void toolStripButtonRun_Click(object sender, EventArgs e)
+        private void toolStripButtonRun_Click(object sender, EventArgs e)
         {
             run(Last_PC);
         }
         async void run(int toPC)
-        { 
+        {
+            StopRunningLoop = false;
             toolStripButtonRun.Enabled = false;
             toolStripButtonTick.Enabled = false;
             toolStripButtonReset.Enabled = false;
@@ -1340,11 +1354,13 @@ namespace Controller
             do
             {
                 await Task.Delay(50);
+                if (StopRunningLoop == true)
+                    break;
                 go = Tick();
                 if (Current_PC >= toPC)
                     break;
             } while (go);
-            if (toPC == Last_PC)
+            if (Current_PC == Last_PC)
                 toolStripButtonReset.Enabled = true;
             else 
             {
@@ -1416,8 +1432,8 @@ namespace Controller
                 SaveAs();
                 return true;
             }
-           
-            return base.ProcessCmdKey(ref msg, keyData);
+         
+                return base.ProcessCmdKey(ref msg, keyData);
         }
 
      
@@ -1446,7 +1462,97 @@ namespace Controller
 
         private void toolStripButtonStop_Click(object sender, EventArgs e)
         {
+            StopRunningLoop = true;
+        }
+
+        private void toolStripButtonNew_Click(object sender, EventArgs e)
+        {
+            toolStripButtonSave.Enabled = false;
+            currentFileName = "";
+            richTextBoxCode.Clear();
+            richTextBoxCode_PC.Clear();
+        }
+
+        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        {
 
         }
+
+        public static class KeyEventUtility
+        {
+            // ReSharper disable InconsistentNaming
+            public enum MapType : uint
+            {
+                MAPVK_VK_TO_VSC = 0x0,
+                MAPVK_VSC_TO_VK = 0x1,
+                MAPVK_VK_TO_CHAR = 0x2,
+                MAPVK_VSC_TO_VK_EX = 0x3,
+            }
+            // ReSharper restore InconsistentNaming
+
+            [DllImport("user32.dll")]
+            public static extern int ToUnicode(
+                uint wVirtKey,
+                uint wScanCode,
+                byte[] lpKeyState,
+                [Out, MarshalAs( UnmanagedType.LPWStr, SizeParamIndex = 4 )]
+        StringBuilder pwszBuff,
+                int cchBuff,
+                uint wFlags);
+
+            [DllImport("user32.dll")]
+            public static extern bool GetKeyboardState(byte[] lpKeyState);
+
+            [DllImport("user32.dll")]
+            public static extern uint MapVirtualKey(uint uCode, MapType uMapType);
+
+            public static char GetCharFromKey(Key key)
+            {
+                char ch = ' ';
+
+                int virtualKey = KeyInterop.VirtualKeyFromKey(key);
+                var keyboardState = new byte[256];
+                GetKeyboardState(keyboardState);
+
+                uint scanCode = MapVirtualKey((uint)virtualKey, MapType.MAPVK_VK_TO_VSC);
+                var stringBuilder = new StringBuilder(2);
+
+                int result = ToUnicode((uint)virtualKey, scanCode, keyboardState, stringBuilder, stringBuilder.Capacity, 0);
+                switch (result)
+                {
+                    case -1:
+                        break;
+                    case 0:
+                        break;
+                    case 1:
+                        {
+                            ch = stringBuilder[0];
+                            break;
+                        }
+                    default:
+                        {
+                            ch = stringBuilder[0];
+                            break;
+                        }
+                }
+                return ch;
+            }
+        }
+
+        private void Form1_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            Key wpfKey = KeyInterop.KeyFromVirtualKey((int)e.KeyCode);
+            int key = KeyEventUtility.GetCharFromKey(wpfKey);
+            labelKeyboard.Text = "Keyboard key: " + (char)key;
+            currentKeypressed = key;
+        }
+    
+        private void Form1_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            labelKeyboard.Text = "Keyboard key:  ";
+            currentKeypressed = 0;
+        }
+
+      
     }
 }

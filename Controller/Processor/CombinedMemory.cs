@@ -24,11 +24,13 @@ namespace Controller.Processor
         bool debug_RamRange = false;
         bool debug_InOutRange = false;
         bool debug_DisplayRange = false;
+        bool debug_KeyboardRange = false;
 
         Register_16 reg_a =new Register_16();
         Register_16 reg_d = new Register_16();
         public InputOutput inout = new InputOutput();
         public Display display = new Display();
+        public Keyboard keyboard = new Keyboard();
         public Ram ram;
         public CombinedMemory(int _nbRegister)
         {
@@ -82,13 +84,40 @@ namespace Controller.Processor
 
 
             //--------------------------------------------------
-            //0x6000 => network or keyboard //0110 0000 0000 0000
+            //0x6000 => keyboard //0110 0000 0000 0000
+            
+            bool[] _keyboardAdd = new bool[16];
+            _keyboardAdd[14] = true;
+            _keyboardAdd[13] = true;
+            And_16 andInKeyboard = new And_16();
+            andInKeyboard.a = _displayAdd;
+            andInKeyboard.b = reg_a.output;
+            val += andInKeyboard.proceed();//0100 0000 0000 0000
+            Equal0_16 neq_0x6000 = new Equal0_16();
+            neq_0x6000.a = andInKeyboard.s;
+            val += neq_0x6000.proceed();
+            Invert eq_0x6000 = new Invert();
+            eq_0x6000.input= neq_0x6000.s;
+            val += eq_0x6000.proceed();
+            
 
+            And stKeyboard_And = new And();
+            stKeyboard_And.a = eq_0x6000.output;
+            stKeyboard_And.b = ca;
+            val += stKeyboard_And.proceed();
+            
+            debug_KeyboardRange = eq_0x4000.output;
 
+            //keyboard.X= X;
+            //display.A = A;
+            keyboard.st = stDisplay_And.output;
+            keyboard.cl = cl;//clInOut_And.output;
+            val += keyboard.proceed();
+            
             //--------------------------------------------------
             //0x7FF => in/out              //0111 1111 1111 1111
 
-            Inverter_16 inv16= new Inverter_16();
+            Inverter_16 inv16 = new Inverter_16();
             inv16.a = reg_a.output;//100000000000000
             val += inv16.proceed();
             inv16.s[15] = false;

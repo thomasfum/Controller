@@ -6,4 +6,4 @@ A=3
 D=D-1;JNE
 A=0
 JMP
-#toto
+#Infinite loop with internal loop of 5

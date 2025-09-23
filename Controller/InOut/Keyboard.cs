@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace Controller.InOut
 {
     public class Keyboard
     {
+        Func<int> keyboardCallback;
         public bool[] X = new bool[16];
         public bool[] output = new bool[16];
         public bool cl;
@@ -15,7 +17,14 @@ namespace Controller.InOut
         public int proceed()
         {
             int val = 0;
+            int key=keyboardCallback();
+            output=Tools.int2BoolArray(key);
             return val;
+        }
+
+        public void setKeyboardCallBack(Func<int> _keyboardCallback)
+        {
+            keyboardCallback = _keyboardCallback;
         }
     }
 }
