@@ -3,11 +3,11 @@
   "WorkspaceRootPath": "E:\\Data\\dev\\Controller\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|E:\\Data\\dev\\Controller\\controller\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|e:\\data\\dev\\controller\\controller\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|solutionrelative:controller\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|e:\\data\\dev\\controller\\controller\\processor\\combinedmemory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|E:\\Data\\dev\\Controller\\controller\\processor\\combinedmemory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2C5E1C89-4DA8-4A4B-9B59-81F0C29B9835}|Controller\\Controller.csproj|solutionrelative:controller\\processor\\combinedmemory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -70,8 +70,7 @@
               "RelativeToolTip": "Controller\\Processor\\CombinedMemory.cs",
               "ViewState": "AgIAAFoAAAAAAAAAAAAlwGQAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-23T17:11:38.789Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-23T17:11:38.789Z"
             },
             {
               "$type": "Document",
@@ -95,8 +94,7 @@
               "RelativeToolTip": "Controller\\Form1.Designer.cs",
               "ViewState": "AgIAAFkDAAAAAAAAAAAIwGQDAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-18T06:50:47.667Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-18T06:50:47.667Z"
             },
             {
               "$type": "Document",
@@ -132,8 +130,7 @@
               "RelativeToolTip": "Controller\\InOut\\InputOutput.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAIA9wB4AAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-17T05:29:26.508Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-17T05:29:26.508Z"
             },
             {
               "$type": "Document",
@@ -143,7 +140,7 @@
               "RelativeDocumentMoniker": "Controller\\Form1.cs",
               "ToolTip": "E:\\Data\\dev\\Controller\\Controller\\Form1.cs",
               "RelativeToolTip": "Controller\\Form1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-15T20:11:28.253Z",
               "EditorCaption": ""
@@ -157,8 +154,7 @@
               "ToolTip": "E:\\Data\\dev\\Controller\\Controller\\Form1.cs [Design]",
               "RelativeToolTip": "Controller\\Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-15T20:10:50.833Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-09-15T20:10:50.833Z"
             }
           ]
         }
