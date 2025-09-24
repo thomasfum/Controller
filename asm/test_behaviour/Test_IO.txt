@@ -1,0 +1,10 @@
+##CONSTANTS##
+##CODE##
+#write 7 in in IO
+A=7
+D=A
+A=0x7FFF
+*A=D
+#wtite IO in D
+A=0x7FFF
+D=*A

@@ -131,6 +131,7 @@
             this.labelKeyboard = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Rom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Ram)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -146,7 +147,7 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(976, 80);
+            this.linkLabel1.Location = new System.Drawing.Point(1148, 25);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(121, 13);
             this.linkLabel1.TabIndex = 2;
@@ -165,7 +166,7 @@
             // dataGridView_Rom
             // 
             this.dataGridView_Rom.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_Rom.Location = new System.Drawing.Point(23, 372);
+            this.dataGridView_Rom.Location = new System.Drawing.Point(21, 372);
             this.dataGridView_Rom.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView_Rom.Name = "dataGridView_Rom";
             this.dataGridView_Rom.RowTemplate.Height = 24;
@@ -446,7 +447,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(592, 340);
+            this.label1.Location = new System.Drawing.Point(477, 340);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(65, 29);
@@ -457,7 +458,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(118, 340);
+            this.label2.Location = new System.Drawing.Point(16, 340);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(69, 29);
@@ -766,6 +767,7 @@
             this.richTextBoxCode.VScroll += new System.EventHandler(this.richTextBoxCode_VScroll);
             this.richTextBoxCode.Click += new System.EventHandler(this.richTextBoxCode_Click);
             this.richTextBoxCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.richTextBoxCode_KeyDown);
+            this.richTextBoxCode.KeyUp += new System.Windows.Forms.KeyEventHandler(this.richTextBoxCode_KeyUp);
             this.richTextBoxCode.Leave += new System.EventHandler(this.richTextBoxCode_Leave);
             this.richTextBoxCode.Validating += new System.ComponentModel.CancelEventHandler(this.richTextBoxCode_Validating);
             // 
@@ -807,7 +809,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(70, 44);
+            this.label7.Location = new System.Drawing.Point(16, 44);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(119, 29);
@@ -1297,11 +1299,21 @@
             this.label9.TabIndex = 83;
             this.label9.Text = "Keyboard";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(596, 352);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(141, 13);
+            this.label10.TabIndex = 85;
+            this.label10.Text = "0x0000- 0x7FFE ( 0 - 32766)";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1281, 775);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.labelKeyboard);
@@ -1377,7 +1389,6 @@
             this.Name = "Form1";
             this.Text = "Controller";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Rom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Ram)).EndInit();
@@ -1502,6 +1513,7 @@
         private System.Windows.Forms.Label labelKeyboard;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
     }
 }
 

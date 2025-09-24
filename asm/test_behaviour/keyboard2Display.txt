@@ -1,0 +1,17 @@
+##CONSTANTS##
+##CODE##
+A=0x6000
+D=*A
+A=0
+D;JEQ
+#We have a key pressed
+#clear screen
+A=0x5FFD
+*A=0
+#write A at first pos
+A=0x5FFE
+*A=0
+A=0x5FFF
+*A=D
+A=0
+JMP

@@ -14,14 +14,22 @@ namespace Controller.InOut
         public bool[] output = new bool[16];
         public bool cl;
         public bool st;
+        int lastKey = 0;
         public int proceed()
         {
             int val = 0;
-            if (st == true)
+            if (cl == true)
             {
                 int key = keyboardCallback();
-                output = Tools.int2BoolArray(key);
-                Console.WriteLine("keboard" + key);
+                //if (lastKey == 0)
+                    output = Tools.int2BoolArray(key);
+                //else
+                //    output = Tools.int2BoolArray(0);
+                lastKey = key;
+
+                if (key!=0)
+                    Console.WriteLine("keboard " + key +" => "+ (char)key);
+
             }
             return val;
         }

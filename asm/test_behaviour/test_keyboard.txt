@@ -1,9 +1,7 @@
 ##CONSTANTS##
 ##CODE##
-A=5
-D=A
-A=0x7FFF
-*A=D
+A=0x6000
+D=*A
 A=0
 JMP
 #Infinite loop with internal loop of 5

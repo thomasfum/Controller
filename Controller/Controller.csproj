@@ -82,6 +82,9 @@
     <Compile Include="Arithmetics\Adder_2.cs" />
     <Compile Include="Arithmetics\FullAdder.cs" />
     <Compile Include="Arithmetics\HalfAdder.cs" />
+    <Compile Include="Form1_logic.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="InOut\Display.cs" />
     <Compile Include="InOut\InputOutput.cs" />
     <Compile Include="InOut\Keyboard.cs" />

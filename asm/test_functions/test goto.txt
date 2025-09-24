@@ -1,0 +1,10 @@
+##CONSTANTS##
+##CODE##
+init.stack
+push.value 0x42
+goto end
+# this line should not be executed:
+push.value 0x17
+label end:
+# top of stack should be x42
+A=0

@@ -1,0 +1,24 @@
+##CONSTANTS##
+##CODE##
+#clear screen
+A=0x5FFD
+*A=0
+#write A at first pos
+A=0x5FFE
+*A=0
+A=65
+D=A
+A=0x5FFF
+*A=D
+#write B at second pos
+A=0x5FFE
+*A=1
+A=66
+D=A
+A=0x5FFF
+*A=D
+#write line
+A=0xFFF
+D=A
+A=0x4000
+*A=D

@@ -56,6 +56,8 @@ namespace Controller.Processor
 
             //--------------------------------------------------
             //0x4000 -> 5FFF                //0100 0000 0000 0000  /16 384
+            //X05FF                         //0101 1111 1111 1111
+            /*
             bool[] _displayAdd = new bool[16];
             _displayAdd[14] = true;
             And_16 andInDisplay = new And_16();
@@ -68,18 +70,20 @@ namespace Controller.Processor
             Invert eq_0x4000 = new Invert();
             eq_0x4000.input= neq_0x4000.s;
             val += eq_0x4000.proceed();
+            */
+            bool Display = false;
+            if ((reg_a.output[15] == false) && (reg_a.output[14] == true) && (reg_a.output[13] == false)/* && (reg_a.output[12] == false)*/)
+                Display = true;
+            And clDisplay_And = new And();
+            clDisplay_And.a = Display;// eq_0x4000.output;
+            clDisplay_And.b = cl;
+            val += clDisplay_And.proceed();
 
-
-            And stDisplay_And = new And();
-            stDisplay_And.a = eq_0x4000.output;
-            stDisplay_And.b = ca;
-            val += stDisplay_And.proceed();
-
-            debug_DisplayRange = eq_0x4000.output;
+            debug_DisplayRange = Display;// eq_0x4000.output;
             display.X= X;
             display.A = A;
-            display.st = stDisplay_And.output;
-            display.cl = cl;//clInOut_And.output;
+            display.st = ca;
+            display.cl = clDisplay_And.output;
             val += display.proceed();
 
 
@@ -99,11 +103,13 @@ namespace Controller.Processor
             Invert eq_0x6000 = new Invert();
             eq_0x6000.input= neq_0x6000.s;
             val += eq_0x6000.proceed();
-            
-            
+            bool Keyboard = false;
+            if ( (reg_a.output[15] == false) && (reg_a.output[14] == true) && (reg_a.output[13] == true) && (reg_a.output[12] == false))
+                Keyboard = true;
+
             And clKeyboard_And = new And();
-            clKeyboard_And.a = eq_0x6000.output;
-            clKeyboard_And.b = ca;
+            clKeyboard_And.a = Keyboard;//eq_0x6000.output;
+            clKeyboard_And.b = cl;
             val += clKeyboard_And.proceed();
             
             debug_KeyboardRange = eq_0x6000.output;
@@ -178,8 +184,17 @@ namespace Controller.Processor
             selector_ram_inout_16.D1 = ram.output;
             selector_ram_inout_16.D0 = inout.output;
             selector_ram_inout_16.s = ramRange_And.output;
-            selector_ram_inout_16.proceed();
-            CA= selector_ram_inout_16.output;
+            val+=selector_ram_inout_16.proceed();
+           // CA= selector_ram_inout_16.output;
+
+
+            Selector_16 selector_ram_inout_16_Keyboard = new Selector_16();
+            selector_ram_inout_16_Keyboard.D1 = keyboard.output;
+            selector_ram_inout_16_Keyboard.D0 = selector_ram_inout_16.output;
+            selector_ram_inout_16_Keyboard.s = Keyboard;
+            val += selector_ram_inout_16_Keyboard.proceed();
+            CA = selector_ram_inout_16_Keyboard.output;
+
 
             return val;
         }

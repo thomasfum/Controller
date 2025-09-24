@@ -26,7 +26,11 @@ namespace Controller.InOut
             //0x20 pour chaque ligne
             if ((cl == true) && (st == true))
             {
-                if (adresse == 0x1FFE)
+                if (adresse == 0x1FFD)
+                {
+                    Clear();
+                }
+                else if (adresse == 0x1FFE)
                 {
                     bool[] bposX = new bool[16];
                     bool[] bposY = new bool[16];
@@ -42,7 +46,7 @@ namespace Controller.InOut
                 {
                     //SetText(0,0, '\u2588');
                     char chara = (char)Tools.boolArray2Int(X);
-                    SetText(posX*8, posX * 16, chara);
+                    SetText(posX*8, posY * 16, chara);
                     //image.SetPixel(27 + 8, 27 + 16, Color.FromArgb(255, 155, 155));
                 }
                 else

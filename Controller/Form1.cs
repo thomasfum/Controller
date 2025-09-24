@@ -15,10 +15,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
-using static System.Net.Mime.MediaTypeNames;
+
 
 //TODO
-// keyboard
 // macros predifined
 // macro perso
 // TODO in code
@@ -54,7 +53,9 @@ namespace Controller
         int counter = 0;
         bool StopRunningLoop = false;
         int currentKeypressed = 0;
-        
+        Dictionary<string, int> labels = new Dictionary<string, int>();
+
+
         public Form1()
         {
             InitializeComponent();
@@ -196,48 +197,15 @@ namespace Controller
             MacroList.Add("POP.STATIC", new List<string>() { "A=0", "A=*A-1", "D=*A", "A=address","*A=D","A=0", "*A=*A-1" });
             MacroList.Add("POP.MEMORY", new List<string>() { "pop.D", "pop.A", "*A=D" });
             MacroList.Add("PUSH.MEMORY", new List<string>() { "pop.A", "D=*A", "push.D" });
-
-        }
-
-
-        //----------------------------
-        //PC
-      
-        bool Tick()
-        {
-            if (Last_PC == 0)
-                return false;
-            myComputer.proceed();
-            int A = myComputer.getA();
-            int D = myComputer.getD();
-            int I = myComputer.getI();
-            int ALU = Tools.getALU(I);
-            Current_PC = myComputer.getPC();
-            label_A.Text = "A=" + A;
-            label_D.Text = "D=" + D;
-            label_PC.Text = "PC=" + Current_PC;
-            label_I.Text = "I=" + I;
-            label_ALU.Text = "ALU=" + ALU;
-       
-            dataGridView_Rom.ClearSelection();
-            dataGridView_Rom.Rows[Current_PC].Selected = true;
-
-            
-            updateI(I);
-            refreshRam();
-            refreshMappedIO();
-            label_Nand_count.Text= "Nand count: "+myComputer.GetNandCount();
-            pictureBox1.Refresh();
-            UpdatePC(Current_PC, false);
-            UpdateStack();
-            if (Current_PC >= Last_PC)
-            {
-                toolStripButtonTick.Enabled = false;
-                return false;
-            }
-            return true;
+            MacroList.Add("GOTO", new List<string>() { "A=label", "JMP" });
+            MacroList.Add("IF.GOTO", new List<string>() { "pop.D", "A=label", "D;JNE" });
             
         }
+
+
+
+
+     
      
 
         private void NandGame_TextChanged(object sender, EventArgs e)
@@ -410,69 +378,7 @@ namespace Controller
 
 
 
-            /*
-            //--------------------
-            label_Instruction_b.Text = "|";
-          
-            if (Tools.get15(I) == true)
-                label_Instruction_b.Text += " 1 ";
-            else
-                label_Instruction_b.Text += " 0 ";
-          
-            label_Instruction_b.Text += " 0  0 ";
-           
-            if (Tools.get12(I) == true)
-                label_Instruction_b.Text += " 1 ";
-            else
-                label_Instruction_b.Text += " 0 ";
-           
-            label_Instruction_b.Text += " 0 ";
-          
-       
-            label_Instruction_b.Text += " | ";
-            //alu
-            
-            bool[] Alub = Tools.int2BoolArray(Tools.getALU(I));
-            
-            label_Instruction_b.Text += " " + (Alub[4] ? '1' : '0') + " ";
-            label_Instruction_b.Text += " " + (Alub[3] ? '1' : '0') + " ";
-            label_Instruction_b.Text += " " + (Alub[2] ? '1' : '0') + " ";
-            label_Instruction_b.Text += " " + (Alub[1] ? '1' : '0') + " ";
-            label_Instruction_b.Text += " " + (Alub[0] ? '1' : '0') + " ";
-            label_Instruction_b.Text += " | ";
-
-           
-
-            bool[] targetb = Tools.int2BoolArray(Tools.getTarget(I));
-            label_Instruction_b.Text += " " + (targetb[2] ? '1' : '0') + " ";
-            label_Instruction_b.Text += " " + (targetb[1] ? '1' : '0') + " ";
-            label_Instruction_b.Text += " " + (targetb[0] ? '1' : '0') + " ";
-            label_Instruction_b.Text += " | ";
-            
-            bool[] JMPb = Tools.int2BoolArray(Tools.getJmp(I));
-            label_Instruction_b.Text += " " + (JMPb[2] ? '1' : '0') + " ";
-            label_Instruction_b.Text += " " + (JMPb[1] ? '1' : '0') + " ";
-            label_Instruction_b.Text += " " + (JMPb[0] ? '1' : '0') + " ";
-
-            label_Instruction_b.Text += " | " + I.ToString("D").PadLeft(7) + " |";
-
-            
-            
-            string txt = I.ToString("X");
-            if (txt.Length > 4)
-                label_Instruction_b.Text += " " + I.ToString("X").Substring(4) + " |";
-            else
-                label_Instruction_b.Text += " " + txt.PadLeft(4, '0') + " |";
-
-
-            string Inst = "";
-            if (Tools.get15(I) == true)
-                Inst = Tools.GetInstruction(I);
-            else
-                Inst = "A=" + I;
-            
-            label_Instruction_b.Text += Inst.PadRight(12) + " |";
-            */
+        
            
         }
         void UpdateIGenerated()
@@ -721,129 +627,7 @@ namespace Controller
         }
 
 
-        void ColorRegister(string txt, int startpos)
-        {
-            for (int i=0;i<txt.Length;i++)
-            {
-                if ((txt[i]=='A')| (txt[i] == 'D')||(txt[i] == '*'))
-                {
-                    richTextBoxCode.Select(startpos+i,1);
-                    richTextBoxCode.SelectionColor = Color.LightGreen;
-                }
-
-            }
-        }
-        List<string> reservedWords = new List<string>();//= { "JMP", "init.stack" };
-        void UpdateReserveredWords()
-        {
-            reservedWords=MacroList.Keys.ToList<string>();
-            reservedWords.Insert(0,"JMP");
-            reservedWords = reservedWords.ConvertAll(d => d.ToUpper());
-        }
-
-
-        void AnalyseLines(string txt, List<int> ListErrors)
-        {
-            int pos = 0;
-            int nextpos = 0;
-            bool shoudStop = false;
-            int lineCpt = 0;
-            UpdateReserveredWords();
-            do
-            {
-                pos = txt.IndexOf("\n", nextpos);
-                if (pos < 0)
-                {
-                    shoudStop = true;
-                    pos= txt.Length;
-                }
-                string line = txt.Substring(nextpos, pos - nextpos);
-                richTextBoxCode.Select(nextpos, pos - nextpos);
-                richTextBoxCode.SelectionBackColor = Color.Black;
-
-                if (line.StartsWith("#"))//comment
-                {
-                    richTextBoxCode.Select(nextpos, pos- nextpos);
-                    richTextBoxCode.SelectionColor = Color.DarkGreen;
-                }
-                else 
-                {
-                    int ReserverdWordIndex = -1;
-                    for (int z = 0; z < reservedWords.Count; z++)
-                        if (line.ToUpper().StartsWith(reservedWords[z]))
-                            ReserverdWordIndex = z;
-                    if (ReserverdWordIndex == 0)//JMP
-                    {
-                        richTextBoxCode.Select(nextpos, reservedWords[ReserverdWordIndex].Length);
-                        richTextBoxCode.SelectionColor = Color.Yellow;
-                        richTextBoxCode.SelectionBackColor = Color.Black;
-                    }
-                    if (ReserverdWordIndex>0)
-                    {
-                        richTextBoxCode.Select(nextpos, reservedWords[ReserverdWordIndex].Length);
-                        richTextBoxCode.SelectionColor = Color.Cyan;
-                        richTextBoxCode.SelectionBackColor = Color.Black;
-                    }
-                    else//analize the line
-                    {
-                        for (int i = 0; i < dataGridView_Constant.Rows.Count; i++)
-                        {
-                            string cst=(string)dataGridView_Constant.Rows[i].Cells[0].Value;
-                            if ((cst != null) && (cst != ""))
-                            {
-                                int posCst = line.ToUpper().IndexOf(cst.ToUpper());
-                                if (posCst >= 0)
-                                {
-                                    richTextBoxCode.Select(nextpos + posCst, cst.Length);
-                                    richTextBoxCode.SelectionColor = Color.Cyan;
-                                    richTextBoxCode.SelectionBackColor = Color.Black;
-                                }
-                            }
-
-                        }
-                        int eqPos=line.IndexOf('=');
-                        if (eqPos > 0)//we have a =
-                        {
-                            string sub1 = line.Substring(0, eqPos);
-                            ColorRegister(sub1, nextpos);
-                        }
-                        int scPos = line.IndexOf(';');
-                        if (scPos > 0)//we have a ;
-                        {
-                            richTextBoxCode.Select(nextpos+ scPos, pos - nextpos- scPos);
-                            richTextBoxCode.SelectionColor = Color.Yellow;
-                        }
-                       
-                        if (scPos < 0)
-                            scPos = pos - nextpos;
-                        string sub=line.Substring(eqPos +1, scPos-eqPos-1);
-                        ColorRegister(sub, nextpos +eqPos + 1);
-                    }
-                    
-                    if (ListErrors != null)
-                    {
-                        for (int i = 0; i < ListErrors.Count; i++)
-                        {
-                            if (ListErrors[i] == lineCpt)
-                            {
-                                richTextBoxCode.Select(nextpos, pos - nextpos);
-                                richTextBoxCode.SelectionBackColor = Color.LightCoral;
-                            }
-                            else
-                            {
-                                richTextBoxCode.Select(nextpos, pos - nextpos);
-                                richTextBoxCode.SelectionBackColor = Color.Black;
-                            }
-                        }
-                    }
-
-
-                }
-                lineCpt++;
-                nextpos = pos + 1;
-            } while (shoudStop ==false);
-           
-        }
+    
       
 
         const int WM_SETREDRAW = 11;
@@ -886,189 +670,10 @@ namespace Controller
             }
             if ((e.KeyCode == Keys.Up)|| (e.KeyCode == Keys.PageUp)|| (e.KeyCode == Keys.Down) || (e.KeyCode == Keys.PageDown))
                 SyntaxColorUpdate();
-            
         }
 
      
-        Dictionary<string,int> GetConstants(out string Msg)
-        {
-            Msg = "";
-            Dictionary<string, int> Cst = new Dictionary<string, int>();
-            for (int i = 0; i < dataGridView_Constant.Rows.Count; i++)
-            {
-                string CstName=(string)dataGridView_Constant.Rows[i].Cells[0].Value;
-                string CstVal = (string)dataGridView_Constant.Rows[i].Cells[1].Value;
-                if ((CstName != "") && (CstName != null))
-                {
-                    int val = Tools.ParseNumber(CstVal.ToUpper(), out Msg);
-                    if (Msg == "")
-                    {
-                        if (Cst.ContainsKey(CstName))
-                        {
-                            Msg = "Conatant " + CstName + " exists more than 1 time";
-                            return new Dictionary<string, int>();
-                        }
-                        else
-                        {
-                            Cst.Add(CstName.ToUpper(), val);
-                        }
-                    }
-                    else
-                    {
-                        Msg = "Conatant " + CstName + "Value " + Msg;
-                        return new Dictionary<string, int>(); 
-                    }
-                }
-
-            }
-            return Cst;
-        }
-
-        void ManageLine(string line,bool isMacro, List<string>  paramList)
-        {
-            line = line.ToUpper();
-            if (line == "")
-            {
-                PC.Add(-1);
-                ASM.Add("");
-            }
-            else if (line.StartsWith("#"))
-            {
-                PC.Add(-1);
-                ASM.Add("");
-            }
-            else if (line == "")
-            {
-                PC.Add(-1);
-                ASM.Add("");
-            }
-            else
-            {
-                if (isMacro == false)
-                    PC.Add(counter);
-                bool macroFound = false;
-                foreach (KeyValuePair<string, List<string>> m in MacroList)
-                {
-                    if (line.StartsWith(m.Key))
-                    {
-                        macroFound = true;
-                        AddMacro(line, m.Key, m.Value);
-                    }
-
-                }
-                if (macroFound == false)
-                {
-                   
-                    if (paramList.Count > 0)
-                    {
-                        if (line.Contains("VALUE"))
-                        {
-                            line = line.Replace("VALUE", paramList[0]);
-                        }
-                        if (line.Contains("ADDRESS"))
-                        {
-                            line = line.Replace("ADDRESS", paramList[0]);
-                        }
-                      
-                    }
-                    counter++;
-                    ASM.Add(line);
-                }
-             
-            }
-        }
-
-
-
-        void AddMacro(string ListCode, string MacroName, List<string> macroValue)
-        {
-            //ici rechercher les parametres de la macro et les passer a ManageLine
-            string [] param=ListCode.Split(' ');
-            for (int i = 0; i < macroValue.Count; i++)
-            {
-                List<string> p=param.ToList();
-                p.RemoveAt(0);
-                //ASM.Add(macroValue[i]);
-                ManageLine(macroValue[i],true, p);
-            }
-        }
-        private void Generate()
-        {
-            counter = 0;
-            label_Error.Text = "";
-            string txt = richTextBoxCode.Text;
-            //string txt1= txt.Replace(" ", "").ToUpper();
-            //string txt1= txt.ToUpper();
-            string[] ListCode=txt.Split('\n');
-            PC= new List<int>();
-            ASM = new List<string>();
-            ASMCode = new List<int>();
-            string Msg2 = "";
-            Dictionary<string, int>  Csts =GetConstants(out Msg2);
-            if (Msg2 != "")
-            {
-                label_Error.Text += "Constant Error:" + Msg2;
-                return;
-            }
-            for (int i=0;i<ListCode.Length;i++)
-            {
-                ManageLine(ListCode[i],false, new List<string>());
-            }
-            bool error = false;
-            myComputer.ClearRom();
-            List<int> listError = new List<int>();   
-            for (int i = 0; i < ASM.Count; i++)
-            {
-                string Msg = "";
-                if (ASM[i] != "")
-                {
-                    string codeS = Tools.Decode(ASM[i], Csts, out Msg).ToString();
-                    if (Msg != "")
-                    {
-                        error = true;
-                        label_Error.Text += "Line " + i + ": " + Msg + "\n";
-                        listError.Add(i);
-                        ASMCode.Add(0);
-                    }
-                    else
-                    {
-                        int code = int.Parse(codeS);
-                        ASMCode.Add(code);
-                    }
-                }
-            }
-
-            string PcTxt = "";
-            for (int i = 0; i < PC.Count; i++)
-            {
-                if (PC[i] == -1)
-                    PcTxt += "\n";
-                else
-                    PcTxt += PC[i] + "\n";
-            }
-            richTextBoxCode_PC.Text = PcTxt;
-
-            if (error == true)
-            {
-                List<int> listLineError = new List<int>();
-                for (int i = 0; i < listError.Count; i++)
-                {
-                    int line=UpdatePC(listError[i], true);
-                    listLineError.Add(line);
-                }
-                SyntaxColorUpdate(listLineError);
-                return;
-            }
-             
-            for (int i = 0; i < ASMCode.Count; i++)
-            {
-                myComputer.setRom(i, ASMCode[i]);//A=48
-            }
-            Last_PC = ASMCode.Count;
-            UpdateFromRom();
-          
-           
-        }
+      
 
         void UpdateStack()
         {
@@ -1159,8 +764,8 @@ namespace Controller
                             s = "\n" + PC[lastPCneq] + "\n";
                         //string s = "\n" + PC[lastPCneq] + "\n";
                         //string s = "\n" + PC[i] + "\n";
-                        //if (lastPCneq == 0)
-                        //    s = PC[lastPCneq] + "\n";
+                        if (lastPCneq == 0)
+                            s = PC[lastPCneq] + "\n";
                         pos = richTextBoxCode_PC.Text.IndexOf(s);
                         if (pos >= 0)
                         {
@@ -1329,13 +934,17 @@ namespace Controller
 
         private void toolStripButtonReset_Click(object sender, EventArgs e)
         {
+            Reset();
+        }
+        void Reset()
+        { 
             toolStripButtonTick.Enabled = true;
             toolStripButtonRun.Enabled = true;
             dataGridView_Rom.ClearSelection();
             dataGridView_Rom.Rows[0].Selected = true;
             richTextBoxCode_PC.SelectAll();
             richTextBoxCode_PC.SelectionBackColor = Color.Black;
-            richTextBoxCode.SelectionColor = Color.White;
+            richTextBoxCode_PC.SelectionColor = Color.White;
             myComputer.reset();
             Current_PC = 0;
         }
@@ -1473,10 +1082,7 @@ namespace Controller
             richTextBoxCode_PC.Clear();
         }
 
-        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-        }
+       
 
         public static class KeyEventUtility
         {
@@ -1543,7 +1149,7 @@ namespace Controller
         {
             Key wpfKey = KeyInterop.KeyFromVirtualKey((int)e.KeyCode);
             int key = KeyEventUtility.GetCharFromKey(wpfKey);
-            labelKeyboard.Text = "Keyboard key: " + (char)key;
+            labelKeyboard.Text = "Keyboard key: " + key + " => " + (char)key;
             currentKeypressed = key;
         }
     
@@ -1553,6 +1159,12 @@ namespace Controller
             currentKeypressed = 0;
         }
 
-      
+        private void richTextBoxCode_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.V)
+            {
+                SyntaxColorUpdate();//apply color after paste that can come with colors
+            }
+        }
     }
 }
