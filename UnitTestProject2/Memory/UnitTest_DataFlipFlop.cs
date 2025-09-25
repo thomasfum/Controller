@@ -19,7 +19,7 @@ namespace UnitTestProject2.Memory
             dff.st = false;
             int val= dff.proceed();
             Assert.AreEqual(false, dff.output);
-            Assert.AreEqual(69, val);
+            Assert.AreEqual(23, val);
 
             //nothing change
             dff.cl = true;

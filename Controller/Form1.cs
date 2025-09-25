@@ -18,8 +18,8 @@ using System.Windows.Input;
 
 
 //TODO
-// macros predifined
-// macro perso
+// github
+// demux
 // TODO in code
 
 //idee program:
@@ -32,6 +32,8 @@ namespace Controller
 {
     public partial class Form1 : Form
     {
+
+        String AppPath=AppDomain.CurrentDomain.BaseDirectory + "../../";
         Computer myComputer;
         DataTable dt_Rom = new DataTable();
         DataTable dt_Ram = new DataTable();
@@ -101,7 +103,6 @@ namespace Controller
             dataGridView_Ram.Columns[0].Width = 35;
             dataGridView_Ram.RowHeadersVisible = false;
             dataGridView_Ram.Columns[0].ReadOnly = true;
-            //dataGridView_Ram.Columns[1].Width = dataGridView_Ram.Width - 35 - 20;
             dataGridView_Ram.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView_Ram.AllowUserToAddRows = false;
 
@@ -109,24 +110,20 @@ namespace Controller
             dataGridView_Stack.Columns[0].Width = 35;
             dataGridView_Stack.RowHeadersVisible = false;
             dataGridView_Stack.Columns[0].ReadOnly = true;
-            //dataGridView_Stack.Columns[1].Width = dataGridView_Stack.Width - 35 - 20;
             dataGridView_Stack.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView_Stack.AllowUserToAddRows = false;
-
 
             dataGridView_Rom.DataSource = dt_Rom;
             dataGridView_Rom.Columns[0].Width = 35;
             dataGridView_Rom.RowHeadersVisible = false;
             dataGridView_Rom.Columns[0].ReadOnly = true;
-
             dataGridView_Rom.Columns[1].Width = 50;
-            //dataGridView_Rom.Columns[2].Width = dataGridView_Rom.Width-35-50-20;
             dataGridView_Rom.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
             updateI(0);
             UpdateIGenerated();
             dataGridView_Rom.ClearSelection();
             dataGridView_Rom.Rows[0].Selected = true;
-            //dataGridView1.SelectionMode= DataGridViewSelectionMode.FullRowSelect;
 
             labelKeyboard.UseMnemonic = false;//prevent issue with char &
             label_Data7.UseMnemonic = false;//prevent issue with char &
@@ -140,7 +137,6 @@ namespace Controller
             //richTextBoxCode.SetInnerMargins(dist, dist, dist, 0);
             richTextBoxCode.SelectAll();
             richTextBoxCode.SelectionIndent += 5;//play with this values to match yours
-            //richTextBoxCode.SelectionRightIndent += 15;//this too
             richTextBoxCode.SelectionLength = 0;
 
             richTextBoxCode_PC.SelectAll();
@@ -188,6 +184,9 @@ namespace Controller
             dataGridView_Constant.RowHeadersVisible = false;
             dataGridView_Constant.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
+
+            dt_Constants.Rows.Clear();
+            /*
             MacroList.Add("INIT.STACK", new List<string>() { "A=256", "D=A","A=0","*A=D" });
             MacroList.Add("PUSH.D", new List<string>() { "A=0", "A=*A", "*A=D","A=0","D=*A","D=D+1","*A=D" });
             MacroList.Add("POP.D", new List<string>() { "A=0", "D=*A", "D=D-1","*A=D","A=D","D=*A" });
@@ -199,14 +198,36 @@ namespace Controller
             MacroList.Add("PUSH.MEMORY", new List<string>() { "pop.A", "D=*A", "push.D" });
             MacroList.Add("GOTO", new List<string>() { "A=label", "JMP" });
             MacroList.Add("IF.GOTO", new List<string>() { "pop.D", "A=label", "D;JNE" });
-            
+            */
+            UpdateMacroList();
+        }
+        void UpdateMacroList()
+        {
+            MacroList.Clear();
+            DirectoryInfo d = new DirectoryInfo(AppPath+ @"../../asm/Macros/"); //Assuming Test is your Folder
+
+            FileInfo[] Files = d.GetFiles("*.txt"); //Getting Text files
+            string str = "";
+
+            foreach (FileInfo file in Files)
+            {
+                str = str + ", " + file.Name;
+                string readText = readFile(AppPath + @"../../asm/Macros/"+file.Name);
+                int CodePos = readText.IndexOf("##CODE##");
+                if (CodePos != -1)
+                {
+                    string code=readText.Substring(CodePos + 9);
+                    string []codeLine=code.Split('\n');
+                    string macroName = Path.GetFileNameWithoutExtension(file.Name).ToUpper().Replace("_", ".");
+                    MacroList.Add(macroName, codeLine.ToList());
+                }
+            }
         }
 
 
 
 
-     
-     
+
 
         private void NandGame_TextChanged(object sender, EventArgs e)
         {
@@ -376,10 +397,6 @@ namespace Controller
                 Inst = "A=" + I;
             label_Data7.Text = Inst;
 
-
-
-        
-           
         }
         void UpdateIGenerated()
         {
@@ -802,8 +819,11 @@ namespace Controller
                     else if (Line >= bottomLine)
                     {
                         int start = richTextBoxCode.GetFirstCharIndexFromLine(Line);
-                        richTextBoxCode.Select(start, 0);
-                        richTextBoxCode.ScrollToCaret();
+                        if (start >= 0)
+                        {
+                            richTextBoxCode.Select(start, 0);
+                            richTextBoxCode.ScrollToCaret();
+                        }
                     }
                 }
             }
@@ -865,32 +885,17 @@ namespace Controller
         { 
             var dlg = new OpenFileDialog();
             dlg.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
-            dlg.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory + "../../";
+            dlg.InitialDirectory = AppPath;
             dlg.RestoreDirectory = false;
             if (dlg.ShowDialog() != DialogResult.OK)
                 return;
             currentFileName = dlg.FileNames[0];
             toolStripButtonSave.Enabled = true;
-            string readText = File.ReadAllText(currentFileName).Replace("\r","");
+           
             this.Text = "Controller - "+Path.GetFileNameWithoutExtension(currentFileName);
 
-            int CstPos = readText.IndexOf("##CONSTANTS##");
+            string readText=readFile(currentFileName);
             int CodePos = readText.IndexOf("##CODE##");
-            if (CstPos != -1)
-            {
-                dt_Constants.Rows.Clear();
-                string Csts = readText.Substring(CstPos + 14, CodePos - CstPos - 14);
-                string[] CstsList = Csts.Split('\n');
-                for (int i = 0; i < CstsList.Length; i++)
-                {
-                    if (CstsList[i] != "")
-                    {
-                        string[] cst = CstsList[i].Split('=');
-                        dt_Constants.Rows.Add(cst);
-                    }
-
-                }
-            }
             if (CodePos != -1)
             {
                 richTextBoxCode.Text = readText.Substring(CodePos + 9);
@@ -899,6 +904,44 @@ namespace Controller
             }
         }
 
+        string readFile(string filename)
+        {
+            string readText = File.ReadAllText(filename).Replace("\r", "");
+            int CstPos = readText.IndexOf("##CONSTANTS##");
+            int CodePos = readText.IndexOf("##CODE##");
+            if (CstPos != -1)
+            {
+               
+                string Csts = readText.Substring(CstPos + 14, CodePos - CstPos - 14);
+                string[] CstsList = Csts.Split('\n');
+                for (int i = 0; i<CstsList.Length; i++)
+                {
+                    if (CstsList[i] != "")
+                    {
+                        string[] cst = CstsList[i].Split('=');
+                        int foundAtPos = -1;
+                        for (int j = 0; j < dt_Constants.Rows.Count; j++)
+                        {
+                            if ((string)dt_Constants.Rows[j][0] == cst[0])
+                                foundAtPos = j;
+                        }
+                        if (foundAtPos == -1)
+                        {
+                            dt_Constants.Rows.Add(cst);
+                        }
+                        else 
+                        {
+                            string val =(string) dt_Constants.Rows[foundAtPos][1];
+                            if (val != cst[1])
+                            {
+                                dt_Constants.Rows[foundAtPos][1] = "?";
+                            }
+                        }
+                    }
+                }
+            }
+            return readText;
+        }
         private void toolStripButtonSave_Click(object sender, EventArgs e)
         {
             Save();
@@ -912,7 +955,7 @@ namespace Controller
         { 
         var dlg = new SaveFileDialog();
             dlg.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
-            dlg.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory + "../../";
+            dlg.InitialDirectory = AppPath;
             dlg.RestoreDirectory = false;
             if (dlg.ShowDialog() != DialogResult.OK)
                 return;

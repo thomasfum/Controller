@@ -21,7 +21,7 @@ namespace UnitTestProject2.ALU
             alu.Y = Tools.int2BoolArray(Y);
             int val = alu.proceed();
             Assert.AreEqual(expected, Tools.boolArray2Int(alu.output));
-            Assert.AreEqual(5904, val);
+            Assert.AreEqual(1968, val);
         }
        
         //--------------------
@@ -40,18 +40,18 @@ namespace UnitTestProject2.ALU
         [TestMethod]
         public void TestMethod_sub_8_5_sw()
         {
-            test(true, true, false, false, true, 8, 5, -3);
+            test(true, true, false, false, true, 8, 5, 65536 - 3);
         }
 
         [TestMethod]
         public void TestMethod_sub_8_5_zx()
         {
-            test(true, true, false, true, false, 8, 5, -5);
+            test(true, true, false, true, false, 8, 5, 65536 - 5);
         }
         [TestMethod]
         public void TestMethod_sub_8_5_sw_zx()
         {
-            test(true, true, false, true, true, 8, 5, -8);
+            test(true, true, false, true, true, 8, 5, 65536 - 8);
         }
 
         [TestMethod]
@@ -86,7 +86,7 @@ namespace UnitTestProject2.ALU
         [TestMethod]
         public void TestMethod_Inver()
         {
-            test(false, true, true, false, false, 2, 0, -3);
+            test(false, true, true, false, false, 2, 0, 65536-3);
         }
 
       

@@ -16,7 +16,7 @@ namespace UnitTestProject2.Arithmetics
             eq.a= Tools.int2BoolArray(0);
             int val=eq.proceed();
             Assert.AreEqual(true, eq.s);
-            Assert.AreEqual(138, val);
+            Assert.AreEqual(46, val);
         }
         [TestMethod]
         public void TestMethod_FF()
@@ -25,7 +25,7 @@ namespace UnitTestProject2.Arithmetics
             eq.a = Tools.int2BoolArray(65535);
             int val = eq.proceed();
             Assert.AreEqual(false, eq.s);
-            Assert.AreEqual(138, val);
+            Assert.AreEqual(46, val);
         }
     }
 }

@@ -1,0 +1,5 @@
+##CONSTANTS##
+##CODE##
+pop.A
+D=*A
+push.D

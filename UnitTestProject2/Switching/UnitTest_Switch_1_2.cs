@@ -5,19 +5,18 @@ using System;
 namespace UnitTestProject2.Switching
 {
     [TestClass]
-    public class UnitTest_Switch
+    public class UnitTest_Switch_1_2
     {
-
 
         void test(bool s, bool d,  bool expected_c1, bool expected_c0)
         {
-            Switch switc = new Switch();
-            switc.s = s;
+            Switch_1_2 switc = new Switch_1_2();
+            switc.a = s;
             switc.d = d;
             int val = switc.proceed();
             Assert.AreEqual(expected_c0, switc.c0);
             Assert.AreEqual(expected_c1, switc.c1);
-            Assert.AreEqual(15, val);
+            Assert.AreEqual(5, val);
         }
         [TestMethod]
         public void TestMethod_0_0()

@@ -17,7 +17,7 @@ namespace UnitTestProject2.Memory
             register_16.cl = false;
             int val = register_16.proceed();
             Assert.AreEqual(0,Tools. boolArray2Int(register_16.output));
-            Assert.AreEqual(1104, val);
+            Assert.AreEqual(368, val);
 
             register_16.X = Tools.int2BoolArray(33);
             register_16.st = true;

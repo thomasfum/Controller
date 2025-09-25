@@ -19,7 +19,7 @@ namespace UnitTestProject2.Switching
             select.s = false;
             int val = select.proceed();
             Assert.AreEqual(Tools.boolArray2Int(select.D0), Tools.boolArray2Int(select.output));
-            Assert.AreEqual(384, val);
+            Assert.AreEqual(128, val);
         }
         [TestMethod]
         public void TestMethod_1()
@@ -31,7 +31,7 @@ namespace UnitTestProject2.Switching
             select.s = true;
             int val = select.proceed();
             Assert.AreEqual(Tools.boolArray2Int(select.D1), Tools.boolArray2Int(select.output));
-            Assert.AreEqual(384, val);
+            Assert.AreEqual(128, val);
         }
     }
 }

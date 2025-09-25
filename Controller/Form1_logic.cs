@@ -248,18 +248,27 @@ namespace Controller
             line = line.ToUpper();
             if (line == "")
             {
-                PC.Add(-1);
-                ASM.Add("");
+                if (isMacro == false)
+                {
+                    PC.Add(-1);
+                    ASM.Add("");
+                }
             }
             else if (line.StartsWith("#"))
             {
-                PC.Add(-1);
-                ASM.Add("");
+                if (isMacro == false)
+                {
+                    PC.Add(-1);
+                    ASM.Add("");
+                }
             }
             else if (line.StartsWith("LABEL"))
             {
-                PC.Add(-1);
-                ASM.Add("");
+                if (isMacro == false)
+                {
+                    PC.Add(-1);
+                    ASM.Add("");
+                }
                 string lab = line.Substring(6, line.Length-6);
                 labels.Add(lab.Replace(":", ""), counter);
             }
@@ -313,8 +322,8 @@ namespace Controller
             {
                 List<string> p = param.ToList();
                 p.RemoveAt(0);
-                //ASM.Add(macroValue[i]);
-                ManageLine(macroValue[i], true, p);
+                //if((macroValue[i]!="")&& (!macroValue[i].StartsWith("#")))
+                    ManageLine(macroValue[i], true, p);
             }
         }
         private void Generate()

@@ -1,0 +1,7 @@
+##CONSTANTS##
+SP=0
+##CODE##
+A=SP
+*A=*A-1
+A=*A
+A=*A

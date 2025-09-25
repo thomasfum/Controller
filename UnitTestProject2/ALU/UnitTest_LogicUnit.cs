@@ -19,7 +19,7 @@ namespace UnitTestProject2.ALU
             lu.op1 = op1;
             int val = lu.proceed();
             Assert.AreEqual(expected, Tools.boolArray2Int(lu.output));
-            Assert.AreEqual(1728, val);
+            Assert.AreEqual(576, val);
         }
         [TestMethod]
         public void TestMethod_And()
@@ -41,7 +41,7 @@ namespace UnitTestProject2.ALU
         [TestMethod]
         public void TestMethod_Inver()
         {
-            test(true, true, 2, 0, -3);
+            test(true, true, 2, 0, 65536-3);
         }
     }
 }

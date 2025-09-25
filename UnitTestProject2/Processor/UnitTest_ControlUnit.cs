@@ -19,7 +19,7 @@ namespace UnitTestProject2.Processor
             cu.CA = Tools.int2BoolArray(CA);
             int val = cu.proceed();
 
-            Assert.AreEqual(6954, val);
+            Assert.AreEqual(2318, val);
             Assert.AreEqual(expected_R, Tools.boolArray2Int(cu.R));
             Assert.AreEqual(expected_a, cu.a);
             Assert.AreEqual(expected_d, cu.d);

@@ -18,7 +18,7 @@ namespace UnitTestProject2.Memory
             dLatch.d = false;
             int val = dLatch.proceed();
             Assert.AreEqual(false, dLatch.output);
-            Assert.AreEqual(30, val);
+            Assert.AreEqual(10, val);
 
             //set true
             dLatch.st = true;

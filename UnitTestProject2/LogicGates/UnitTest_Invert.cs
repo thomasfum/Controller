@@ -18,7 +18,7 @@ namespace UnitTestProject2.LogicGates
             invert.input = true;
             int val=invert.proceed();
             Assert.AreEqual(false, invert.output);
-            Assert.AreEqual(3, val);
+            Assert.AreEqual(1, val);
         }
         [TestMethod]
         public void TestMethod_0()
@@ -27,7 +27,7 @@ namespace UnitTestProject2.LogicGates
             invert.input = false;
             int val = invert.proceed();
             Assert.AreEqual(true, invert.output);
-            Assert.AreEqual(3, val);
+            Assert.AreEqual(1, val);
         }
     }
 }

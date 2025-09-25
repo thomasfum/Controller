@@ -1,7 +1,8 @@
 ##CONSTANTS##
+SP=0
 ##CODE##
 init.stack
-# store 42 at address 
+# store 42 at address 16
 A=42
 D=A
 A=16

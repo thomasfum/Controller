@@ -15,7 +15,7 @@ namespace UnitTestProject2.Memory
             sR_Latch.r = false;
             int val = sR_Latch.proceed();
             Assert.AreEqual(true, sR_Latch.output);
-            Assert.AreEqual(6, val);
+            Assert.AreEqual(2, val);
 
 
             sR_Latch.s = true;

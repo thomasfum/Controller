@@ -1,0 +1,7 @@
+##CONSTANTS##
+SP=0
+##CODE##
+A=256
+D=A
+A=SP
+*A=D

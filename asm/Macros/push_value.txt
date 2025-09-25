@@ -1,0 +1,12 @@
+##CONSTANTS##
+SP=0
+##CODE##
+A=value
+D=A
+A=SP
+A=*A
+*A=D
+A=SP
+D=*A
+D=D+1
+*A=D

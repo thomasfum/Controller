@@ -20,7 +20,7 @@ namespace UnitTestProject2.LogicGates
             and.b = b;
             int val=and.proceed();
             Assert.AreEqual(expected, and.output);
-            Assert.AreEqual(6,val);
+            Assert.AreEqual(2,val);
         }
         [TestMethod]
         public void TestMethod_0_0()

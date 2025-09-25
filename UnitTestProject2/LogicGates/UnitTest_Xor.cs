@@ -19,7 +19,7 @@ namespace UnitTestProject2.LogicGates
             xor.b = b;
             int val = xor.proceed();
             Assert.AreEqual(expected, xor.output);
-            Assert.AreEqual(18, val);
+            Assert.AreEqual(6, val);
         }
         [TestMethod]
         public void TestMethod_0_0()

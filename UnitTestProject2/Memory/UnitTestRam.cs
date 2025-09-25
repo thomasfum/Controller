@@ -21,7 +21,7 @@ namespace UnitTestProject2.Memory
             ram.cl = false;
             int val=ram.proceed();
             Assert.AreEqual(0, Tools.boolArray2Int(ram.output));
-            Assert.AreEqual(384,val);
+            Assert.AreEqual(23680, val);
 
             ram.ad = Tools.int2BoolArray(0);
             ram.X = Tools.int2BoolArray(44);

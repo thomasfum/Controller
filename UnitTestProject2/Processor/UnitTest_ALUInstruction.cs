@@ -18,7 +18,7 @@ namespace UnitTestProject2.Processor
             alui.CA = Tools.int2BoolArray(CA);
             int val=alui.proceed();
 
-            Assert.AreEqual(6474, val);
+            Assert.AreEqual(2158, val);
             Assert.AreEqual(expected_R, Tools.boolArray2Int(alui.R));
             Assert.AreEqual(expected_a, alui.a);
             Assert.AreEqual(expected_d, alui.d);

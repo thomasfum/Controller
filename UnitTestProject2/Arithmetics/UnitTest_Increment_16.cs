@@ -22,7 +22,7 @@ namespace UnitTestProject2.Arithmetics
             inc.a= Tools.int2BoolArray(2);
             int val=inc.proceed();
             Assert.AreEqual(3, Tools.boolArray2Int(inc.output));
-            Assert.AreEqual(912, val);
+            Assert.AreEqual(304, val);
         }
         [TestMethod]
         public void TestMethod_m2()
@@ -30,8 +30,8 @@ namespace UnitTestProject2.Arithmetics
             Increment_16 inc = new Increment_16();
             inc.a = Tools.int2BoolArray(-2);
             int val = inc.proceed();
-            Assert.AreEqual(-1, Tools.boolArray2Int(inc.output));
-            Assert.AreEqual(912, val);
+            Assert.AreEqual(65536 -1, Tools.boolArray2Int(inc.output));
+            Assert.AreEqual(304, val);
         }
     }
 }

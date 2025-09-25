@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Controller.Switching
 {
-    public class Switch
+    public class Switch_1_2
     {
-        public bool s;
+        public bool a;
         public bool d;
         public bool c0;
         public bool c1;
@@ -16,12 +16,12 @@ namespace Controller.Switching
         {
             int val = 0;
             Invert inv = new Invert();
-            inv.input = s;
+            inv.input = a;
             val += inv.proceed();
 
             And and1 = new And();
             And and2 = new And();
-            and1.a = s;
+            and1.a = a;
             and1.b = d;
             val += and1.proceed();
 

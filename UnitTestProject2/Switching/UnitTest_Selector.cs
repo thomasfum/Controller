@@ -16,7 +16,7 @@ namespace UnitTestProject2.Switching
             select.d0=d0;
             int val=select.proceed();
             Assert.AreEqual(expected, select.outout);
-            Assert.AreEqual(24,val);
+            Assert.AreEqual(8,val);
         }
         [TestMethod]
         public void TestMethod_0_0_0()

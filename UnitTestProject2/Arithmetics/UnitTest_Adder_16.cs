@@ -25,7 +25,7 @@ namespace UnitTestProject2.Arithmetics
             int integerVal = Tools.boolArray2Int(Adder.s);
             Assert.AreEqual(8, integerVal);
             Assert.AreEqual(false, Adder.cOut);
-            Assert.AreEqual(912, val);
+            Assert.AreEqual(304, val);
 
         }
     }

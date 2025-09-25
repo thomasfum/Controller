@@ -122,7 +122,8 @@
     <Compile Include="LogicGates\Xor.cs" />
     <Compile Include="Switching\Selector.cs" />
     <Compile Include="Switching\Selector_16.cs" />
-    <Compile Include="Switching\Switch.cs" />
+    <Compile Include="Switching\Switch_1_2.cs" />
+    <Compile Include="Switching\Switch_2_4.cs" />
     <Compile Include="Tools.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

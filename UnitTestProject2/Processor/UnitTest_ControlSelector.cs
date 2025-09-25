@@ -25,7 +25,7 @@ namespace UnitTestProject2.Processor
             cs.j0 = j0;
             int val = cs.proceed();
 
-            Assert.AreEqual(480, val);
+            Assert.AreEqual(160, val);
             Assert.AreEqual(expected_R, Tools.boolArray2Int(cs.R));
             Assert.AreEqual(expected_a, cs.a);
             Assert.AreEqual(expected_d, cs.d);
@@ -36,11 +36,11 @@ namespace UnitTestProject2.Processor
         [TestMethod]
         public void TestMethod1()
         {
-            test(false, 42, false, true, false, true, -256, true, false, true, false, -256, true, false, true, false);
+            test(false, 42, false, true, false, true, 65536-256, true, false, true, false, 65536 - 256, true, false, true, false);
         }
         public void TestMethod2()
         {
-            test(true, 42, false, true, false, true, -256, true, false, true, false, 42, false, true, false, true);
+            test(true, 42, false, true, false, true, 65536 - 256, true, false, true, false, 42, false, true, false, true);
         }
     }
 }

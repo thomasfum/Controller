@@ -25,7 +25,7 @@ namespace UnitTestProject2.Arithmetics
             Assert.AreEqual(true, twoBitsAdder.cOut);
             Assert.AreEqual(false, twoBitsAdder.s1);
             Assert.AreEqual(true, twoBitsAdder.s0);
-            Assert.AreEqual(114, val);
+            Assert.AreEqual(38, val);
 
         }
         [TestMethod]
@@ -41,7 +41,7 @@ namespace UnitTestProject2.Arithmetics
             Assert.AreEqual(false, twoBitsAdder.cOut);
             Assert.AreEqual(true, twoBitsAdder.s1);
             Assert.AreEqual(false, twoBitsAdder.s0);
-            Assert.AreEqual(114, val);
+            Assert.AreEqual(38, val);
 
         }
 

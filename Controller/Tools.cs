@@ -17,7 +17,7 @@ namespace Controller
         {
             int result = 0;
             int run = 0;
-            for (int id = 0; id < 16; id++)
+            for (int id = 0; id < b_array.Length; id++)
             {
                 result |= b_array[id] ? (1 << run) : 0;
                 run++;
@@ -127,7 +127,7 @@ namespace Controller
             bool isNumeric = int.TryParse(number, out n);
             if (!isNumeric)
             {
-                if (number.StartsWith("0X"))
+                if (number.StartsWith("0X")|| number.StartsWith("X"))
                 {
                     char[] _trim_hex = new char[] { '0', 'X' };
                     int temp;
@@ -141,7 +141,7 @@ namespace Controller
                         return 0;
                     }
                 }
-                else if (number.StartsWith("0B"))
+                else if (number.StartsWith("0B")|| number.StartsWith("B"))
                 {
                     if (binary.IsMatch(number.Substring(2)))
                     {

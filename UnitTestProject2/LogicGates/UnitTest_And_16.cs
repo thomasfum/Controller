@@ -16,7 +16,7 @@ namespace UnitTestProject2.LogicGates
             and.b = Tools.int2BoolArray(b);
             int val = and.proceed();
             Assert.AreEqual(expected, Tools.boolArray2Int(and.s));
-            Assert.AreEqual(96, val);
+            Assert.AreEqual(32, val);
         }
         [TestMethod]
         public void TestMethod_4_8()

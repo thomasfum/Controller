@@ -20,7 +20,7 @@ namespace UnitTestProject2.Arithmetics
             eq.a1 = false;
             int val=eq.proceed();
             Assert.AreEqual(true, eq.s);
-            Assert.AreEqual(12, val);
+            Assert.AreEqual(4, val);
         }
         [TestMethod]
         public void TestMethod_1()
@@ -30,7 +30,7 @@ namespace UnitTestProject2.Arithmetics
             eq.a1 = false;
             int val = eq.proceed();
             Assert.AreEqual(false, eq.s);
-            Assert.AreEqual(12, val);
+            Assert.AreEqual(4, val);
         }
         [TestMethod]
         public void TestMethod_2()
@@ -40,7 +40,7 @@ namespace UnitTestProject2.Arithmetics
             eq.a1 = true;
             int val = eq.proceed();
             Assert.AreEqual(false, eq.s);
-            Assert.AreEqual(12, val);
+            Assert.AreEqual(4, val);
         }
         [TestMethod]
         public void TestMethod_3()
@@ -50,7 +50,7 @@ namespace UnitTestProject2.Arithmetics
             eq.a1 = true;
             int val = eq.proceed();
             Assert.AreEqual(false, eq.s);
-            Assert.AreEqual(12, val);
+            Assert.AreEqual(4, val);
         }
     }
 }

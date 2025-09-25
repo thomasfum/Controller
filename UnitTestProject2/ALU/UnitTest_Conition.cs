@@ -17,7 +17,7 @@ namespace UnitTestProject2.ALU
             Cond.X = Tools.int2BoolArray(X);
             int val = Cond.proceed();
             Assert.AreEqual(expected, Cond.output);
-            Assert.AreEqual(186, val);
+            Assert.AreEqual(62, val);
         }
         [TestMethod]
         public void TestMethod_Never0()

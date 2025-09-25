@@ -1,0 +1,10 @@
+##CONSTANTS##
+SP=0
+##CODE##
+A=SP
+A=*A-1
+D=*A
+A=address
+*A=D
+A=SP
+*A=*A-1

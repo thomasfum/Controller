@@ -19,7 +19,7 @@ namespace UnitTestProject2.ALU
             au.Y = Tools.int2BoolArray(Y);
             int val = au.proceed();
             Assert.AreEqual(expected, Tools.boolArray2Int(au.output));
-            Assert.AreEqual(2640, val);
+            Assert.AreEqual(880, val);
         }
         [TestMethod]
         public void TestMethod_add_5_8()

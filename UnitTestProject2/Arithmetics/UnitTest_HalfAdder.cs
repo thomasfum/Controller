@@ -20,7 +20,7 @@ namespace UnitTestProject2.Arithmetics
             int val=halfAdder.proceed();
             Assert.AreEqual(expected_l, halfAdder.l);
             Assert.AreEqual(expected_h, halfAdder.h);
-            Assert.AreEqual(24, val);
+            Assert.AreEqual(8, val);
         }
         [TestMethod]
         public void TestMethod_0_0()

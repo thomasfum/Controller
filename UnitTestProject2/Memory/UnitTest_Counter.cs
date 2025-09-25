@@ -17,7 +17,7 @@ namespace UnitTestProject2.Memory
             counter.X = Tools.int2BoolArray(33);
             int val= counter.proceed();
             Assert.AreEqual(0, Tools.boolArray2Int(counter.output));
-            Assert.AreEqual(2400, val);
+            Assert.AreEqual(800, val);
 
 
             counter.st = true;
