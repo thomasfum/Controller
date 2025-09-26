@@ -103,6 +103,8 @@
     <Compile Include="LogicGates\UnitTest_Xor.cs" />
     <Compile Include="Arithmetics\UnitTest_FullAdder.cs" />
     <Compile Include="Arithmetics\UnitTest_HalfAdder.cs" />
+    <Compile Include="Switching\UnitTest_Switch_4_16.cs" />
+    <Compile Include="Switching\UnitTest_Switch_3_8.cs" />
     <Compile Include="Switching\UnitTest_Switch_2_4.cs" />
     <Compile Include="Switching\UnitTest_Selector_16.cs" />
     <Compile Include="Switching\UnitTest_Switch_1_2.cs" />

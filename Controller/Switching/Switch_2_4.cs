@@ -57,20 +57,20 @@ namespace Controller.Switching
             sw1.a = a1;
             val += sw1.proceed();
 
-            Switch_1_2 sw2 = new Switch_1_2();
-            sw2.d = sw1.c0;
-            sw2.a = a0;
-            val += sw2.proceed();
+            Switch_1_2 sw2_1 = new Switch_1_2();
+            sw2_1.d = sw1.c0;
+            sw2_1.a = a0;
+            val += sw2_1.proceed();
 
-            Switch_1_2 sw3 = new Switch_1_2();
-            sw3.d = sw1.c1;
-            sw3.a = a0;
-            val += sw3.proceed();
+            Switch_1_2 sw2_2 = new Switch_1_2();
+            sw2_2.d = sw1.c1;
+            sw2_2.a = a0;
+            val += sw2_2.proceed();
 
-            c[0] = sw2.c0;
-            c[1] = sw2.c1;
-            c[2] = sw3.c0;
-            c[3] = sw3.c1;
+            c[0] = sw2_1.c0;
+            c[1] = sw2_1.c1;
+            c[2] = sw2_2.c0;
+            c[3] = sw2_2.c1;
 
             return val;
         }
