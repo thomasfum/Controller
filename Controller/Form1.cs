@@ -18,7 +18,6 @@ using System.Windows.Input;
 
 
 //TODO
-// github
 // demux
 // TODO in code
 
@@ -204,7 +203,8 @@ namespace Controller
         void UpdateMacroList()
         {
             MacroList.Clear();
-            DirectoryInfo d = new DirectoryInfo(AppPath+ @"../../asm/Macros/"); //Assuming Test is your Folder
+            //DirectoryInfo d = new DirectoryInfo(AppPath+ @"../../asm/Macros/"); //Assuming Test is your Folder
+            DirectoryInfo d = new DirectoryInfo(AppPath + @"../asm/Macros/"); //Assuming Test is your Folder
 
             FileInfo[] Files = d.GetFiles("*.txt"); //Getting Text files
             string str = "";
@@ -212,7 +212,8 @@ namespace Controller
             foreach (FileInfo file in Files)
             {
                 str = str + ", " + file.Name;
-                string readText = readFile(AppPath + @"../../asm/Macros/"+file.Name);
+                //string readText = readFile(AppPath + @"../../asm/Macros/"+file.Name);
+                string readText = readFile(AppPath + @"../asm/Macros/" + file.Name);
                 int CodePos = readText.IndexOf("##CODE##");
                 if (CodePos != -1)
                 {

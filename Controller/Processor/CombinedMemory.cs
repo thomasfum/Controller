@@ -52,11 +52,22 @@ namespace Controller.Processor
             val += reg_d.proceed();
             D = reg_d.output;
 
-
-
+            Switch_4_16 switchTop= new Switch_4_16();
+            switchTop.a0 = reg_a.output[12];
+            switchTop.a1 = reg_a.output[13];
+            switchTop.a2 = reg_a.output[14];
+            switchTop.a3 = reg_a.output[15];
+            switchTop.d = true;//we ca use cl here
+            val +=switchTop.proceed();
+            bool Ram0 = switchTop.c[0];
+            bool Display4 = switchTop.c[4];
+            bool Display5 = switchTop.c[5];
+            bool Display45 = Display4 || Display5;
+            bool Keyboard6 = switchTop.c[6];
+            bool inout7 = switchTop.c[7];
             //--------------------------------------------------
             //0x4000 -> 5FFF                //0100 0000 0000 0000  /16 384
-            //X05FF                         //0101 1111 1111 1111
+            //0x5FFF                        //0101 1111 1111 1111
             /*
             bool[] _displayAdd = new bool[16];
             _displayAdd[14] = true;
@@ -74,6 +85,8 @@ namespace Controller.Processor
             bool Display = false;
             if ((reg_a.output[15] == false) && (reg_a.output[14] == true) && (reg_a.output[13] == false)/* && (reg_a.output[12] == false)*/)
                 Display = true;
+            if (Display45 != Display)
+                Display = Display;
             And clDisplay_And = new And();
             clDisplay_And.a = Display;// eq_0x4000.output;
             clDisplay_And.b = cl;
@@ -106,7 +119,8 @@ namespace Controller.Processor
             bool Keyboard = false;
             if ( (reg_a.output[15] == false) && (reg_a.output[14] == true) && (reg_a.output[13] == true) && (reg_a.output[12] == false))
                 Keyboard = true;
-
+            if (Keyboard6 != Keyboard)
+                Keyboard = Keyboard;
             And clKeyboard_And = new And();
             clKeyboard_And.a = Keyboard;//eq_0x6000.output;
             clKeyboard_And.b = cl;
@@ -137,6 +151,10 @@ namespace Controller.Processor
             stInOut_And.b = ca;
             val += stInOut_And.proceed();
 
+
+            //inout7
+            if (inout7 != eq_0x7FFF.s)
+                inout7 = inout7;
             And clInOut_And = new And();
             clInOut_And.a = eq_0x7FFF.s;
             clInOut_And.b = cl;
@@ -166,6 +184,8 @@ namespace Controller.Processor
             val += ramRange_And.proceed();
             
             debug_RamRange = ramRange_And.output;
+            if (debug_RamRange != Ram0)
+                debug_RamRange = debug_RamRange;
 
             And clRam_And = new And();
             clRam_And.a = ramRange_And.output;
