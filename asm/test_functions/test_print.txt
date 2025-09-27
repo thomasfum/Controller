@@ -1,0 +1,10 @@
+##CONSTANTS##
+SP=0
+##CODE##
+A=47
+D=A
+A=0x5FFE
+*A=D
+print 'a'
+print 'b'
+print 'c'

@@ -1,0 +1,10 @@
+##CONSTANTS##
+##CODE##
+#write A at first pos
+A=value
+D=A
+A=0x5FFF
+*A=D
+A=0x5FFE
+*A=*A+1
+

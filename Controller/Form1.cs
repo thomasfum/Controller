@@ -18,12 +18,17 @@ using System.Windows.Input;
 
 
 //TODO
-// demux
+//print 'a'  color
+//first macro alone
 // TODO in code
+// gosub
+// floating
+// multiplication
 
 //idee program:
 //  - calculatrice
 //  - labyrinthe
+//  - pong
 
 
 
@@ -54,6 +59,7 @@ namespace Controller
         int counter = 0;
         bool StopRunningLoop = false;
         int currentKeypressed = 0;
+        int speed = 0;
         Dictionary<string, int> labels = new Dictionary<string, int>();
 
 
@@ -183,6 +189,7 @@ namespace Controller
             dataGridView_Constant.RowHeadersVisible = false;
             dataGridView_Constant.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
+            toolStripComboBox1.SelectedIndex = 0;
 
             dt_Constants.Rows.Clear();
             /*
@@ -1006,7 +1013,10 @@ namespace Controller
             bool go = false;
             do
             {
-                await Task.Delay(50);
+                if(speed==0)
+                    await Task.Delay(50);
+                if (speed != 0)
+                    await Task.Delay(1);
                 if (StopRunningLoop == true)
                     break;
                 go = Tick();
@@ -1209,6 +1219,11 @@ namespace Controller
             {
                 SyntaxColorUpdate();//apply color after paste that can come with colors
             }
+        }
+
+        private void toolStripComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            speed = toolStripComboBox1.SelectedIndex;
         }
     }
 }

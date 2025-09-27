@@ -127,6 +127,21 @@ namespace Controller
             bool isNumeric = int.TryParse(number, out n);
             if (!isNumeric)
             {
+                if (number.StartsWith("'"))
+                {
+                    if (number.Length != 3)
+                    {
+                        Msg = "Wrong char lengh";
+                        return 0;
+                    }
+                    if(!number.EndsWith("'"))
+                    {
+                        Msg = "char should finich by '";
+                        return 0;
+                    }
+                    return number[1];
+                }
+                number= number.ToUpper();
                 if (number.StartsWith("0X")|| number.StartsWith("X"))
                 {
                     char[] _trim_hex = new char[] { '0', 'X' };
@@ -165,18 +180,18 @@ namespace Controller
         }
         public static int Decode(string _val, Dictionary<string, int> Csts, out string Msg)
         {
-            string val=_val.ToUpper().Replace(" ","");
+            string val=_val.Replace(" ","");
             if (val=="")
             { 
                 Msg = "Empty value";
                 return 0;
             }
             Msg = "";
-            if (val.StartsWith("A="))
+            if (val.ToUpper().StartsWith("A="))
             {
 
                 string number = val.Substring(2);
-                if (Csts.ContainsKey(number))
+                if (Csts.ContainsKey(number.ToUpper()))
                 {
                     return Csts[number];
                 }
@@ -201,7 +216,7 @@ namespace Controller
             int target = 0;
             int jmp = 0;
             bool needstar = false;
-
+            val=val.ToUpper();
 
             if (val.StartsWith("*A="))
             {
@@ -210,7 +225,7 @@ namespace Controller
             string DST = "";
             string OP = "";
             string JMP = "";
-            string []split=val.Split( '=' );
+            string []split=val.ToUpper().Split( '=' );
             if (split.Length > 1)
             {
                 string[] split2 = split[1].Split(';');

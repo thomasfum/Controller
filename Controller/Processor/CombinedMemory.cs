@@ -70,12 +70,16 @@ namespace Controller.Processor
             switchTopTrue.d = true;
             val += switchTopTrue.proceed();
 
+            Or orDisplayTrue = new Or();
+            orDisplayTrue.a = switchTopTrue.c[4];
+            orDisplayTrue.b = switchTopTrue.c[5];
+            val += orDisplayTrue.proceed();
 
             //--------------------------------------------------
             //0x4000 -> 0x5FFF          //0100 0000 0000 0000  /16 384
             //0x5FFF                    //0101 1111 1111 1111
             display.X= X;
-            display.A = A;
+            display.A = reg_a.output;
             display.st = ca;
             display.cl = orDisplay.output;
             val += display.proceed();
@@ -114,7 +118,14 @@ namespace Controller.Processor
             selector_ram_inout_16_Keyboard.D0 = selector_ram_inout_16.output;
             selector_ram_inout_16_Keyboard.s = switchTopTrue.c[6];// Keyboard;
             val += selector_ram_inout_16_Keyboard.proceed();
-            CA = selector_ram_inout_16_Keyboard.output;
+
+            Selector_16 selector_ram_inout_Keyboard_16_Dispaly = new Selector_16();
+            selector_ram_inout_Keyboard_16_Dispaly.D1 = display.output;
+            selector_ram_inout_Keyboard_16_Dispaly.D0 = selector_ram_inout_16_Keyboard.output;
+            selector_ram_inout_Keyboard_16_Dispaly.s = orDisplayTrue.output;// Keyboard;
+            val += selector_ram_inout_Keyboard_16_Dispaly.proceed();
+
+            CA = selector_ram_inout_Keyboard_16_Dispaly.output;
 
             return val;
         }

@@ -17,36 +17,59 @@ namespace Controller.InOut
         Bitmap image;
         int posX = 0;
         int posY = 0;
+        char LasrChar ='-';
 
         public int proceed()
         {
             int val = 0;
             int adresse= Tools.boolArray2Int(A)- 0x4000;
-            
-            //0x20 pour chaque ligne
+            if ((cl == false))
+            {
+                if (adresse == 0x1FFD)//clear
+                {
+                    output = Tools.int2BoolArray(0);
+                }
+                else if (adresse == 0x1FFE)
+                {
+                    output = Tools.int2BoolArray(posY * 47 + posX);
+                    //posX = Tools.boolArray2Int(bposX);
+                    //posY = Tools.boolArray2Int(bposY);
+                }
+                else if (adresse == 0x1FFF)
+                {
+                    output = Tools.int2BoolArray(LasrChar);
+                    //SetText(0,0, '\u2588');
+                    //char chara = (char)Tools.boolArray2Int(X);
+                    //SetText(posX * 8, posY * 16, chara);
+                    //image.SetPixel(27 + 8, 27 + 16, Color.FromArgb(255, 155, 155));
+                }
+            }
+                //0x20 pour chaque ligne
             if ((cl == true) && (st == true))
             {
-                if (adresse == 0x1FFD)
+                if (adresse == 0x1FFD)//clear
                 {
                     Clear();
                 }
                 else if (adresse == 0x1FFE)
                 {
+                    /*
                     bool[] bposX = new bool[16];
                     bool[] bposY = new bool[16];
                     for (int i = 0; i < 8; i++)
                     {
                         bposX[i] = X[i];
                         bposY[i] = X[i+8];
-                    }
-                    posX = Tools.boolArray2Int(bposX);
-                    posY = Tools.boolArray2Int(bposY);
+                    }*/
+                    output = Tools.int2BoolArray(posY * 47 + posX);
+                    posX = Tools.boolArray2Int(X)%47;
+                    posY = Tools.boolArray2Int(X)/47;
                 }
                 else if (adresse == 0x1FFF)
                 {
                     //SetText(0,0, '\u2588');
-                    char chara = (char)Tools.boolArray2Int(X);
-                    SetText(posX*8, posY * 16, chara);
+                    LasrChar = (char)Tools.boolArray2Int(X);
+                    SetText(posX*8, posY * 16, LasrChar);
                     //image.SetPixel(27 + 8, 27 + 16, Color.FromArgb(255, 155, 155));
                 }
                 else
@@ -68,6 +91,9 @@ namespace Controller.InOut
         }
         public void Clear()
         {
+            posX = 0;
+            posY = 0;
+            LasrChar = '-';
             for (int x = 0; x < 380; x++)
                 for (int y = 0; y < 190; y++)
                     SetPixel(x, y, false);

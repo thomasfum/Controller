@@ -18,28 +18,32 @@ namespace Controller
             if (Last_PC == 0)
                 return false;
             myComputer.proceed();
-            int A = myComputer.getA();
-            int D = myComputer.getD();
-            int I = myComputer.getI();
-            int ALU = Tools.getALU(I);
             Current_PC = myComputer.getPC();
-            label_A.Text = "A=" + A;
-            label_D.Text = "D=" + D;
-            label_PC.Text = "PC=" + Current_PC;
-            label_I.Text = "I=" + I;
-            label_ALU.Text = "ALU=" + ALU;
+            
 
-            dataGridView_Rom.ClearSelection();
-            dataGridView_Rom.Rows[Current_PC].Selected = true;
+            if (speed < 2)
+            {
+                int A = myComputer.getA();
+                int D = myComputer.getD();
+                int I = myComputer.getI();
+                int ALU = Tools.getALU(I);
 
-
-            updateI(I);
-            refreshRam();
-            refreshMappedIO();
-            label_Nand_count.Text = "Nand count: " + myComputer.GetNandCount();
+                label_A.Text = "A=" + A;
+                label_D.Text = "D=" + D;
+                label_PC.Text = "PC=" + Current_PC;
+                label_I.Text = "I=" + I;
+                label_ALU.Text = "ALU=" + ALU;
+                dataGridView_Rom.ClearSelection();
+                dataGridView_Rom.Rows[Current_PC].Selected = true;
+                updateI(I);
+                refreshRam();
+                UpdatePC(Current_PC, false);
+                UpdateStack();
+                label_Nand_count.Text = "Nand count: " + myComputer.GetNandCount();
+            }
             pictureBox1.Refresh();
-            UpdatePC(Current_PC, false);
-            UpdateStack();
+            refreshMappedIO();
+
             if (Current_PC >= Last_PC)
             {
                 toolStripButtonTick.Enabled = false;
@@ -54,9 +58,15 @@ namespace Controller
         {
             txt = txt.ToUpper();
             if (txt.Length > 2)
+            {
                 if ((txt[0] == '0') && (txt[1] == 'X'))
                     return;
-
+                if (txt[0] == '\'')
+                {
+                    richTextBoxCode.Select(startpos + 1, 2);
+                    richTextBoxCode.SelectionColor = Color.Green;
+                }
+            }
             for (int i = 0; i < txt.Length; i++)
             {
                 if ((txt[i] == 'A') | (txt[i] == 'D') || (txt[i] == '*'))
@@ -98,6 +108,7 @@ namespace Controller
                 richTextBoxCode.Select(nextpos, pos - nextpos);
                 richTextBoxCode.SelectionBackColor = Color.Black;
 
+
                 if (line.StartsWith("#"))//comment
                 {
                     richTextBoxCode.Select(nextpos, pos - nextpos);
@@ -117,6 +128,20 @@ namespace Controller
                     richTextBoxCode.SelectionBackColor = Color.Black;
                     if (posSpace > 0)
                     {
+                        richTextBoxCode.Select(nextpos + posSpace, line.Length - posSpace - 1);
+                        richTextBoxCode.SelectionColor = Color.Yellow;
+                        richTextBoxCode.SelectionBackColor = Color.Black;
+                    }
+                }
+                else if (line.ToUpper().StartsWith("PRINT"))
+                {
+                    int posSpace = line.IndexOf(" ");
+                    richTextBoxCode.Select(nextpos, posSpace);
+                    richTextBoxCode.SelectionColor = Color.Cyan;
+                    richTextBoxCode.SelectionBackColor = Color.Black;
+                    if (posSpace > 0)
+                    {
+                        ColorRegister(line.Substring(posSpace+1).ToUpper(), nextpos + posSpace);
                         richTextBoxCode.Select(nextpos + posSpace, line.Length - posSpace - 1);
                         richTextBoxCode.SelectionColor = Color.Yellow;
                         richTextBoxCode.SelectionBackColor = Color.Black;
@@ -245,7 +270,7 @@ namespace Controller
 
         void ManageLine(string line, bool isMacro, List<string> paramList)
         {
-            line = line.ToUpper();
+            //line = line.ToUpper();
             if (line == "")
             {
                 if (isMacro == false)
@@ -262,14 +287,14 @@ namespace Controller
                     ASM.Add("");
                 }
             }
-            else if (line.StartsWith("LABEL"))
+            else if (line.ToUpper().StartsWith("LABEL"))
             {
                 if (isMacro == false)
                 {
                     PC.Add(-1);
                     ASM.Add("");
                 }
-                string lab = line.Substring(6, line.Length-6);
+                string lab = line.ToUpper().Substring(6, line.Length-6);
                 labels.Add(lab.Replace(":", ""), counter);
             }
             else
@@ -279,7 +304,7 @@ namespace Controller
                 bool macroFound = false;
                 foreach (KeyValuePair<string, List<string>> m in MacroList)
                 {
-                    if (line.StartsWith(m.Key))
+                    if (line.ToUpper().StartsWith(m.Key))
                     {
                         macroFound = true;
                         AddMacro(line, m.Key, m.Value);
@@ -291,17 +316,17 @@ namespace Controller
 
                     if (paramList.Count > 0)
                     {
-                        if (line.Contains("VALUE"))
+                        if (line.ToUpper().Contains("VALUE"))
                         {
-                            line = line.Replace("VALUE", paramList[0]);
+                            line = line.ToUpper().Replace("VALUE", paramList[0]);
                         }
-                        if (line.Contains("ADDRESS"))
+                        if (line.ToUpper().Contains("ADDRESS"))
                         {
-                            line = line.Replace("ADDRESS", paramList[0]);
+                            line = line.ToUpper().Replace("ADDRESS", paramList[0]);
                         }
-                        if (line.Contains("LABEL"))
+                        if (line.ToUpper().Contains("LABEL"))
                         {
-                            line = line.Replace("LABEL", paramList[0]);
+                            line = line.ToUpper().Replace("LABEL", paramList[0]);
                         }
 
                     }
