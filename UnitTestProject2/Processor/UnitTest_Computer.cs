@@ -20,7 +20,7 @@ namespace UnitTestProject2.Processor
             myComputer.setRom(3, 32775);//Jump unconditionally to adress A =>2
             int val=myComputer.proceed();
             Assert.AreEqual(0, myComputer.getD());
-            Assert.AreEqual(14244, val);
+            Assert.AreEqual(193927, val);
             myComputer.proceed();
             Assert.AreEqual(0, myComputer.getD());
             myComputer.proceed();

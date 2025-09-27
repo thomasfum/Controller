@@ -21,10 +21,7 @@ namespace Controller.Processor
         public bool a;
         public bool d;
         public bool ca;
-        bool debug_RamRange = false;
-        bool debug_InOutRange = false;
-        bool debug_DisplayRange = false;
-        bool debug_KeyboardRange = false;
+
 
         Register_16 reg_a =new Register_16();
         Register_16 reg_d = new Register_16();
@@ -52,169 +49,72 @@ namespace Controller.Processor
             val += reg_d.proceed();
             D = reg_d.output;
 
-            Switch_4_16 switchTop= new Switch_4_16();
-            switchTop.a0 = reg_a.output[12];
-            switchTop.a1 = reg_a.output[13];
-            switchTop.a2 = reg_a.output[14];
-            switchTop.a3 = reg_a.output[15];
-            switchTop.d = true;//we ca use cl here
-            val +=switchTop.proceed();
-            bool Ram0 = switchTop.c[0];
-            bool Display4 = switchTop.c[4];
-            bool Display5 = switchTop.c[5];
-            bool Display45 = Display4 || Display5;
-            bool Keyboard6 = switchTop.c[6];
-            bool inout7 = switchTop.c[7];
-            //--------------------------------------------------
-            //0x4000 -> 5FFF                //0100 0000 0000 0000  /16 384
-            //0x5FFF                        //0101 1111 1111 1111
-            /*
-            bool[] _displayAdd = new bool[16];
-            _displayAdd[14] = true;
-            And_16 andInDisplay = new And_16();
-            andInDisplay.a = _displayAdd;
-            andInDisplay.b = reg_a.output;
-            val += andInDisplay.proceed();//0100 0000 0000 0000
-            Equal0_16 neq_0x4000 = new Equal0_16();
-            neq_0x4000.a = andInDisplay.s;
-            val += neq_0x4000.proceed();
-            Invert eq_0x4000 = new Invert();
-            eq_0x4000.input= neq_0x4000.s;
-            val += eq_0x4000.proceed();
-            */
-            bool Display = false;
-            if ((reg_a.output[15] == false) && (reg_a.output[14] == true) && (reg_a.output[13] == false)/* && (reg_a.output[12] == false)*/)
-                Display = true;
-            if (Display45 != Display)
-                Display = Display;
-            And clDisplay_And = new And();
-            clDisplay_And.a = Display;// eq_0x4000.output;
-            clDisplay_And.b = cl;
-            val += clDisplay_And.proceed();
+            Switch_4_16 switchTopCL= new Switch_4_16();
+            switchTopCL.a0 = reg_a.output[12];
+            switchTopCL.a1 = reg_a.output[13];
+            switchTopCL.a2 = reg_a.output[14];
+            switchTopCL.a3 = reg_a.output[15];
+            switchTopCL.d = cl;
+            val +=switchTopCL.proceed();
+           
+            Or orDisplay = new Or();
+            orDisplay.a= switchTopCL.c[4];
+            orDisplay.b = switchTopCL.c[5];
+            val+=orDisplay.proceed();
+           
+            Switch_4_16 switchTopTrue = new Switch_4_16();
+            switchTopTrue.a0 = reg_a.output[12];
+            switchTopTrue.a1 = reg_a.output[13];
+            switchTopTrue.a2 = reg_a.output[14];
+            switchTopTrue.a3 = reg_a.output[15];
+            switchTopTrue.d = true;
+            val += switchTopTrue.proceed();
 
-            debug_DisplayRange = Display;// eq_0x4000.output;
+
+            //--------------------------------------------------
+            //0x4000 -> 0x5FFF          //0100 0000 0000 0000  /16 384
+            //0x5FFF                    //0101 1111 1111 1111
             display.X= X;
             display.A = A;
             display.st = ca;
-            display.cl = clDisplay_And.output;
+            display.cl = orDisplay.output;
             val += display.proceed();
 
-
             //--------------------------------------------------
-            //0x6000 => keyboard //0110 0000 0000 0000
-            
-            bool[] _keyboardAdd = new bool[16];
-            _keyboardAdd[14] = true;
-            _keyboardAdd[13] = true;
-            And_16 andInKeyboard = new And_16();
-            andInKeyboard.a = _keyboardAdd;
-            andInKeyboard.b = reg_a.output;
-            val += andInKeyboard.proceed();//0100 0000 0000 0000
-            Equal0_16 neq_0x6000 = new Equal0_16();
-            neq_0x6000.a = andInKeyboard.s;
-            val += neq_0x6000.proceed();
-            Invert eq_0x6000 = new Invert();
-            eq_0x6000.input= neq_0x6000.s;
-            val += eq_0x6000.proceed();
-            bool Keyboard = false;
-            if ( (reg_a.output[15] == false) && (reg_a.output[14] == true) && (reg_a.output[13] == true) && (reg_a.output[12] == false))
-                Keyboard = true;
-            if (Keyboard6 != Keyboard)
-                Keyboard = Keyboard;
-            And clKeyboard_And = new And();
-            clKeyboard_And.a = Keyboard;//eq_0x6000.output;
-            clKeyboard_And.b = cl;
-            val += clKeyboard_And.proceed();
-            
-            debug_KeyboardRange = eq_0x6000.output;
-
-            //keyboard.X= X;
-            //display.A = A;
+            //0x6000 => keyboard        //0110 0000 0000 0000
             keyboard.st = false;
-            keyboard.cl = clKeyboard_And.output;
+            keyboard.cl = switchTopCL.c[6];
             val += keyboard.proceed();
             
             //--------------------------------------------------
-            //0x7FF => in/out              //0111 1111 1111 1111
-
-            Inverter_16 inv16 = new Inverter_16();
-            inv16.a = reg_a.output;//100000000000000
-            val += inv16.proceed();
-            inv16.s[15] = false;
-            Equal0_16 eq_0x7FFF = new Equal0_16();
-            eq_0x7FFF.a = inv16.s;
-            val += eq_0x7FFF.proceed();
-            debug_InOutRange = eq_0x7FFF.s;
-
-            And stInOut_And = new And();
-            stInOut_And.a = eq_0x7FFF.s;
-            stInOut_And.b = ca;
-            val += stInOut_And.proceed();
-
-
-            //inout7
-            if (inout7 != eq_0x7FFF.s)
-                inout7 = inout7;
-            And clInOut_And = new And();
-            clInOut_And.a = eq_0x7FFF.s;
-            clInOut_And.b = cl;
-            val += clInOut_And.proceed();
-            
-
+            //0x7FF => in/out           //0111 1111 1111 1111
             inout.X = X;
-            inout.st = stInOut_And.output;
-            inout.cl = clInOut_And.output;
+            inout.st = ca;
+            inout.cl = switchTopCL.c[7];
             val += inout.proceed();
-            //CA = reg_inout.output;
 
             //-----------------------------------------------------
-            //RAM
-            //   0FFF   //0000 XXXX XXXX XXXX
-            Equal0_2 eq1 = new Equal0_2();
-            Equal0_2 eq2 = new Equal0_2();
-            eq1.a0 = reg_a.output[15];
-            eq1.a1 = reg_a.output[14];
-            eq2.a0 = reg_a.output[13];
-            eq2.a1 = reg_a.output[12];
-            val += eq1.proceed();
-            val += eq2.proceed();
-            And ramRange_And= new And();
-            ramRange_And.a = eq1.s;
-            ramRange_And.b = eq2.s;
-            val += ramRange_And.proceed();
-            
-            debug_RamRange = ramRange_And.output;
-            if (debug_RamRange != Ram0)
-                debug_RamRange = debug_RamRange;
-
-            And clRam_And = new And();
-            clRam_And.a = ramRange_And.output;
-            clRam_And.b = cl;
-            val += clRam_And.proceed();
-
-
+            //0x0000 -> 0x0FFF =>RAM    //0000 XXXX XXXX XXXX
             ram.X = X;
             ram.st = ca;
-            ram.cl = clRam_And.output;//cl;
+            ram.cl = switchTopCL.c[0];
             ram.ad = reg_a.output;
             val += ram.proceed();
-            //CA = ram.output;
 
+            //-----------------------------------------------------
+            //output
             Selector_16 selector_ram_inout_16 = new Selector_16();
             selector_ram_inout_16.D1 = ram.output;
             selector_ram_inout_16.D0 = inout.output;
-            selector_ram_inout_16.s = ramRange_And.output;
+            selector_ram_inout_16.s = switchTopTrue.c[0];//ram
             val+=selector_ram_inout_16.proceed();
-           // CA= selector_ram_inout_16.output;
-
 
             Selector_16 selector_ram_inout_16_Keyboard = new Selector_16();
             selector_ram_inout_16_Keyboard.D1 = keyboard.output;
             selector_ram_inout_16_Keyboard.D0 = selector_ram_inout_16.output;
-            selector_ram_inout_16_Keyboard.s = Keyboard;
+            selector_ram_inout_16_Keyboard.s = switchTopTrue.c[6];// Keyboard;
             val += selector_ram_inout_16_Keyboard.proceed();
             CA = selector_ram_inout_16_Keyboard.output;
-
 
             return val;
         }
