@@ -137,9 +137,9 @@ namespace Controller.Processor
         {
             memory.display.setImage(img);
         }
-        public void setKeyboardCallBack(Func<int> _keyboardCallback)
+        public void setKeyboardCallBack(Func<int> _setKkeyboardCallback, Func<int> _resetKkeyboardCallback)
         {
-            memory.keyboard.setKeyboardCallBack(_keyboardCallback);
+            memory.keyboard.setKeyboardCallBack(_setKkeyboardCallback, _resetKkeyboardCallback);
         }
         public void ClearDisplay()
         {

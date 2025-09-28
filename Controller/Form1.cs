@@ -147,12 +147,14 @@ namespace Controller
             label_IGeneratedAsm.UseMnemonic = false;//prevent issue with char &
             myComputer.SetDisplayImage(pictureBox1.Image as Bitmap);
             myComputer.setKeyboardCallBack(() => {
+               /*
                 int tmp=currentKeypressed;
                 currentKeypressed = 0;
                 labelKeyboard.Text = "Keyboard key:  ";
                 //currentKeypressed = 0;
-                return tmp; 
-            });
+               */
+                return currentKeypressed; 
+            }, () => { currentKeypressed = 0; labelKeyboard.Text = "Keyboard key:  "; return 0; });
 
 
             toolStripButtonSave.Enabled = false;

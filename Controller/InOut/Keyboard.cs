@@ -10,41 +10,40 @@ namespace Controller.InOut
 {
     public class Keyboard
     {
-        Func<int> keyboardCallback;
+        Func<int> setKeyboardCallback;
+        Func<int> resetKeyboardCallback;
         public bool[] X = new bool[16];
         public bool[] output = new bool[16];
         public bool cl;
         public bool st;
         int lastkey = 0;
-        int cptRead = 1;
         public int proceed()
         {
             int val = 0;
-            if (cl == true)
+            if ((cl == true)&&(st==false))
             {
-               
-                if(cptRead==1)
-                    lastkey = keyboardCallback();
-                if (lastkey != 0)
-                    Console.WriteLine("keboard " + lastkey + " => "+ (char)lastkey);
-                cptRead++;
-                if(cptRead == 2)
-                    cptRead = 0;
                 output = Tools.int2BoolArray(lastkey);
-
             }
-            
+            if ((cl == true) && (st == true))
+            {
+                output = Tools.int2BoolArray(lastkey);
+                resetKeyboardCallback();
+            }
             if (cl == false)
             {
-               output= Tools.int2BoolArray(lastkey);
+                output = Tools.int2BoolArray(lastkey);
+                lastkey = setKeyboardCallback();
+              
+                if (lastkey != 0)
+                    Console.WriteLine("keboard " + lastkey + " => " + (char)lastkey);
             }
-            
             return val;
         }
 
-        public void setKeyboardCallBack(Func<int> _keyboardCallback)
+        public void setKeyboardCallBack(Func<int> _setKkeyboardCallback, Func<int> _resetKkeyboardCallback )
         {
-            keyboardCallback = _keyboardCallback;
+            setKeyboardCallback = _setKkeyboardCallback;
+            resetKeyboardCallback = _resetKkeyboardCallback;
         }
     }
 }

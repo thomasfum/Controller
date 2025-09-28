@@ -1,6 +1,7 @@
 ##CONSTANTS##
 ##CODE##
 A=0x6000
+*A=0
 D=*A
 A=0
 JMP
