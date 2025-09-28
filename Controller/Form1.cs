@@ -71,6 +71,7 @@ namespace Controller
         int counter = 0;
         bool StopRunningLoop = false;
         int currentKeypressed = 0;
+        List<int> KeyPressed= new List<int>();
         int speed = 0;
         Dictionary<string, int> labels = new Dictionary<string, int>();
 
@@ -147,14 +148,23 @@ namespace Controller
             label_IGeneratedAsm.UseMnemonic = false;//prevent issue with char &
             myComputer.SetDisplayImage(pictureBox1.Image as Bitmap);
             myComputer.setKeyboardCallBack(() => {
-               /*
-                int tmp=currentKeypressed;
-                currentKeypressed = 0;
-                labelKeyboard.Text = "Keyboard key:  ";
-                //currentKeypressed = 0;
-               */
-                return currentKeypressed; 
-            }, () => { currentKeypressed = 0; labelKeyboard.Text = "Keyboard key:  "; return 0; });
+                /*
+                 int tmp=currentKeypressed;
+                 currentKeypressed = 0;
+                 labelKeyboard.Text = "Keyboard key:  ";
+                 //currentKeypressed = 0;
+                */
+                // return currentKeypressed; 
+                if (KeyPressed.Count > 0)
+                    return KeyPressed.First();
+                else
+                    return 0;
+            }, () => {
+                if (KeyPressed.Count > 0)
+                    KeyPressed.RemoveAt(0);
+                currentKeypressed = 0; 
+                labelKeyboard.Text = "Keyboard key:  "; 
+                return 0; });
 
 
             toolStripButtonSave.Enabled = false;
@@ -1225,8 +1235,15 @@ namespace Controller
         {
             Key wpfKey = KeyInterop.KeyFromVirtualKey((int)e.KeyCode);
             int key = KeyEventUtility.GetCharFromKey(wpfKey);
-            labelKeyboard.Text = "Keyboard key: " + key + " => " + (char)key;
+            
             currentKeypressed = key;
+            KeyPressed.Add(key);
+
+            //labelKeyboard.Text = "Keyboard key: " + key + " => " + (char)key;
+            string txt = "";
+            for(int i=0;i< KeyPressed.Count;i++)
+                txt+= (char)KeyPressed[i];
+            labelKeyboard.Text = "Keyboard key: " + txt; 
         }
     
         private void Form1_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
