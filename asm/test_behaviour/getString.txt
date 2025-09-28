@@ -1,0 +1,21 @@
+##CONSTANTS##
+SP=0
+##CODE##
+#toto
+#rrf
+init.stack
+A=0x6000
+*A=0
+D=*A
+A=4
+D;JEQ
+#We have a key pressed
+#check return
+push.d
+A=13
+D=D-A;
+A=4
+D;JNE
+pop.d
+A=0
+a

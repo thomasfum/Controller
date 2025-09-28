@@ -25,7 +25,6 @@ using System.Windows.Input;
 //
 //-------------------- 
 // Missing fcts
-// - Stick key
 // - gosub
 // - floating
 // - multiplication
@@ -1030,6 +1029,7 @@ namespace Controller
             richTextBoxCode_PC.SelectionColor = Color.White;
             myComputer.reset();
             Current_PC = 0;
+            KeyPressed.Clear();
         }
 
         private void toolStripButtonRun_Click(object sender, EventArgs e)
@@ -1127,8 +1127,18 @@ namespace Controller
                 SaveAs();
                 return true;
             }
-         
-                return base.ProcessCmdKey(ref msg, keyData);
+            if (keyData == (Keys.Enter))
+            {
+                KeyPressed.Add(13);
+                //return true;
+            }
+            if (keyData == (Keys.Back))
+            {
+                KeyPressed.Add(10);
+                //return true;
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
      
@@ -1236,7 +1246,7 @@ namespace Controller
             Key wpfKey = KeyInterop.KeyFromVirtualKey((int)e.KeyCode);
             int key = KeyEventUtility.GetCharFromKey(wpfKey);
             
-            currentKeypressed = key;
+           // currentKeypressed = key;
             KeyPressed.Add(key);
 
             //labelKeyboard.Text = "Keyboard key: " + key + " => " + (char)key;
