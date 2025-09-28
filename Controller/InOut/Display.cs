@@ -18,7 +18,9 @@ namespace Controller.InOut
         int posX = 0;
         int posY = 0;
         char LasrChar ='-';
-
+        Color BackgroundColor = Color.FromArgb(0, 51, 0);
+        Color PixelColor = Color.FromArgb(155, 200, 155);
+        Color TestColor = Color.FromArgb(155, 0, 0);
         public int proceed()
         {
             int val = 0;
@@ -69,7 +71,7 @@ namespace Controller.InOut
                 {
                     //SetText(0,0, '\u2588');
                     LasrChar = (char)Tools.boolArray2Int(X);
-                    SetText(posX*8, posY * 16, LasrChar);
+                    SetText(posX*10, posY * 16, LasrChar);
                     //image.SetPixel(27 + 8, 27 + 16, Color.FromArgb(255, 155, 155));
                 }
                 else
@@ -94,15 +96,18 @@ namespace Controller.InOut
             posX = 0;
             posY = 0;
             LasrChar = '-';
-            for (int x = 0; x < 380; x++)
-                for (int y = 0; y < 190; y++)
-                    SetPixel(x, y, false);
+            using (Graphics gfx = Graphics.FromImage(image))
+            using (SolidBrush brushBack = new SolidBrush(BackgroundColor))
+            {
+                gfx.FillRectangle(brushBack, 0+27, 0+27, 385, 190);
+            }
+
         }
         public void SetPixel(int x,int y, bool color)
         {
-            Color c = Color.FromArgb(0, 51, 0);
+            Color c = BackgroundColor;
             if (color)
-                c = Color.FromArgb(155, 200, 155);
+                c = PixelColor;
 
             //380x190 =>47 x 11 
             image.SetPixel(27+x, 27+y, c);
@@ -110,7 +115,13 @@ namespace Controller.InOut
 
         public void SetText(int x, int y, char ch)
         {
-            Brush brush = new SolidBrush(Color.FromArgb(155, 200, 155));
+            
+            using (Graphics gfx = Graphics.FromImage(image))
+            using (SolidBrush brushBack = new SolidBrush(BackgroundColor))
+            {
+                gfx.FillRectangle(brushBack, 27 + x, 27 + y, 10, 16);
+            }
+                        Brush brush = new SolidBrush(Color.FromArgb(155, 200, 155));
             PointF location = new PointF(27+x, 27 + y);
             using (Graphics graphics = Graphics.FromImage(image))
             {

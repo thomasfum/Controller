@@ -57,13 +57,17 @@ namespace Controller
         void ColorRegister(string txt, int startpos)
         {
             txt = txt.ToUpper();
+           
             if (txt.Length > 2)
             {
-                if ((txt[0] == '0') && (txt[1] == 'X'))
+                int offset = 0;
+                if (txt[0] == ' ')
+                    offset = 1;
+                if ((txt[offset] == '0') && (txt[offset+1] == 'X'))
                     return;
-                if (txt[0] == '\'')
+                if (txt[offset] == '\'')
                 {
-                    richTextBoxCode.Select(startpos + 1, 2);
+                    richTextBoxCode.Select(startpos+1+ offset, 1);
                     richTextBoxCode.SelectionColor = Color.Green;
                 }
             }
@@ -141,10 +145,8 @@ namespace Controller
                     richTextBoxCode.SelectionBackColor = Color.Black;
                     if (posSpace > 0)
                     {
-                        ColorRegister(line.Substring(posSpace+1).ToUpper(), nextpos + posSpace);
-                        richTextBoxCode.Select(nextpos + posSpace, line.Length - posSpace - 1);
-                        richTextBoxCode.SelectionColor = Color.Yellow;
-                        richTextBoxCode.SelectionBackColor = Color.Black;
+                        ColorRegister(line.Substring(posSpace+1).ToUpper(), nextpos + posSpace+1);
+                       
                     }
                 }
                 else if (line.ToUpper().StartsWith("GOTO") || (line.ToUpper().StartsWith("IF.GOTO")))

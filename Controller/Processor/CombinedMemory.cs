@@ -86,7 +86,7 @@ namespace Controller.Processor
 
             //--------------------------------------------------
             //0x6000 => keyboard        //0110 0000 0000 0000
-            keyboard.st = false;
+            keyboard.st = ca;
             keyboard.cl = switchTopCL.c[6];
             val += keyboard.proceed();
             

@@ -1,0 +1,11 @@
+##CONSTANTS##
+SP=0
+##CODE##
+#toto
+A=0x6000
+D=*A
+A=0
+D;JEQ
+print D
+A=0
+JMP

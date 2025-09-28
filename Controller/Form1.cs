@@ -18,14 +18,26 @@ using System.Windows.Input;
 
 
 //TODO
-//print 'a'  color
-//first macro alone
-// TODO in code
-// gosub
-// floating
-// multiplication
-
-//idee program:
+//--------------------
+// Bugs
+// - first macro alone
+// - TODO in code
+//
+//-------------------- 
+// Missing fcts
+// - Stick key
+// - gosub
+// - floating
+// - multiplication
+//
+//--------------------
+// Macro
+// - input.s
+// - s.to.n
+// - input.n
+//
+//--------------------
+// Program ideas:
 //  - calculatrice
 //  - labyrinthe
 //  - pong
@@ -134,7 +146,13 @@ namespace Controller
             label_Data7.UseMnemonic = false;//prevent issue with char &
             label_IGeneratedAsm.UseMnemonic = false;//prevent issue with char &
             myComputer.SetDisplayImage(pictureBox1.Image as Bitmap);
-            myComputer.setKeyboardCallBack(() => { return currentKeypressed; });
+            myComputer.setKeyboardCallBack(() => {
+                int tmp=currentKeypressed;
+                currentKeypressed = 0;
+                labelKeyboard.Text = "Keyboard key:  ";
+                //currentKeypressed = 0;
+                return tmp; 
+            });
 
 
             toolStripButtonSave.Enabled = false;
@@ -206,6 +224,8 @@ namespace Controller
             MacroList.Add("IF.GOTO", new List<string>() { "pop.D", "A=label", "D;JNE" });
             */
             UpdateMacroList();
+            this.Closed += new EventHandler(MainWindow_Closed);
+
         }
         void UpdateMacroList()
         {
@@ -1209,8 +1229,8 @@ namespace Controller
     
         private void Form1_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
         {
-            labelKeyboard.Text = "Keyboard key:  ";
-            currentKeypressed = 0;
+            //labelKeyboard.Text = "Keyboard key:  ";
+            //currentKeypressed = 0;
         }
 
         private void richTextBoxCode_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
@@ -1225,5 +1245,10 @@ namespace Controller
         {
             speed = toolStripComboBox1.SelectedIndex;
         }
+        void MainWindow_Closed(object sender, EventArgs e)
+        {
+            StopRunningLoop = true;
+        }
+
     }
 }

@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Controller.InOut
 {
@@ -14,23 +15,30 @@ namespace Controller.InOut
         public bool[] output = new bool[16];
         public bool cl;
         public bool st;
-        int lastKey = 0;
+        int lastkey = 0;
+        int cptRead = 1;
         public int proceed()
         {
             int val = 0;
             if (cl == true)
             {
-                int key = keyboardCallback();
-                //if (lastKey == 0)
-                    output = Tools.int2BoolArray(key);
-                //else
-                //    output = Tools.int2BoolArray(0);
-                lastKey = key;
-
-                if (key!=0)
-                    Console.WriteLine("keboard " + key +" => "+ (char)key);
+               
+                if(cptRead==1)
+                    lastkey = keyboardCallback();
+                if (lastkey != 0)
+                    Console.WriteLine("keboard " + lastkey + " => "+ (char)lastkey);
+                cptRead++;
+                if(cptRead == 2)
+                    cptRead = 0;
+                output = Tools.int2BoolArray(lastkey);
 
             }
+            
+            if (cl == false)
+            {
+               output= Tools.int2BoolArray(lastkey);
+            }
+            
             return val;
         }
 
