@@ -1,5 +1,6 @@
 ##CONSTANTS##
 SP=0
+LC=1
 ##CODE##
 #toto
 #rrf
@@ -10,12 +11,26 @@ D=*A
 A=4
 D;JEQ
 #We have a key pressed
-#check return
+#save char to LC
+A=LC
+*A=D
 push.d
+A=LC
+D=*A
+#check BS
+A=8
+D=D-A;
+push.d
+if.goto enter
+pop.d
+pop.d
+label enter:
+#check return
+A=LC
+D=*A
 A=13
 D=D-A;
 A=4
 D;JNE
 pop.d
 A=0
-a

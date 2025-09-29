@@ -34,8 +34,8 @@ namespace Controller.InOut
                 output = Tools.int2BoolArray(lastkey);
                 lastkey = setKeyboardCallback();
               
-                if (lastkey != 0)
-                    Console.WriteLine("keboard " + lastkey + " => " + (char)lastkey);
+                //if (lastkey != 0)
+                //    Console.WriteLine("keboard " + lastkey + " => " + (char)lastkey);
             }
             return val;
         }

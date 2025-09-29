@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Controller.ALU;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -179,15 +180,19 @@ namespace Controller
                     {
                         for (int i = 0; i < dataGridView_Constant.Rows.Count; i++)
                         {
-                            string cst = (string)dataGridView_Constant.Rows[i].Cells[0].Value;
-                            if ((cst != null) && (cst != ""))
+                            object Value = dataGridView_Constant.Rows[i].Cells[0].Value;
+                            if (Value != null && Value != DBNull.Value && String.IsNullOrWhiteSpace(Value.ToString()))
                             {
-                                int posCst = line.ToUpper().IndexOf(cst.ToUpper());
-                                if (posCst >= 0)
+                                string cst = (string)dataGridView_Constant.Rows[i].Cells[0].Value;
+                                if ((cst != null) && (cst != ""))
                                 {
-                                    richTextBoxCode.Select(nextpos + posCst, cst.Length);
-                                    richTextBoxCode.SelectionColor = Color.Cyan;
-                                    richTextBoxCode.SelectionBackColor = Color.Black;
+                                    int posCst = line.ToUpper().IndexOf(cst.ToUpper());
+                                    if (posCst >= 0)
+                                    {
+                                        richTextBoxCode.Select(nextpos + posCst, cst.Length);
+                                        richTextBoxCode.SelectionColor = Color.Cyan;
+                                        richTextBoxCode.SelectionBackColor = Color.Black;
+                                    }
                                 }
                             }
 
@@ -242,30 +247,33 @@ namespace Controller
             Dictionary<string, int> Cst = new Dictionary<string, int>();
             for (int i = 0; i < dataGridView_Constant.Rows.Count; i++)
             {
-                string CstName = (string)dataGridView_Constant.Rows[i].Cells[0].Value;
-                string CstVal = (string)dataGridView_Constant.Rows[i].Cells[1].Value;
-                if ((CstName != "") && (CstName != null))
+                object Value = dataGridView_Constant.Rows[i].Cells[0].Value;
+                if (Value != null && Value != DBNull.Value && !String.IsNullOrWhiteSpace(Value.ToString()))
                 {
-                    int val = Tools.ParseNumber(CstVal.ToUpper(), out Msg);
-                    if (Msg == "")
+                    string CstName = (string)Value;
+                    string CstVal = (string)dataGridView_Constant.Rows[i].Cells[1].Value;
+                    if ((CstName != "") && (CstName != null))
                     {
-                        if (Cst.ContainsKey(CstName))
+                        int val = Tools.ParseNumber(CstVal.ToUpper(), out Msg);
+                        if (Msg == "")
                         {
-                            Msg = "Conatant " + CstName + " exists more than 1 time";
-                            return new Dictionary<string, int>();
+                            if (Cst.ContainsKey(CstName))
+                            {
+                                Msg = "Conatant " + CstName + " exists more than 1 time";
+                                return new Dictionary<string, int>();
+                            }
+                            else
+                            {
+                                Cst.Add(CstName.ToUpper(), val);
+                            }
                         }
                         else
                         {
-                            Cst.Add(CstName.ToUpper(), val);
+                            Msg = "Conatant " + CstName + "Value " + Msg;
+                            return new Dictionary<string, int>();
                         }
                     }
-                    else
-                    {
-                        Msg = "Conatant " + CstName + "Value " + Msg;
-                        return new Dictionary<string, int>();
-                    }
                 }
-
             }
             return Cst;
         }
@@ -381,9 +389,9 @@ namespace Controller
                 {
                     foreach (KeyValuePair<string, int> kv in labels)
                     {
-                        if (ASM[i].Contains(kv.Key))
+                        if (ASM[i].ToUpper().Contains(kv.Key))
                         {
-                            ASM[i]=ASM[i].Replace(kv.Key, kv.Value.ToString());
+                            ASM[i]=ASM[i].ToUpper().Replace(kv.Key, kv.Value.ToString());
                         }
                     }
                 }

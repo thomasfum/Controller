@@ -15,6 +15,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
+using static System.Net.Mime.MediaTypeNames;
 
 
 //TODO
@@ -892,13 +893,17 @@ namespace Controller
             string createText = "##CONSTANTS##\n";
             for (int i = 0; i < dataGridView_Constant.Rows.Count; i++)
             {
-                string cst = (string)dataGridView_Constant.Rows[i].Cells[0].Value;
-                if ((cst != null) && (cst != ""))
+                object Value = dataGridView_Constant.Rows[i].Cells[0].Value;
+                if (Value != null && Value != DBNull.Value && !String.IsNullOrWhiteSpace(Value.ToString()))
                 {
-                    createText += cst;
-                    createText += "=";
-                    createText += (string)dataGridView_Constant.Rows[i].Cells[1].Value;
-                    createText += "\n";
+                    string cst = (string)Value;
+                    if ((cst != null) && (cst != ""))
+                    {
+                        createText += cst;
+                        createText += "=";
+                        createText += (string)dataGridView_Constant.Rows[i].Cells[1].Value;
+                        createText += "\n";
+                    }
                 }
             }
             createText += "##CODE##\n";
@@ -1127,17 +1132,18 @@ namespace Controller
                 SaveAs();
                 return true;
             }
+            /*
             if (keyData == (Keys.Enter))
             {
-                KeyPressed.Add(13);
+                AddKey(13);
                 //return true;
             }
             if (keyData == (Keys.Back))
             {
-                KeyPressed.Add(10);
+                AddKey(8);
                 //return true;
             }
-
+            */
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
@@ -1243,18 +1249,12 @@ namespace Controller
 
         private void Form1_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
-            Key wpfKey = KeyInterop.KeyFromVirtualKey((int)e.KeyCode);
-            int key = KeyEventUtility.GetCharFromKey(wpfKey);
-            
-           // currentKeypressed = key;
-            KeyPressed.Add(key);
+         
 
-            //labelKeyboard.Text = "Keyboard key: " + key + " => " + (char)key;
-            string txt = "";
-            for(int i=0;i< KeyPressed.Count;i++)
-                txt+= (char)KeyPressed[i];
-            labelKeyboard.Text = "Keyboard key: " + txt; 
+
         }
+
+       
     
         private void Form1_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
         {
@@ -1279,5 +1279,38 @@ namespace Controller
             StopRunningLoop = true;
         }
 
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            Key wpfKey = KeyInterop.KeyFromVirtualKey((int)e.KeyCode);
+            int key = KeyEventUtility.GetCharFromKey(wpfKey);
+            // currentKeypressed = key;
+            KeyPressed.Add(key);
+
+            //labelKeyboard.Text = "Keyboard key: " + key + " => " + (char)key;
+            string txt = "";
+            for (int i = 0; i < KeyPressed.Count; i++)
+            {
+                if (KeyPressed[i] == 13)
+                    txt += "#13";
+                else if (KeyPressed[i] == 8)
+                    txt += "#8";
+                else
+                    txt += (char)KeyPressed[i];
+            }
+            labelKeyboard.Text = "Keyboard key: " + txt;
+            textBox_Keyboard.Text = "";
+        }
+        //keyboard clear
+        private void button1_Click(object sender, EventArgs e)
+        {
+            KeyPressed.Clear();
+            labelKeyboard.Text = "Keyboard key: ";
+            textBox_Keyboard.Text = "";
+        }
     }
 }
