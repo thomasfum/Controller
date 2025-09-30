@@ -70,7 +70,6 @@ namespace Controller
         int Current_PC = -1;
         int counter = 0;
         bool StopRunningLoop = false;
-        int currentKeypressed = 0;
         List<int> KeyPressed= new List<int>();
         int speed = 0;
         Dictionary<string, int> labels = new Dictionary<string, int>();
@@ -162,7 +161,6 @@ namespace Controller
             }, () => {
                 if (KeyPressed.Count > 0)
                     KeyPressed.RemoveAt(0);
-                currentKeypressed = 0; 
                 labelKeyboard.Text = "Keyboard key:  "; 
                 return 0; });
 
@@ -1037,23 +1035,29 @@ namespace Controller
             KeyPressed.Clear();
         }
 
-        private void toolStripButtonRun_Click(object sender, EventArgs e)
+        private async void toolStripButtonRun_Click(object sender, EventArgs e)
         {
-            run(Last_PC);
+            await run(Last_PC);
         }
-        async void run(int toPC)
+        async Task run(int toPC)
         {
             StopRunningLoop = false;
             toolStripButtonRun.Enabled = false;
             toolStripButtonTick.Enabled = false;
             toolStripButtonReset.Enabled = false;
             bool go = false;
+            int cpt = 0;
             do
             {
+                cpt++;
                 if(speed==0)
                     await Task.Delay(50);
                 if (speed != 0)
-                    await Task.Delay(1);
+                    if (cpt > 2)
+                    {
+                        cpt = 0;
+                        await Task.Delay(1);
+                    }
                 if (StopRunningLoop == true)
                     break;
                 go = Tick();

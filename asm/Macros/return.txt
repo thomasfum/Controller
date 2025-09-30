@@ -1,0 +1,21 @@
+##CONSTANTS##
+SP=0
+ARGS=1
+LOCALS=2
+TEMP=3
+RETVAL=6
+##CODE##
+# Assembler code 
+#Pop the top value from the stack into the RETVAL memory slot.
+pop.D
+A=RETVAL
+*A=D
+#Set SP to the value of LOCALS
+A=LOCALS
+D=*A
+A=SP
+*A=D
+#pop the return address from the stack and jump to it.
+pop.D
+A=D
+JMP

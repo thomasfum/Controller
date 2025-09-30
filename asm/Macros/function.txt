@@ -1,0 +1,21 @@
+##CONSTANTS##
+SP=0
+ARGS=1
+LOCALS=2
+TEMP=3
+RETVAL=6
+##CODE##
+# Assembler code 
+label functionName:
+#Set LOCALS to the current SP
+A=SP
+D=*A
+A=LOCALS
+*A=D
+#Make space for local data
+A=SP
+D=*A
+A=localsCount
+D=D+A
+A=SP
+*A=D

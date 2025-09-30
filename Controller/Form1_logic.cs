@@ -338,6 +338,18 @@ namespace Controller
                         {
                             line = line.ToUpper().Replace("LABEL", paramList[0]);
                         }
+                        if (line.ToUpper().Contains("LABEL"))
+                        {
+                            line = line.ToUpper().Replace("LABEL", paramList[0]);
+                        }
+                        if (line.ToUpper().Contains("ARGUMENTCOUNT"))
+                        {
+                            line = line.ToUpper().Replace("ARGUMENTCOUNT", paramList[1]);
+                        }
+                        if (line.ToUpper().Contains("LOCALSCOUNT"))
+                        {
+                            line = line.ToUpper().Replace("LOCALSCOUNT", paramList[1]);
+                        }
 
                     }
                     counter++;

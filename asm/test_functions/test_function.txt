@@ -1,0 +1,18 @@
+##CONSTANTS##
+SP=0
+ARGS=1
+LOCALS=2
+TEMP=3
+RETVAL=6
+##CODE##
+init.stack
+call toto 0
+goto end
+A=RETVAL
+D=*A
+function toto 0
+A=33
+D=A
+push.d
+return 
+label end:

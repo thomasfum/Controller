@@ -312,7 +312,7 @@ namespace Controller
                 }
                 if (CalcOk != true)
                 {
-                    Msg = "Wrong Calculation";
+                    Msg = "Wrong Calculation: "+ OP;
                     return 0;
                 }
             }

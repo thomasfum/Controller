@@ -1,0 +1,53 @@
+##CONSTANTS##
+SP=0
+ARGS=1
+LOCALS=2
+TEMP=3
+RETVAL=6
+##CODE##
+# Assembler code 
+#Push the current value of ARGS on the stack
+A=ARGS
+D=*A
+push.D
+#Push the current value of LOCALS.
+A=LOCALS
+D=*A
+push.D
+#Push the address immediately after the jump (the return address).
+A= after
+D=A
+push.D
+#Calculate a new ARGS address
+A=SP
+D=*A
+A=TEMP
+D=D-A
+A=argumentCount
+D=D-A
+A=ARGS
+*A=D
+goto functionName
+label after:
+#Store the current ARGS value in a temporary slot.
+A=ARGS
+D=*A
+A=TEMP
+*A=D
+#Restore the LOCALS value from the stack
+pop.D
+A=LOCALS
+*A=D
+#Restore the ARGS value from the stack
+pop.D
+A=ARGS
+*A=D  
+#Set SP to the previous ARGS value
+A=TEMP
+D=*A
+A=SP
+*A=D
+#Push RETVAL on the stack
+A=RETVAL
+D=*A
+push.D
