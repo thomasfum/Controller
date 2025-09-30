@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Interop;
 
 namespace Controller
 {
@@ -55,10 +56,18 @@ namespace Controller
         }
 
 
-        void ColorRegister(string txt, int startpos)
+        void ColorRegister(string txt, int startpos, Dictionary<string, int> Csts)
         {
             txt = txt.ToUpper();
-           
+            foreach (string s in Csts.Keys)
+            {
+                if (txt == s)
+                {
+                    richTextBoxCode.Select(startpos , txt.Length);
+                    richTextBoxCode.SelectionColor = Color.LightGreen;
+                    return;
+                }
+            }
             if (txt.Length > 2)
             {
                 int offset = 0;
@@ -101,6 +110,8 @@ namespace Controller
             richTextBoxCode.SelectAll();
             richTextBoxCode.SelectionColor = Color.White;
             UpdateReserveredWords();
+            string Msg;
+            Dictionary<string, int> Csts = GetConstants(out Msg);
             do
             {
                 pos = txt.IndexOf("\n", nextpos);
@@ -146,7 +157,7 @@ namespace Controller
                     richTextBoxCode.SelectionBackColor = Color.Black;
                     if (posSpace > 0)
                     {
-                        ColorRegister(line.Substring(posSpace+1).ToUpper(), nextpos + posSpace+1);
+                        ColorRegister(line.Substring(posSpace+1).ToUpper(), nextpos + posSpace+1,Csts);
                        
                     }
                 }
@@ -201,7 +212,7 @@ namespace Controller
                         if (eqPos > 0)//we have a =
                         {
                             string sub1 = line.Substring(0, eqPos);
-                            ColorRegister(sub1, nextpos);
+                            ColorRegister(sub1, nextpos,Csts);
                         }
                         int scPos = line.IndexOf(';');
                         if (scPos > 0)//we have a ;
@@ -213,7 +224,7 @@ namespace Controller
                         if (scPos < 0)
                             scPos = pos - nextpos;
                         string sub = line.Substring(eqPos + 1, scPos - eqPos - 1);
-                        ColorRegister(sub, nextpos + eqPos + 1);
+                        ColorRegister(sub, nextpos + eqPos + 1, Csts);
                     }
 
                     if (ListErrors != null)
@@ -422,8 +433,8 @@ namespace Controller
                     if (Msg != "")
                     {
                         error = true;
-                        label_Error.Text += "Line " + i + ": " + Msg + "\n";
-                        listError.Add(i);
+                        label_Error.Text += "Line " + ASMCode.Count + ": " + Msg + "\n";
+                        listError.Add(ASMCode.Count);
                         ASMCode.Add(0);
                     }
                     else
@@ -462,8 +473,12 @@ namespace Controller
             }
             Last_PC = ASMCode.Count;
             UpdateFromRom();
+            SynchronizerichTextBox();
             Reset();
-
+            toolStripButtonTick.Enabled = true;
+            toolStripButtonRun.Enabled = true;
+            toolStripButtonReset.Enabled = true;
+            toolStripButtonStop.Enabled = true;
         }
     }
 }

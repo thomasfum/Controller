@@ -166,7 +166,11 @@ namespace Controller
 
 
             toolStripButtonSave.Enabled = false;
-            
+            toolStripButtonTick.Enabled = false;
+            toolStripButtonRun.Enabled = false;
+            toolStripButtonReset.Enabled = false;
+            toolStripButtonStop.Enabled = false;
+
             //richTextBoxCode.SetInnerMargins(dist, dist, dist, 0);
             richTextBoxCode.SelectAll();
             richTextBoxCode.SelectionIndent += 5;//play with this values to match yours
@@ -682,19 +686,13 @@ namespace Controller
         }
 
 
-    
-      
-
         const int WM_SETREDRAW = 11;
         void SyntaxColorUpdate(List<int> ListErrors=null)
         {
-
-            
             int SelectionStart = richTextBoxCode.SelectionStart;
             int SelectionLength = richTextBoxCode.SelectionLength;
             string txt = richTextBoxCode.Text;
             int topIndex = richTextBoxCode.GetCharIndexFromPosition(new Point(1, 1));
-                    
            
             Point toto = new Point();
             SendMessage(richTextBoxCode.Handle, WM_SETREDRAW, new IntPtr(0), ref toto);
@@ -707,7 +705,6 @@ namespace Controller
             richTextBoxCode.Select(SelectionStart, SelectionLength);
             richTextBoxCode.SelectionColor = Color.White;
            
-            
             SendMessage(richTextBoxCode.Handle, WM_SETREDRAW, new IntPtr(1), ref toto);
                        
             richTextBoxCode.Refresh();
@@ -722,9 +719,12 @@ namespace Controller
                 SyntaxColorUpdate();
                 //e.Handled = true;
                 //e.SuppressKeyPress = true;
+                NeedGenerate();
             }
-            if ((e.KeyCode == Keys.Up)|| (e.KeyCode == Keys.PageUp)|| (e.KeyCode == Keys.Down) || (e.KeyCode == Keys.PageDown))
+            if ((e.KeyCode == Keys.Up) || (e.KeyCode == Keys.PageUp) || (e.KeyCode == Keys.Down) || (e.KeyCode == Keys.PageDown))
                 SyntaxColorUpdate();
+            if ((e.KeyCode != Keys.Up) && (e.KeyCode != Keys.PageUp) && (e.KeyCode != Keys.Down) && (e.KeyCode != Keys.PageDown) && (e.KeyCode != Keys.Right) && (e.KeyCode != Keys.Left) && (e.KeyCode != Keys.Home) && (e.KeyCode != Keys.End))
+                NeedGenerate();
         }
 
      
@@ -869,21 +869,25 @@ namespace Controller
         }
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         private static extern IntPtr SendMessage(IntPtr hWnd, int msg, IntPtr wp, ref Point lp);
-        private void richTextBoxCode_VScroll(object sender, EventArgs e)
+        void SynchronizerichTextBox()
         {
-
             //https://www.codeproject.com/articles/Synchronized-Scrolling-of-Multiple-RichTextBoxes
-            if (ScrollPC == true)
-            {
-                int WM_USER = 0x400;
-                int EM_GETSCROLLPOS = WM_USER + 221;
-                int EM_SETSCROLLPOS = WM_USER + 222;
-                Point pt = new Point(0, 0);
-                SendMessage(richTextBoxCode.Handle, EM_GETSCROLLPOS, new IntPtr(0), ref pt);
-                SendMessage(richTextBoxCode_PC.Handle, EM_SETSCROLLPOS, new IntPtr(0), ref pt);
-            }
+            int WM_USER = 0x400;
+            int EM_GETSCROLLPOS = WM_USER + 221;
+            int EM_SETSCROLLPOS = WM_USER + 222;
+            Point pt = new Point(0, 0);
+            SendMessage(richTextBoxCode.Handle, EM_GETSCROLLPOS, new IntPtr(0), ref pt);
+            SendMessage(richTextBoxCode_PC.Handle, EM_SETSCROLLPOS, new IntPtr(0), ref pt);
         }
 
+        private void richTextBoxCode_VScroll(object sender, EventArgs e)
+        {
+            if (ScrollPC == true)
+            {
+                SynchronizerichTextBox();
+            }
+        }
+        
       
       
         private void Save()
@@ -1136,18 +1140,6 @@ namespace Controller
                 SaveAs();
                 return true;
             }
-            /*
-            if (keyData == (Keys.Enter))
-            {
-                AddKey(13);
-                //return true;
-            }
-            if (keyData == (Keys.Back))
-            {
-                AddKey(8);
-                //return true;
-            }
-            */
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
@@ -1208,7 +1200,7 @@ namespace Controller
                 uint wScanCode,
                 byte[] lpKeyState,
                 [Out, MarshalAs( UnmanagedType.LPWStr, SizeParamIndex = 4 )]
-        StringBuilder pwszBuff,
+                StringBuilder pwszBuff,
                 int cchBuff,
                 uint wFlags);
 
@@ -1251,21 +1243,7 @@ namespace Controller
             }
         }
 
-        private void Form1_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
-        {
-         
-
-
-        }
-
-       
-    
-        private void Form1_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
-        {
-            //labelKeyboard.Text = "Keyboard key:  ";
-            //currentKeypressed = 0;
-        }
-
+     
         private void richTextBoxCode_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
         {
             if (e.Control && e.KeyCode == Keys.V)
@@ -1283,16 +1261,10 @@ namespace Controller
             StopRunningLoop = true;
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void textBox1_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
             Key wpfKey = KeyInterop.KeyFromVirtualKey((int)e.KeyCode);
             int key = KeyEventUtility.GetCharFromKey(wpfKey);
-            // currentKeypressed = key;
             KeyPressed.Add(key);
 
             //labelKeyboard.Text = "Keyboard key: " + key + " => " + (char)key;
@@ -1316,5 +1288,14 @@ namespace Controller
             labelKeyboard.Text = "Keyboard key: ";
             textBox_Keyboard.Text = "";
         }
+        void NeedGenerate()
+        {
+            toolStripButtonTick.Enabled = false;
+            toolStripButtonRun.Enabled = false;
+            toolStripButtonReset.Enabled = false;
+            toolStripButtonStop.Enabled = false;
+        }
+    
+        
     }
 }
