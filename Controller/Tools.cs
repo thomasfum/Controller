@@ -193,7 +193,7 @@ namespace Controller
                 string number = val.Substring(2);
                 if (Csts.ContainsKey(number.ToUpper()))
                 {
-                    return Csts[number];
+                    return Csts[number.ToUpper()];
                 }
                 else
                 {

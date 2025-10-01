@@ -1,0 +1,22 @@
+##CONSTANTS##
+SP=0
+ARGS=1
+LOCALS=2
+TEMP=3
+RETVAL=6
+##CODE##
+init.stack
+push.value 7
+push.value 3
+call add 2
+pop.d
+goto end
+function add 0
+  push.argument 0
+  push.argument 1
+  pop.d
+  pop.a
+  D=D+A
+  push.d
+return
+label end:

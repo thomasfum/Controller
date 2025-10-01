@@ -1,0 +1,20 @@
+##CONSTANTS##
+SP=0
+ARGS=1
+LOCALS=2
+TEMP=3
+RETVAL=6
+##CODE##
+#calculate adress and store in temp
+A=ARGS
+D=*A
+A=index
+D=D+A
+A=TEMP
+*A=D
+#pop D
+pop.d
+#store 
+A=TEMP
+A=*A
+*A=D

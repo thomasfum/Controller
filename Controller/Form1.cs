@@ -1,4 +1,5 @@
-﻿using Controller.Processor;
+﻿using Controller.ALU;
+using Controller.Processor;
 using System;
 
 using System.Collections.Generic;
@@ -15,18 +16,20 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
-using static System.Net.Mime.MediaTypeNames;
 
 
 //TODO
 //--------------------
 // Bugs
+// - trim start in analyseline
 // - first macro alone
 // - TODO in code
 //
 //-------------------- 
 // Missing fcts
-// - gosub
+// - breakpoints
+// - END 
+// - include saved functions
 // - floating
 // - multiplication
 //
@@ -49,12 +52,14 @@ namespace Controller
     public partial class Form1 : Form
     {
 
-        String AppPath=AppDomain.CurrentDomain.BaseDirectory + "../../";
+        String AppPath = AppDomain.CurrentDomain.BaseDirectory + "../../";
         Computer myComputer;
         DataTable dt_Rom = new DataTable();
         DataTable dt_Ram = new DataTable();
         DataTable dt_Stack = new DataTable();
         DataTable dt_Constants = new DataTable();
+
+        Dictionary<int,int> BreakPoints = new Dictionary<int, int>();
 
         public bool[] IGenerated = new bool[16];
         public bool[] InOut = new bool[16];
@@ -66,15 +71,19 @@ namespace Controller
         int RamSize = 1024;
         string currentFileName = "";
         bool ScrollPC = true;
-        int Last_PC=0;
+        int Last_PC = 0;
         int Current_PC = -1;
         int counter = 0;
         bool StopRunningLoop = false;
-        List<int> KeyPressed= new List<int>();
+        List<int> KeyPressed = new List<int>();
         int speed = 0;
         Dictionary<string, int> labels = new Dictionary<string, int>();
-
-
+        //public int breakpointChar = 0x23FA;
+        //public int breakpointChar = 0x2B24;// BLACK LARGE CIRCLE
+        //public int breakpointChar = 0x25CF;// BLACK CIRCLE
+        public int breakpointChar = 0x26AB;// MEDIUM BLACK CIRCLE
+        //public int breakpointChar = 0x2981;// Z NOTATION SPOT //ok
+        //public int breakpointChar = 0x2022;// BULLET
         public Form1()
         {
             InitializeComponent();
@@ -113,7 +122,7 @@ namespace Controller
             dt_Rom.Columns.Add("Instruction");
             dt_Rom.Columns.Add("Assembly");
 
-         
+
             UpdateFromRom();
 
             dataGridView_Ram.DataSource = dt_Ram;
@@ -161,7 +170,7 @@ namespace Controller
             }, () => {
                 if (KeyPressed.Count > 0)
                     KeyPressed.RemoveAt(0);
-                labelKeyboard.Text = "Keyboard key:  "; 
+                labelKeyboard.Text = "Keyboard key:  ";
                 return 0; });
 
 
@@ -175,6 +184,8 @@ namespace Controller
             richTextBoxCode.SelectAll();
             richTextBoxCode.SelectionIndent += 5;//play with this values to match yours
             richTextBoxCode.SelectionLength = 0;
+            
+
 
             richTextBoxCode_PC.SelectAll();
             richTextBoxCode_PC.SelectionAlignment = HorizontalAlignment.Right;
@@ -195,7 +206,7 @@ namespace Controller
             label_SubTitle1.Text += " * ";
             label_SubTitle1.Text += " . ";
 
-            
+
             label_SubTitle2.Text = " u ";
             label_SubTitle2.Text += "op1";
             label_SubTitle2.Text += "op0 ";
@@ -205,7 +216,7 @@ namespace Controller
             label_SubTitle3.Text = " a ";
             label_SubTitle3.Text += " d ";
             label_SubTitle3.Text += " a* ";
-            
+
             label_SubTitle4.Text = "lt ";
             label_SubTitle4.Text += "eq ";
             label_SubTitle4.Text += "gt ";
@@ -215,7 +226,7 @@ namespace Controller
 
             dt_Constants.Columns.Add("Name");
             dt_Constants.Columns.Add("Value");
-            
+
 
             dataGridView_Constant.DataSource = dt_Constants;
             dataGridView_Constant.RowHeadersVisible = false;
@@ -258,8 +269,8 @@ namespace Controller
                 int CodePos = readText.IndexOf("##CODE##");
                 if (CodePos != -1)
                 {
-                    string code=readText.Substring(CodePos + 9);
-                    string []codeLine=code.Split('\n');
+                    string code = readText.Substring(CodePos + 9);
+                    string[] codeLine = code.Split('\n');
                     string macroName = Path.GetFileNameWithoutExtension(file.Name).ToUpper().Replace("_", ".");
                     MacroList.Add(macroName, codeLine.ToList());
                 }
@@ -291,7 +302,7 @@ namespace Controller
         }
         private void RAM_Clear_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < dataGridView_Ram.RowCount-1; i++)
+            for (int i = 0; i < dataGridView_Ram.RowCount - 1; i++)
             {
                 myComputer.setRam(i, 0);
             }
@@ -315,16 +326,16 @@ namespace Controller
         private void ROM_GridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             DataGridView dgv = (DataGridView)sender;
-           
+
             if (e.ColumnIndex == 1)
             {
 
                 int row = e.RowIndex;
                 string cell = (string)dgv?.Rows?[row]?.Cells?[e.ColumnIndex]?.Value;
-                string cell2=cell.Replace(" ", "");
-                char a= Convert.ToChar(160);
-                cell2 = cell.Replace(""+a, "");
-                int I=int.Parse(cell2);
+                string cell2 = cell.Replace(" ", "");
+                char a = Convert.ToChar(160);
+                cell2 = cell.Replace("" + a, "");
+                int I = int.Parse(cell2);
                 string Inst = "";
                 if (Tools.get15(I) == true)
                     Inst = Tools.GetInstruction(I);
@@ -335,7 +346,7 @@ namespace Controller
             }
             if (e.ColumnIndex == 2)
             {
-             
+
                 int row = e.RowIndex;
                 dgv.Rows[row].Cells[0].Value = row;
                 string val = (string)dgv.Rows[row].Cells[2].Value;
@@ -410,24 +421,24 @@ namespace Controller
             label_Data2.Text += " " + (Alub[2] ? '1' : '0') + " ";
             label_Data2.Text += " " + (Alub[1] ? '1' : '0') + " ";
             label_Data2.Text += " " + (Alub[0] ? '1' : '0') + " ";
-            
+
             bool[] targetb = Tools.int2BoolArray(Tools.getTarget(I));
             label_Data3.Text = " " + (targetb[2] ? '1' : '0') + " ";
             label_Data3.Text += " " + (targetb[1] ? '1' : '0') + " ";
             label_Data3.Text += " " + (targetb[0] ? '1' : '0') + " ";
-            
+
             bool[] JMPb = Tools.int2BoolArray(Tools.getJmp(I));
             label_Data4.Text = " " + (JMPb[2] ? '1' : '0') + " ";
             label_Data4.Text += " " + (JMPb[1] ? '1' : '0') + " ";
             label_Data4.Text += " " + (JMPb[0] ? '1' : '0') + " ";
 
-            label_Data5.Text =  I.ToString("D");
+            label_Data5.Text = I.ToString("D");
 
 
 
             string txt = I.ToString("X");
             if (txt.Length > 4)
-                label_Data6.Text =  I.ToString("X").Substring(4);
+                label_Data6.Text = I.ToString("X").Substring(4);
             else
                 label_Data6.Text = txt.PadLeft(4, '0');
 
@@ -442,19 +453,19 @@ namespace Controller
         }
         void UpdateIGenerated()
         {
-            int I= Tools.boolArray2Int(IGenerated);
+            int I = Tools.boolArray2Int(IGenerated);
             textBox_IGeneratedD.Text = I.ToString();
             string txt = I.ToString("X");
             if (txt.Length > 4)
-                label_IGeneratedX.Text =  I.ToString("X").Substring(4);
+                label_IGeneratedX.Text = I.ToString("X").Substring(4);
             else
-                label_IGeneratedX.Text =  txt.PadLeft(4, '0');
+                label_IGeneratedX.Text = txt.PadLeft(4, '0');
             string Inst = "";
             if (Tools.get15(I) == true)
                 Inst = Tools.GetInstruction(I);
             else
                 Inst = "A=" + I;
-            label_IGeneratedAsm.Text= Inst;
+            label_IGeneratedAsm.Text = Inst;
         }
 
         private void textBox_IGeneratedD_Validated(object sender, EventArgs e)
@@ -634,12 +645,12 @@ namespace Controller
             UpdateIGenerated();
         }
 
-      
 
-    
+
+
         private void checkBox32_CheckedChanged(object sender, EventArgs e)
         {
-            InOut[7]= ((CheckBox)sender).Checked;
+            InOut[7] = ((CheckBox)sender).Checked;
             myComputer.SetInOut(InOut);
         }
 
@@ -687,26 +698,26 @@ namespace Controller
 
 
         const int WM_SETREDRAW = 11;
-        void SyntaxColorUpdate(List<int> ListErrors=null)
+        void SyntaxColorUpdate(List<int> ListErrors = null)
         {
             int SelectionStart = richTextBoxCode.SelectionStart;
             int SelectionLength = richTextBoxCode.SelectionLength;
             string txt = richTextBoxCode.Text;
             int topIndex = richTextBoxCode.GetCharIndexFromPosition(new Point(1, 1));
-           
+
             Point toto = new Point();
             SendMessage(richTextBoxCode.Handle, WM_SETREDRAW, new IntPtr(0), ref toto);
             ScrollPC = false;
-            
-            AnalyseLines(txt, ListErrors);
-            
+
+            AnalyseLines(txt, ListErrors, richTextBoxCode);
+
             richTextBoxCode.Select(topIndex, 1);
             richTextBoxCode.ScrollToCaret();
             richTextBoxCode.Select(SelectionStart, SelectionLength);
             richTextBoxCode.SelectionColor = Color.White;
-           
+
             SendMessage(richTextBoxCode.Handle, WM_SETREDRAW, new IntPtr(1), ref toto);
-                       
+
             richTextBoxCode.Refresh();
             richTextBoxCode.Invalidate();
             richTextBoxCode.Update();
@@ -727,20 +738,65 @@ namespace Controller
                 NeedGenerate();
         }
 
-     
-      
+
+        void UpdateMacroview(bool inMacro, int no, int step, int _PC)
+        {
+            if (inMacro == false)
+            {
+                richTextBoxMacro.Clear();
+            }
+            else
+            {
+                string line = richTextBoxCode.Lines[no - 1].Split(' ')[0];
+                richTextBoxMacro.Text = "#In Macro " + step + " PC=" + _PC + " (" + (no - 1) + "):" + line + "\n";
+                if (MacroList.ContainsKey(line.ToUpper()))
+                {
+                    for (int i = 0; i < MacroList[line.ToUpper()].Count; i++)
+                        richTextBoxMacro.Text += MacroList[line.ToUpper()][i] + "\n";
+                }
+
+                string txt = richTextBoxMacro.Text;
+                AnalyseLines(txt, new List<int>(), richTextBoxMacro);
+            }
+        }
 
         void UpdateStack()
         {
             int ram0 = myComputer.GetRam(0);
             label_SP.Text = "SP=" + ram0;
             dt_Stack.Clear();
-            for (int i = ram0-1; i >= 256; i--)
+            for (int i = ram0 - 1; i >= 256; i--)
             {
                 dt_Stack.Rows.Add(i, myComputer.GetRam(i));
             }
         }
-        int UpdatePC(int _PC,bool error)
+
+
+        int UpdatePC(int _PC, bool error)
+        {
+            int SelectionStart = richTextBoxCode_PC.SelectionStart;
+            //int SelectionLength = richTextBoxCode_PC.SelectionLength;
+            int topIndex = richTextBoxCode_PC.GetCharIndexFromPosition(new Point(1, 1));
+
+            Point toto = new Point();
+            SendMessage(richTextBoxCode_PC.Handle, WM_SETREDRAW, new IntPtr(0), ref toto);
+
+            int re= UpdatePC2( _PC,  error);
+
+            richTextBoxCode_PC.Select(topIndex, 1);
+            richTextBoxCode_PC.ScrollToCaret();
+            richTextBoxCode_PC.Select(SelectionStart, 0);//SelectionLength
+            richTextBoxCode_PC.SelectionColor = Color.White;
+
+            SendMessage(richTextBoxCode_PC.Handle, WM_SETREDRAW, new IntPtr(1), ref toto);
+
+            richTextBoxCode_PC.Refresh();
+            richTextBoxCode_PC.Invalidate();
+            richTextBoxCode_PC.Update();
+            return re;
+        }
+
+        int UpdatePC2(int _PC,bool error)
         {
             Color back = Color.LightGreen;
             if(error)
@@ -767,10 +823,64 @@ namespace Controller
             //code and PC
             if (error == false)
             {
+                int topIndex = richTextBoxCode_PC.GetCharIndexFromPosition(new Point(0, 0));
+                int bottomIndex = richTextBoxCode_PC.GetCharIndexFromPosition(new Point(1, richTextBoxCode_PC.Height - 1));
+                int topLine = richTextBoxCode_PC.GetLineFromCharIndex(topIndex);
+                int bottomLine = richTextBoxCode_PC.GetLineFromCharIndex(bottomIndex);
+
                 richTextBoxCode_PC.SelectAll();
                 richTextBoxCode_PC.SelectionBackColor = Color.Black;
                 richTextBoxCode_PC.SelectionColor = Color.White;
+
+               
+                for (int i = 0; i < richTextBoxCode_PC.Lines.Count(); i++)
+                {
+                    int startpos = richTextBoxCode_PC.GetFirstCharIndexFromLine(i);
+                    string txt=richTextBoxCode_PC.Lines[i];
+                    if (txt != "")
+                    {
+
+                        if (BreakPoints.ContainsValue(i))
+                        {
+                            if (txt[0] != breakpointChar)
+                            {
+                                string txt2 = Char.ConvertFromUtf32(breakpointChar) + txt.Substring(2);
+                                richTextBoxCode_PC.Select(startpos, txt.Length);
+                                richTextBoxCode_PC.SelectedText = txt2;
+                            }
+                            richTextBoxCode_PC.Select(startpos, 1);
+                            richTextBoxCode_PC.SelectionColor = Color.Red;
+                           
+                        }
+                        else
+                        {
+                            if (txt[0] == breakpointChar)
+                            {
+                                richTextBoxCode_PC.Select(startpos, txt.Length);
+                                richTextBoxCode_PC.SelectedText = txt.Substring(1).PadLeft(5);
+                            }
+
+                            richTextBoxCode_PC.Select(startpos, 1);
+                            richTextBoxCode_PC.SelectionColor = Color.Black;
+                        }
+                        /*
+                                richTextBoxCode_PC.SelectionColor = Color.Black;
+                                int l=richTextBoxCode_PC.GetLineFromCharIndex(pos);
+                                int startpos=richTextBoxCode_PC.GetFirstCharIndexFromLine(l);
+                                richTextBoxCode_PC.Select(startpos, 1);
+                                richTextBoxCode_PC.SelectionColor = Color.Black;
+                                */
+                    }
+                  
+                }
+
             }
+            /*
+            if (_PC == -1)
+                return -1;
+            */
+
+
             int lastPCneq = 0;
             int max=PC.Max();
             int pos = -1;
@@ -792,15 +902,27 @@ namespace Controller
             }
             else if (_PC>=max)
             {
+                bool inMacro = false;
+                if (_PC > max)
+                    inMacro = true;
                 for (int i = 0; i < PC.Count; i++)
                 {
                     if (PC[i] == max)
                     {
                         lastPCneq = i;
-                        string s = "\n"+ PC[i] + "\n";
+                        string s = " "+ PC[i] + "\n";
                         pos = richTextBoxCode_PC.Text.IndexOf(s);
                         richTextBoxCode_PC.Select(pos, s.Length - 1);
-                        richTextBoxCode_PC.SelectionBackColor = back;
+                        if (inMacro == false)
+                        { 
+                            richTextBoxCode_PC.SelectionBackColor = back;
+                            UpdateMacroview(false,i, PC[i], _PC);
+                        }
+                        else
+                        {
+                            richTextBoxCode_PC.SelectionBackColor = Color.DarkTurquoise;
+                            UpdateMacroview(true,i, PC[i], _PC);
+                        }
                         richTextBoxCode_PC.SelectionColor = Color.Black;
                         break;
                     }
@@ -808,17 +930,19 @@ namespace Controller
             }
             else
             {
+                bool inMacro = false;
                 for (int i = 0; i < PC.Count; i++)
                 {
                     if (_PC<=PC[i]  )
                     {
                         string s = "";
-                        if (_PC== PC[i])
-                             s = "\n" + PC[i] + "\n";
+                        if (_PC == PC[i])
+                            s = " " + PC[i] + "\n";
                         else
-                            s = "\n" + PC[lastPCneq] + "\n";
-                        //string s = "\n" + PC[lastPCneq] + "\n";
-                        //string s = "\n" + PC[i] + "\n";
+                        {
+                            s = " " + PC[lastPCneq] + "\n";
+                            inMacro = true;
+                        }
                         if (lastPCneq == 0)
                             s = PC[lastPCneq] + "\n";
                         pos = richTextBoxCode_PC.Text.IndexOf(s);
@@ -828,8 +952,16 @@ namespace Controller
                                 richTextBoxCode_PC.Select(pos, s.Length - 1);
                             else
                                 richTextBoxCode_PC.Select(pos + 1, s.Length - 2);
-                            richTextBoxCode_PC.SelectionBackColor = back;
-                            richTextBoxCode_PC.SelectionColor = Color.Black;
+                            if (inMacro == false)
+                            {
+                                richTextBoxCode_PC.SelectionBackColor = back;
+                                UpdateMacroview(false,i, PC[i], _PC);
+                            }
+                            else
+                            {
+                                richTextBoxCode_PC.SelectionBackColor = Color.DarkTurquoise;
+                                UpdateMacroview(true,i, PC[i], _PC);
+                            }
                         }
 
                         break;
@@ -968,8 +1100,10 @@ namespace Controller
                         int foundAtPos = -1;
                         for (int j = 0; j < dt_Constants.Rows.Count; j++)
                         {
-                            if ((string)dt_Constants.Rows[j][0] == cst[0])
-                                foundAtPos = j;
+                            object Value = dt_Constants.Rows[j][0];
+                            if (Value != null && Value != DBNull.Value && !String.IsNullOrWhiteSpace(Value.ToString()))
+                                if ((string)Value == cst[0])
+                                    foundAtPos = j;
                         }
                         if (foundAtPos == -1)
                         {
@@ -1031,11 +1165,11 @@ namespace Controller
             toolStripButtonRun.Enabled = true;
             dataGridView_Rom.ClearSelection();
             dataGridView_Rom.Rows[0].Selected = true;
-            richTextBoxCode_PC.SelectAll();
-            richTextBoxCode_PC.SelectionBackColor = Color.Black;
-            richTextBoxCode_PC.SelectionColor = Color.White;
+          
             myComputer.reset();
             Current_PC = 0;
+            UpdatePC(Current_PC, false);
+            SynchronizerichTextBox();
             KeyPressed.Clear();
         }
 
@@ -1067,6 +1201,9 @@ namespace Controller
                 go = Tick();
                 if (Current_PC >= toPC)
                     break;
+                if(BreakPoints.ContainsKey(Current_PC))
+                    break;
+
             } while (go);
             if (Current_PC == Last_PC)
                 toolStripButtonReset.Enabled = true;
@@ -1295,7 +1432,26 @@ namespace Controller
             toolStripButtonReset.Enabled = false;
             toolStripButtonStop.Enabled = false;
         }
-    
         
+        private void richTextBoxCode_PC_MouseDoubleClick(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            
+            int i= richTextBoxCode_PC.GetFirstCharIndexOfCurrentLine();
+            int l=richTextBoxCode_PC.GetLineFromCharIndex(i);
+
+            string s=richTextBoxCode_PC.Lines[l];
+            s=s.Replace(Char.ConvertFromUtf32(breakpointChar), "").TrimStart();
+            if (s != "")
+            {
+                int j=int.Parse(s);
+                if(BreakPoints.ContainsKey(j))
+                    BreakPoints.Remove(j);
+                else
+                    BreakPoints.Add(j,l);
+                UpdatePC(Current_PC, false);
+            }
+
+            
+        }
     }
 }

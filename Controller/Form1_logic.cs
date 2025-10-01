@@ -56,15 +56,15 @@ namespace Controller
         }
 
 
-        void ColorRegister(string txt, int startpos, Dictionary<string, int> Csts)
+        void ColorRegister(string txt, int startpos, Dictionary<string, int> Csts, RichTextBox richTextBox)
         {
             txt = txt.ToUpper();
             foreach (string s in Csts.Keys)
             {
                 if (txt == s)
                 {
-                    richTextBoxCode.Select(startpos , txt.Length);
-                    richTextBoxCode.SelectionColor = Color.LightGreen;
+                    richTextBox.Select(startpos , txt.Length);
+                    richTextBox.SelectionColor = Color.LightGreen;
                     return;
                 }
             }
@@ -77,16 +77,16 @@ namespace Controller
                     return;
                 if (txt[offset] == '\'')
                 {
-                    richTextBoxCode.Select(startpos+1+ offset, 1);
-                    richTextBoxCode.SelectionColor = Color.Green;
+                    richTextBox.Select(startpos+1+ offset, 1);
+                    richTextBox.SelectionColor = Color.Green;
                 }
             }
             for (int i = 0; i < txt.Length; i++)
             {
                 if ((txt[i] == 'A') | (txt[i] == 'D') || (txt[i] == '*'))
                 {
-                    richTextBoxCode.Select(startpos + i, 1);
-                    richTextBoxCode.SelectionColor = Color.LightGreen;
+                    richTextBox.Select(startpos + i, 1);
+                    richTextBox.SelectionColor = Color.LightGreen;
                 }
 
             }
@@ -101,14 +101,14 @@ namespace Controller
         }
 
 
-        void AnalyseLines(string txt, List<int> ListErrors)
+        void AnalyseLines(string txt, List<int> ListErrors, RichTextBox richTextBox)
         {
             int pos = 0;
             int nextpos = 0;
             bool shoudStop = false;
             int lineCpt = 0;
-            richTextBoxCode.SelectAll();
-            richTextBoxCode.SelectionColor = Color.White;
+            richTextBox.SelectAll();
+            richTextBox.SelectionColor = Color.White;
             UpdateReserveredWords();
             string Msg;
             Dictionary<string, int> Csts = GetConstants(out Msg);
@@ -121,57 +121,57 @@ namespace Controller
                     pos = txt.Length;
                 }
                 string line = txt.Substring(nextpos, pos - nextpos);
-                richTextBoxCode.Select(nextpos, pos - nextpos);
-                richTextBoxCode.SelectionBackColor = Color.Black;
+                richTextBox.Select(nextpos, pos - nextpos);
+                richTextBox.SelectionBackColor = Color.Black;
 
 
                 if (line.StartsWith("#"))//comment
                 {
-                    richTextBoxCode.Select(nextpos, pos - nextpos);
-                    richTextBoxCode.SelectionColor = Color.DarkGreen;
+                    richTextBox.Select(nextpos, pos - nextpos);
+                    richTextBox.SelectionColor = Color.DarkGreen;
                 }
                 else if (line.ToUpper().StartsWith("JMP"))
                 {
-                    richTextBoxCode.Select(nextpos, 3);
-                    richTextBoxCode.SelectionColor = Color.Yellow;
-                    richTextBoxCode.SelectionBackColor = Color.Black;
+                    richTextBox.Select(nextpos, 3);
+                    richTextBox.SelectionColor = Color.Yellow;
+                    richTextBox.SelectionBackColor = Color.Black;
                 }
                 else if (line.ToUpper().StartsWith("LABEL"))
                 {
                     int posSpace = line.IndexOf(" ");
-                    richTextBoxCode.Select(nextpos, posSpace);
-                    richTextBoxCode.SelectionColor = Color.Cyan;
-                    richTextBoxCode.SelectionBackColor = Color.Black;
+                    richTextBox.Select(nextpos, posSpace);
+                    richTextBox.SelectionColor = Color.Cyan;
+                    richTextBox.SelectionBackColor = Color.Black;
                     if (posSpace > 0)
                     {
-                        richTextBoxCode.Select(nextpos + posSpace, line.Length - posSpace - 1);
-                        richTextBoxCode.SelectionColor = Color.Yellow;
-                        richTextBoxCode.SelectionBackColor = Color.Black;
+                        richTextBox.Select(nextpos + posSpace, line.Length - posSpace - 1);
+                        richTextBox.SelectionColor = Color.Yellow;
+                        richTextBox.SelectionBackColor = Color.Black;
                     }
                 }
                 else if (line.ToUpper().StartsWith("PRINT"))
                 {
                     int posSpace = line.IndexOf(" ");
-                    richTextBoxCode.Select(nextpos, posSpace);
-                    richTextBoxCode.SelectionColor = Color.Cyan;
-                    richTextBoxCode.SelectionBackColor = Color.Black;
+                    richTextBox.Select(nextpos, posSpace);
+                    richTextBox.SelectionColor = Color.Cyan;
+                    richTextBox.SelectionBackColor = Color.Black;
                     if (posSpace > 0)
                     {
-                        ColorRegister(line.Substring(posSpace+1).ToUpper(), nextpos + posSpace+1,Csts);
+                        ColorRegister(line.Substring(posSpace+1).ToUpper(), nextpos + posSpace+1,Csts, richTextBox);
                        
                     }
                 }
                 else if (line.ToUpper().StartsWith("GOTO") || (line.ToUpper().StartsWith("IF.GOTO")))
                 {
                     int posSpace = line.IndexOf(" ");
-                    richTextBoxCode.Select(nextpos, posSpace);
-                    richTextBoxCode.SelectionColor = Color.Cyan;
-                    richTextBoxCode.SelectionBackColor = Color.Black;
+                    richTextBox.Select(nextpos, posSpace);
+                    richTextBox.SelectionColor = Color.Cyan;
+                    richTextBox.SelectionBackColor = Color.Black;
                     if (posSpace > 0)
                     {
-                        richTextBoxCode.Select(nextpos + posSpace, line.Length - posSpace);
-                        richTextBoxCode.SelectionColor = Color.Yellow;
-                        richTextBoxCode.SelectionBackColor = Color.Black;
+                        richTextBox.Select(nextpos + posSpace, line.Length - posSpace);
+                        richTextBox.SelectionColor = Color.Yellow;
+                        richTextBox.SelectionBackColor = Color.Black;
                     }
                 }
                 else
@@ -183,9 +183,9 @@ namespace Controller
 
                     if (ReserverdWordIndex >= 0)
                     {
-                        richTextBoxCode.Select(nextpos, reservedWords[ReserverdWordIndex].Length);
-                        richTextBoxCode.SelectionColor = Color.Cyan;
-                        richTextBoxCode.SelectionBackColor = Color.Black;
+                        richTextBox.Select(nextpos, reservedWords[ReserverdWordIndex].Length);
+                        richTextBox.SelectionColor = Color.Cyan;
+                        richTextBox.SelectionBackColor = Color.Black;
                     }
                     else//analize the line
                     {
@@ -200,9 +200,9 @@ namespace Controller
                                     int posCst = line.ToUpper().IndexOf(cst.ToUpper());
                                     if (posCst >= 0)
                                     {
-                                        richTextBoxCode.Select(nextpos + posCst, cst.Length);
-                                        richTextBoxCode.SelectionColor = Color.Cyan;
-                                        richTextBoxCode.SelectionBackColor = Color.Black;
+                                        richTextBox.Select(nextpos + posCst, cst.Length);
+                                        richTextBox.SelectionColor = Color.Cyan;
+                                        richTextBox.SelectionBackColor = Color.Black;
                                     }
                                 }
                             }
@@ -212,19 +212,19 @@ namespace Controller
                         if (eqPos > 0)//we have a =
                         {
                             string sub1 = line.Substring(0, eqPos);
-                            ColorRegister(sub1, nextpos,Csts);
+                            ColorRegister(sub1, nextpos,Csts, richTextBox);
                         }
                         int scPos = line.IndexOf(';');
                         if (scPos > 0)//we have a ;
                         {
-                            richTextBoxCode.Select(nextpos + scPos, pos - nextpos - scPos);
-                            richTextBoxCode.SelectionColor = Color.Yellow;
+                            richTextBox.Select(nextpos + scPos, pos - nextpos - scPos);
+                            richTextBox.SelectionColor = Color.Yellow;
                         }
 
                         if (scPos < 0)
                             scPos = pos - nextpos;
                         string sub = line.Substring(eqPos + 1, scPos - eqPos - 1);
-                        ColorRegister(sub, nextpos + eqPos + 1, Csts);
+                        ColorRegister(sub, nextpos + eqPos + 1, Csts, richTextBox);
                     }
 
                     if (ListErrors != null)
@@ -233,13 +233,13 @@ namespace Controller
                         {
                             if (ListErrors[i] == lineCpt)
                             {
-                                richTextBoxCode.Select(nextpos, pos - nextpos);
-                                richTextBoxCode.SelectionBackColor = Color.LightCoral;
+                                richTextBox.Select(nextpos, pos - nextpos);
+                                richTextBox.SelectionBackColor = Color.LightCoral;
                             }
                             else
                             {
-                                richTextBoxCode.Select(nextpos, pos - nextpos);
-                                richTextBoxCode.SelectionBackColor = Color.Black;
+                                richTextBox.Select(nextpos, pos - nextpos);
+                                richTextBox.SelectionBackColor = Color.Black;
                             }
                         }
                     }
@@ -292,6 +292,7 @@ namespace Controller
         void ManageLine(string line, bool isMacro, List<string> paramList)
         {
             //line = line.ToUpper();
+            line = line.TrimStart();
             if (line == "")
             {
                 if (isMacro == false)
@@ -353,6 +354,10 @@ namespace Controller
                         {
                             line = line.ToUpper().Replace("LABEL", paramList[0]);
                         }
+                        if (line.ToUpper().Contains("INDEX"))
+                        {
+                            line = line.ToUpper().Replace("INDEX", paramList[0]);
+                        }
                         if (line.ToUpper().Contains("ARGUMENTCOUNT"))
                         {
                             line = line.ToUpper().Replace("ARGUMENTCOUNT", paramList[1]);
@@ -387,7 +392,7 @@ namespace Controller
         private void Generate()
         {
             counter = 0;
-            label_Error.Text = "";
+            listBoxError.Items.Clear();
             string txt = richTextBoxCode.Text;
             string[] ListCode = txt.Split('\n');
             PC = new List<int>();
@@ -398,7 +403,7 @@ namespace Controller
             labels = new Dictionary<string, int>();
             if (Msg2 != "")
             {
-                label_Error.Text += "Constant Error:" + Msg2;
+                listBoxError.Items.Add("Constant Error:" + Msg2);
                 return;
             }
             for (int i = 0; i < ListCode.Length; i++)
@@ -433,7 +438,7 @@ namespace Controller
                     if (Msg != "")
                     {
                         error = true;
-                        label_Error.Text += "Line " + ASMCode.Count + ": " + Msg + "\n";
+                        listBoxError.Items.Add("Line " + ASMCode.Count + ": " + Msg);
                         listError.Add(ASMCode.Count);
                         ASMCode.Add(0);
                     }
@@ -448,10 +453,11 @@ namespace Controller
             string PcTxt = "";
             for (int i = 0; i < PC.Count; i++)
             {
+                string a = "";
                 if (PC[i] == -1)
-                    PcTxt += "\n";
+                    PcTxt +=  a.PadLeft(5)+"\n";
                 else
-                    PcTxt += PC[i] + "\n";
+                    PcTxt += PC[i].ToString().PadLeft(5) + "\n";
             }
             richTextBoxCode_PC.Text = PcTxt;
 
@@ -466,7 +472,6 @@ namespace Controller
                 SyntaxColorUpdate(listLineError);
                 return;
             }
-
             for (int i = 0; i < ASMCode.Count; i++)
             {
                 myComputer.setRom(i, ASMCode[i]);//A=48
