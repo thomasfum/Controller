@@ -60,6 +60,7 @@ namespace Controller
         DataTable dt_Constants = new DataTable();
 
         Dictionary<int,int> BreakPoints = new Dictionary<int, int>();
+        List<int> StopPC =new List<int>();
 
         public bool[] IGenerated = new bool[16];
         public bool[] InOut = new bool[16];

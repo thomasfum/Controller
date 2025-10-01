@@ -330,6 +330,10 @@ namespace Controller
                     {
                         macroFound = true;
                         AddMacro(line, m.Key, m.Value);
+                        if(m.Key=="END")
+                        {
+                            StopPC.Add(counter);
+                        }
                     }
 
                 }

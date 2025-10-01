@@ -1,0 +1,5 @@
+##CONSTANTS##
+##CODE##
+A=0
+
+
