@@ -21,14 +21,10 @@ using System.Windows.Input;
 //TODO
 //--------------------
 // Bugs
-// - trim start in analyseline
-// - first macro alone
 // - TODO in code
 //
 //-------------------- 
 // Missing fcts
-// - breakpoints
-// - END 
 // - include saved functions
 // - floating
 // - multiplication
@@ -61,13 +57,15 @@ namespace Controller
 
         Dictionary<int,int> BreakPoints = new Dictionary<int, int>();
         List<int> StopPC =new List<int>();
-
+        string lastMacro = "";
         public bool[] IGenerated = new bool[16];
         public bool[] InOut = new bool[16];
         List<int> PC = new List<int>();
         List<string> ASM = new List<string>();
         List<int> ASMCode = new List<int>();
         Dictionary<string, List<string>> MacroList = new Dictionary<string, List<string>>();
+        Dictionary<string, List<string>> FunctionList = new Dictionary<string, List<string>>();
+        
         int RomSize = 256;
         int RamSize = 1024;
         string currentFileName = "";
@@ -250,6 +248,7 @@ namespace Controller
             MacroList.Add("IF.GOTO", new List<string>() { "pop.D", "A=label", "D;JNE" });
             */
             UpdateMacroList();
+            UpdateFunctionList();
             this.Closed += new EventHandler(MainWindow_Closed);
 
         }
@@ -279,7 +278,30 @@ namespace Controller
         }
 
 
+        void UpdateFunctionList()
+        {
+            FunctionList.Clear();
+            //DirectoryInfo d = new DirectoryInfo(AppPath+ @"../../asm/Macros/"); //Assuming Test is your Folder
+            DirectoryInfo d = new DirectoryInfo(AppPath + @"../asm/Functions/"); //Assuming Test is your Folder
 
+            FileInfo[] Files = d.GetFiles("*.txt"); //Getting Text files
+            string str = "";
+
+            foreach (FileInfo file in Files)
+            {
+                str = str + ", " + file.Name;
+                //string readText = readFile(AppPath + @"../../asm/Macros/"+file.Name);
+                string readText = readFile(AppPath + @"../asm/Functions/" + file.Name);
+                int CodePos = readText.IndexOf("##CODE##");
+                if (CodePos != -1)
+                {
+                    string code = readText.Substring(CodePos + 9);
+                    string[] codeLine = code.Split('\n');
+                    string macroName = Path.GetFileNameWithoutExtension(file.Name).ToUpper().Replace("_", ".");
+                    FunctionList.Add(macroName, codeLine.ToList());
+                }
+            }
+        }
 
 
 
@@ -745,11 +767,18 @@ namespace Controller
             if (inMacro == false)
             {
                 richTextBoxMacro.Clear();
+                lastMacro = "";
             }
             else
             {
-                string line = richTextBoxCode.Lines[no - 1].Split(' ')[0];
-                richTextBoxMacro.Text = "#In Macro " + step + " PC=" + _PC + " (" + (no - 1) + "):" + line + "\n";
+                if (no == 0)
+                    no = 1;//???
+                string line = richTextBoxCode.Lines[no - 1].TrimStart().Split(' ')[0];
+                if (line == lastMacro)
+                    return;
+                lastMacro = line;
+                //richTextBoxMacro.Text = "#In Macro " + step + " PC=" + _PC + " (" + (no - 1) + "):" + line + "\n";
+                richTextBoxMacro.Text = "#In Macro " + line + "\n";
                 if (MacroList.ContainsKey(line.ToUpper()))
                 {
                     for (int i = 0; i < MacroList[line.ToUpper()].Count; i++)

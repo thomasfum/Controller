@@ -19,6 +19,11 @@ namespace Controller
         {
             if (Last_PC == 0)
                 return false;
+
+            if(StopPC.Contains(Current_PC)) 
+                return false;
+
+
             myComputer.proceed();
             Current_PC = myComputer.getPC();
             
@@ -79,6 +84,7 @@ namespace Controller
                 {
                     richTextBox.Select(startpos+1+ offset, 1);
                     richTextBox.SelectionColor = Color.Green;
+                    return;
                 }
             }
             for (int i = 0; i < txt.Length; i++)
@@ -125,20 +131,22 @@ namespace Controller
                 richTextBox.SelectionBackColor = Color.Black;
 
 
-                if (line.StartsWith("#"))//comment
+                if (line.TrimStart().StartsWith("#"))//comment
                 {
                     richTextBox.Select(nextpos, pos - nextpos);
                     richTextBox.SelectionColor = Color.DarkGreen;
                 }
-                else if (line.ToUpper().StartsWith("JMP"))
+                else if (line.TrimStart().ToUpper().StartsWith("JMP"))
                 {
                     richTextBox.Select(nextpos, 3);
                     richTextBox.SelectionColor = Color.Yellow;
                     richTextBox.SelectionBackColor = Color.Black;
                 }
-                else if (line.ToUpper().StartsWith("LABEL"))
+                else if (line.TrimStart().ToUpper().StartsWith("LABEL"))
                 {
-                    int posSpace = line.IndexOf(" ");
+
+                    int nbSpaces = line.Length - line.TrimStart().Length;
+                    int posSpace = line.IndexOf(" ", nbSpaces);//here
                     richTextBox.Select(nextpos, posSpace);
                     richTextBox.SelectionColor = Color.Cyan;
                     richTextBox.SelectionBackColor = Color.Black;
@@ -149,9 +157,10 @@ namespace Controller
                         richTextBox.SelectionBackColor = Color.Black;
                     }
                 }
-                else if (line.ToUpper().StartsWith("PRINT"))
+                else if (line.TrimStart().ToUpper().StartsWith("PRINT"))
                 {
-                    int posSpace = line.IndexOf(" ");
+                    int nbSpaces = line.Length - line.TrimStart().Length;
+                    int posSpace = line.IndexOf(" ", nbSpaces);//here
                     richTextBox.Select(nextpos, posSpace);
                     richTextBox.SelectionColor = Color.Cyan;
                     richTextBox.SelectionBackColor = Color.Black;
@@ -161,9 +170,10 @@ namespace Controller
                        
                     }
                 }
-                else if (line.ToUpper().StartsWith("GOTO") || (line.ToUpper().StartsWith("IF.GOTO")))
+                else if (line.TrimStart().ToUpper().StartsWith("GOTO") || (line.TrimStart().ToUpper().StartsWith("IF.GOTO")))
                 {
-                    int posSpace = line.IndexOf(" ");
+                    int nbSpaces = line.Length - line.TrimStart().Length;
+                    int posSpace = line.IndexOf(" ", nbSpaces);//here
                     richTextBox.Select(nextpos, posSpace);
                     richTextBox.SelectionColor = Color.Cyan;
                     richTextBox.SelectionBackColor = Color.Black;
@@ -178,12 +188,13 @@ namespace Controller
                 {
                     int ReserverdWordIndex = -1;
                     for (int z = 0; z < reservedWords.Count; z++)
-                        if (line.ToUpper().StartsWith(reservedWords[z]))
+                        if (line.TrimStart().ToUpper().StartsWith(reservedWords[z]))
                             ReserverdWordIndex = z;
 
                     if (ReserverdWordIndex >= 0)
                     {
-                        richTextBox.Select(nextpos, reservedWords[ReserverdWordIndex].Length);
+                        int posMacro = line.ToUpper().IndexOf(reservedWords[ReserverdWordIndex]);
+                        richTextBox.Select(nextpos+ posMacro, reservedWords[ReserverdWordIndex].Length);
                         richTextBox.SelectionColor = Color.Cyan;
                         richTextBox.SelectionBackColor = Color.Black;
                     }
@@ -289,8 +300,9 @@ namespace Controller
             return Cst;
         }
 
-        void ManageLine(string line, bool isMacro, List<string> paramList)
+        void ManageLine(string line, bool isMacro, List<string> paramList, out string Msg)
         {
+            Msg = "";
             //line = line.ToUpper();
             line = line.TrimStart();
             if (line == "")
@@ -317,7 +329,11 @@ namespace Controller
                     ASM.Add("");
                 }
                 string lab = line.ToUpper().Substring(6, line.Length-6);
-                labels.Add(lab.Replace(":", ""), counter);
+                string lab2 = lab.Replace(":", "");
+                if (!labels.ContainsKey(lab2))
+                    labels.Add(lab2, counter);
+                else
+                    Msg = "Label "+ lab2+" is not unique";
             }
             else
             {
@@ -329,10 +345,12 @@ namespace Controller
                     if (line.ToUpper().StartsWith(m.Key))
                     {
                         macroFound = true;
-                        AddMacro(line, m.Key, m.Value);
-                        if(m.Key=="END")
+                        AddMacro(line, m.Key, m.Value, out Msg);
+                        if (Msg != "")
+                            return;
+                        if (m.Key=="END")
                         {
-                            StopPC.Add(counter);
+                            StopPC.Add(counter-1);
                         }
                     }
 
@@ -381,16 +399,18 @@ namespace Controller
 
 
 
-        void AddMacro(string ListCode, string MacroName, List<string> macroValue)
+        void AddMacro(string ListCode, string MacroName, List<string> macroValue, out string Msg)
         {
+            Msg = "";
             //ici rechercher les parametres de la macro et les passer a ManageLine
             string[] param = ListCode.Split(' ');
             for (int i = 0; i < macroValue.Count; i++)
             {
                 List<string> p = param.ToList();
                 p.RemoveAt(0);
-                //if((macroValue[i]!="")&& (!macroValue[i].StartsWith("#")))
-                    ManageLine(macroValue[i], true, p);
+                ManageLine(macroValue[i], true, p, out Msg);
+                if (Msg != "")
+                    return;
             }
         }
         private void Generate()
@@ -404,15 +424,51 @@ namespace Controller
             ASMCode = new List<int>();
             string Msg2 = "";
             Dictionary<string, int> Csts = GetConstants(out Msg2);
+            StopPC = new List<int>();
             labels = new Dictionary<string, int>();
             if (Msg2 != "")
             {
                 listBoxError.Items.Add("Constant Error:" + Msg2);
                 return;
             }
+            //find and add functions
+            List<string> functionNameNeeded = new List<string>();
             for (int i = 0; i < ListCode.Length; i++)
             {
-                ManageLine(ListCode[i], false, new List<string>());
+                if (ListCode[i].TrimStart().ToUpper().StartsWith("CALL"))
+                {
+                    int nbSpaces = ListCode[i].Length - ListCode[i].TrimStart().Length;
+                    string functionName= ListCode[i].Split(' ')[nbSpaces+1].ToUpper();
+                    if(!functionNameNeeded.Contains(functionName))
+                        functionNameNeeded.Add(functionName);
+                }
+            }
+
+            List<string> ListCodeL = ListCode.ToList();
+            for (int i = 0; i < functionNameNeeded.Count; i++)
+            {
+                foreach(KeyValuePair<string,List<string>>a in  FunctionList)
+                {
+                    if(a.Key== functionNameNeeded[i])
+                    {
+
+                        ListCodeL.AddRange(a.Value);
+                    }
+                }
+            }
+            string Msg = "";
+            bool error = false;
+            ListCode = ListCodeL.ToArray();
+            //generate ASM code
+            List<int> listError = new List<int>();
+            for (int i = 0; i < ListCode.Length; i++)
+            {
+                ManageLine(ListCode[i], false, new List<string>(), out Msg);
+                if (Msg != "")
+                {
+                    listBoxError.Items.Add("Line " + i + ": " + Msg);
+                    error = true;
+                }
             }
 
             for (int i = 0; i < ASM.Count; i++)
@@ -428,14 +484,18 @@ namespace Controller
                     }
                 }
             }
+            if (Msg != "")
+            {
+                listBoxError.Items.Add("Line " + ASMCode.Count + ": " + Msg);
+                return;
+            }
 
+            //generate machine code
 
-            bool error = false;
             myComputer.ClearRom();
-            List<int> listError = new List<int>();
             for (int i = 0; i < ASM.Count; i++)
             {
-                string Msg = "";
+                Msg = "";
                 if (ASM[i] != "")
                 {
                     string codeS = Tools.Decode(ASM[i], Csts, out Msg).ToString();
