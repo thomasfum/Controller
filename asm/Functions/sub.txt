@@ -1,0 +1,18 @@
+##CONSTANTS##
+SP=0
+ARGS=1
+LOCALS=2
+TEMP=3
+RETVAL=6
+##CODE##
+function sub 0
+    push.argument 0
+    push.argument 1
+    pop.a    
+    pop.d
+    D=D-A
+    push.d
+    # called with 2 arguments
+    # TODO: add arguments
+    # push the sum to the stack
+return

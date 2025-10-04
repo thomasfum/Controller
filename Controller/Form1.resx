@@ -310,8 +310,8 @@
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADeSURBVDhPYxgFWED8TmuGmF1zGWJ3PQbid0D2IzA/Zqc5
         VAUDkF8OZSGB0FXMDLE7JkA07sxiiNylyhC1RZAhdrccQ/SufCC+DzSkh4HhPyNQzX+oLiQAkozdtZch
         dDc/VAQVxO4WBsvH7GzBNCB6lwXYhvj9AlAR7ABiCMhraAZA/FwA5WGC2J0NYE0wDLIMBaSdYWXI3cYO
-        5VEJRG83AtpcBHS2IVSEBADWvOw32Lk+m34Bo9YAKkMkiN1VjOJnkEtIAiBng2yGuSBmhz5UhgQAcnbM
-        zkLyNBMNGBgAjGRmXjD1aUEAAAAASUVORK5CYII=
+        5VEJRG83AtpcBHS2IVSEBADWvPQ32Lk+m34Bo9YAKkMkiN1VjOJnkEtIAiBng2yGuSBmhz5UhgQAcnbM
+        zkLyNBMNGBgAizpmXUV+1SgAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="toolStripButtonTick.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -319,8 +319,8 @@
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACkSURBVDhPY8ALYnf9h7LIBEPVgP+MUAaaAUjieEH0jh0M
         MTudwGyYASA+SJwoEL/TmiF22wuG2N0uYAPidtoB6ZcM0bsdoCqIANHbbcGaQAaANQP5JAOQpqjt18jT
-        TBUQvd2IIXZnETAsDKEiJACw5mW/wWHgs+kXMGANoDJEgthdxdAAhGKgS0gCIGeDbIa5IGaHPlSGBABy
-        dszOQvI0Ew0YGAAOhFAReKiXGQAAAABJRU5ErkJggg==
+        TBUQvd2IIXZnETAsDKEiJACw5qW/wWHgs+kXMGANoDJEgthdxdAAhGKgS0gCIGeDbIa5IGaHPlSGBABy
+        dszOQvI0Ew0YGAANWlAQg4wlFwAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="toolStripButtonStepOut.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -328,8 +328,8 @@
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACfSURBVDhPY8AJonc7MMTsug6mSQYgTbG7XgLxfzBNkiGx
         u20YYre9YIjZ6QQxAIlPENTXMwGdfRKo0R7MBxkAoe3B4iB5ggBZEcwAECBKMzpANoAsMAwMoAhEbzdi
-        iN1ZBEwHhlAREgBY87LfYC/4bPrFEL/TACpDJIjdVQzWDMdAl5AEQM4G2QxzQcwOfagMCQDk7JidheRp
-        JhowMAAA+dVSUC2Hm0YAAAAASUVORK5CYII=
+        iN1ZBEwHhlAREgBY89LfYC/4bPrFEL/TACpDJIjdVQzWDMdAl5AEQM4G2QxzQcwOfagMCQDk7JidheRp
+        JhowMAAA+KtST3nlcssAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="toolStripButtonReset.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -356,7 +356,7 @@
 </value>
   </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>66</value>
+    <value>25</value>
   </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
