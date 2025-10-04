@@ -18,16 +18,17 @@ namespace Controller.ALU
         public bool[] X = new bool[16];
         public bool[] Y = new bool[16];
         public bool[] output = new bool[16];
+        Selector_16 selector16_Swap_1 = new Selector_16();
+        Selector_16 selector16_Swap_2 = new Selector_16();
+        Selector_16 selector16_zero = new Selector_16();
+        Selector_16 selector16_AL = new Selector_16();
+
+        ArithmeticUnit AU = new ArithmeticUnit();
+        LogicUnit LU = new LogicUnit();
+
         public int proceed()
         {
             int val = 0;
-            Selector_16 selector16_Swap_1 = new Selector_16();
-            Selector_16 selector16_Swap_2 = new Selector_16();
-            Selector_16 selector16_zero = new Selector_16();
-            Selector_16 selector16_AL = new Selector_16();
-
-            ArithmeticUnit AU = new ArithmeticUnit();
-            LogicUnit LU = new LogicUnit();
 
             selector16_Swap_1.s = sw;
             selector16_Swap_1.D0 = X;
@@ -48,7 +49,6 @@ namespace Controller.ALU
             LU.op0 = op0;
             LU.op1 = op1;
             val += LU.proceed();
-
 
             AU.X = selector16_zero.output;
             AU.Y = selector16_Swap_2.output;

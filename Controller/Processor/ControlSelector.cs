@@ -29,23 +29,20 @@ namespace Controller.Processor
         public bool d;
         public bool ca;
         public bool j;
-
+        Selector_16 selector_16 = new Selector_16();
+        Selector select_a = new Selector();
+        Selector select_d = new Selector();
+        Selector select_ca = new Selector();
+        Selector select_j = new Selector();
         public int proceed()
         {
             int val = 0;
-            Selector_16 selector_16 = new Selector_16();
-            Selector select_a = new Selector();
-            Selector select_d = new Selector();
-            Selector select_ca = new Selector();
-            Selector select_j = new Selector();
-
-
+          
             selector_16.s = s;
             selector_16.D0 = R0;
             selector_16.D1 = R1;
             val += selector_16.proceed();
             R = selector_16.output;
-
 
             select_a.s = s;
             select_a.d0 = a0;

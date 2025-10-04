@@ -19,18 +19,19 @@ namespace Controller.Processor
         public bool d;
         public bool ca;
         public bool j;
-
+        ALUInstruction alui = new ALUInstruction();
+        ControlSelector cs = new ControlSelector();
         public int proceed()
         {
             int val = 0;
-            ALUInstruction alui = new ALUInstruction();
+            
             alui.I= I;
             alui.A = A;
             alui.D = D;
             alui.CA = CA;
             val+=alui.proceed();
 
-            ControlSelector cs= new ControlSelector();
+            
             cs.s = I[15];
             cs.R1 = alui.R;
             cs.a1 = alui.a;

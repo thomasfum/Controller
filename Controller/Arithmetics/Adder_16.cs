@@ -15,19 +15,24 @@ namespace Controller
         public bool[] s = new bool[16];
         public bool c;
         public bool cOut;
+        FullAdder[] add = new FullAdder[16];
+        public Adder_16()
+        {
+            for (int i = 0; i < 16; i++)
+                add[i] = new FullAdder();
+        }
         public int proceed()
         {
             int val = 0;
             bool lastC = c;
             for (int i = 0; i < 16; i++) 
             {
-                FullAdder add = new FullAdder();
-                add.a = a[i];
-                add.b = b[i];
-                add.c = lastC;
-                val+=add.proceed();
-                s[i] = add.l;
-                lastC = add.h;
+                add[i].a = a[i];
+                add[i].b = b[i];
+                add[i].c = lastC;
+                val+=add[i].proceed();
+                s[i] = add[i].l;
+                lastC = add[i].h;
             }
             cOut = lastC;
             return val;

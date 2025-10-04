@@ -15,28 +15,27 @@ namespace Controller.Switching
         public bool a3;
         public bool d;
         public bool[] c = new bool[16];
+        Switch_3_8 switch_1_2And3 = new Switch_3_8();
+        Switch_1_2 switch_4_1 = new Switch_1_2();
+        Switch_1_2 switch_4_2 = new Switch_1_2();
+        Switch_1_2 switch_4_3 = new Switch_1_2();
+        Switch_1_2 switch_4_4 = new Switch_1_2();
+
+        Switch_1_2 switch_4_5 = new Switch_1_2();
+        Switch_1_2 switch_4_6 = new Switch_1_2();
+        Switch_1_2 switch_4_7 = new Switch_1_2();
+        Switch_1_2 switch_4_8 = new Switch_1_2();
+
         public int proceed()
         {
             int val = 0;
 
-            Switch_3_8 switch_1_2And3 = new Switch_3_8();
+           
             switch_1_2And3.a0 = a1;
             switch_1_2And3.a1 = a2;
             switch_1_2And3.a2 = a3;
             switch_1_2And3.d = d;
             val += switch_1_2And3.proceed();
-
-
-            Switch_1_2 switch_4_1 = new Switch_1_2();
-            Switch_1_2 switch_4_2 = new Switch_1_2();
-            Switch_1_2 switch_4_3 = new Switch_1_2();
-            Switch_1_2 switch_4_4 = new Switch_1_2();
-
-            Switch_1_2 switch_4_5 = new Switch_1_2();
-            Switch_1_2 switch_4_6 = new Switch_1_2();
-            Switch_1_2 switch_4_7 = new Switch_1_2();
-            Switch_1_2 switch_4_8 = new Switch_1_2();
-
 
             switch_4_1.a = a0;
             switch_4_1.d = switch_1_2And3.c[0];
@@ -49,7 +48,6 @@ namespace Controller.Switching
             val += switch_4_2.proceed();
             c[2] = switch_4_2.c0;
             c[3] = switch_4_2.c1;
-
 
             switch_4_3.a = a0;
             switch_4_3.d = switch_1_2And3.c[2];

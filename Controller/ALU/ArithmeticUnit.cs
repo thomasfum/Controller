@@ -16,15 +16,14 @@ namespace Controller.ALU
         public bool[] Y = new bool[16];
         public bool[] output = new bool[16];
 
+        Selector_16 selector16_1 = new Selector_16();
+        Selector_16 selector16_2 = new Selector_16();
+        Adder_16 add = new Adder_16();
+        Substracter_16 sub = new Substracter_16();
+
         public int proceed()
         {
             int val = 0;
-
-            Selector_16 selector16_1 = new Selector_16();
-            Selector_16 selector16_2 = new Selector_16();
-            Adder_16 add = new Adder_16();
-            Substracter_16 sub= new Substracter_16();
-
 
             selector16_1.s = op0;
             selector16_1.D0 = Y;

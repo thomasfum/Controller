@@ -17,7 +17,6 @@ namespace Controller.Memory
         {
             int val = 0;
       
-
             nand1.a = s;
             nand1.b= nand2.output;
             val += nand1.proceed();
@@ -25,7 +24,6 @@ namespace Controller.Memory
             nand2.a = nand1.output;
             nand2.b = r;
      
-
             val += nand2.proceed();
             output=nand2.output;
             return val;

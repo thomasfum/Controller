@@ -12,14 +12,16 @@ namespace Controller.Switching
         public bool d0;
         public bool d1;
         public bool outout;
+
+        And and1 = new And();
+        And and2 = new And();
+        Invert inv = new Invert();
+        Or or = new Or();
+
         public int proceed()
         {
             int val = 0;
-            And and1 = new And();
-            And and2 = new And();
-            Invert inv = new Invert();
-            Or or = new Or();
-
+          
             and1.a = s;
             and1.b = d1;
             val+=and1.proceed();
@@ -35,7 +37,6 @@ namespace Controller.Switching
             val += or.proceed();
 
             outout=or.output;
-
 
             return val;
         }

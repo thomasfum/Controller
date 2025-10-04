@@ -17,21 +17,21 @@ namespace Controller.ALU
         public bool[] X = new bool[16];
         public bool output;
 
+        Equal0_16 eq0 = new Equal0_16();
+        Less0_16 lt0 = new Less0_16();
+        Invert invEq0 = new Invert();
+        Invert invLt0 = new Invert();
+        And gtAnd1 = new And();
+        And gtAnd2 = new And();
+        And ltAnd = new And();
+        And eqAnd = new And();
+        Or Or1 = new Or();
+        Or Or2 = new Or();
+
         public int proceed()
         {
             int val = 0;
-            Equal0_16 eq0= new Equal0_16();
-            Less0_16 lt0= new Less0_16();
-            Invert invEq0= new Invert();
-            Invert invLt0 = new Invert();
-            And gtAnd1 = new And();
-            And gtAnd2 = new And();
-            And ltAnd = new And();
-            And eqAnd = new And();
-            Or Or1 = new Or();
-            Or Or2 = new Or();
-
-
+        
             eq0.a = X;
             val+=eq0.proceed();
             lt0.a = X;
