@@ -101,8 +101,6 @@ namespace Controller
         void UpdateReserveredWords()
         {
             reservedWords = MacroList.Keys.ToList<string>();
-            //reservedWords.Insert(0,"JMP");
-            //reservedWords.Insert(1, "LABEL");
             reservedWords = reservedWords.ConvertAll(d => d.ToUpper());
         }
 
@@ -412,6 +410,7 @@ namespace Controller
                 if (Msg != "")
                     return;
             }
+           
         }
         private void Generate()
         {

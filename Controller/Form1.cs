@@ -773,6 +773,9 @@ namespace Controller
             {
                 if (no == 0)
                     no = 1;//???
+                if (no - 1 >= richTextBoxCode.Lines.Count())
+                    no = richTextBoxCode.Lines.Count();
+
                 string line = richTextBoxCode.Lines[no - 1].TrimStart().Split(' ')[0];
                 if (line == lastMacro)
                     return;
