@@ -6,7 +6,7 @@ TEMP=3
 RETVAL=6
 ##CODE##
 # Assembler code 
-label functionName:
+label_G functionName:
 #Set LOCALS to the current SP
 A=SP
 D=*A

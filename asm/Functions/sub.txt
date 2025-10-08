@@ -6,10 +6,10 @@ TEMP=3
 RETVAL=6
 ##CODE##
 function sub 0
-    push.argument 0
     push.argument 1
-    pop.a    
-    pop.d
+    push.argument 0
+    pop.d    
+    pop.a
     D=D-A
     push.d
     # called with 2 arguments

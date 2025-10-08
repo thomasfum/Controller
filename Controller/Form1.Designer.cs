@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label_A = new System.Windows.Forms.Label();
@@ -139,6 +140,8 @@
             this.label12 = new System.Windows.Forms.Label();
             this.listBoxError = new System.Windows.Forms.ListBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.labelSpeed = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Rom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Ram)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -163,10 +166,9 @@
             // 
             // label_A
             // 
-            this.label_A.AutoSize = true;
             this.label_A.Location = new System.Drawing.Point(294, 478);
             this.label_A.Name = "label_A";
-            this.label_A.Size = new System.Drawing.Size(20, 13);
+            this.label_A.Size = new System.Drawing.Size(119, 13);
             this.label_A.TabIndex = 4;
             this.label_A.Text = "A=";
             // 
@@ -406,37 +408,33 @@
             // 
             // label_D
             // 
-            this.label_D.AutoSize = true;
             this.label_D.Location = new System.Drawing.Point(294, 501);
             this.label_D.Name = "label_D";
-            this.label_D.Size = new System.Drawing.Size(21, 13);
+            this.label_D.Size = new System.Drawing.Size(119, 13);
             this.label_D.TabIndex = 31;
             this.label_D.Text = "D=";
             // 
             // label_PC
             // 
-            this.label_PC.AutoSize = true;
             this.label_PC.Location = new System.Drawing.Point(294, 526);
             this.label_PC.Name = "label_PC";
-            this.label_PC.Size = new System.Drawing.Size(27, 13);
+            this.label_PC.Size = new System.Drawing.Size(119, 13);
             this.label_PC.TabIndex = 32;
             this.label_PC.Text = "PC=";
             // 
             // label_ALU
             // 
-            this.label_ALU.AutoSize = true;
             this.label_ALU.Location = new System.Drawing.Point(419, 478);
             this.label_ALU.Name = "label_ALU";
-            this.label_ALU.Size = new System.Drawing.Size(34, 13);
+            this.label_ALU.Size = new System.Drawing.Size(63, 13);
             this.label_ALU.TabIndex = 33;
             this.label_ALU.Text = "ALU=";
             // 
             // label_I
             // 
-            this.label_I.AutoSize = true;
             this.label_I.Location = new System.Drawing.Point(419, 501);
             this.label_I.Name = "label_I";
-            this.label_I.Size = new System.Drawing.Size(16, 13);
+            this.label_I.Size = new System.Drawing.Size(63, 13);
             this.label_I.TabIndex = 34;
             this.label_I.Text = "I=";
             // 
@@ -817,10 +815,9 @@
             // 
             // label_SP
             // 
-            this.label_SP.AutoSize = true;
             this.label_SP.Location = new System.Drawing.Point(416, 526);
             this.label_SP.Name = "label_SP";
-            this.label_SP.Size = new System.Drawing.Size(27, 13);
+            this.label_SP.Size = new System.Drawing.Size(66, 13);
             this.label_SP.TabIndex = 75;
             this.label_SP.Text = "SP=";
             // 
@@ -1395,11 +1392,25 @@
             this.label13.TabIndex = 92;
             this.label13.Text = "Errors";
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // labelSpeed
+            // 
+            this.labelSpeed.AutoSize = true;
+            this.labelSpeed.Location = new System.Drawing.Point(20, 872);
+            this.labelSpeed.Name = "labelSpeed";
+            this.labelSpeed.Size = new System.Drawing.Size(41, 13);
+            this.labelSpeed.TabIndex = 93;
+            this.labelSpeed.Text = "Speed:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1281, 910);
+            this.Controls.Add(this.labelSpeed);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.listBoxError);
             this.Controls.Add(this.label12);
@@ -1612,6 +1623,8 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ListBox listBoxError;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label labelSpeed;
     }
 }
 

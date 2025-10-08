@@ -8,12 +8,13 @@ RETVAL=6
 init.stack
 push.value 7
 push.value 3
-call add 2
+call sub 2
 pop.d
 A=D
+
 push.value 7
 push.value 3
-call sub 2
+call add 2
 pop.d
 A=D
 

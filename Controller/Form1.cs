@@ -3,7 +3,7 @@ using Controller.Processor;
 using System;
 
 using System.Collections.Generic;
-
+using System.ComponentModel;
 using System.Data;
 
 using System.Drawing;
@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -25,7 +26,7 @@ using System.Windows.Input;
 //
 //-------------------- 
 // Missing fcts
-// - include saved functions
+// - cursor when in function
 // - floating
 // - multiplication
 //
@@ -47,8 +48,8 @@ namespace Controller
 {
     public partial class Form1 : Form
     {
-
-        String AppPath = AppDomain.CurrentDomain.BaseDirectory + "../../";
+        String AppPath = AppDomain.CurrentDomain.BaseDirectory + "../../";//anycpu
+        //String AppPath = AppDomain.CurrentDomain.BaseDirectory + "../../../";//x64
         Computer myComputer;
         DataTable dt_Rom = new DataTable();
         DataTable dt_Ram = new DataTable();
@@ -65,14 +66,22 @@ namespace Controller
         List<int> ASMCode = new List<int>();
         Dictionary<string, List<string>> MacroList = new Dictionary<string, List<string>>();
         Dictionary<string, List<string>> FunctionList = new Dictionary<string, List<string>>();
-        
-        int RomSize = 256;
+        BackgroundWorker backgroundWorker1;
+        int RomSize = 512;
         int RamSize = 1024;
         string currentFileName = "";
         bool ScrollPC = true;
         int Last_PC = 0;
-        int Current_PC = -1;
+        int current_PC = -1;
         int counter = 0;
+        int RunUntill=0;
+
+        int current_A = 0;
+        int current_D = 0;
+        int current_I = 0;
+
+        float speedMesuared = 0;
+
         bool StopRunningLoop = false;
         List<int> KeyPressed = new List<int>();
         int speed = 0;
@@ -155,13 +164,6 @@ namespace Controller
             label_IGeneratedAsm.UseMnemonic = false;//prevent issue with char &
             myComputer.SetDisplayImage(pictureBox1.Image as Bitmap);
             myComputer.setKeyboardCallBack(() => {
-                /*
-                 int tmp=currentKeypressed;
-                 currentKeypressed = 0;
-                 labelKeyboard.Text = "Keyboard key:  ";
-                 //currentKeypressed = 0;
-                */
-                // return currentKeypressed; 
                 if (KeyPressed.Count > 0)
                     return KeyPressed.First();
                 else
@@ -169,7 +171,6 @@ namespace Controller
             }, () => {
                 if (KeyPressed.Count > 0)
                     KeyPressed.RemoveAt(0);
-                labelKeyboard.Text = "Keyboard key:  ";
                 return 0; });
 
 
@@ -252,6 +253,10 @@ namespace Controller
             this.Closed += new EventHandler(MainWindow_Closed);
 
         }
+
+
+    
+
         void UpdateMacroList()
         {
             MacroList.Clear();
@@ -773,6 +778,8 @@ namespace Controller
             {
                 if (no == 0)
                     no = 1;//???
+                if (no > richTextBoxCode.Lines.Count())//functions
+                    return;
                 string line = richTextBoxCode.Lines[no - 1].TrimStart().Split(' ')[0];
                 if (line == lastMacro)
                     return;
@@ -942,18 +949,21 @@ namespace Controller
                         lastPCneq = i;
                         string s = " "+ PC[i] + "\n";
                         pos = richTextBoxCode_PC.Text.IndexOf(s);
-                        richTextBoxCode_PC.Select(pos, s.Length - 1);
-                        if (inMacro == false)
-                        { 
-                            richTextBoxCode_PC.SelectionBackColor = back;
-                            UpdateMacroview(false,i, PC[i], _PC);
-                        }
-                        else
+                        if (pos >= 0)
                         {
-                            richTextBoxCode_PC.SelectionBackColor = Color.DarkTurquoise;
-                            UpdateMacroview(true,i, PC[i], _PC);
+                            richTextBoxCode_PC.Select(pos, s.Length - 1);
+                            if (inMacro == false)
+                            {
+                                richTextBoxCode_PC.SelectionBackColor = back;
+                                UpdateMacroview(false, i, PC[i], _PC);
+                            }
+                            else
+                            {
+                                richTextBoxCode_PC.SelectionBackColor = Color.DarkTurquoise;
+                                UpdateMacroview(true, i, PC[i], _PC);
+                            }
+                            richTextBoxCode_PC.SelectionColor = Color.Black;
                         }
-                        richTextBoxCode_PC.SelectionColor = Color.Black;
                         break;
                     }
                 }
@@ -1197,18 +1207,95 @@ namespace Controller
             dataGridView_Rom.Rows[0].Selected = true;
           
             myComputer.reset();
-            Current_PC = 0;
-            UpdatePC(Current_PC, false);
+            current_PC = 0;
+            UpdatePC(current_PC, false);
             SynchronizerichTextBox();
             KeyPressed.Clear();
         }
 
-        private async void toolStripButtonRun_Click(object sender, EventArgs e)
+        private void toolStripButtonRun_Click(object sender, EventArgs e)
         {
-            await run(Last_PC);
+            run2(Last_PC);
         }
+
+
+        void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            if (speed == 0)//refresh step by step
+            {
+                DisplayResults();               
+            }
+            //speed == 1: refresh on timer
+
+            //in all case refresh picture
+            pictureBox1.Refresh();
+            //and mapped IO
+            refreshMappedIO();
+        }
+        void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+
+            labelSpeed.Text = "Speed: "+speedMesuared+" (s)";
+           
+            if (current_PC == Last_PC)
+                toolStripButtonReset.Enabled = true;
+            else
+            {
+                toolStripButtonRun.Enabled = true;
+                toolStripButtonTick.Enabled = true;
+                toolStripButtonReset.Enabled = true;
+            }
+            timer1.Stop();
+            DisplayResults();
+        }
+
+        void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker worker = sender as BackgroundWorker;
+            StopRunningLoop = false;
+            bool go = false;
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+            do
+            {
+                if (speed == 0)
+                    Thread.Sleep(50);
+                if (StopRunningLoop == true)
+                    break;
+                go = subTick();
+
+                worker.ReportProgress(0);
+                if (current_PC >= RunUntill)
+                    break;
+                if (BreakPoints.ContainsKey(current_PC))
+                    break;
+            } while (go);
+            watch.Stop();
+            speedMesuared = watch.ElapsedMilliseconds/1000.0f;
+        }
+       
+        void run2(int toPC)
+        {
+            toolStripButtonRun.Enabled = false;
+            toolStripButtonTick.Enabled = false;
+            toolStripButtonReset.Enabled = false;
+            RunUntill = toPC;
+            backgroundWorker1= new BackgroundWorker();
+            if (speed==1)
+            {
+                timer1.Interval=100;
+                timer1.Start();
+            }
+            backgroundWorker1.WorkerReportsProgress = true;
+            backgroundWorker1.DoWork += backgroundWorker1_DoWork;
+            backgroundWorker1.ProgressChanged += backgroundWorker1_ProgressChanged;
+            backgroundWorker1.RunWorkerCompleted += backgroundWorker1_RunWorkerCompleted;
+            backgroundWorker1.RunWorkerAsync();
+        }
+        /*
         async Task run(int toPC)
         {
+            
+
             StopRunningLoop = false;
             toolStripButtonRun.Enabled = false;
             toolStripButtonTick.Enabled = false;
@@ -1244,7 +1331,7 @@ namespace Controller
                 toolStripButtonReset.Enabled = true;
             }
         }
-
+        */
         private void toolStripButtonStepOver_Click(object sender, EventArgs e)
         {
             stepOver();
@@ -1260,7 +1347,7 @@ namespace Controller
         {
             if (Last_PC == 0)
                 return;
-            if (Current_PC >= Last_PC - 1)
+            if (current_PC >= Last_PC - 1)
                 return;
             Tick();
         }
@@ -1284,7 +1371,7 @@ namespace Controller
             }
             if (keyData == (Keys.F5))
             {
-                run(Last_PC);
+                run2(Last_PC);
                 return true;
             }
             if (keyData == (Keys.F10))
@@ -1316,16 +1403,16 @@ namespace Controller
             int next = -1;
             for (int i = 0; i < PC.Count; i++)
             {
-                if  (PC[i]> Current_PC)
+                if  (PC[i]> current_PC)
                 {
                     next = PC[i];
                     break;
                 }
             }
             if (next >= 0)
-                run(next);
+                run2(next);
             else
-                run(Last_PC);
+                run2(Last_PC);
 
         }
 
@@ -1468,20 +1555,44 @@ namespace Controller
             
             int i= richTextBoxCode_PC.GetFirstCharIndexOfCurrentLine();
             int l=richTextBoxCode_PC.GetLineFromCharIndex(i);
-
-            string s=richTextBoxCode_PC.Lines[l];
-            s=s.Replace(Char.ConvertFromUtf32(breakpointChar), "").TrimStart();
-            if (s != "")
+            if (l < richTextBoxCode_PC.Lines.Length)
             {
-                int j=int.Parse(s);
-                if(BreakPoints.ContainsKey(j))
-                    BreakPoints.Remove(j);
-                else
-                    BreakPoints.Add(j,l);
-                UpdatePC(Current_PC, false);
+                string s = richTextBoxCode_PC.Lines[l];
+                s = s.Replace(Char.ConvertFromUtf32(breakpointChar), "").TrimStart();
+                if (s != "")
+                {
+                    int j = int.Parse(s);
+                    if (BreakPoints.ContainsKey(j))
+                        BreakPoints.Remove(j);
+                    else
+                        BreakPoints.Add(j, l);
+                    UpdatePC(current_PC, false);
+                }
             }
 
             
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            DisplayResults();
+        }
+
+        void DisplayResults()
+        {
+            int ALU = Tools.getALU(current_I);
+            label_A.Text = "A=" + current_A + " ( 0x" + current_A.ToString("X") + " )";
+            label_D.Text = "D=" + current_D + " ( 0x" + current_D.ToString("X") + " )";
+            label_PC.Text = "PC=" + current_PC;
+            label_I.Text = "I=" + current_I;
+            label_ALU.Text = "ALU=" + ALU;
+            dataGridView_Rom.ClearSelection();
+            dataGridView_Rom.Rows[current_PC].Selected = true;
+            updateI(current_I);
+            refreshRam();
+            UpdatePC(current_PC, false);
+            UpdateStack();
+            label_Nand_count.Text = "Nand count: " + myComputer.GetNandCount();
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Interop;
 
@@ -15,8 +16,25 @@ namespace Controller
         //----------------------------
         //PC
 
+        bool subTick()
+        {
+            if (Last_PC == 0)
+                return false;
+
+            if (StopPC.Contains(current_PC))
+                return false;
+
+
+            myComputer.proceed();
+            current_PC = myComputer.getPC();
+            current_A = myComputer.getA();
+            current_D = myComputer.getD();
+            current_I = myComputer.getI();
+            return true;
+        }
         bool Tick()
         {
+            /*
             if (Last_PC == 0)
                 return false;
 
@@ -26,7 +44,10 @@ namespace Controller
 
             myComputer.proceed();
             Current_PC = myComputer.getPC();
-            
+            */
+            bool ret = subTick();
+            if (ret != true)
+                return ret;
 
             if (speed < 2)
             {
@@ -35,23 +56,23 @@ namespace Controller
                 int I = myComputer.getI();
                 int ALU = Tools.getALU(I);
 
-                label_A.Text = "A=" + A;
-                label_D.Text = "D=" + D;
-                label_PC.Text = "PC=" + Current_PC;
+                label_A.Text = "A=" + A + " ( 0x" + A.ToString("X") + " )";
+                label_D.Text = "D=" + D + " ( 0x" + D.ToString("X") + " )";
+                label_PC.Text = "PC=" + current_PC;
                 label_I.Text = "I=" + I;
                 label_ALU.Text = "ALU=" + ALU;
                 dataGridView_Rom.ClearSelection();
-                dataGridView_Rom.Rows[Current_PC].Selected = true;
+                dataGridView_Rom.Rows[current_PC].Selected = true;
                 updateI(I);
                 refreshRam();
-                UpdatePC(Current_PC, false);
+                UpdatePC(current_PC, false);
                 UpdateStack();
                 label_Nand_count.Text = "Nand count: " + myComputer.GetNandCount();
             }
             pictureBox1.Refresh();
             refreshMappedIO();
 
-            if (Current_PC >= Last_PC)
+            if (current_PC >= Last_PC)
             {
                 toolStripButtonTick.Enabled = false;
                 return false;
@@ -300,10 +321,49 @@ namespace Controller
             return Cst;
         }
 
-        void ManageLine(string line, bool isMacro, List<string> paramList, out string Msg)
+
+        string  ManageParameters(List<string> paramList, string line)
+        { 
+            if (paramList.Count > 0)
+            {
+                if (line.ToUpper().Contains("VALUE"))
+                {
+                    line = line.ToUpper().Replace("VALUE", paramList[0]);
+                }
+                if (line.ToUpper().Contains("ADDRESS"))
+                {
+                    line = line.ToUpper().Replace("ADDRESS", paramList[0]);
+                }
+                if (line.ToUpper().Contains("LABEL"))
+                {
+                    line = line.ToUpper().Replace("LABEL", paramList[0]);
+                }
+                if (line.ToUpper().Contains("LABEL"))
+                {
+                    line = line.ToUpper().Replace("LABEL", paramList[0]);
+                }
+                if (line.ToUpper().Contains("INDEX"))
+                {
+                    line = line.ToUpper().Replace("INDEX", paramList[0]);
+                }
+                if (line.ToUpper().Contains("ARGUMENTCOUNT"))
+                {
+                    line = line.ToUpper().Replace("ARGUMENTCOUNT", paramList[1]);
+                }
+                if (line.ToUpper().Contains("LOCALSCOUNT"))
+                {
+                    line = line.ToUpper().Replace("LOCALSCOUNT", paramList[1]);
+                }
+                if (line.ToUpper().Contains("FUNCTIONNAME"))
+                {
+                    line = line.ToUpper().Replace("FUNCTIONNAME", paramList[0]);
+                }
+            }
+            return line;
+        }
+        void ManageLine(string line, string MacroName, bool isMacro, List<string> paramList, Dictionary<string, int> _labels, out string Msg)
         {
             Msg = "";
-            //line = line.ToUpper();
             line = line.TrimStart();
             if (line == "")
             {
@@ -328,12 +388,23 @@ namespace Controller
                     PC.Add(-1);
                     ASM.Add("");
                 }
+              
                 string lab = line.ToUpper().Substring(6, line.Length-6);
                 string lab2 = lab.Replace(":", "");
-                if (!labels.ContainsKey(lab2))
-                    labels.Add(lab2, counter);
+                if (line.ToUpper().StartsWith("LABEL_G"))
+                {
+                    if (!labels.ContainsKey(paramList[0]))
+                        labels.Add(paramList[0].ToUpper(), counter);
+                    else
+                        Msg = "Label " + paramList[0] + " is not unique in global scope";
+                }
                 else
-                    Msg = "Label "+ lab2+" is not unique";
+                {
+                    if (!_labels.ContainsKey(lab2))
+                        _labels.Add(lab2, counter);
+                    else
+                        Msg = "Label " + lab2 + " is not unique in the scope of " + MacroName;
+                }
             }
             else
             {
@@ -345,6 +416,7 @@ namespace Controller
                     if (line.ToUpper().StartsWith(m.Key))
                     {
                         macroFound = true;
+                        line = ManageParameters(paramList, line);
                         AddMacro(line, m.Key, m.Value, out Msg);
                         if (Msg != "")
                             return;
@@ -357,39 +429,7 @@ namespace Controller
                 }
                 if (macroFound == false)
                 {
-
-                    if (paramList.Count > 0)
-                    {
-                        if (line.ToUpper().Contains("VALUE"))
-                        {
-                            line = line.ToUpper().Replace("VALUE", paramList[0]);
-                        }
-                        if (line.ToUpper().Contains("ADDRESS"))
-                        {
-                            line = line.ToUpper().Replace("ADDRESS", paramList[0]);
-                        }
-                        if (line.ToUpper().Contains("LABEL"))
-                        {
-                            line = line.ToUpper().Replace("LABEL", paramList[0]);
-                        }
-                        if (line.ToUpper().Contains("LABEL"))
-                        {
-                            line = line.ToUpper().Replace("LABEL", paramList[0]);
-                        }
-                        if (line.ToUpper().Contains("INDEX"))
-                        {
-                            line = line.ToUpper().Replace("INDEX", paramList[0]);
-                        }
-                        if (line.ToUpper().Contains("ARGUMENTCOUNT"))
-                        {
-                            line = line.ToUpper().Replace("ARGUMENTCOUNT", paramList[1]);
-                        }
-                        if (line.ToUpper().Contains("LOCALSCOUNT"))
-                        {
-                            line = line.ToUpper().Replace("LOCALSCOUNT", paramList[1]);
-                        }
-
-                    }
+                    line = ManageParameters(paramList, line);
                     counter++;
                     ASM.Add(line);
                 }
@@ -402,16 +442,36 @@ namespace Controller
         void AddMacro(string ListCode, string MacroName, List<string> macroValue, out string Msg)
         {
             Msg = "";
+            int ASM_Start = ASM.Count();
             //ici rechercher les parametres de la macro et les passer a ManageLine
             string[] param = ListCode.Split(' ');
+            Dictionary<string, int>  labelsInMacro = new Dictionary<string, int>();
+           // List<string> p = param.ToList();
+           // p.RemoveAt(0);
             for (int i = 0; i < macroValue.Count; i++)
             {
+                //ici migrer plus haut
                 List<string> p = param.ToList();
                 p.RemoveAt(0);
-                ManageLine(macroValue[i], true, p, out Msg);
+                ManageLine(macroValue[i], MacroName,true, p, labelsInMacro,out Msg);
                 if (Msg != "")
                     return;
             }
+            //ici gerer labelsInMacro
+            for (int i = ASM_Start; i < ASM.Count; i++)
+            {
+                if (ASM[i].StartsWith("A="))
+                {
+                    foreach (KeyValuePair<string, int> kv in labelsInMacro)
+                    {
+                        if (ASM[i].ToUpper().Contains(kv.Key))
+                        {
+                            ASM[i] = ASM[i].ToUpper().Replace(kv.Key, kv.Value.ToString());
+                        }
+                    }
+                }
+            }
+
         }
         private void Generate()
         {
@@ -431,6 +491,7 @@ namespace Controller
                 listBoxError.Items.Add("Constant Error:" + Msg2);
                 return;
             }
+            //-------------------------------------------------------------------------------
             //find and add functions
             List<string> functionNameNeeded = new List<string>();
             for (int i = 0; i < ListCode.Length; i++)
@@ -443,27 +504,35 @@ namespace Controller
                         functionNameNeeded.Add(functionName);
                 }
             }
-
+            
             List<string> ListCodeL = ListCode.ToList();
+            int lastManuallyEnteredLine = ListCode.Length;
             for (int i = 0; i < functionNameNeeded.Count; i++)
             {
                 foreach(KeyValuePair<string,List<string>>a in  FunctionList)
                 {
                     if(a.Key== functionNameNeeded[i])
                     {
-
                         ListCodeL.AddRange(a.Value);
+                        /*
+                        for(int j = 0;j < a.Value.Count();j++)
+                            richTextBoxCode.Text+= a.Value[j]+"\n";
+                        */
                     }
                 }
             }
+            
             string Msg = "";
             bool error = false;
             ListCode = ListCodeL.ToArray();
+            
+            
+            //---------------------------------------------------------
             //generate ASM code
             List<int> listError = new List<int>();
             for (int i = 0; i < ListCode.Length; i++)
             {
-                ManageLine(ListCode[i], false, new List<string>(), out Msg);
+                ManageLine(ListCode[i], "", false, new List<string>(), labels, out Msg);
                 if (Msg != "")
                 {
                     listBoxError.Items.Add("Line " + i + ": " + Msg);
@@ -489,9 +558,8 @@ namespace Controller
                 listBoxError.Items.Add("Line " + ASMCode.Count + ": " + Msg);
                 return;
             }
-
+            //---------------------------------------------------
             //generate machine code
-
             myComputer.ClearRom();
             for (int i = 0; i < ASM.Count; i++)
             {
@@ -515,7 +583,8 @@ namespace Controller
             }
 
             string PcTxt = "";
-            for (int i = 0; i < PC.Count; i++)
+            int min= Math.Min(lastManuallyEnteredLine, PC.Count);
+            for (int i = 0; i < min; i++)
             {
                 string a = "";
                 if (PC[i] == -1)
