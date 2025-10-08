@@ -12,12 +12,11 @@ namespace Controller.Arithmetics
         public bool[] a = new bool[16];
         public bool[] b = new bool[16];
         public bool[] s = new bool[16];
-
+        Adder_16 add = new Adder_16();
+        Inverter_16 inv = new Inverter_16();
         public int proceed()
         {
             int val = 0;
-            Adder_16 add= new Adder_16();
-            Inverter_16 inv = new Inverter_16();
             inv.a = b;
             val+=inv.proceed();
             add.a= a;

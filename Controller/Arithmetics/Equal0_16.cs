@@ -10,17 +10,27 @@ namespace Controller.Arithmetics
     {
         public bool[] a = new bool[16];
         public bool s;
+        Equal0_2 eq1 = new Equal0_2();
+        Equal0_2 eq2 = new Equal0_2();
+        Equal0_2 eq3 = new Equal0_2();
+        Equal0_2 eq4 = new Equal0_2();
+        Equal0_2 eq5 = new Equal0_2();
+        Equal0_2 eq6 = new Equal0_2();
+        Equal0_2 eq7 = new Equal0_2();
+        Equal0_2 eq8 = new Equal0_2();
+        And and1 = new And();
+        And and2 = new And();
+        And and3 = new And();
+        And and4 = new And();
+
+        And and5 = new And();
+        And and6 = new And();
+
+        And and7 = new And();
         public int proceed()
         {
             int val=0;
-            Equal0_2 eq1= new Equal0_2();
-            Equal0_2 eq2 = new Equal0_2();
-            Equal0_2 eq3 = new Equal0_2();
-            Equal0_2 eq4 = new Equal0_2();
-            Equal0_2 eq5 = new Equal0_2();
-            Equal0_2 eq6 = new Equal0_2();
-            Equal0_2 eq7 = new Equal0_2();
-            Equal0_2 eq8 = new Equal0_2();
+           
             eq1.a0 = a[0];
             eq1.a1 = a[1];
             eq2.a0 = a[2];
@@ -45,10 +55,7 @@ namespace Controller.Arithmetics
             val += eq6.proceed();
             val += eq7.proceed();
             val += eq8.proceed();
-            And and1 = new And();
-            And and2 = new And();
-            And and3 = new And();
-            And and4 = new And();
+           
             and1.a = eq1.s;
             and1.b = eq2.s;
             and2.a = eq3.s;
@@ -62,8 +69,7 @@ namespace Controller.Arithmetics
             val += and3.proceed();
             val += and4.proceed();
 
-            And and5 = new And();
-            And and6 = new And();
+           
 
             and5.a = and1.output;
             and5.b = and2.output;
@@ -72,7 +78,7 @@ namespace Controller.Arithmetics
             val += and5.proceed();
             val += and6.proceed();
 
-            And and7 = new And();
+          
             and7.a = and5.output;
             and7.b = and6.output;
             val += and7.proceed();

@@ -29,6 +29,13 @@ namespace Controller.Processor
         public Display display = new Display();
         public Keyboard keyboard = new Keyboard();
         public Ram ram;
+        Switch_4_16 switchTopCL = new Switch_4_16();
+        Switch_4_16 switchTopTrue = new Switch_4_16();
+        Or orDisplay = new Or();
+        Or orDisplayTrue = new Or();
+        Selector_16 selector_ram_inout_16 = new Selector_16();
+        Selector_16 selector_ram_inout_16_Keyboard = new Selector_16();
+        Selector_16 selector_ram_inout_Keyboard_16_Dispaly = new Selector_16();
         public CombinedMemory(int _nbRegister)
         {
             ram = new Ram(_nbRegister);
@@ -48,29 +55,25 @@ namespace Controller.Processor
             reg_d.cl = cl;
             val += reg_d.proceed();
             D = reg_d.output;
-
-            Switch_4_16 switchTopCL= new Switch_4_16();
+           
             switchTopCL.a0 = reg_a.output[12];
             switchTopCL.a1 = reg_a.output[13];
             switchTopCL.a2 = reg_a.output[14];
             switchTopCL.a3 = reg_a.output[15];
             switchTopCL.d = cl;
             val +=switchTopCL.proceed();
-           
-            Or orDisplay = new Or();
+         
             orDisplay.a= switchTopCL.c[4];
             orDisplay.b = switchTopCL.c[5];
             val+=orDisplay.proceed();
-           
-            Switch_4_16 switchTopTrue = new Switch_4_16();
+            
             switchTopTrue.a0 = reg_a.output[12];
             switchTopTrue.a1 = reg_a.output[13];
             switchTopTrue.a2 = reg_a.output[14];
             switchTopTrue.a3 = reg_a.output[15];
             switchTopTrue.d = true;
             val += switchTopTrue.proceed();
-
-            Or orDisplayTrue = new Or();
+       
             orDisplayTrue.a = switchTopTrue.c[4];
             orDisplayTrue.b = switchTopTrue.c[5];
             val += orDisplayTrue.proceed();
@@ -107,26 +110,22 @@ namespace Controller.Processor
 
             //-----------------------------------------------------
             //output
-            Selector_16 selector_ram_inout_16 = new Selector_16();
             selector_ram_inout_16.D1 = ram.output;
             selector_ram_inout_16.D0 = inout.output;
             selector_ram_inout_16.s = switchTopTrue.c[0];//ram
             val+=selector_ram_inout_16.proceed();
 
-            Selector_16 selector_ram_inout_16_Keyboard = new Selector_16();
             selector_ram_inout_16_Keyboard.D1 = keyboard.output;
             selector_ram_inout_16_Keyboard.D0 = selector_ram_inout_16.output;
             selector_ram_inout_16_Keyboard.s = switchTopTrue.c[6];// Keyboard;
             val += selector_ram_inout_16_Keyboard.proceed();
 
-            Selector_16 selector_ram_inout_Keyboard_16_Dispaly = new Selector_16();
             selector_ram_inout_Keyboard_16_Dispaly.D1 = display.output;
             selector_ram_inout_Keyboard_16_Dispaly.D0 = selector_ram_inout_16_Keyboard.output;
             selector_ram_inout_Keyboard_16_Dispaly.s = orDisplayTrue.output;// Keyboard;
             val += selector_ram_inout_Keyboard_16_Dispaly.proceed();
 
             CA = selector_ram_inout_Keyboard_16_Dispaly.output;
-
             return val;
         }
 

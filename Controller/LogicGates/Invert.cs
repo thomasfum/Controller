@@ -10,10 +10,9 @@ namespace Controller
     {
         public bool input = false;
         public bool output = false;
-
+        Nand nand = new Nand();
         public int proceed()
         {
-            Nand nand= new Nand();
             nand.a = input;
             nand.b = input;
             int val=nand.proceed();

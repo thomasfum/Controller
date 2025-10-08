@@ -11,17 +11,21 @@ namespace Controller.LogicGates
         public bool[] a = new bool[16];
         public bool[] b = new bool[16];
         public bool[] s = new bool[16];
-
+        Or[] or = new Or[16];
+        public Or_16()
+        {
+            for (int i = 0; i < 16; i++)
+                or[i] = new Or();
+        }
         public int proceed()
         {
             int val = 0;
             for (int i = 0; i < 16; i++)
             {
-                Or or = new Or();
-                or.a = a[i];
-                or.b = b[i];
-                val += or.proceed();
-                s[i] = or.output;
+                or[i].a = a[i];
+                or[i].b = b[i];
+                val += or[i].proceed();
+                s[i] = or[i].output;
             }
             return val;
         }

@@ -14,55 +14,21 @@ namespace Controller.Switching
         public bool a1;
         public bool d;
         public bool[] c = new bool[4];
+        Switch_1_2 sw1 = new Switch_1_2();
+        Switch_1_2 sw2_1 = new Switch_1_2();
+        Switch_1_2 sw2_2 = new Switch_1_2();
         public int proceed()
         {
             int val = 0;
-            /*
-            Invert invA0 = new Invert();
-            invA0.input = a0;
-            val += invA0.proceed();
-
-            Invert invA1 = new Invert();
-            invA1.input = a1;
-            val += invA1.proceed();
-
-            And andD0 = new And();
-            andD0.a = invA0.output;
-            andD0.b = invA1.output;
-            val += andD0.proceed();
-            d[0] = andD0.output;
-
-            And andD1 = new And();
-            andD1.a = a0;
-            andD1.b = invA1.output;
-            val += andD1.proceed();
-            d[1] = andD1.output;
-
-            And andD2 = new And();
-            andD2.a = invA0.output;
-            andD2.b = a1;
-            val += andD2.proceed();
-            d[2] = andD2.output;
-
-            And andD3 = new And();
-            andD3.a = a0;
-            andD3.b = a1;
-            val += andD3.proceed();
-            d[3] = andD3.output;
-            */
-
-
-            Switch_1_2 sw1= new Switch_1_2();
+          
             sw1.d = d;
             sw1.a = a1;
             val += sw1.proceed();
-
-            Switch_1_2 sw2_1 = new Switch_1_2();
+                        
             sw2_1.d = sw1.c0;
             sw2_1.a = a0;
             val += sw2_1.proceed();
 
-            Switch_1_2 sw2_2 = new Switch_1_2();
             sw2_2.d = sw1.c1;
             sw2_2.a = a0;
             val += sw2_2.proceed();

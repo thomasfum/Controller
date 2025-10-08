@@ -13,22 +13,22 @@ namespace Controller.Switching
         public bool a2;
         public bool d;
         public bool[] c = new bool[8];
+
+        Switch_2_4 switch_1And2 = new Switch_2_4();
+        Switch_1_2 switch_3_1 = new Switch_1_2();
+        Switch_1_2 switch_3_2 = new Switch_1_2();
+        Switch_1_2 switch_3_3 = new Switch_1_2();
+        Switch_1_2 switch_3_4 = new Switch_1_2();
+
         public int proceed()
         {
             int val = 0;
-            Switch_2_4 switch_1And2 = new Switch_2_4();
+            
             switch_1And2.a0 = a1;
             switch_1And2.a1 = a2;
             switch_1And2.d = d;
             val+=switch_1And2.proceed();
-
-            Switch_1_2 switch_3_1 = new Switch_1_2();
-            Switch_1_2 switch_3_2 = new Switch_1_2();
-            Switch_1_2 switch_3_3 = new Switch_1_2();
-            Switch_1_2 switch_3_4 = new Switch_1_2();
-
-
-            
+           
             switch_3_1.a = a0;
             switch_3_1.d = switch_1And2.c[0];
             val += switch_3_1.proceed();
@@ -52,7 +52,6 @@ namespace Controller.Switching
             val += switch_3_4.proceed();
             c[6] = switch_3_4.c0;
             c[7] = switch_3_4.c1;
-
 
             return val;
         }

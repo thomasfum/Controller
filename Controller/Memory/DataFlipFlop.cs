@@ -15,12 +15,12 @@ namespace Controller.Memory
         public bool output;
         D_Latch DLatch1 = new D_Latch();
         D_Latch DLatch2    = new D_Latch();
+        And and = new And();
+        Invert invert = new Invert();
         public int proceed()
         {
             int val = 0;
-            And and= new And();
-            Invert invert = new Invert();
-
+         
             invert.input = cl;
             val +=invert.proceed();
 

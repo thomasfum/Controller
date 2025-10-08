@@ -11,19 +11,16 @@ namespace Controller
         public bool a;
         public bool b;
         public bool output;
-
+        Invert inv1 = new Invert();
+        Invert inv2 = new Invert();
+        Nand nand = new Nand();
         public int proceed()
         {
             int val = 0;
-            Invert inv1= new Invert();
             inv1.input = a;
             val += inv1.proceed();
-
-            Invert inv2 = new Invert();
             inv2.input = b;
             val += inv2.proceed();
-
-            Nand nand = new Nand();
             nand.a = inv1.output; 
             nand.b = inv2.output;
             val += nand.proceed();

@@ -22,14 +22,13 @@ namespace Controller.Processor
         public bool d;
         public bool ca;
         public bool j;
-
+        Selector_16 select = new Selector_16();
+        ALU.ALU alu = new ALU.ALU();
+        Condition condition = new Condition();
         public int proceed()
         {
             int val = 0;
-            Selector_16 select = new Selector_16();
-            ALU.ALU alu = new ALU.ALU();
-            Condition condition = new Condition();
-
+            
             condition.gt =  I[0];
             condition.eq =  I[1];
             condition.lt =  I[2];

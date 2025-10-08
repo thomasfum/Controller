@@ -16,17 +16,19 @@ namespace Controller.ALU
         public bool[] X = new bool[16];
         public bool[] Y = new bool[16];
         public bool[] output = new bool[16];
+
+        Inverter_16 inv16 = new Inverter_16();
+        Xor_16 xor16 = new Xor_16();
+        And_16 and16 = new And_16();
+        Or_16 or16 = new Or_16();
+
+        Selector_16 selector16_1 = new Selector_16();
+        Selector_16 selector16_2 = new Selector_16();
+        Selector_16 selector16_3 = new Selector_16();
+
         public int proceed()
         {
             int val = 0;
-            Inverter_16 inv16 = new Inverter_16();
-            Xor_16 xor16 = new Xor_16();
-            And_16  and16 = new And_16();
-            Or_16 or16 = new Or_16();
-
-            Selector_16 selector16_1 = new Selector_16();
-            Selector_16 selector16_2 = new Selector_16();
-            Selector_16 selector16_3 = new Selector_16();
 
             inv16.a = X;
             val += inv16.proceed();
@@ -45,12 +47,10 @@ namespace Controller.ALU
             selector16_1.D1= inv16.s;
             val += selector16_1.proceed();
 
-
             selector16_2.s = op0;
             selector16_2.D0 = and16.s;
             selector16_2.D1 = or16.s;
             val += selector16_2.proceed();
-
 
             selector16_3.s = op1;
             selector16_3.D0 = selector16_2.output;

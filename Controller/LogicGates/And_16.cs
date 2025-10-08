@@ -12,17 +12,21 @@ namespace Controller.LogicGates
         public bool[] a = new bool[16];
         public bool[] b = new bool[16];
         public bool[] s = new bool[16];
-
+        And []and=new And [16];
+        public And_16()
+        {
+            for (int i = 0; i < 16; i++)
+                and[i] = new And();
+        }
         public int proceed()
         {
             int val = 0;
             for (int i = 0; i < 16; i++)
             {
-                And and = new And();
-                and.a = a[i];
-                and.b = b[i];
-                val += and.proceed();
-                s[i] = and.output;
+                and[i].a = a[i];
+                and[i].b = b[i];
+                val += and[i].proceed();
+                s[i] = and[i].output;
             }
             return val;
         }

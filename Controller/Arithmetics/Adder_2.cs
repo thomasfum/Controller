@@ -21,18 +21,16 @@ namespace Controller
         public bool s0;
         public bool s1;
         public bool cOut;
-
-
+        FullAdder add1 = new FullAdder();
+        FullAdder add2 = new FullAdder();
         public int proceed()
         {
             int val = 0;
-            FullAdder add1 = new FullAdder();
             add1.a = a0;
             add1.b = b0;
             add1.c = c;
             val+=add1.proceed();
             s0 = add1.l;
-            FullAdder add2 = new FullAdder();
             add2.a = a1;
             add2.b = b1;
             add2.c = add1.h;

@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 namespace Controller.Arithmetics
 {
 
-
     public class Less0_16
     {
         public bool[] a = new bool[16];

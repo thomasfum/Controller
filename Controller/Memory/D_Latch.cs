@@ -12,16 +12,14 @@ namespace Controller.Memory
         public bool d;
         public bool output;
         SR_Latch srLatch = new SR_Latch();
+        Invert invSt = new Invert();
+        Invert invD = new Invert();
+        Or or1 = new Or();
+        Or or2 = new Or();
+
         public int proceed()
         {
             int val = 0;
-            Invert invSt= new Invert();
-            Invert invD = new Invert();
-
-            Or or1 = new Or();
-            Or or2 = new Or();
-
-           
 
             invD.input = d;
             val+= invD.proceed();
@@ -41,7 +39,6 @@ namespace Controller.Memory
             srLatch.r = or2.output;
             val += srLatch.proceed();
             output = srLatch.output;
-
 
             return val;
         }
