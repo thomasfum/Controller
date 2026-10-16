@@ -2,12 +2,107 @@
 <html>
 <body>
 
-<h1>Controller</h1>
-<p>A desktop application that emulate a micro controller written only with logic gaye able to run asm code with dispay, keyboard and IO inspired from <a href="https://nandgame.com/">https://nandgame.com/</a></p>
-<img src="controller.png" alt="controller">
-</br>
-<a href="Controller.zip">Executable (x64)</a>
-</br>
-<a href="asm.zip">Asm example files</a>
+    <h1>Controller</h1>
+    <p>A desktop application that emulate a micro controller written only with logic gaye able to run asm code with dispay, keyboard and IO inspired from <a href="https://nandgame.com/">https://nandgame.com/</a></p>
+    </br>
+    </br>
+    <img src="controller.png" alt="controller">
+    </br>
+    </br>
+    <a href="https://github.com/thomasfum/Controller">source code</a>
+    </br>
+    </br>
+    <a href="asm.zip">Asm example files</a>
+    </br>
+    </br>
+
+    <table border="1" style="border-collapse: collapse; text-align: left; font-size: 12px; font-family: sans-serif;">
+        <thead>
+            <tr style="background-color: #f2f2f2;">
+                <th style="padding: 8px;">Category</th>
+                <th style="padding: 8px;">Components / Elements</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- ALU -->
+            <tr>
+                <td rowspan="4" style="padding: 8px; font-weight: bold; vertical-align: top;">ALU</td>
+                <td style="padding: 8px;">ALU</td>
+            </tr>
+            <tr><td style="padding: 8px;">ArithmeticUnit</td></tr>
+            <tr><td style="padding: 8px;">Condition</td></tr>
+            <tr><td style="padding: 8px;">LogicUnit</td></tr>
+
+            <!-- Arithmetics -->
+            <tr>
+                <td rowspan="9" style="padding: 8px; font-weight: bold; vertical-align: top;">Arithmetics</td>
+                <td style="padding: 8px;">Adder_16</td>
+            </tr>
+            <tr><td style="padding: 8px;">Adder_2</td></tr>
+            <tr><td style="padding: 8px;">Equal0_16</td></tr>
+            <tr><td style="padding: 8px;">Equal0_2</td></tr>
+            <tr><td style="padding: 8px;">FullAdder</td></tr>
+            <tr><td style="padding: 8px;">HalfAdder</td></tr>
+            <tr><td style="padding: 8px;">Increment_16</td></tr>
+            <tr><td style="padding: 8px;">Less0_16</td></tr>
+            <tr><td style="padding: 8px;">Substracter_16</td></tr>
+
+            <!-- InOut -->
+            <tr>
+                <td rowspan="3" style="padding: 8px; font-weight: bold; vertical-align: top;">InOut</td>
+                <td style="padding: 8px;">Display</td>
+            </tr>
+            <tr><td style="padding: 8px;">InputOutput</td></tr>
+            <tr><td style="padding: 8px;">Keyboard</td></tr>
+
+            <!-- LogicGates -->
+            <tr>
+                <td rowspan="10" style="padding: 8px; font-weight: bold; vertical-align: top;">LogicGates</td>
+                <td style="padding: 8px;">And</td>
+            </tr>
+            <tr><td style="padding: 8px;">And_16</td></tr>
+            <tr><td style="padding: 8px;">Invert</td></tr>
+            <tr><td style="padding: 8px;">Inverter_16</td></tr>
+            <tr><td style="padding: 8px;">Nand</td></tr>
+            <tr><td style="padding: 8px;">or</td></tr>
+            <tr><td style="padding: 8px;">Or_16</td></tr>
+            <tr><td style="padding: 8px;">Relay</td></tr>
+            <tr><td style="padding: 8px;">Xor</td></tr>
+            <tr><td style="padding: 8px;">Xor_16</td></tr>
+
+            <!-- Memory -->
+            <tr>
+                <td rowspan="7" style="padding: 8px; font-weight: bold; vertical-align: top;">Memory</td>
+                <td style="padding: 8px;">Counter_16</td>
+            </tr>
+            <tr><td style="padding: 8px;">DataFlipFlop</td></tr>
+            <tr><td style="padding: 8px;">D_Latch</td></tr>
+            <tr><td style="padding: 8px;">Ram</td></tr>
+            <tr><td style="padding: 8px;">Register_16</td></tr>
+            <tr><td style="padding: 8px;">Rom</td></tr>
+            <tr><td style="padding: 8px;">SR_Latch</td></tr>
+
+            <!-- Processor -->
+            <tr>
+                <td rowspan="5" style="padding: 8px; font-weight: bold; vertical-align: top;">Processor</td>
+                <td style="padding: 8px;">ALUInstruction</td>
+            </tr>
+            <tr><td style="padding: 8px;">CombinedMemory</td></tr>
+            <tr><td style="padding: 8px;">Computer</td></tr>
+            <tr><td style="padding: 8px;">ControlSelector</td></tr>
+            <tr><td style="padding: 8px;">ControlUnit</td></tr>
+
+            <!-- Switching -->
+            <tr>
+                <td rowspan="6" style="padding: 8px; font-weight: bold; vertical-align: top;">Switching</td>
+                <td style="padding: 8px;">Selector</td>
+            </tr>
+            <tr><td style="padding: 8px;">Selector_16</td></tr>
+            <tr><td style="padding: 8px;">Switch_1_2</td></tr>
+            <tr><td style="padding: 8px;">Switch_2_4</td></tr>
+            <tr><td style="padding: 8px;">Switch_3_8</td></tr>
+            <tr><td style="padding: 8px;">Switch_4_16</td></tr>
+        </tbody>
+    </table>
 </body>
 </html>
